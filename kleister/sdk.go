@@ -598,7 +598,7 @@ func (c *Default) ForgeGet(id string) (*Forge, error) {
 		}
 	}
 
-	return nil, fmt.Errorf("Failed to find matching Forge version")
+	return nil, fmt.Errorf("failed to find matching Forge version")
 }
 
 // ForgeRefresh refreshs the available Forge versions.
@@ -662,7 +662,7 @@ func (c *Default) MinecraftGet(id string) (*Minecraft, error) {
 		}
 	}
 
-	return nil, fmt.Errorf("Failed to find matching Minecraft version")
+	return nil, fmt.Errorf("failed to find matching Minecraft version")
 }
 
 // MinecraftRefresh refreshs the available Minecraft versions.

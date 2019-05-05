@@ -34,7 +34,7 @@ func (s *Version) DownloadFile(path string) error {
 	tmpfile, err := ioutil.TempFile("", "version")
 
 	if err != nil {
-		return fmt.Errorf("Failed to create a temporary file")
+		return fmt.Errorf("failed to create a temporary file")
 	}
 
 	defer os.Remove(tmpfile.Name())
@@ -42,7 +42,7 @@ func (s *Version) DownloadFile(path string) error {
 	resp, err := http.Get(path)
 
 	if err != nil {
-		return fmt.Errorf("Failed to download the file")
+		return fmt.Errorf("failed to download the file")
 	}
 
 	defer resp.Body.Close()
@@ -51,7 +51,7 @@ func (s *Version) DownloadFile(path string) error {
 	buf.ReadFrom(resp.Body)
 
 	if _, err = tmpfile.WriteString(buf.String()); err != nil {
-		return fmt.Errorf("Failed to copy the file content")
+		return fmt.Errorf("failed to copy the file content")
 	}
 
 	return s.EncodeFile(tmpfile.Name())
@@ -64,7 +64,7 @@ func (s *Version) EncodeFile(path string) error {
 	)
 
 	if err != nil {
-		return fmt.Errorf("Failed to read file")
+		return fmt.Errorf("failed to read file")
 	}
 
 	mimeType := http.DetectContentType(

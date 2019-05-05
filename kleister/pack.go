@@ -46,7 +46,7 @@ func (s *Pack) DownloadIcon(path string) error {
 	tmpfile, err := ioutil.TempFile("", "icon")
 
 	if err != nil {
-		return fmt.Errorf("Failed to create a temporary icon")
+		return fmt.Errorf("failed to create a temporary icon")
 	}
 
 	defer os.Remove(tmpfile.Name())
@@ -54,7 +54,7 @@ func (s *Pack) DownloadIcon(path string) error {
 	resp, err := http.Get(path)
 
 	if err != nil {
-		return fmt.Errorf("Failed to download the icon")
+		return fmt.Errorf("failed to download the icon")
 	}
 
 	defer resp.Body.Close()
@@ -63,7 +63,7 @@ func (s *Pack) DownloadIcon(path string) error {
 	buf.ReadFrom(resp.Body)
 
 	if _, err = tmpfile.WriteString(buf.String()); err != nil {
-		return fmt.Errorf("Failed to copy the icon content")
+		return fmt.Errorf("failed to copy the icon content")
 	}
 
 	return s.EncodeIcon(tmpfile.Name())
@@ -76,7 +76,7 @@ func (s *Pack) EncodeIcon(path string) error {
 	)
 
 	if err != nil {
-		return fmt.Errorf("Failed to read icon")
+		return fmt.Errorf("failed to read icon")
 	}
 
 	mimeType := http.DetectContentType(
@@ -100,7 +100,7 @@ func (s *Pack) DownloadLogo(path string) error {
 	tmpfile, err := ioutil.TempFile("", "logo")
 
 	if err != nil {
-		return fmt.Errorf("Failed to create a temporary logo")
+		return fmt.Errorf("failed to create a temporary logo")
 	}
 
 	defer os.Remove(tmpfile.Name())
@@ -108,7 +108,7 @@ func (s *Pack) DownloadLogo(path string) error {
 	resp, err := http.Get(path)
 
 	if err != nil {
-		return fmt.Errorf("Failed to download the logo")
+		return fmt.Errorf("failed to download the logo")
 	}
 
 	defer resp.Body.Close()
@@ -117,7 +117,7 @@ func (s *Pack) DownloadLogo(path string) error {
 	buf.ReadFrom(resp.Body)
 
 	if _, err = tmpfile.WriteString(buf.String()); err != nil {
-		return fmt.Errorf("Failed to copy the logo content")
+		return fmt.Errorf("failed to copy the logo content")
 	}
 
 	return s.EncodeLogo(tmpfile.Name())
@@ -130,7 +130,7 @@ func (s *Pack) EncodeLogo(path string) error {
 	)
 
 	if err != nil {
-		return fmt.Errorf("Failed to read logo")
+		return fmt.Errorf("failed to read logo")
 	}
 
 	mimeType := http.DetectContentType(
@@ -154,7 +154,7 @@ func (s *Pack) DownloadBackground(path string) error {
 	tmpfile, err := ioutil.TempFile("", "background")
 
 	if err != nil {
-		return fmt.Errorf("Failed to create a temporary background")
+		return fmt.Errorf("failed to create a temporary background")
 	}
 
 	defer os.Remove(tmpfile.Name())
@@ -162,7 +162,7 @@ func (s *Pack) DownloadBackground(path string) error {
 	resp, err := http.Get(path)
 
 	if err != nil {
-		return fmt.Errorf("Failed to download the background")
+		return fmt.Errorf("failed to download the background")
 	}
 
 	defer resp.Body.Close()
@@ -171,7 +171,7 @@ func (s *Pack) DownloadBackground(path string) error {
 	buf.ReadFrom(resp.Body)
 
 	if _, err = tmpfile.WriteString(buf.String()); err != nil {
-		return fmt.Errorf("Failed to copy the background content")
+		return fmt.Errorf("failed to copy the background content")
 	}
 
 	return s.EncodeBackground(tmpfile.Name())
@@ -184,7 +184,7 @@ func (s *Pack) EncodeBackground(path string) error {
 	)
 
 	if err != nil {
-		return fmt.Errorf("Failed to read background")
+		return fmt.Errorf("failed to read background")
 	}
 
 	mimeType := http.DetectContentType(
