@@ -1,5 +1,6 @@
 NAME := kleister-go
 IMPORT := github.com/kleister/$(NAME)
+SHELL := bash
 
 ifeq ($(OS), Windows_NT)
 	HAS_RETOOL := $(shell where retool)
