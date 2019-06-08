@@ -21,10 +21,6 @@ type MinecraftBuildParams struct {
 	// Required: true
 	Build *string `json:"build"`
 
-	// minecraft
-	// Required: true
-	Minecraft *string `json:"minecraft"`
-
 	// pack
 	// Required: true
 	Pack *string `json:"pack"`
@@ -35,10 +31,6 @@ func (m *MinecraftBuildParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBuild(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateMinecraft(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -55,15 +47,6 @@ func (m *MinecraftBuildParams) Validate(formats strfmt.Registry) error {
 func (m *MinecraftBuildParams) validateBuild(formats strfmt.Registry) error {
 
 	if err := validate.Required("build", "body", m.Build); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *MinecraftBuildParams) validateMinecraft(formats strfmt.Registry) error {
-
-	if err := validate.Required("minecraft", "body", m.Minecraft); err != nil {
 		return err
 	}
 

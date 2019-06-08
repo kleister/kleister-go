@@ -63,11 +63,11 @@ for the update team operation typically these are written to a http.Request
 */
 type UpdateTeamParams struct {
 
-	/*Params
+	/*Team
 	  The team data to update
 
 	*/
-	Params *models.Team
+	Team *models.Team
 	/*TeamID
 	  A team UUID or slug
 
@@ -112,15 +112,15 @@ func (o *UpdateTeamParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the update team params
-func (o *UpdateTeamParams) WithParams(params *models.Team) *UpdateTeamParams {
-	o.SetParams(params)
+// WithTeam adds the team to the update team params
+func (o *UpdateTeamParams) WithTeam(team *models.Team) *UpdateTeamParams {
+	o.SetTeam(team)
 	return o
 }
 
-// SetParams adds the params to the update team params
-func (o *UpdateTeamParams) SetParams(params *models.Team) {
-	o.Params = params
+// SetTeam adds the team to the update team params
+func (o *UpdateTeamParams) SetTeam(team *models.Team) {
+	o.Team = team
 }
 
 // WithTeamID adds the teamID to the update team params
@@ -142,8 +142,8 @@ func (o *UpdateTeamParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.Team != nil {
+		if err := r.SetBodyParam(o.Team); err != nil {
 			return err
 		}
 	}

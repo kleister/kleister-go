@@ -68,11 +68,11 @@ type PermitPackUserParams struct {
 
 	*/
 	PackID string
-	/*Params
+	/*PackUser
 	  The pack user data to update
 
 	*/
-	Params *models.PackUserParams
+	PackUser *models.PackUserParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +123,15 @@ func (o *PermitPackUserParams) SetPackID(packID string) {
 	o.PackID = packID
 }
 
-// WithParams adds the params to the permit pack user params
-func (o *PermitPackUserParams) WithParams(params *models.PackUserParams) *PermitPackUserParams {
-	o.SetParams(params)
+// WithPackUser adds the packUser to the permit pack user params
+func (o *PermitPackUserParams) WithPackUser(packUser *models.PackUserParams) *PermitPackUserParams {
+	o.SetPackUser(packUser)
 	return o
 }
 
-// SetParams adds the params to the permit pack user params
-func (o *PermitPackUserParams) SetParams(params *models.PackUserParams) {
-	o.Params = params
+// SetPackUser adds the packUser to the permit pack user params
+func (o *PermitPackUserParams) SetPackUser(packUser *models.PackUserParams) {
+	o.PackUser = packUser
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -147,8 +147,8 @@ func (o *PermitPackUserParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.PackUser != nil {
+		if err := r.SetBodyParam(o.PackUser); err != nil {
 			return err
 		}
 	}

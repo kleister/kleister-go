@@ -63,16 +63,16 @@ for the append forge to build operation typically these are written to a http.Re
 */
 type AppendForgeToBuildParams struct {
 
+	/*ForgeBuild
+	  The build data to append
+
+	*/
+	ForgeBuild *models.ForgeBuildParams
 	/*ForgeID
 	  A forge UUID or slug
 
 	*/
 	ForgeID string
-	/*Params
-	  The build data to append
-
-	*/
-	Params *models.ForgeBuildParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,6 +112,17 @@ func (o *AppendForgeToBuildParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithForgeBuild adds the forgeBuild to the append forge to build params
+func (o *AppendForgeToBuildParams) WithForgeBuild(forgeBuild *models.ForgeBuildParams) *AppendForgeToBuildParams {
+	o.SetForgeBuild(forgeBuild)
+	return o
+}
+
+// SetForgeBuild adds the forgeBuild to the append forge to build params
+func (o *AppendForgeToBuildParams) SetForgeBuild(forgeBuild *models.ForgeBuildParams) {
+	o.ForgeBuild = forgeBuild
+}
+
 // WithForgeID adds the forgeID to the append forge to build params
 func (o *AppendForgeToBuildParams) WithForgeID(forgeID string) *AppendForgeToBuildParams {
 	o.SetForgeID(forgeID)
@@ -123,17 +134,6 @@ func (o *AppendForgeToBuildParams) SetForgeID(forgeID string) {
 	o.ForgeID = forgeID
 }
 
-// WithParams adds the params to the append forge to build params
-func (o *AppendForgeToBuildParams) WithParams(params *models.ForgeBuildParams) *AppendForgeToBuildParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the append forge to build params
-func (o *AppendForgeToBuildParams) SetParams(params *models.ForgeBuildParams) {
-	o.Params = params
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *AppendForgeToBuildParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *AppendForgeToBuildParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 	var res []error
 
+	if o.ForgeBuild != nil {
+		if err := r.SetBodyParam(o.ForgeBuild); err != nil {
+			return err
+		}
+	}
+
 	// path param forge_id
 	if err := r.SetPathParam("forge_id", o.ForgeID); err != nil {
 		return err
-	}
-
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
 	}
 
 	if len(res) > 0 {

@@ -21,17 +21,9 @@ type VersionBuildParams struct {
 	// Required: true
 	Build *string `json:"build"`
 
-	// mod
-	// Required: true
-	Mod *string `json:"mod"`
-
 	// pack
 	// Required: true
 	Pack *string `json:"pack"`
-
-	// version
-	// Required: true
-	Version *string `json:"version"`
 }
 
 // Validate validates this version build params
@@ -42,15 +34,7 @@ func (m *VersionBuildParams) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateMod(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validatePack(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateVersion(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -69,27 +53,9 @@ func (m *VersionBuildParams) validateBuild(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VersionBuildParams) validateMod(formats strfmt.Registry) error {
-
-	if err := validate.Required("mod", "body", m.Mod); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *VersionBuildParams) validatePack(formats strfmt.Registry) error {
 
 	if err := validate.Required("pack", "body", m.Pack); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VersionBuildParams) validateVersion(formats strfmt.Registry) error {
-
-	if err := validate.Required("version", "body", m.Version); err != nil {
 		return err
 	}
 

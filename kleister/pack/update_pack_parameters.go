@@ -63,16 +63,16 @@ for the update pack operation typically these are written to a http.Request
 */
 type UpdatePackParams struct {
 
+	/*Pack
+	  The pack data to update
+
+	*/
+	Pack *models.Pack
 	/*PackID
 	  A pack UUID or slug
 
 	*/
 	PackID string
-	/*Params
-	  The pack data to update
-
-	*/
-	Params *models.Pack
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,6 +112,17 @@ func (o *UpdatePackParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithPack adds the pack to the update pack params
+func (o *UpdatePackParams) WithPack(pack *models.Pack) *UpdatePackParams {
+	o.SetPack(pack)
+	return o
+}
+
+// SetPack adds the pack to the update pack params
+func (o *UpdatePackParams) SetPack(pack *models.Pack) {
+	o.Pack = pack
+}
+
 // WithPackID adds the packID to the update pack params
 func (o *UpdatePackParams) WithPackID(packID string) *UpdatePackParams {
 	o.SetPackID(packID)
@@ -123,17 +134,6 @@ func (o *UpdatePackParams) SetPackID(packID string) {
 	o.PackID = packID
 }
 
-// WithParams adds the params to the update pack params
-func (o *UpdatePackParams) WithParams(params *models.Pack) *UpdatePackParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the update pack params
-func (o *UpdatePackParams) SetParams(params *models.Pack) {
-	o.Params = params
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *UpdatePackParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *UpdatePackParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
+	if o.Pack != nil {
+		if err := r.SetBodyParam(o.Pack); err != nil {
+			return err
+		}
+	}
+
 	// path param pack_id
 	if err := r.SetPathParam("pack_id", o.PackID); err != nil {
 		return err
-	}
-
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
 	}
 
 	if len(res) > 0 {

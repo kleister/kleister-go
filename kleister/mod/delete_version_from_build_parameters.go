@@ -68,11 +68,11 @@ type DeleteVersionFromBuildParams struct {
 
 	*/
 	ModID string
-	/*Params
+	/*VersionBuild
 	  The build data to unlink from version
 
 	*/
-	Params *models.VersionBuildParams
+	VersionBuild *models.VersionBuildParams
 	/*VersionID
 	  A version UUID or slug
 
@@ -128,15 +128,15 @@ func (o *DeleteVersionFromBuildParams) SetModID(modID string) {
 	o.ModID = modID
 }
 
-// WithParams adds the params to the delete version from build params
-func (o *DeleteVersionFromBuildParams) WithParams(params *models.VersionBuildParams) *DeleteVersionFromBuildParams {
-	o.SetParams(params)
+// WithVersionBuild adds the versionBuild to the delete version from build params
+func (o *DeleteVersionFromBuildParams) WithVersionBuild(versionBuild *models.VersionBuildParams) *DeleteVersionFromBuildParams {
+	o.SetVersionBuild(versionBuild)
 	return o
 }
 
-// SetParams adds the params to the delete version from build params
-func (o *DeleteVersionFromBuildParams) SetParams(params *models.VersionBuildParams) {
-	o.Params = params
+// SetVersionBuild adds the versionBuild to the delete version from build params
+func (o *DeleteVersionFromBuildParams) SetVersionBuild(versionBuild *models.VersionBuildParams) {
+	o.VersionBuild = versionBuild
 }
 
 // WithVersionID adds the versionID to the delete version from build params
@@ -163,8 +163,8 @@ func (o *DeleteVersionFromBuildParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.VersionBuild != nil {
+		if err := r.SetBodyParam(o.VersionBuild); err != nil {
 			return err
 		}
 	}

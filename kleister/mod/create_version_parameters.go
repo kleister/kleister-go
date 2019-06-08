@@ -68,11 +68,11 @@ type CreateVersionParams struct {
 
 	*/
 	ModID string
-	/*Params
+	/*Version
 	  The version data to create
 
 	*/
-	Params *models.Version
+	Version *models.Version
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +123,15 @@ func (o *CreateVersionParams) SetModID(modID string) {
 	o.ModID = modID
 }
 
-// WithParams adds the params to the create version params
-func (o *CreateVersionParams) WithParams(params *models.Version) *CreateVersionParams {
-	o.SetParams(params)
+// WithVersion adds the version to the create version params
+func (o *CreateVersionParams) WithVersion(version *models.Version) *CreateVersionParams {
+	o.SetVersion(version)
 	return o
 }
 
-// SetParams adds the params to the create version params
-func (o *CreateVersionParams) SetParams(params *models.Version) {
-	o.Params = params
+// SetVersion adds the version to the create version params
+func (o *CreateVersionParams) SetVersion(version *models.Version) {
+	o.Version = version
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -147,8 +147,8 @@ func (o *CreateVersionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.Version != nil {
+		if err := r.SetBodyParam(o.Version); err != nil {
 			return err
 		}
 	}

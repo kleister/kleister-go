@@ -63,11 +63,11 @@ for the create user operation typically these are written to a http.Request
 */
 type CreateUserParams struct {
 
-	/*Params
+	/*User
 	  The user data to create
 
 	*/
-	Params *models.User
+	User *models.User
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,15 +107,15 @@ func (o *CreateUserParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the create user params
-func (o *CreateUserParams) WithParams(params *models.User) *CreateUserParams {
-	o.SetParams(params)
+// WithUser adds the user to the create user params
+func (o *CreateUserParams) WithUser(user *models.User) *CreateUserParams {
+	o.SetUser(user)
 	return o
 }
 
-// SetParams adds the params to the create user params
-func (o *CreateUserParams) SetParams(params *models.User) {
-	o.Params = params
+// SetUser adds the user to the create user params
+func (o *CreateUserParams) SetUser(user *models.User) {
+	o.User = user
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -126,8 +126,8 @@ func (o *CreateUserParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.User != nil {
+		if err := r.SetBodyParam(o.User); err != nil {
 			return err
 		}
 	}

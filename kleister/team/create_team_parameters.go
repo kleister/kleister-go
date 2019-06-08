@@ -63,11 +63,11 @@ for the create team operation typically these are written to a http.Request
 */
 type CreateTeamParams struct {
 
-	/*Params
+	/*Team
 	  The team data to create
 
 	*/
-	Params *models.Team
+	Team *models.Team
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,15 +107,15 @@ func (o *CreateTeamParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the create team params
-func (o *CreateTeamParams) WithParams(params *models.Team) *CreateTeamParams {
-	o.SetParams(params)
+// WithTeam adds the team to the create team params
+func (o *CreateTeamParams) WithTeam(team *models.Team) *CreateTeamParams {
+	o.SetTeam(team)
 	return o
 }
 
-// SetParams adds the params to the create team params
-func (o *CreateTeamParams) SetParams(params *models.Team) {
-	o.Params = params
+// SetTeam adds the team to the create team params
+func (o *CreateTeamParams) SetTeam(team *models.Team) {
+	o.Team = team
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -126,8 +126,8 @@ func (o *CreateTeamParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.Team != nil {
+		if err := r.SetBodyParam(o.Team); err != nil {
 			return err
 		}
 	}

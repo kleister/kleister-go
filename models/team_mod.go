@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -24,6 +26,7 @@ type TeamMod struct {
 
 	// perm
 	// Required: true
+	// Enum: [user admin owner]
 	Perm *string `json:"perm"`
 
 	// team id
@@ -67,9 +70,46 @@ func (m *TeamMod) validateModID(formats strfmt.Registry) error {
 	return nil
 }
 
+var teamModTypePermPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["user","admin","owner"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		teamModTypePermPropEnum = append(teamModTypePermPropEnum, v)
+	}
+}
+
+const (
+
+	// TeamModPermUser captures enum value "user"
+	TeamModPermUser string = "user"
+
+	// TeamModPermAdmin captures enum value "admin"
+	TeamModPermAdmin string = "admin"
+
+	// TeamModPermOwner captures enum value "owner"
+	TeamModPermOwner string = "owner"
+)
+
+// prop value enum
+func (m *TeamMod) validatePermEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, teamModTypePermPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *TeamMod) validatePerm(formats strfmt.Registry) error {
 
 	if err := validate.Required("perm", "body", m.Perm); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validatePermEnum("perm", "body", *m.Perm); err != nil {
 		return err
 	}
 

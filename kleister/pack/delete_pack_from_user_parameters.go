@@ -68,11 +68,11 @@ type DeletePackFromUserParams struct {
 
 	*/
 	PackID string
-	/*Params
+	/*PackUser
 	  The pack user data to delete
 
 	*/
-	Params *models.PackUserParams
+	PackUser *models.PackUserParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +123,15 @@ func (o *DeletePackFromUserParams) SetPackID(packID string) {
 	o.PackID = packID
 }
 
-// WithParams adds the params to the delete pack from user params
-func (o *DeletePackFromUserParams) WithParams(params *models.PackUserParams) *DeletePackFromUserParams {
-	o.SetParams(params)
+// WithPackUser adds the packUser to the delete pack from user params
+func (o *DeletePackFromUserParams) WithPackUser(packUser *models.PackUserParams) *DeletePackFromUserParams {
+	o.SetPackUser(packUser)
 	return o
 }
 
-// SetParams adds the params to the delete pack from user params
-func (o *DeletePackFromUserParams) SetParams(params *models.PackUserParams) {
-	o.Params = params
+// SetPackUser adds the packUser to the delete pack from user params
+func (o *DeletePackFromUserParams) SetPackUser(packUser *models.PackUserParams) {
+	o.PackUser = packUser
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -147,8 +147,8 @@ func (o *DeletePackFromUserParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.PackUser != nil {
+		if err := r.SetBodyParam(o.PackUser); err != nil {
 			return err
 		}
 	}

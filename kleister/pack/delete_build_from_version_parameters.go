@@ -68,16 +68,16 @@ type DeleteBuildFromVersionParams struct {
 
 	*/
 	BuildID string
+	/*BuildVersion
+	  The version data to unlink from build
+
+	*/
+	BuildVersion *models.BuildVersionParams
 	/*PackID
 	  A pack UUID or slug
 
 	*/
 	PackID string
-	/*Params
-	  The version data to unlink from build
-
-	*/
-	Params *models.BuildVersionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -128,6 +128,17 @@ func (o *DeleteBuildFromVersionParams) SetBuildID(buildID string) {
 	o.BuildID = buildID
 }
 
+// WithBuildVersion adds the buildVersion to the delete build from version params
+func (o *DeleteBuildFromVersionParams) WithBuildVersion(buildVersion *models.BuildVersionParams) *DeleteBuildFromVersionParams {
+	o.SetBuildVersion(buildVersion)
+	return o
+}
+
+// SetBuildVersion adds the buildVersion to the delete build from version params
+func (o *DeleteBuildFromVersionParams) SetBuildVersion(buildVersion *models.BuildVersionParams) {
+	o.BuildVersion = buildVersion
+}
+
 // WithPackID adds the packID to the delete build from version params
 func (o *DeleteBuildFromVersionParams) WithPackID(packID string) *DeleteBuildFromVersionParams {
 	o.SetPackID(packID)
@@ -137,17 +148,6 @@ func (o *DeleteBuildFromVersionParams) WithPackID(packID string) *DeleteBuildFro
 // SetPackID adds the packId to the delete build from version params
 func (o *DeleteBuildFromVersionParams) SetPackID(packID string) {
 	o.PackID = packID
-}
-
-// WithParams adds the params to the delete build from version params
-func (o *DeleteBuildFromVersionParams) WithParams(params *models.BuildVersionParams) *DeleteBuildFromVersionParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the delete build from version params
-func (o *DeleteBuildFromVersionParams) SetParams(params *models.BuildVersionParams) {
-	o.Params = params
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -163,15 +163,15 @@ func (o *DeleteBuildFromVersionParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 
+	if o.BuildVersion != nil {
+		if err := r.SetBodyParam(o.BuildVersion); err != nil {
+			return err
+		}
+	}
+
 	// path param pack_id
 	if err := r.SetPathParam("pack_id", o.PackID); err != nil {
 		return err
-	}
-
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
 	}
 
 	if len(res) > 0 {

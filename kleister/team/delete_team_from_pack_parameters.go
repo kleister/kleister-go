@@ -63,16 +63,16 @@ for the delete team from pack operation typically these are written to a http.Re
 */
 type DeleteTeamFromPackParams struct {
 
-	/*Params
-	  The team pack data to delete
-
-	*/
-	Params *models.TeamPackParams
 	/*TeamID
 	  A team UUID or slug
 
 	*/
 	TeamID string
+	/*TeamPack
+	  The team pack data to delete
+
+	*/
+	TeamPack *models.TeamPackParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,17 +112,6 @@ func (o *DeleteTeamFromPackParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the delete team from pack params
-func (o *DeleteTeamFromPackParams) WithParams(params *models.TeamPackParams) *DeleteTeamFromPackParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the delete team from pack params
-func (o *DeleteTeamFromPackParams) SetParams(params *models.TeamPackParams) {
-	o.Params = params
-}
-
 // WithTeamID adds the teamID to the delete team from pack params
 func (o *DeleteTeamFromPackParams) WithTeamID(teamID string) *DeleteTeamFromPackParams {
 	o.SetTeamID(teamID)
@@ -134,6 +123,17 @@ func (o *DeleteTeamFromPackParams) SetTeamID(teamID string) {
 	o.TeamID = teamID
 }
 
+// WithTeamPack adds the teamPack to the delete team from pack params
+func (o *DeleteTeamFromPackParams) WithTeamPack(teamPack *models.TeamPackParams) *DeleteTeamFromPackParams {
+	o.SetTeamPack(teamPack)
+	return o
+}
+
+// SetTeamPack adds the teamPack to the delete team from pack params
+func (o *DeleteTeamFromPackParams) SetTeamPack(teamPack *models.TeamPackParams) {
+	o.TeamPack = teamPack
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteTeamFromPackParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *DeleteTeamFromPackParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
-	}
-
 	// path param team_id
 	if err := r.SetPathParam("team_id", o.TeamID); err != nil {
 		return err
+	}
+
+	if o.TeamPack != nil {
+		if err := r.SetBodyParam(o.TeamPack); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

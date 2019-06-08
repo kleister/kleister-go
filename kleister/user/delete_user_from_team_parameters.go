@@ -63,16 +63,16 @@ for the delete user from team operation typically these are written to a http.Re
 */
 type DeleteUserFromTeamParams struct {
 
-	/*Params
-	  The user team data to delete
-
-	*/
-	Params *models.UserTeamParams
 	/*UserID
 	  A user UUID or slug
 
 	*/
 	UserID string
+	/*UserTeam
+	  The user team data to delete
+
+	*/
+	UserTeam *models.UserTeamParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,17 +112,6 @@ func (o *DeleteUserFromTeamParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the delete user from team params
-func (o *DeleteUserFromTeamParams) WithParams(params *models.UserTeamParams) *DeleteUserFromTeamParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the delete user from team params
-func (o *DeleteUserFromTeamParams) SetParams(params *models.UserTeamParams) {
-	o.Params = params
-}
-
 // WithUserID adds the userID to the delete user from team params
 func (o *DeleteUserFromTeamParams) WithUserID(userID string) *DeleteUserFromTeamParams {
 	o.SetUserID(userID)
@@ -134,6 +123,17 @@ func (o *DeleteUserFromTeamParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithUserTeam adds the userTeam to the delete user from team params
+func (o *DeleteUserFromTeamParams) WithUserTeam(userTeam *models.UserTeamParams) *DeleteUserFromTeamParams {
+	o.SetUserTeam(userTeam)
+	return o
+}
+
+// SetUserTeam adds the userTeam to the delete user from team params
+func (o *DeleteUserFromTeamParams) SetUserTeam(userTeam *models.UserTeamParams) {
+	o.UserTeam = userTeam
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteUserFromTeamParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *DeleteUserFromTeamParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
-	}
-
 	// path param user_id
 	if err := r.SetPathParam("user_id", o.UserID); err != nil {
 		return err
+	}
+
+	if o.UserTeam != nil {
+		if err := r.SetBodyParam(o.UserTeam); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

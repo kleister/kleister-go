@@ -68,11 +68,11 @@ type DeleteModFromTeamParams struct {
 
 	*/
 	ModID string
-	/*Params
+	/*ModTeam
 	  The mod team data to delete
 
 	*/
-	Params *models.ModTeamParams
+	ModTeam *models.ModTeamParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +123,15 @@ func (o *DeleteModFromTeamParams) SetModID(modID string) {
 	o.ModID = modID
 }
 
-// WithParams adds the params to the delete mod from team params
-func (o *DeleteModFromTeamParams) WithParams(params *models.ModTeamParams) *DeleteModFromTeamParams {
-	o.SetParams(params)
+// WithModTeam adds the modTeam to the delete mod from team params
+func (o *DeleteModFromTeamParams) WithModTeam(modTeam *models.ModTeamParams) *DeleteModFromTeamParams {
+	o.SetModTeam(modTeam)
 	return o
 }
 
-// SetParams adds the params to the delete mod from team params
-func (o *DeleteModFromTeamParams) SetParams(params *models.ModTeamParams) {
-	o.Params = params
+// SetModTeam adds the modTeam to the delete mod from team params
+func (o *DeleteModFromTeamParams) SetModTeam(modTeam *models.ModTeamParams) {
+	o.ModTeam = modTeam
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -147,8 +147,8 @@ func (o *DeleteModFromTeamParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.ModTeam != nil {
+		if err := r.SetBodyParam(o.ModTeam); err != nil {
 			return err
 		}
 	}

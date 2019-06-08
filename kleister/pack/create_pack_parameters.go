@@ -63,11 +63,11 @@ for the create pack operation typically these are written to a http.Request
 */
 type CreatePackParams struct {
 
-	/*Params
+	/*Pack
 	  The pack data to create
 
 	*/
-	Params *models.Pack
+	Pack *models.Pack
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,15 +107,15 @@ func (o *CreatePackParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the create pack params
-func (o *CreatePackParams) WithParams(params *models.Pack) *CreatePackParams {
-	o.SetParams(params)
+// WithPack adds the pack to the create pack params
+func (o *CreatePackParams) WithPack(pack *models.Pack) *CreatePackParams {
+	o.SetPack(pack)
 	return o
 }
 
-// SetParams adds the params to the create pack params
-func (o *CreatePackParams) SetParams(params *models.Pack) {
-	o.Params = params
+// SetPack adds the pack to the create pack params
+func (o *CreatePackParams) SetPack(pack *models.Pack) {
+	o.Pack = pack
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -126,8 +126,8 @@ func (o *CreatePackParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.Pack != nil {
+		if err := r.SetBodyParam(o.Pack); err != nil {
 			return err
 		}
 	}

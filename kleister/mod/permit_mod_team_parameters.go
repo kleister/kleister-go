@@ -68,11 +68,11 @@ type PermitModTeamParams struct {
 
 	*/
 	ModID string
-	/*Params
+	/*ModTeam
 	  The mod team data to update
 
 	*/
-	Params *models.ModTeamParams
+	ModTeam *models.ModTeamParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +123,15 @@ func (o *PermitModTeamParams) SetModID(modID string) {
 	o.ModID = modID
 }
 
-// WithParams adds the params to the permit mod team params
-func (o *PermitModTeamParams) WithParams(params *models.ModTeamParams) *PermitModTeamParams {
-	o.SetParams(params)
+// WithModTeam adds the modTeam to the permit mod team params
+func (o *PermitModTeamParams) WithModTeam(modTeam *models.ModTeamParams) *PermitModTeamParams {
+	o.SetModTeam(modTeam)
 	return o
 }
 
-// SetParams adds the params to the permit mod team params
-func (o *PermitModTeamParams) SetParams(params *models.ModTeamParams) {
-	o.Params = params
+// SetModTeam adds the modTeam to the permit mod team params
+func (o *PermitModTeamParams) SetModTeam(modTeam *models.ModTeamParams) {
+	o.ModTeam = modTeam
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -147,8 +147,8 @@ func (o *PermitModTeamParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.ModTeam != nil {
+		if err := r.SetBodyParam(o.ModTeam); err != nil {
 			return err
 		}
 	}

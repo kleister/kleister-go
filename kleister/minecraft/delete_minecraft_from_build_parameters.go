@@ -63,16 +63,16 @@ for the delete minecraft from build operation typically these are written to a h
 */
 type DeleteMinecraftFromBuildParams struct {
 
+	/*MinecraftBuild
+	  The build data to unlink
+
+	*/
+	MinecraftBuild *models.MinecraftBuildParams
 	/*MinecraftID
 	  A minecraft UUID or slug
 
 	*/
 	MinecraftID string
-	/*Params
-	  The build data to unlink
-
-	*/
-	Params *models.MinecraftBuildParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,6 +112,17 @@ func (o *DeleteMinecraftFromBuildParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithMinecraftBuild adds the minecraftBuild to the delete minecraft from build params
+func (o *DeleteMinecraftFromBuildParams) WithMinecraftBuild(minecraftBuild *models.MinecraftBuildParams) *DeleteMinecraftFromBuildParams {
+	o.SetMinecraftBuild(minecraftBuild)
+	return o
+}
+
+// SetMinecraftBuild adds the minecraftBuild to the delete minecraft from build params
+func (o *DeleteMinecraftFromBuildParams) SetMinecraftBuild(minecraftBuild *models.MinecraftBuildParams) {
+	o.MinecraftBuild = minecraftBuild
+}
+
 // WithMinecraftID adds the minecraftID to the delete minecraft from build params
 func (o *DeleteMinecraftFromBuildParams) WithMinecraftID(minecraftID string) *DeleteMinecraftFromBuildParams {
 	o.SetMinecraftID(minecraftID)
@@ -123,17 +134,6 @@ func (o *DeleteMinecraftFromBuildParams) SetMinecraftID(minecraftID string) {
 	o.MinecraftID = minecraftID
 }
 
-// WithParams adds the params to the delete minecraft from build params
-func (o *DeleteMinecraftFromBuildParams) WithParams(params *models.MinecraftBuildParams) *DeleteMinecraftFromBuildParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the delete minecraft from build params
-func (o *DeleteMinecraftFromBuildParams) SetParams(params *models.MinecraftBuildParams) {
-	o.Params = params
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteMinecraftFromBuildParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *DeleteMinecraftFromBuildParams) WriteToRequest(r runtime.ClientRequest,
 	}
 	var res []error
 
+	if o.MinecraftBuild != nil {
+		if err := r.SetBodyParam(o.MinecraftBuild); err != nil {
+			return err
+		}
+	}
+
 	// path param minecraft_id
 	if err := r.SetPathParam("minecraft_id", o.MinecraftID); err != nil {
 		return err
-	}
-
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
 	}
 
 	if len(res) > 0 {

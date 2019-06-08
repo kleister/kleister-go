@@ -63,6 +63,11 @@ for the update build operation typically these are written to a http.Request
 */
 type UpdateBuildParams struct {
 
+	/*Build
+	  The build data to update
+
+	*/
+	Build *models.Build
 	/*BuildID
 	  A build UUID or slug
 
@@ -73,11 +78,6 @@ type UpdateBuildParams struct {
 
 	*/
 	PackID string
-	/*Params
-	  The build data to update
-
-	*/
-	Params *models.Build
 
 	timeout    time.Duration
 	Context    context.Context
@@ -117,6 +117,17 @@ func (o *UpdateBuildParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithBuild adds the build to the update build params
+func (o *UpdateBuildParams) WithBuild(build *models.Build) *UpdateBuildParams {
+	o.SetBuild(build)
+	return o
+}
+
+// SetBuild adds the build to the update build params
+func (o *UpdateBuildParams) SetBuild(build *models.Build) {
+	o.Build = build
+}
+
 // WithBuildID adds the buildID to the update build params
 func (o *UpdateBuildParams) WithBuildID(buildID string) *UpdateBuildParams {
 	o.SetBuildID(buildID)
@@ -139,17 +150,6 @@ func (o *UpdateBuildParams) SetPackID(packID string) {
 	o.PackID = packID
 }
 
-// WithParams adds the params to the update build params
-func (o *UpdateBuildParams) WithParams(params *models.Build) *UpdateBuildParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the update build params
-func (o *UpdateBuildParams) SetParams(params *models.Build) {
-	o.Params = params
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *UpdateBuildParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -157,6 +157,12 @@ func (o *UpdateBuildParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
+
+	if o.Build != nil {
+		if err := r.SetBodyParam(o.Build); err != nil {
+			return err
+		}
+	}
 
 	// path param build_id
 	if err := r.SetPathParam("build_id", o.BuildID); err != nil {
@@ -166,12 +172,6 @@ func (o *UpdateBuildParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	// path param pack_id
 	if err := r.SetPathParam("pack_id", o.PackID); err != nil {
 		return err
-	}
-
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
 	}
 
 	if len(res) > 0 {

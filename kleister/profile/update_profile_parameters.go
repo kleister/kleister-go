@@ -63,11 +63,11 @@ for the update profile operation typically these are written to a http.Request
 */
 type UpdateProfileParams struct {
 
-	/*Params
+	/*Profile
 	  The profile data to update
 
 	*/
-	Params *models.Profile
+	Profile *models.Profile
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,15 +107,15 @@ func (o *UpdateProfileParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the update profile params
-func (o *UpdateProfileParams) WithParams(params *models.Profile) *UpdateProfileParams {
-	o.SetParams(params)
+// WithProfile adds the profile to the update profile params
+func (o *UpdateProfileParams) WithProfile(profile *models.Profile) *UpdateProfileParams {
+	o.SetProfile(profile)
 	return o
 }
 
-// SetParams adds the params to the update profile params
-func (o *UpdateProfileParams) SetParams(params *models.Profile) {
-	o.Params = params
+// SetProfile adds the profile to the update profile params
+func (o *UpdateProfileParams) SetProfile(profile *models.Profile) {
+	o.Profile = profile
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -126,8 +126,8 @@ func (o *UpdateProfileParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.Profile != nil {
+		if err := r.SetBodyParam(o.Profile); err != nil {
 			return err
 		}
 	}

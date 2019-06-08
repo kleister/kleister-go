@@ -68,11 +68,11 @@ type AppendPackToTeamParams struct {
 
 	*/
 	PackID string
-	/*Params
+	/*PackTeam
 	  The pack team data to assign
 
 	*/
-	Params *models.PackTeamParams
+	PackTeam *models.PackTeamParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +123,15 @@ func (o *AppendPackToTeamParams) SetPackID(packID string) {
 	o.PackID = packID
 }
 
-// WithParams adds the params to the append pack to team params
-func (o *AppendPackToTeamParams) WithParams(params *models.PackTeamParams) *AppendPackToTeamParams {
-	o.SetParams(params)
+// WithPackTeam adds the packTeam to the append pack to team params
+func (o *AppendPackToTeamParams) WithPackTeam(packTeam *models.PackTeamParams) *AppendPackToTeamParams {
+	o.SetPackTeam(packTeam)
 	return o
 }
 
-// SetParams adds the params to the append pack to team params
-func (o *AppendPackToTeamParams) SetParams(params *models.PackTeamParams) {
-	o.Params = params
+// SetPackTeam adds the packTeam to the append pack to team params
+func (o *AppendPackToTeamParams) SetPackTeam(packTeam *models.PackTeamParams) {
+	o.PackTeam = packTeam
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -147,8 +147,8 @@ func (o *AppendPackToTeamParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.PackTeam != nil {
+		if err := r.SetBodyParam(o.PackTeam); err != nil {
 			return err
 		}
 	}

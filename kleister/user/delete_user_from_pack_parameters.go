@@ -63,16 +63,16 @@ for the delete user from pack operation typically these are written to a http.Re
 */
 type DeleteUserFromPackParams struct {
 
-	/*Params
-	  The user pack data to delete
-
-	*/
-	Params *models.UserPackParams
 	/*UserID
 	  A user UUID or slug
 
 	*/
 	UserID string
+	/*UserPack
+	  The user pack data to delete
+
+	*/
+	UserPack *models.UserPackParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,17 +112,6 @@ func (o *DeleteUserFromPackParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the delete user from pack params
-func (o *DeleteUserFromPackParams) WithParams(params *models.UserPackParams) *DeleteUserFromPackParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the delete user from pack params
-func (o *DeleteUserFromPackParams) SetParams(params *models.UserPackParams) {
-	o.Params = params
-}
-
 // WithUserID adds the userID to the delete user from pack params
 func (o *DeleteUserFromPackParams) WithUserID(userID string) *DeleteUserFromPackParams {
 	o.SetUserID(userID)
@@ -134,6 +123,17 @@ func (o *DeleteUserFromPackParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithUserPack adds the userPack to the delete user from pack params
+func (o *DeleteUserFromPackParams) WithUserPack(userPack *models.UserPackParams) *DeleteUserFromPackParams {
+	o.SetUserPack(userPack)
+	return o
+}
+
+// SetUserPack adds the userPack to the delete user from pack params
+func (o *DeleteUserFromPackParams) SetUserPack(userPack *models.UserPackParams) {
+	o.UserPack = userPack
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteUserFromPackParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *DeleteUserFromPackParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
-	}
-
 	// path param user_id
 	if err := r.SetPathParam("user_id", o.UserID); err != nil {
 		return err
+	}
+
+	if o.UserPack != nil {
+		if err := r.SetBodyParam(o.UserPack); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

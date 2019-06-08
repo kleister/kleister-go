@@ -63,16 +63,16 @@ for the append team to user operation typically these are written to a http.Requ
 */
 type AppendTeamToUserParams struct {
 
-	/*Params
-	  The team user data to assign
-
-	*/
-	Params *models.TeamUserParams
 	/*TeamID
 	  A team UUID or slug
 
 	*/
 	TeamID string
+	/*TeamUser
+	  The team user data to assign
+
+	*/
+	TeamUser *models.TeamUserParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,17 +112,6 @@ func (o *AppendTeamToUserParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the append team to user params
-func (o *AppendTeamToUserParams) WithParams(params *models.TeamUserParams) *AppendTeamToUserParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the append team to user params
-func (o *AppendTeamToUserParams) SetParams(params *models.TeamUserParams) {
-	o.Params = params
-}
-
 // WithTeamID adds the teamID to the append team to user params
 func (o *AppendTeamToUserParams) WithTeamID(teamID string) *AppendTeamToUserParams {
 	o.SetTeamID(teamID)
@@ -134,6 +123,17 @@ func (o *AppendTeamToUserParams) SetTeamID(teamID string) {
 	o.TeamID = teamID
 }
 
+// WithTeamUser adds the teamUser to the append team to user params
+func (o *AppendTeamToUserParams) WithTeamUser(teamUser *models.TeamUserParams) *AppendTeamToUserParams {
+	o.SetTeamUser(teamUser)
+	return o
+}
+
+// SetTeamUser adds the teamUser to the append team to user params
+func (o *AppendTeamToUserParams) SetTeamUser(teamUser *models.TeamUserParams) {
+	o.TeamUser = teamUser
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AppendTeamToUserParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *AppendTeamToUserParams) WriteToRequest(r runtime.ClientRequest, reg str
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
-	}
-
 	// path param team_id
 	if err := r.SetPathParam("team_id", o.TeamID); err != nil {
 		return err
+	}
+
+	if o.TeamUser != nil {
+		if err := r.SetBodyParam(o.TeamUser); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

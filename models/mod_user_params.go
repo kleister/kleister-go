@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -17,12 +19,9 @@ import (
 // swagger:model mod_user_params
 type ModUserParams struct {
 
-	// mod
-	// Required: true
-	Mod *string `json:"mod"`
-
 	// perm
 	// Required: true
+	// Enum: [user admin owner]
 	Perm *string `json:"perm"`
 
 	// user
@@ -33,10 +32,6 @@ type ModUserParams struct {
 // Validate validates this mod user params
 func (m *ModUserParams) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateMod(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validatePerm(formats); err != nil {
 		res = append(res, err)
@@ -52,18 +47,46 @@ func (m *ModUserParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModUserParams) validateMod(formats strfmt.Registry) error {
+var modUserParamsTypePermPropEnum []interface{}
 
-	if err := validate.Required("mod", "body", m.Mod); err != nil {
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["user","admin","owner"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modUserParamsTypePermPropEnum = append(modUserParamsTypePermPropEnum, v)
+	}
+}
+
+const (
+
+	// ModUserParamsPermUser captures enum value "user"
+	ModUserParamsPermUser string = "user"
+
+	// ModUserParamsPermAdmin captures enum value "admin"
+	ModUserParamsPermAdmin string = "admin"
+
+	// ModUserParamsPermOwner captures enum value "owner"
+	ModUserParamsPermOwner string = "owner"
+)
+
+// prop value enum
+func (m *ModUserParams) validatePermEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, modUserParamsTypePermPropEnum); err != nil {
 		return err
 	}
-
 	return nil
 }
 
 func (m *ModUserParams) validatePerm(formats strfmt.Registry) error {
 
 	if err := validate.Required("perm", "body", m.Perm); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validatePermEnum("perm", "body", *m.Perm); err != nil {
 		return err
 	}
 

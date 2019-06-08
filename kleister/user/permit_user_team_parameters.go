@@ -63,16 +63,16 @@ for the permit user team operation typically these are written to a http.Request
 */
 type PermitUserTeamParams struct {
 
-	/*Params
-	  The user team data to update
-
-	*/
-	Params *models.UserTeamParams
 	/*UserID
 	  A user UUID or slug
 
 	*/
 	UserID string
+	/*UserTeam
+	  The user team data to update
+
+	*/
+	UserTeam *models.UserTeamParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,17 +112,6 @@ func (o *PermitUserTeamParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the permit user team params
-func (o *PermitUserTeamParams) WithParams(params *models.UserTeamParams) *PermitUserTeamParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the permit user team params
-func (o *PermitUserTeamParams) SetParams(params *models.UserTeamParams) {
-	o.Params = params
-}
-
 // WithUserID adds the userID to the permit user team params
 func (o *PermitUserTeamParams) WithUserID(userID string) *PermitUserTeamParams {
 	o.SetUserID(userID)
@@ -134,6 +123,17 @@ func (o *PermitUserTeamParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithUserTeam adds the userTeam to the permit user team params
+func (o *PermitUserTeamParams) WithUserTeam(userTeam *models.UserTeamParams) *PermitUserTeamParams {
+	o.SetUserTeam(userTeam)
+	return o
+}
+
+// SetUserTeam adds the userTeam to the permit user team params
+func (o *PermitUserTeamParams) SetUserTeam(userTeam *models.UserTeamParams) {
+	o.UserTeam = userTeam
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PermitUserTeamParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *PermitUserTeamParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
-	}
-
 	// path param user_id
 	if err := r.SetPathParam("user_id", o.UserID); err != nil {
 		return err
+	}
+
+	if o.UserTeam != nil {
+		if err := r.SetBodyParam(o.UserTeam); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

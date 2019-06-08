@@ -68,11 +68,11 @@ type UpdateVersionParams struct {
 
 	*/
 	ModID string
-	/*Params
+	/*Version
 	  The version data to update
 
 	*/
-	Params *models.Version
+	Version *models.Version
 	/*VersionID
 	  A version UUID or slug
 
@@ -128,15 +128,15 @@ func (o *UpdateVersionParams) SetModID(modID string) {
 	o.ModID = modID
 }
 
-// WithParams adds the params to the update version params
-func (o *UpdateVersionParams) WithParams(params *models.Version) *UpdateVersionParams {
-	o.SetParams(params)
+// WithVersion adds the version to the update version params
+func (o *UpdateVersionParams) WithVersion(version *models.Version) *UpdateVersionParams {
+	o.SetVersion(version)
 	return o
 }
 
-// SetParams adds the params to the update version params
-func (o *UpdateVersionParams) SetParams(params *models.Version) {
-	o.Params = params
+// SetVersion adds the version to the update version params
+func (o *UpdateVersionParams) SetVersion(version *models.Version) {
+	o.Version = version
 }
 
 // WithVersionID adds the versionID to the update version params
@@ -163,8 +163,8 @@ func (o *UpdateVersionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.Version != nil {
+		if err := r.SetBodyParam(o.Version); err != nil {
 			return err
 		}
 	}

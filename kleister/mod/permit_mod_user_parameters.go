@@ -68,11 +68,11 @@ type PermitModUserParams struct {
 
 	*/
 	ModID string
-	/*Params
+	/*ModUser
 	  The mod user data to update
 
 	*/
-	Params *models.ModUserParams
+	ModUser *models.ModUserParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +123,15 @@ func (o *PermitModUserParams) SetModID(modID string) {
 	o.ModID = modID
 }
 
-// WithParams adds the params to the permit mod user params
-func (o *PermitModUserParams) WithParams(params *models.ModUserParams) *PermitModUserParams {
-	o.SetParams(params)
+// WithModUser adds the modUser to the permit mod user params
+func (o *PermitModUserParams) WithModUser(modUser *models.ModUserParams) *PermitModUserParams {
+	o.SetModUser(modUser)
 	return o
 }
 
-// SetParams adds the params to the permit mod user params
-func (o *PermitModUserParams) SetParams(params *models.ModUserParams) {
-	o.Params = params
+// SetModUser adds the modUser to the permit mod user params
+func (o *PermitModUserParams) SetModUser(modUser *models.ModUserParams) {
+	o.ModUser = modUser
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -147,8 +147,8 @@ func (o *PermitModUserParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.ModUser != nil {
+		if err := r.SetBodyParam(o.ModUser); err != nil {
 			return err
 		}
 	}

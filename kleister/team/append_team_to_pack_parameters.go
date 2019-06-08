@@ -63,16 +63,16 @@ for the append team to pack operation typically these are written to a http.Requ
 */
 type AppendTeamToPackParams struct {
 
-	/*Params
-	  The team pack data to assign
-
-	*/
-	Params *models.TeamPackParams
 	/*TeamID
 	  A team UUID or slug
 
 	*/
 	TeamID string
+	/*TeamPack
+	  The team pack data to assign
+
+	*/
+	TeamPack *models.TeamPackParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,17 +112,6 @@ func (o *AppendTeamToPackParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the append team to pack params
-func (o *AppendTeamToPackParams) WithParams(params *models.TeamPackParams) *AppendTeamToPackParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the append team to pack params
-func (o *AppendTeamToPackParams) SetParams(params *models.TeamPackParams) {
-	o.Params = params
-}
-
 // WithTeamID adds the teamID to the append team to pack params
 func (o *AppendTeamToPackParams) WithTeamID(teamID string) *AppendTeamToPackParams {
 	o.SetTeamID(teamID)
@@ -134,6 +123,17 @@ func (o *AppendTeamToPackParams) SetTeamID(teamID string) {
 	o.TeamID = teamID
 }
 
+// WithTeamPack adds the teamPack to the append team to pack params
+func (o *AppendTeamToPackParams) WithTeamPack(teamPack *models.TeamPackParams) *AppendTeamToPackParams {
+	o.SetTeamPack(teamPack)
+	return o
+}
+
+// SetTeamPack adds the teamPack to the append team to pack params
+func (o *AppendTeamToPackParams) SetTeamPack(teamPack *models.TeamPackParams) {
+	o.TeamPack = teamPack
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AppendTeamToPackParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *AppendTeamToPackParams) WriteToRequest(r runtime.ClientRequest, reg str
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
-	}
-
 	// path param team_id
 	if err := r.SetPathParam("team_id", o.TeamID); err != nil {
 		return err
+	}
+
+	if o.TeamPack != nil {
+		if err := r.SetBodyParam(o.TeamPack); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

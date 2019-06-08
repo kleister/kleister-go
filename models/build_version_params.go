@@ -17,17 +17,9 @@ import (
 // swagger:model build_version_params
 type BuildVersionParams struct {
 
-	// build
-	// Required: true
-	Build *string `json:"build"`
-
 	// mod
 	// Required: true
 	Mod *string `json:"mod"`
-
-	// pack
-	// Required: true
-	Pack *string `json:"pack"`
 
 	// version
 	// Required: true
@@ -38,15 +30,7 @@ type BuildVersionParams struct {
 func (m *BuildVersionParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateBuild(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateMod(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePack(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -60,27 +44,9 @@ func (m *BuildVersionParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *BuildVersionParams) validateBuild(formats strfmt.Registry) error {
-
-	if err := validate.Required("build", "body", m.Build); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *BuildVersionParams) validateMod(formats strfmt.Registry) error {
 
 	if err := validate.Required("mod", "body", m.Mod); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *BuildVersionParams) validatePack(formats strfmt.Registry) error {
-
-	if err := validate.Required("pack", "body", m.Pack); err != nil {
 		return err
 	}
 

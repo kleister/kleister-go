@@ -68,16 +68,16 @@ type AppendBuildToVersionParams struct {
 
 	*/
 	BuildID string
+	/*BuildVersion
+	  The version data to append to build
+
+	*/
+	BuildVersion *models.BuildVersionParams
 	/*PackID
 	  A pack UUID or slug
 
 	*/
 	PackID string
-	/*Params
-	  The version data to append to build
-
-	*/
-	Params *models.BuildVersionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -128,6 +128,17 @@ func (o *AppendBuildToVersionParams) SetBuildID(buildID string) {
 	o.BuildID = buildID
 }
 
+// WithBuildVersion adds the buildVersion to the append build to version params
+func (o *AppendBuildToVersionParams) WithBuildVersion(buildVersion *models.BuildVersionParams) *AppendBuildToVersionParams {
+	o.SetBuildVersion(buildVersion)
+	return o
+}
+
+// SetBuildVersion adds the buildVersion to the append build to version params
+func (o *AppendBuildToVersionParams) SetBuildVersion(buildVersion *models.BuildVersionParams) {
+	o.BuildVersion = buildVersion
+}
+
 // WithPackID adds the packID to the append build to version params
 func (o *AppendBuildToVersionParams) WithPackID(packID string) *AppendBuildToVersionParams {
 	o.SetPackID(packID)
@@ -137,17 +148,6 @@ func (o *AppendBuildToVersionParams) WithPackID(packID string) *AppendBuildToVer
 // SetPackID adds the packId to the append build to version params
 func (o *AppendBuildToVersionParams) SetPackID(packID string) {
 	o.PackID = packID
-}
-
-// WithParams adds the params to the append build to version params
-func (o *AppendBuildToVersionParams) WithParams(params *models.BuildVersionParams) *AppendBuildToVersionParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the append build to version params
-func (o *AppendBuildToVersionParams) SetParams(params *models.BuildVersionParams) {
-	o.Params = params
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -163,15 +163,15 @@ func (o *AppendBuildToVersionParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 
+	if o.BuildVersion != nil {
+		if err := r.SetBodyParam(o.BuildVersion); err != nil {
+			return err
+		}
+	}
+
 	// path param pack_id
 	if err := r.SetPathParam("pack_id", o.PackID); err != nil {
 		return err
-	}
-
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
 	}
 
 	if len(res) > 0 {

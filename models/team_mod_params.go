@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -23,11 +25,8 @@ type TeamModParams struct {
 
 	// perm
 	// Required: true
+	// Enum: [user admin owner]
 	Perm *string `json:"perm"`
-
-	// team
-	// Required: true
-	Team *string `json:"team"`
 }
 
 // Validate validates this team mod params
@@ -39,10 +38,6 @@ func (m *TeamModParams) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePerm(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTeam(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -61,18 +56,46 @@ func (m *TeamModParams) validateMod(formats strfmt.Registry) error {
 	return nil
 }
 
+var teamModParamsTypePermPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["user","admin","owner"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		teamModParamsTypePermPropEnum = append(teamModParamsTypePermPropEnum, v)
+	}
+}
+
+const (
+
+	// TeamModParamsPermUser captures enum value "user"
+	TeamModParamsPermUser string = "user"
+
+	// TeamModParamsPermAdmin captures enum value "admin"
+	TeamModParamsPermAdmin string = "admin"
+
+	// TeamModParamsPermOwner captures enum value "owner"
+	TeamModParamsPermOwner string = "owner"
+)
+
+// prop value enum
+func (m *TeamModParams) validatePermEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, teamModParamsTypePermPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *TeamModParams) validatePerm(formats strfmt.Registry) error {
 
 	if err := validate.Required("perm", "body", m.Perm); err != nil {
 		return err
 	}
 
-	return nil
-}
-
-func (m *TeamModParams) validateTeam(formats strfmt.Registry) error {
-
-	if err := validate.Required("team", "body", m.Team); err != nil {
+	// value enum
+	if err := m.validatePermEnum("perm", "body", *m.Perm); err != nil {
 		return err
 	}
 

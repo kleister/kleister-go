@@ -63,16 +63,16 @@ for the delete user from mod operation typically these are written to a http.Req
 */
 type DeleteUserFromModParams struct {
 
-	/*Params
-	  The user mod data to delete
-
-	*/
-	Params *models.UserModParams
 	/*UserID
 	  A user UUID or slug
 
 	*/
 	UserID string
+	/*UserMod
+	  The user mod data to delete
+
+	*/
+	UserMod *models.UserModParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,17 +112,6 @@ func (o *DeleteUserFromModParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the delete user from mod params
-func (o *DeleteUserFromModParams) WithParams(params *models.UserModParams) *DeleteUserFromModParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the delete user from mod params
-func (o *DeleteUserFromModParams) SetParams(params *models.UserModParams) {
-	o.Params = params
-}
-
 // WithUserID adds the userID to the delete user from mod params
 func (o *DeleteUserFromModParams) WithUserID(userID string) *DeleteUserFromModParams {
 	o.SetUserID(userID)
@@ -134,6 +123,17 @@ func (o *DeleteUserFromModParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithUserMod adds the userMod to the delete user from mod params
+func (o *DeleteUserFromModParams) WithUserMod(userMod *models.UserModParams) *DeleteUserFromModParams {
+	o.SetUserMod(userMod)
+	return o
+}
+
+// SetUserMod adds the userMod to the delete user from mod params
+func (o *DeleteUserFromModParams) SetUserMod(userMod *models.UserModParams) {
+	o.UserMod = userMod
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteUserFromModParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *DeleteUserFromModParams) WriteToRequest(r runtime.ClientRequest, reg st
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
-	}
-
 	// path param user_id
 	if err := r.SetPathParam("user_id", o.UserID); err != nil {
 		return err
+	}
+
+	if o.UserMod != nil {
+		if err := r.SetBodyParam(o.UserMod); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

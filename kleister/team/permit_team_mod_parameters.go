@@ -63,16 +63,16 @@ for the permit team mod operation typically these are written to a http.Request
 */
 type PermitTeamModParams struct {
 
-	/*Params
-	  The team mod data to update
-
-	*/
-	Params *models.TeamModParams
 	/*TeamID
 	  A team UUID or slug
 
 	*/
 	TeamID string
+	/*TeamMod
+	  The team mod data to update
+
+	*/
+	TeamMod *models.TeamModParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,17 +112,6 @@ func (o *PermitTeamModParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the permit team mod params
-func (o *PermitTeamModParams) WithParams(params *models.TeamModParams) *PermitTeamModParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the permit team mod params
-func (o *PermitTeamModParams) SetParams(params *models.TeamModParams) {
-	o.Params = params
-}
-
 // WithTeamID adds the teamID to the permit team mod params
 func (o *PermitTeamModParams) WithTeamID(teamID string) *PermitTeamModParams {
 	o.SetTeamID(teamID)
@@ -134,6 +123,17 @@ func (o *PermitTeamModParams) SetTeamID(teamID string) {
 	o.TeamID = teamID
 }
 
+// WithTeamMod adds the teamMod to the permit team mod params
+func (o *PermitTeamModParams) WithTeamMod(teamMod *models.TeamModParams) *PermitTeamModParams {
+	o.SetTeamMod(teamMod)
+	return o
+}
+
+// SetTeamMod adds the teamMod to the permit team mod params
+func (o *PermitTeamModParams) SetTeamMod(teamMod *models.TeamModParams) {
+	o.TeamMod = teamMod
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PermitTeamModParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *PermitTeamModParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
-	}
-
 	// path param team_id
 	if err := r.SetPathParam("team_id", o.TeamID); err != nil {
 		return err
+	}
+
+	if o.TeamMod != nil {
+		if err := r.SetBodyParam(o.TeamMod); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

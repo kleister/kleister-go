@@ -21,10 +21,6 @@ type ForgeBuildParams struct {
 	// Required: true
 	Build *string `json:"build"`
 
-	// forge
-	// Required: true
-	Forge *string `json:"forge"`
-
 	// pack
 	// Required: true
 	Pack *string `json:"pack"`
@@ -35,10 +31,6 @@ func (m *ForgeBuildParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBuild(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateForge(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -55,15 +47,6 @@ func (m *ForgeBuildParams) Validate(formats strfmt.Registry) error {
 func (m *ForgeBuildParams) validateBuild(formats strfmt.Registry) error {
 
 	if err := validate.Required("build", "body", m.Build); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ForgeBuildParams) validateForge(formats strfmt.Registry) error {
-
-	if err := validate.Required("forge", "body", m.Forge); err != nil {
 		return err
 	}
 

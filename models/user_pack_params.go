@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -23,11 +25,8 @@ type UserPackParams struct {
 
 	// perm
 	// Required: true
+	// Enum: [user admin owner]
 	Perm *string `json:"perm"`
-
-	// user
-	// Required: true
-	User *string `json:"user"`
 }
 
 // Validate validates this user pack params
@@ -39,10 +38,6 @@ func (m *UserPackParams) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePerm(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUser(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -61,18 +56,46 @@ func (m *UserPackParams) validatePack(formats strfmt.Registry) error {
 	return nil
 }
 
+var userPackParamsTypePermPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["user","admin","owner"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		userPackParamsTypePermPropEnum = append(userPackParamsTypePermPropEnum, v)
+	}
+}
+
+const (
+
+	// UserPackParamsPermUser captures enum value "user"
+	UserPackParamsPermUser string = "user"
+
+	// UserPackParamsPermAdmin captures enum value "admin"
+	UserPackParamsPermAdmin string = "admin"
+
+	// UserPackParamsPermOwner captures enum value "owner"
+	UserPackParamsPermOwner string = "owner"
+)
+
+// prop value enum
+func (m *UserPackParams) validatePermEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, userPackParamsTypePermPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *UserPackParams) validatePerm(formats strfmt.Registry) error {
 
 	if err := validate.Required("perm", "body", m.Perm); err != nil {
 		return err
 	}
 
-	return nil
-}
-
-func (m *UserPackParams) validateUser(formats strfmt.Registry) error {
-
-	if err := validate.Required("user", "body", m.User); err != nil {
+	// value enum
+	if err := m.validatePermEnum("perm", "body", *m.Perm); err != nil {
 		return err
 	}
 

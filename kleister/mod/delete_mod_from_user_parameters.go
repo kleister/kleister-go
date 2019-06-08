@@ -68,11 +68,11 @@ type DeleteModFromUserParams struct {
 
 	*/
 	ModID string
-	/*Params
+	/*ModUser
 	  The mod user data to delete
 
 	*/
-	Params *models.ModUserParams
+	ModUser *models.ModUserParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +123,15 @@ func (o *DeleteModFromUserParams) SetModID(modID string) {
 	o.ModID = modID
 }
 
-// WithParams adds the params to the delete mod from user params
-func (o *DeleteModFromUserParams) WithParams(params *models.ModUserParams) *DeleteModFromUserParams {
-	o.SetParams(params)
+// WithModUser adds the modUser to the delete mod from user params
+func (o *DeleteModFromUserParams) WithModUser(modUser *models.ModUserParams) *DeleteModFromUserParams {
+	o.SetModUser(modUser)
 	return o
 }
 
-// SetParams adds the params to the delete mod from user params
-func (o *DeleteModFromUserParams) SetParams(params *models.ModUserParams) {
-	o.Params = params
+// SetModUser adds the modUser to the delete mod from user params
+func (o *DeleteModFromUserParams) SetModUser(modUser *models.ModUserParams) {
+	o.ModUser = modUser
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -147,8 +147,8 @@ func (o *DeleteModFromUserParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.ModUser != nil {
+		if err := r.SetBodyParam(o.ModUser); err != nil {
 			return err
 		}
 	}

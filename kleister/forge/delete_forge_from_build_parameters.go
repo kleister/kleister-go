@@ -63,16 +63,16 @@ for the delete forge from build operation typically these are written to a http.
 */
 type DeleteForgeFromBuildParams struct {
 
+	/*ForgeBuild
+	  The build data to unlink
+
+	*/
+	ForgeBuild *models.ForgeBuildParams
 	/*ForgeID
 	  A forge UUID or slug
 
 	*/
 	ForgeID string
-	/*Params
-	  The build data to unlink
-
-	*/
-	Params *models.ForgeBuildParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,6 +112,17 @@ func (o *DeleteForgeFromBuildParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithForgeBuild adds the forgeBuild to the delete forge from build params
+func (o *DeleteForgeFromBuildParams) WithForgeBuild(forgeBuild *models.ForgeBuildParams) *DeleteForgeFromBuildParams {
+	o.SetForgeBuild(forgeBuild)
+	return o
+}
+
+// SetForgeBuild adds the forgeBuild to the delete forge from build params
+func (o *DeleteForgeFromBuildParams) SetForgeBuild(forgeBuild *models.ForgeBuildParams) {
+	o.ForgeBuild = forgeBuild
+}
+
 // WithForgeID adds the forgeID to the delete forge from build params
 func (o *DeleteForgeFromBuildParams) WithForgeID(forgeID string) *DeleteForgeFromBuildParams {
 	o.SetForgeID(forgeID)
@@ -123,17 +134,6 @@ func (o *DeleteForgeFromBuildParams) SetForgeID(forgeID string) {
 	o.ForgeID = forgeID
 }
 
-// WithParams adds the params to the delete forge from build params
-func (o *DeleteForgeFromBuildParams) WithParams(params *models.ForgeBuildParams) *DeleteForgeFromBuildParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the delete forge from build params
-func (o *DeleteForgeFromBuildParams) SetParams(params *models.ForgeBuildParams) {
-	o.Params = params
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteForgeFromBuildParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *DeleteForgeFromBuildParams) WriteToRequest(r runtime.ClientRequest, reg
 	}
 	var res []error
 
+	if o.ForgeBuild != nil {
+		if err := r.SetBodyParam(o.ForgeBuild); err != nil {
+			return err
+		}
+	}
+
 	// path param forge_id
 	if err := r.SetPathParam("forge_id", o.ForgeID); err != nil {
 		return err
-	}
-
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
 	}
 
 	if len(res) > 0 {

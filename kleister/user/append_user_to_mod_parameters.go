@@ -63,16 +63,16 @@ for the append user to mod operation typically these are written to a http.Reque
 */
 type AppendUserToModParams struct {
 
-	/*Params
-	  The user mod data to assign
-
-	*/
-	Params *models.UserModParams
 	/*UserID
 	  A user UUID or slug
 
 	*/
 	UserID string
+	/*UserMod
+	  The user mod data to assign
+
+	*/
+	UserMod *models.UserModParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,17 +112,6 @@ func (o *AppendUserToModParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the append user to mod params
-func (o *AppendUserToModParams) WithParams(params *models.UserModParams) *AppendUserToModParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the append user to mod params
-func (o *AppendUserToModParams) SetParams(params *models.UserModParams) {
-	o.Params = params
-}
-
 // WithUserID adds the userID to the append user to mod params
 func (o *AppendUserToModParams) WithUserID(userID string) *AppendUserToModParams {
 	o.SetUserID(userID)
@@ -134,6 +123,17 @@ func (o *AppendUserToModParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithUserMod adds the userMod to the append user to mod params
+func (o *AppendUserToModParams) WithUserMod(userMod *models.UserModParams) *AppendUserToModParams {
+	o.SetUserMod(userMod)
+	return o
+}
+
+// SetUserMod adds the userMod to the append user to mod params
+func (o *AppendUserToModParams) SetUserMod(userMod *models.UserModParams) {
+	o.UserMod = userMod
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AppendUserToModParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *AppendUserToModParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
-	}
-
 	// path param user_id
 	if err := r.SetPathParam("user_id", o.UserID); err != nil {
 		return err
+	}
+
+	if o.UserMod != nil {
+		if err := r.SetBodyParam(o.UserMod); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

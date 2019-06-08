@@ -68,11 +68,11 @@ type AppendPackToUserParams struct {
 
 	*/
 	PackID string
-	/*Params
+	/*PackUser
 	  The pack user data to assign
 
 	*/
-	Params *models.PackUserParams
+	PackUser *models.PackUserParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +123,15 @@ func (o *AppendPackToUserParams) SetPackID(packID string) {
 	o.PackID = packID
 }
 
-// WithParams adds the params to the append pack to user params
-func (o *AppendPackToUserParams) WithParams(params *models.PackUserParams) *AppendPackToUserParams {
-	o.SetParams(params)
+// WithPackUser adds the packUser to the append pack to user params
+func (o *AppendPackToUserParams) WithPackUser(packUser *models.PackUserParams) *AppendPackToUserParams {
+	o.SetPackUser(packUser)
 	return o
 }
 
-// SetParams adds the params to the append pack to user params
-func (o *AppendPackToUserParams) SetParams(params *models.PackUserParams) {
-	o.Params = params
+// SetPackUser adds the packUser to the append pack to user params
+func (o *AppendPackToUserParams) SetPackUser(packUser *models.PackUserParams) {
+	o.PackUser = packUser
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -147,8 +147,8 @@ func (o *AppendPackToUserParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.PackUser != nil {
+		if err := r.SetBodyParam(o.PackUser); err != nil {
 			return err
 		}
 	}

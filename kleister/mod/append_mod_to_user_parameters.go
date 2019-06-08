@@ -68,11 +68,11 @@ type AppendModToUserParams struct {
 
 	*/
 	ModID string
-	/*Params
+	/*ModUser
 	  The mod user data to assign
 
 	*/
-	Params *models.ModUserParams
+	ModUser *models.ModUserParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +123,15 @@ func (o *AppendModToUserParams) SetModID(modID string) {
 	o.ModID = modID
 }
 
-// WithParams adds the params to the append mod to user params
-func (o *AppendModToUserParams) WithParams(params *models.ModUserParams) *AppendModToUserParams {
-	o.SetParams(params)
+// WithModUser adds the modUser to the append mod to user params
+func (o *AppendModToUserParams) WithModUser(modUser *models.ModUserParams) *AppendModToUserParams {
+	o.SetModUser(modUser)
 	return o
 }
 
-// SetParams adds the params to the append mod to user params
-func (o *AppendModToUserParams) SetParams(params *models.ModUserParams) {
-	o.Params = params
+// SetModUser adds the modUser to the append mod to user params
+func (o *AppendModToUserParams) SetModUser(modUser *models.ModUserParams) {
+	o.ModUser = modUser
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -147,8 +147,8 @@ func (o *AppendModToUserParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.ModUser != nil {
+		if err := r.SetBodyParam(o.ModUser); err != nil {
 			return err
 		}
 	}

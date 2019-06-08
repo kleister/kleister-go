@@ -63,11 +63,11 @@ for the create mod operation typically these are written to a http.Request
 */
 type CreateModParams struct {
 
-	/*Params
+	/*Mod
 	  The mod data to create
 
 	*/
-	Params *models.Mod
+	Mod *models.Mod
 
 	timeout    time.Duration
 	Context    context.Context
@@ -107,15 +107,15 @@ func (o *CreateModParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the create mod params
-func (o *CreateModParams) WithParams(params *models.Mod) *CreateModParams {
-	o.SetParams(params)
+// WithMod adds the mod to the create mod params
+func (o *CreateModParams) WithMod(mod *models.Mod) *CreateModParams {
+	o.SetMod(mod)
 	return o
 }
 
-// SetParams adds the params to the create mod params
-func (o *CreateModParams) SetParams(params *models.Mod) {
-	o.Params = params
+// SetMod adds the mod to the create mod params
+func (o *CreateModParams) SetMod(mod *models.Mod) {
+	o.Mod = mod
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -126,8 +126,8 @@ func (o *CreateModParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.Mod != nil {
+		if err := r.SetBodyParam(o.Mod); err != nil {
 			return err
 		}
 	}

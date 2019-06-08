@@ -68,11 +68,11 @@ type PermitPackTeamParams struct {
 
 	*/
 	PackID string
-	/*Params
+	/*PackTeam
 	  The pack team data to update
 
 	*/
-	Params *models.PackTeamParams
+	PackTeam *models.PackTeamParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,15 +123,15 @@ func (o *PermitPackTeamParams) SetPackID(packID string) {
 	o.PackID = packID
 }
 
-// WithParams adds the params to the permit pack team params
-func (o *PermitPackTeamParams) WithParams(params *models.PackTeamParams) *PermitPackTeamParams {
-	o.SetParams(params)
+// WithPackTeam adds the packTeam to the permit pack team params
+func (o *PermitPackTeamParams) WithPackTeam(packTeam *models.PackTeamParams) *PermitPackTeamParams {
+	o.SetPackTeam(packTeam)
 	return o
 }
 
-// SetParams adds the params to the permit pack team params
-func (o *PermitPackTeamParams) SetParams(params *models.PackTeamParams) {
-	o.Params = params
+// SetPackTeam adds the packTeam to the permit pack team params
+func (o *PermitPackTeamParams) SetPackTeam(packTeam *models.PackTeamParams) {
+	o.PackTeam = packTeam
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -147,8 +147,8 @@ func (o *PermitPackTeamParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.PackTeam != nil {
+		if err := r.SetBodyParam(o.PackTeam); err != nil {
 			return err
 		}
 	}

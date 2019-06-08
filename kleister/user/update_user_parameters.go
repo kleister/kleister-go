@@ -63,11 +63,11 @@ for the update user operation typically these are written to a http.Request
 */
 type UpdateUserParams struct {
 
-	/*Params
+	/*User
 	  The user data to update
 
 	*/
-	Params *models.User
+	User *models.User
 	/*UserID
 	  A user UUID or slug
 
@@ -112,15 +112,15 @@ func (o *UpdateUserParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithParams adds the params to the update user params
-func (o *UpdateUserParams) WithParams(params *models.User) *UpdateUserParams {
-	o.SetParams(params)
+// WithUser adds the user to the update user params
+func (o *UpdateUserParams) WithUser(user *models.User) *UpdateUserParams {
+	o.SetUser(user)
 	return o
 }
 
-// SetParams adds the params to the update user params
-func (o *UpdateUserParams) SetParams(params *models.User) {
-	o.Params = params
+// SetUser adds the user to the update user params
+func (o *UpdateUserParams) SetUser(user *models.User) {
+	o.User = user
 }
 
 // WithUserID adds the userID to the update user params
@@ -142,8 +142,8 @@ func (o *UpdateUserParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.User != nil {
+		if err := r.SetBodyParam(o.User); err != nil {
 			return err
 		}
 	}

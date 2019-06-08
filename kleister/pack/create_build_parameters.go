@@ -63,16 +63,16 @@ for the create build operation typically these are written to a http.Request
 */
 type CreateBuildParams struct {
 
+	/*Build
+	  The build data to create
+
+	*/
+	Build *models.Build
 	/*PackID
 	  A pack UUID or slug
 
 	*/
 	PackID string
-	/*Params
-	  The build data to create
-
-	*/
-	Params *models.Build
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,6 +112,17 @@ func (o *CreateBuildParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithBuild adds the build to the create build params
+func (o *CreateBuildParams) WithBuild(build *models.Build) *CreateBuildParams {
+	o.SetBuild(build)
+	return o
+}
+
+// SetBuild adds the build to the create build params
+func (o *CreateBuildParams) SetBuild(build *models.Build) {
+	o.Build = build
+}
+
 // WithPackID adds the packID to the create build params
 func (o *CreateBuildParams) WithPackID(packID string) *CreateBuildParams {
 	o.SetPackID(packID)
@@ -123,17 +134,6 @@ func (o *CreateBuildParams) SetPackID(packID string) {
 	o.PackID = packID
 }
 
-// WithParams adds the params to the create build params
-func (o *CreateBuildParams) WithParams(params *models.Build) *CreateBuildParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the create build params
-func (o *CreateBuildParams) SetParams(params *models.Build) {
-	o.Params = params
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *CreateBuildParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *CreateBuildParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	}
 	var res []error
 
+	if o.Build != nil {
+		if err := r.SetBodyParam(o.Build); err != nil {
+			return err
+		}
+	}
+
 	// path param pack_id
 	if err := r.SetPathParam("pack_id", o.PackID); err != nil {
 		return err
-	}
-
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
 	}
 
 	if len(res) > 0 {

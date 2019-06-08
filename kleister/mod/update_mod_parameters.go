@@ -63,16 +63,16 @@ for the update mod operation typically these are written to a http.Request
 */
 type UpdateModParams struct {
 
+	/*Mod
+	  The mod data to update
+
+	*/
+	Mod *models.Mod
 	/*ModID
 	  A mod UUID or slug
 
 	*/
 	ModID string
-	/*Params
-	  The mod data to update
-
-	*/
-	Params *models.Mod
 
 	timeout    time.Duration
 	Context    context.Context
@@ -112,6 +112,17 @@ func (o *UpdateModParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithMod adds the mod to the update mod params
+func (o *UpdateModParams) WithMod(mod *models.Mod) *UpdateModParams {
+	o.SetMod(mod)
+	return o
+}
+
+// SetMod adds the mod to the update mod params
+func (o *UpdateModParams) SetMod(mod *models.Mod) {
+	o.Mod = mod
+}
+
 // WithModID adds the modID to the update mod params
 func (o *UpdateModParams) WithModID(modID string) *UpdateModParams {
 	o.SetModID(modID)
@@ -123,17 +134,6 @@ func (o *UpdateModParams) SetModID(modID string) {
 	o.ModID = modID
 }
 
-// WithParams adds the params to the update mod params
-func (o *UpdateModParams) WithParams(params *models.Mod) *UpdateModParams {
-	o.SetParams(params)
-	return o
-}
-
-// SetParams adds the params to the update mod params
-func (o *UpdateModParams) SetParams(params *models.Mod) {
-	o.Params = params
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *UpdateModParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,15 +142,15 @@ func (o *UpdateModParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	}
 	var res []error
 
+	if o.Mod != nil {
+		if err := r.SetBodyParam(o.Mod); err != nil {
+			return err
+		}
+	}
+
 	// path param mod_id
 	if err := r.SetPathParam("mod_id", o.ModID); err != nil {
 		return err
-	}
-
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
-			return err
-		}
 	}
 
 	if len(res) > 0 {

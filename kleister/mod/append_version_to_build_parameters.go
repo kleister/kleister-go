@@ -68,11 +68,11 @@ type AppendVersionToBuildParams struct {
 
 	*/
 	ModID string
-	/*Params
+	/*VersionBuild
 	  The build data to append to version
 
 	*/
-	Params *models.VersionBuildParams
+	VersionBuild *models.VersionBuildParams
 	/*VersionID
 	  A version UUID or slug
 
@@ -128,15 +128,15 @@ func (o *AppendVersionToBuildParams) SetModID(modID string) {
 	o.ModID = modID
 }
 
-// WithParams adds the params to the append version to build params
-func (o *AppendVersionToBuildParams) WithParams(params *models.VersionBuildParams) *AppendVersionToBuildParams {
-	o.SetParams(params)
+// WithVersionBuild adds the versionBuild to the append version to build params
+func (o *AppendVersionToBuildParams) WithVersionBuild(versionBuild *models.VersionBuildParams) *AppendVersionToBuildParams {
+	o.SetVersionBuild(versionBuild)
 	return o
 }
 
-// SetParams adds the params to the append version to build params
-func (o *AppendVersionToBuildParams) SetParams(params *models.VersionBuildParams) {
-	o.Params = params
+// SetVersionBuild adds the versionBuild to the append version to build params
+func (o *AppendVersionToBuildParams) SetVersionBuild(versionBuild *models.VersionBuildParams) {
+	o.VersionBuild = versionBuild
 }
 
 // WithVersionID adds the versionID to the append version to build params
@@ -163,8 +163,8 @@ func (o *AppendVersionToBuildParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 
-	if o.Params != nil {
-		if err := r.SetBodyParam(o.Params); err != nil {
+	if o.VersionBuild != nil {
+		if err := r.SetBodyParam(o.VersionBuild); err != nil {
 			return err
 		}
 	}

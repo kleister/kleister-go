@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -40,6 +42,7 @@ type Mod struct {
 	Name *string `json:"name"`
 
 	// side
+	// Enum: [both server client]
 	Side string `json:"side,omitempty"`
 
 	// slug
@@ -66,6 +69,10 @@ func (m *Mod) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSide(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -108,6 +115,52 @@ func (m *Mod) validateID(formats strfmt.Registry) error {
 func (m *Mod) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var modTypeSidePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["both","server","client"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modTypeSidePropEnum = append(modTypeSidePropEnum, v)
+	}
+}
+
+const (
+
+	// ModSideBoth captures enum value "both"
+	ModSideBoth string = "both"
+
+	// ModSideServer captures enum value "server"
+	ModSideServer string = "server"
+
+	// ModSideClient captures enum value "client"
+	ModSideClient string = "client"
+)
+
+// prop value enum
+func (m *Mod) validateSideEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, modTypeSidePropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Mod) validateSide(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Side) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateSideEnum("side", "body", m.Side); err != nil {
 		return err
 	}
 
