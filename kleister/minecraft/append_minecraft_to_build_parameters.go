@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewAppendMinecraftToBuildParams creates a new AppendMinecraftToBuildParams object
-// with the default values initialized.
+// NewAppendMinecraftToBuildParams creates a new AppendMinecraftToBuildParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAppendMinecraftToBuildParams() *AppendMinecraftToBuildParams {
-	var ()
 	return &AppendMinecraftToBuildParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAppendMinecraftToBuildParamsWithTimeout creates a new AppendMinecraftToBuildParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAppendMinecraftToBuildParamsWithTimeout(timeout time.Duration) *AppendMinecraftToBuildParams {
-	var ()
 	return &AppendMinecraftToBuildParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAppendMinecraftToBuildParamsWithContext creates a new AppendMinecraftToBuildParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAppendMinecraftToBuildParamsWithContext(ctx context.Context) *AppendMinecraftToBuildParams {
-	var ()
 	return &AppendMinecraftToBuildParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAppendMinecraftToBuildParamsWithHTTPClient creates a new AppendMinecraftToBuildParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAppendMinecraftToBuildParamsWithHTTPClient(client *http.Client) *AppendMinecraftToBuildParams {
-	var ()
 	return &AppendMinecraftToBuildParams{
 		HTTPClient: client,
 	}
 }
 
-/*AppendMinecraftToBuildParams contains all the parameters to send to the API endpoint
-for the append minecraft to build operation typically these are written to a http.Request
+/* AppendMinecraftToBuildParams contains all the parameters to send to the API endpoint
+   for the append minecraft to build operation.
+
+   Typically these are written to a http.Request.
 */
 type AppendMinecraftToBuildParams struct {
 
-	/*MinecraftBuild
-	  The build data to append
+	/* MinecraftBuild.
 
+	   The build data to append
 	*/
 	MinecraftBuild *models.MinecraftBuildParams
-	/*MinecraftID
-	  A minecraft UUID or slug
 
+	/* MinecraftID.
+
+	   A minecraft UUID or slug
 	*/
 	MinecraftID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the append minecraft to build params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AppendMinecraftToBuildParams) WithDefaults() *AppendMinecraftToBuildParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the append minecraft to build params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AppendMinecraftToBuildParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the append minecraft to build params
@@ -141,7 +155,6 @@ func (o *AppendMinecraftToBuildParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
-
 	if o.MinecraftBuild != nil {
 		if err := r.SetBodyParam(o.MinecraftBuild); err != nil {
 			return err

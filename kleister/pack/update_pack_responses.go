@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // UpdatePackReader is a Reader for the UpdatePack structure.
@@ -24,35 +23,30 @@ type UpdatePackReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdatePackReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdatePackOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewUpdatePackForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewUpdatePackPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewUpdatePackUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewUpdatePackDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewUpdatePackOK() *UpdatePackOK {
 	return &UpdatePackOK{}
 }
 
-/*UpdatePackOK handles this case with default header values.
+/* UpdatePackOK describes a response with status code 200, with default header values.
 
 The updated pack details
 */
@@ -80,6 +74,9 @@ type UpdatePackOK struct {
 
 func (o *UpdatePackOK) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}][%d] updatePackOK  %+v", 200, o.Payload)
+}
+func (o *UpdatePackOK) GetPayload() *models.Pack {
+	return o.Payload
 }
 
 func (o *UpdatePackOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewUpdatePackForbidden() *UpdatePackForbidden {
 	return &UpdatePackForbidden{}
 }
 
-/*UpdatePackForbidden handles this case with default header values.
+/* UpdatePackForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type UpdatePackForbidden struct {
 
 func (o *UpdatePackForbidden) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}][%d] updatePackForbidden  %+v", 403, o.Payload)
+}
+func (o *UpdatePackForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdatePackForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewUpdatePackPreconditionFailed() *UpdatePackPreconditionFailed {
 	return &UpdatePackPreconditionFailed{}
 }
 
-/*UpdatePackPreconditionFailed handles this case with default header values.
+/* UpdatePackPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type UpdatePackPreconditionFailed struct {
 
 func (o *UpdatePackPreconditionFailed) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}][%d] updatePackPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *UpdatePackPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdatePackPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewUpdatePackUnprocessableEntity() *UpdatePackUnprocessableEntity {
 	return &UpdatePackUnprocessableEntity{}
 }
 
-/*UpdatePackUnprocessableEntity handles this case with default header values.
+/* UpdatePackUnprocessableEntity describes a response with status code 422, with default header values.
 
 Failed to validate request
 */
@@ -167,6 +170,9 @@ type UpdatePackUnprocessableEntity struct {
 
 func (o *UpdatePackUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}][%d] updatePackUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *UpdatePackUnprocessableEntity) GetPayload() *models.ValidationError {
+	return o.Payload
 }
 
 func (o *UpdatePackUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewUpdatePackDefault(code int) *UpdatePackDefault {
 	}
 }
 
-/*UpdatePackDefault handles this case with default header values.
+/* UpdatePackDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *UpdatePackDefault) Code() int {
 
 func (o *UpdatePackDefault) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}][%d] UpdatePack default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdatePackDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdatePackDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

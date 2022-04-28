@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewPermitPackUserParams creates a new PermitPackUserParams object
-// with the default values initialized.
+// NewPermitPackUserParams creates a new PermitPackUserParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPermitPackUserParams() *PermitPackUserParams {
-	var ()
 	return &PermitPackUserParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPermitPackUserParamsWithTimeout creates a new PermitPackUserParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPermitPackUserParamsWithTimeout(timeout time.Duration) *PermitPackUserParams {
-	var ()
 	return &PermitPackUserParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPermitPackUserParamsWithContext creates a new PermitPackUserParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPermitPackUserParamsWithContext(ctx context.Context) *PermitPackUserParams {
-	var ()
 	return &PermitPackUserParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPermitPackUserParamsWithHTTPClient creates a new PermitPackUserParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPermitPackUserParamsWithHTTPClient(client *http.Client) *PermitPackUserParams {
-	var ()
 	return &PermitPackUserParams{
 		HTTPClient: client,
 	}
 }
 
-/*PermitPackUserParams contains all the parameters to send to the API endpoint
-for the permit pack user operation typically these are written to a http.Request
+/* PermitPackUserParams contains all the parameters to send to the API endpoint
+   for the permit pack user operation.
+
+   Typically these are written to a http.Request.
 */
 type PermitPackUserParams struct {
 
-	/*PackID
-	  A pack UUID or slug
+	/* PackID.
 
+	   A pack UUID or slug
 	*/
 	PackID string
-	/*PackUser
-	  The pack user data to update
 
+	/* PackUser.
+
+	   The pack user data to update
 	*/
 	PackUser *models.PackUserParams
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the permit pack user params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PermitPackUserParams) WithDefaults() *PermitPackUserParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the permit pack user params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PermitPackUserParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the permit pack user params
@@ -146,7 +160,6 @@ func (o *PermitPackUserParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	if err := r.SetPathParam("pack_id", o.PackID); err != nil {
 		return err
 	}
-
 	if o.PackUser != nil {
 		if err := r.SetBodyParam(o.PackUser); err != nil {
 			return err

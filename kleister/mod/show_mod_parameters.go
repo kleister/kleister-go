@@ -13,63 +13,76 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
-// NewShowModParams creates a new ShowModParams object
-// with the default values initialized.
+// NewShowModParams creates a new ShowModParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewShowModParams() *ShowModParams {
-	var ()
 	return &ShowModParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewShowModParamsWithTimeout creates a new ShowModParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewShowModParamsWithTimeout(timeout time.Duration) *ShowModParams {
-	var ()
 	return &ShowModParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewShowModParamsWithContext creates a new ShowModParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewShowModParamsWithContext(ctx context.Context) *ShowModParams {
-	var ()
 	return &ShowModParams{
-
 		Context: ctx,
 	}
 }
 
 // NewShowModParamsWithHTTPClient creates a new ShowModParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewShowModParamsWithHTTPClient(client *http.Client) *ShowModParams {
-	var ()
 	return &ShowModParams{
 		HTTPClient: client,
 	}
 }
 
-/*ShowModParams contains all the parameters to send to the API endpoint
-for the show mod operation typically these are written to a http.Request
+/* ShowModParams contains all the parameters to send to the API endpoint
+   for the show mod operation.
+
+   Typically these are written to a http.Request.
 */
 type ShowModParams struct {
 
-	/*ModID
-	  A mod UUID or slug
+	/* ModID.
 
+	   A mod UUID or slug
 	*/
 	ModID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the show mod params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ShowModParams) WithDefaults() *ShowModParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the show mod params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ShowModParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the show mod params

@@ -7,12 +7,11 @@ package mod
 
 import (
 	"github.com/go-openapi/runtime"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new mod API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -24,16 +23,65 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
+// ClientService is the interface for Client methods
+type ClientService interface {
+	AppendModToTeam(params *AppendModToTeamParams, opts ...ClientOption) (*AppendModToTeamOK, error)
+
+	AppendModToUser(params *AppendModToUserParams, opts ...ClientOption) (*AppendModToUserOK, error)
+
+	AppendVersionToBuild(params *AppendVersionToBuildParams, opts ...ClientOption) (*AppendVersionToBuildOK, error)
+
+	CreateMod(params *CreateModParams, opts ...ClientOption) (*CreateModOK, error)
+
+	CreateVersion(params *CreateVersionParams, opts ...ClientOption) (*CreateVersionOK, error)
+
+	DeleteMod(params *DeleteModParams, opts ...ClientOption) (*DeleteModOK, error)
+
+	DeleteModFromTeam(params *DeleteModFromTeamParams, opts ...ClientOption) (*DeleteModFromTeamOK, error)
+
+	DeleteModFromUser(params *DeleteModFromUserParams, opts ...ClientOption) (*DeleteModFromUserOK, error)
+
+	DeleteVersion(params *DeleteVersionParams, opts ...ClientOption) (*DeleteVersionOK, error)
+
+	DeleteVersionFromBuild(params *DeleteVersionFromBuildParams, opts ...ClientOption) (*DeleteVersionFromBuildOK, error)
+
+	ListModTeams(params *ListModTeamsParams, opts ...ClientOption) (*ListModTeamsOK, error)
+
+	ListModUsers(params *ListModUsersParams, opts ...ClientOption) (*ListModUsersOK, error)
+
+	ListMods(params *ListModsParams, opts ...ClientOption) (*ListModsOK, error)
+
+	ListVersionBuilds(params *ListVersionBuildsParams, opts ...ClientOption) (*ListVersionBuildsOK, error)
+
+	ListVersions(params *ListVersionsParams, opts ...ClientOption) (*ListVersionsOK, error)
+
+	PermitModTeam(params *PermitModTeamParams, opts ...ClientOption) (*PermitModTeamOK, error)
+
+	PermitModUser(params *PermitModUserParams, opts ...ClientOption) (*PermitModUserOK, error)
+
+	ShowMod(params *ShowModParams, opts ...ClientOption) (*ShowModOK, error)
+
+	ShowVersion(params *ShowVersionParams, opts ...ClientOption) (*ShowVersionOK, error)
+
+	UpdateMod(params *UpdateModParams, opts ...ClientOption) (*UpdateModOK, error)
+
+	UpdateVersion(params *UpdateVersionParams, opts ...ClientOption) (*UpdateVersionOK, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
 /*
-AppendModToTeam assigns a team to mod
+  AppendModToTeam assigns a team to mod
 */
-func (a *Client) AppendModToTeam(params *AppendModToTeamParams) (*AppendModToTeamOK, error) {
+func (a *Client) AppendModToTeam(params *AppendModToTeamParams, opts ...ClientOption) (*AppendModToTeamOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAppendModToTeamParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "AppendModToTeam",
 		Method:             "POST",
 		PathPattern:        "/mods/{mod_id}/teams",
@@ -44,24 +92,33 @@ func (a *Client) AppendModToTeam(params *AppendModToTeamParams) (*AppendModToTea
 		Reader:             &AppendModToTeamReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*AppendModToTeamOK), nil
-
+	success, ok := result.(*AppendModToTeamOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*AppendModToTeamDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-AppendModToUser assigns a user to mod
+  AppendModToUser assigns a user to mod
 */
-func (a *Client) AppendModToUser(params *AppendModToUserParams) (*AppendModToUserOK, error) {
+func (a *Client) AppendModToUser(params *AppendModToUserParams, opts ...ClientOption) (*AppendModToUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAppendModToUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "AppendModToUser",
 		Method:             "POST",
 		PathPattern:        "/mods/{mod_id}/users",
@@ -72,24 +129,33 @@ func (a *Client) AppendModToUser(params *AppendModToUserParams) (*AppendModToUse
 		Reader:             &AppendModToUserReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*AppendModToUserOK), nil
-
+	success, ok := result.(*AppendModToUserOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*AppendModToUserDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-AppendVersionToBuild assigns a build to a version
+  AppendVersionToBuild assigns a build to a version
 */
-func (a *Client) AppendVersionToBuild(params *AppendVersionToBuildParams) (*AppendVersionToBuildOK, error) {
+func (a *Client) AppendVersionToBuild(params *AppendVersionToBuildParams, opts ...ClientOption) (*AppendVersionToBuildOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAppendVersionToBuildParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "AppendVersionToBuild",
 		Method:             "POST",
 		PathPattern:        "/mods/{mod_id}/versions/{version_id}/builds",
@@ -100,24 +166,33 @@ func (a *Client) AppendVersionToBuild(params *AppendVersionToBuildParams) (*Appe
 		Reader:             &AppendVersionToBuildReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*AppendVersionToBuildOK), nil
-
+	success, ok := result.(*AppendVersionToBuildOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*AppendVersionToBuildDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-CreateMod creates a new mod
+  CreateMod creates a new mod
 */
-func (a *Client) CreateMod(params *CreateModParams) (*CreateModOK, error) {
+func (a *Client) CreateMod(params *CreateModParams, opts ...ClientOption) (*CreateModOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateModParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "CreateMod",
 		Method:             "POST",
 		PathPattern:        "/mods",
@@ -128,24 +203,33 @@ func (a *Client) CreateMod(params *CreateModParams) (*CreateModOK, error) {
 		Reader:             &CreateModReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateModOK), nil
-
+	success, ok := result.(*CreateModOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*CreateModDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-CreateVersion creates a new version for a mod
+  CreateVersion creates a new version for a mod
 */
-func (a *Client) CreateVersion(params *CreateVersionParams) (*CreateVersionOK, error) {
+func (a *Client) CreateVersion(params *CreateVersionParams, opts ...ClientOption) (*CreateVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateVersionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "CreateVersion",
 		Method:             "POST",
 		PathPattern:        "/mods/{mod_id}/versions",
@@ -156,24 +240,33 @@ func (a *Client) CreateVersion(params *CreateVersionParams) (*CreateVersionOK, e
 		Reader:             &CreateVersionReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateVersionOK), nil
-
+	success, ok := result.(*CreateVersionOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*CreateVersionDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-DeleteMod deletes a specific mod
+  DeleteMod deletes a specific mod
 */
-func (a *Client) DeleteMod(params *DeleteModParams) (*DeleteModOK, error) {
+func (a *Client) DeleteMod(params *DeleteModParams, opts ...ClientOption) (*DeleteModOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteModParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteMod",
 		Method:             "DELETE",
 		PathPattern:        "/mods/{mod_id}",
@@ -184,24 +277,33 @@ func (a *Client) DeleteMod(params *DeleteModParams) (*DeleteModOK, error) {
 		Reader:             &DeleteModReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteModOK), nil
-
+	success, ok := result.(*DeleteModOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*DeleteModDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-DeleteModFromTeam removes a team from mod
+  DeleteModFromTeam removes a team from mod
 */
-func (a *Client) DeleteModFromTeam(params *DeleteModFromTeamParams) (*DeleteModFromTeamOK, error) {
+func (a *Client) DeleteModFromTeam(params *DeleteModFromTeamParams, opts ...ClientOption) (*DeleteModFromTeamOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteModFromTeamParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteModFromTeam",
 		Method:             "DELETE",
 		PathPattern:        "/mods/{mod_id}/teams",
@@ -212,24 +314,33 @@ func (a *Client) DeleteModFromTeam(params *DeleteModFromTeamParams) (*DeleteModF
 		Reader:             &DeleteModFromTeamReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteModFromTeamOK), nil
-
+	success, ok := result.(*DeleteModFromTeamOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*DeleteModFromTeamDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-DeleteModFromUser removes a user from mod
+  DeleteModFromUser removes a user from mod
 */
-func (a *Client) DeleteModFromUser(params *DeleteModFromUserParams) (*DeleteModFromUserOK, error) {
+func (a *Client) DeleteModFromUser(params *DeleteModFromUserParams, opts ...ClientOption) (*DeleteModFromUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteModFromUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteModFromUser",
 		Method:             "DELETE",
 		PathPattern:        "/mods/{mod_id}/users",
@@ -240,24 +351,33 @@ func (a *Client) DeleteModFromUser(params *DeleteModFromUserParams) (*DeleteModF
 		Reader:             &DeleteModFromUserReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteModFromUserOK), nil
-
+	success, ok := result.(*DeleteModFromUserOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*DeleteModFromUserDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-DeleteVersion deletes a specific version for a mod
+  DeleteVersion deletes a specific version for a mod
 */
-func (a *Client) DeleteVersion(params *DeleteVersionParams) (*DeleteVersionOK, error) {
+func (a *Client) DeleteVersion(params *DeleteVersionParams, opts ...ClientOption) (*DeleteVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteVersionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteVersion",
 		Method:             "DELETE",
 		PathPattern:        "/mods/{mod_id}/versions/{version_id}",
@@ -268,24 +388,33 @@ func (a *Client) DeleteVersion(params *DeleteVersionParams) (*DeleteVersionOK, e
 		Reader:             &DeleteVersionReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteVersionOK), nil
-
+	success, ok := result.(*DeleteVersionOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*DeleteVersionDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-DeleteVersionFromBuild unlinks a build from a version
+  DeleteVersionFromBuild unlinks a build from a version
 */
-func (a *Client) DeleteVersionFromBuild(params *DeleteVersionFromBuildParams) (*DeleteVersionFromBuildOK, error) {
+func (a *Client) DeleteVersionFromBuild(params *DeleteVersionFromBuildParams, opts ...ClientOption) (*DeleteVersionFromBuildOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteVersionFromBuildParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteVersionFromBuild",
 		Method:             "DELETE",
 		PathPattern:        "/mods/{mod_id}/versions/{version_id}/builds",
@@ -296,24 +425,33 @@ func (a *Client) DeleteVersionFromBuild(params *DeleteVersionFromBuildParams) (*
 		Reader:             &DeleteVersionFromBuildReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteVersionFromBuildOK), nil
-
+	success, ok := result.(*DeleteVersionFromBuildOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*DeleteVersionFromBuildDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListModTeams fetches all teams assigned to mod
+  ListModTeams fetches all teams assigned to mod
 */
-func (a *Client) ListModTeams(params *ListModTeamsParams) (*ListModTeamsOK, error) {
+func (a *Client) ListModTeams(params *ListModTeamsParams, opts ...ClientOption) (*ListModTeamsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListModTeamsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListModTeams",
 		Method:             "GET",
 		PathPattern:        "/mods/{mod_id}/teams",
@@ -324,24 +462,33 @@ func (a *Client) ListModTeams(params *ListModTeamsParams) (*ListModTeamsOK, erro
 		Reader:             &ListModTeamsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListModTeamsOK), nil
-
+	success, ok := result.(*ListModTeamsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListModTeamsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListModUsers fetches all users assigned to mod
+  ListModUsers fetches all users assigned to mod
 */
-func (a *Client) ListModUsers(params *ListModUsersParams) (*ListModUsersOK, error) {
+func (a *Client) ListModUsers(params *ListModUsersParams, opts ...ClientOption) (*ListModUsersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListModUsersParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListModUsers",
 		Method:             "GET",
 		PathPattern:        "/mods/{mod_id}/users",
@@ -352,24 +499,33 @@ func (a *Client) ListModUsers(params *ListModUsersParams) (*ListModUsersOK, erro
 		Reader:             &ListModUsersReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListModUsersOK), nil
-
+	success, ok := result.(*ListModUsersOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListModUsersDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListMods fetches all available mods
+  ListMods fetches all available mods
 */
-func (a *Client) ListMods(params *ListModsParams) (*ListModsOK, error) {
+func (a *Client) ListMods(params *ListModsParams, opts ...ClientOption) (*ListModsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListModsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListMods",
 		Method:             "GET",
 		PathPattern:        "/mods",
@@ -380,24 +536,33 @@ func (a *Client) ListMods(params *ListModsParams) (*ListModsOK, error) {
 		Reader:             &ListModsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListModsOK), nil
-
+	success, ok := result.(*ListModsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListModsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListVersionBuilds fetches all builds assigned to version
+  ListVersionBuilds fetches all builds assigned to version
 */
-func (a *Client) ListVersionBuilds(params *ListVersionBuildsParams) (*ListVersionBuildsOK, error) {
+func (a *Client) ListVersionBuilds(params *ListVersionBuildsParams, opts ...ClientOption) (*ListVersionBuildsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListVersionBuildsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListVersionBuilds",
 		Method:             "GET",
 		PathPattern:        "/mods/{mod_id}/versions/{version_id}/builds",
@@ -408,24 +573,33 @@ func (a *Client) ListVersionBuilds(params *ListVersionBuildsParams) (*ListVersio
 		Reader:             &ListVersionBuildsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListVersionBuildsOK), nil
-
+	success, ok := result.(*ListVersionBuildsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListVersionBuildsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListVersions fetches all available versions for a mod
+  ListVersions fetches all available versions for a mod
 */
-func (a *Client) ListVersions(params *ListVersionsParams) (*ListVersionsOK, error) {
+func (a *Client) ListVersions(params *ListVersionsParams, opts ...ClientOption) (*ListVersionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListVersionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListVersions",
 		Method:             "GET",
 		PathPattern:        "/mods/{mod_id}/versions",
@@ -436,24 +610,33 @@ func (a *Client) ListVersions(params *ListVersionsParams) (*ListVersionsOK, erro
 		Reader:             &ListVersionsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListVersionsOK), nil
-
+	success, ok := result.(*ListVersionsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListVersionsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-PermitModTeam updates team perms for mod
+  PermitModTeam updates team perms for mod
 */
-func (a *Client) PermitModTeam(params *PermitModTeamParams) (*PermitModTeamOK, error) {
+func (a *Client) PermitModTeam(params *PermitModTeamParams, opts ...ClientOption) (*PermitModTeamOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPermitModTeamParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PermitModTeam",
 		Method:             "PUT",
 		PathPattern:        "/mods/{mod_id}/teams",
@@ -464,24 +647,33 @@ func (a *Client) PermitModTeam(params *PermitModTeamParams) (*PermitModTeamOK, e
 		Reader:             &PermitModTeamReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PermitModTeamOK), nil
-
+	success, ok := result.(*PermitModTeamOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*PermitModTeamDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-PermitModUser updates user perms for mod
+  PermitModUser updates user perms for mod
 */
-func (a *Client) PermitModUser(params *PermitModUserParams) (*PermitModUserOK, error) {
+func (a *Client) PermitModUser(params *PermitModUserParams, opts ...ClientOption) (*PermitModUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPermitModUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PermitModUser",
 		Method:             "PUT",
 		PathPattern:        "/mods/{mod_id}/users",
@@ -492,24 +684,33 @@ func (a *Client) PermitModUser(params *PermitModUserParams) (*PermitModUserOK, e
 		Reader:             &PermitModUserReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PermitModUserOK), nil
-
+	success, ok := result.(*PermitModUserOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*PermitModUserDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ShowMod fetches a specific mod
+  ShowMod fetches a specific mod
 */
-func (a *Client) ShowMod(params *ShowModParams) (*ShowModOK, error) {
+func (a *Client) ShowMod(params *ShowModParams, opts ...ClientOption) (*ShowModOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewShowModParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ShowMod",
 		Method:             "GET",
 		PathPattern:        "/mods/{mod_id}",
@@ -520,24 +721,33 @@ func (a *Client) ShowMod(params *ShowModParams) (*ShowModOK, error) {
 		Reader:             &ShowModReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ShowModOK), nil
-
+	success, ok := result.(*ShowModOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ShowModDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ShowVersion fetches a specific version for a mod
+  ShowVersion fetches a specific version for a mod
 */
-func (a *Client) ShowVersion(params *ShowVersionParams) (*ShowVersionOK, error) {
+func (a *Client) ShowVersion(params *ShowVersionParams, opts ...ClientOption) (*ShowVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewShowVersionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ShowVersion",
 		Method:             "GET",
 		PathPattern:        "/mods/{mod_id}/versions/{version_id}",
@@ -548,24 +758,33 @@ func (a *Client) ShowVersion(params *ShowVersionParams) (*ShowVersionOK, error) 
 		Reader:             &ShowVersionReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ShowVersionOK), nil
-
+	success, ok := result.(*ShowVersionOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ShowVersionDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-UpdateMod updates a specific mod
+  UpdateMod updates a specific mod
 */
-func (a *Client) UpdateMod(params *UpdateModParams) (*UpdateModOK, error) {
+func (a *Client) UpdateMod(params *UpdateModParams, opts ...ClientOption) (*UpdateModOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateModParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "UpdateMod",
 		Method:             "PUT",
 		PathPattern:        "/mods/{mod_id}",
@@ -576,24 +795,33 @@ func (a *Client) UpdateMod(params *UpdateModParams) (*UpdateModOK, error) {
 		Reader:             &UpdateModReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateModOK), nil
-
+	success, ok := result.(*UpdateModOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*UpdateModDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-UpdateVersion updates a specific version for a mod
+  UpdateVersion updates a specific version for a mod
 */
-func (a *Client) UpdateVersion(params *UpdateVersionParams) (*UpdateVersionOK, error) {
+func (a *Client) UpdateVersion(params *UpdateVersionParams, opts ...ClientOption) (*UpdateVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateVersionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "UpdateVersion",
 		Method:             "PUT",
 		PathPattern:        "/mods/{mod_id}/versions/{version_id}",
@@ -604,12 +832,22 @@ func (a *Client) UpdateVersion(params *UpdateVersionParams) (*UpdateVersionOK, e
 		Reader:             &UpdateVersionReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateVersionOK), nil
-
+	success, ok := result.(*UpdateVersionOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*UpdateVersionDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 // SetTransport changes the transport on the client

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // DeleteBuildReader is a Reader for the DeleteBuild structure.
@@ -24,28 +23,24 @@ type DeleteBuildReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteBuildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteBuildOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeleteBuildBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewDeleteBuildForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewDeleteBuildDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -63,7 +58,7 @@ func NewDeleteBuildOK() *DeleteBuildOK {
 	return &DeleteBuildOK{}
 }
 
-/*DeleteBuildOK handles this case with default header values.
+/* DeleteBuildOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -73,6 +68,9 @@ type DeleteBuildOK struct {
 
 func (o *DeleteBuildOK) Error() string {
 	return fmt.Sprintf("[DELETE /packs/{pack_id}/builds/{build_id}][%d] deleteBuildOK  %+v", 200, o.Payload)
+}
+func (o *DeleteBuildOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteBuildOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -92,7 +90,7 @@ func NewDeleteBuildBadRequest() *DeleteBuildBadRequest {
 	return &DeleteBuildBadRequest{}
 }
 
-/*DeleteBuildBadRequest handles this case with default header values.
+/* DeleteBuildBadRequest describes a response with status code 400, with default header values.
 
 Failed to delete the build
 */
@@ -102,6 +100,9 @@ type DeleteBuildBadRequest struct {
 
 func (o *DeleteBuildBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /packs/{pack_id}/builds/{build_id}][%d] deleteBuildBadRequest  %+v", 400, o.Payload)
+}
+func (o *DeleteBuildBadRequest) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteBuildBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -121,7 +122,7 @@ func NewDeleteBuildForbidden() *DeleteBuildForbidden {
 	return &DeleteBuildForbidden{}
 }
 
-/*DeleteBuildForbidden handles this case with default header values.
+/* DeleteBuildForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -131,6 +132,9 @@ type DeleteBuildForbidden struct {
 
 func (o *DeleteBuildForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /packs/{pack_id}/builds/{build_id}][%d] deleteBuildForbidden  %+v", 403, o.Payload)
+}
+func (o *DeleteBuildForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteBuildForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +156,7 @@ func NewDeleteBuildDefault(code int) *DeleteBuildDefault {
 	}
 }
 
-/*DeleteBuildDefault handles this case with default header values.
+/* DeleteBuildDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -169,6 +173,9 @@ func (o *DeleteBuildDefault) Code() int {
 
 func (o *DeleteBuildDefault) Error() string {
 	return fmt.Sprintf("[DELETE /packs/{pack_id}/builds/{build_id}][%d] DeleteBuild default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteBuildDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteBuildDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

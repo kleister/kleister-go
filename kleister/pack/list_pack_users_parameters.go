@@ -13,63 +13,76 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
-// NewListPackUsersParams creates a new ListPackUsersParams object
-// with the default values initialized.
+// NewListPackUsersParams creates a new ListPackUsersParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListPackUsersParams() *ListPackUsersParams {
-	var ()
 	return &ListPackUsersParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListPackUsersParamsWithTimeout creates a new ListPackUsersParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListPackUsersParamsWithTimeout(timeout time.Duration) *ListPackUsersParams {
-	var ()
 	return &ListPackUsersParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewListPackUsersParamsWithContext creates a new ListPackUsersParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListPackUsersParamsWithContext(ctx context.Context) *ListPackUsersParams {
-	var ()
 	return &ListPackUsersParams{
-
 		Context: ctx,
 	}
 }
 
 // NewListPackUsersParamsWithHTTPClient creates a new ListPackUsersParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListPackUsersParamsWithHTTPClient(client *http.Client) *ListPackUsersParams {
-	var ()
 	return &ListPackUsersParams{
 		HTTPClient: client,
 	}
 }
 
-/*ListPackUsersParams contains all the parameters to send to the API endpoint
-for the list pack users operation typically these are written to a http.Request
+/* ListPackUsersParams contains all the parameters to send to the API endpoint
+   for the list pack users operation.
+
+   Typically these are written to a http.Request.
 */
 type ListPackUsersParams struct {
 
-	/*PackID
-	  A pack UUID or slug
+	/* PackID.
 
+	   A pack UUID or slug
 	*/
 	PackID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list pack users params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListPackUsersParams) WithDefaults() *ListPackUsersParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list pack users params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListPackUsersParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the list pack users params

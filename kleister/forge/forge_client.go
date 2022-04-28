@@ -7,12 +7,11 @@ package forge
 
 import (
 	"github.com/go-openapi/runtime"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new forge API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -24,16 +23,35 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
+// ClientService is the interface for Client methods
+type ClientService interface {
+	AppendForgeToBuild(params *AppendForgeToBuildParams, opts ...ClientOption) (*AppendForgeToBuildOK, error)
+
+	DeleteForgeFromBuild(params *DeleteForgeFromBuildParams, opts ...ClientOption) (*DeleteForgeFromBuildOK, error)
+
+	ListForgeBuilds(params *ListForgeBuildsParams, opts ...ClientOption) (*ListForgeBuildsOK, error)
+
+	ListForges(params *ListForgesParams, opts ...ClientOption) (*ListForgesOK, error)
+
+	SearchForges(params *SearchForgesParams, opts ...ClientOption) (*SearchForgesOK, error)
+
+	UpdateForge(params *UpdateForgeParams, opts ...ClientOption) (*UpdateForgeOK, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
 /*
-AppendForgeToBuild assigns a build to a forge version
+  AppendForgeToBuild assigns a build to a forge version
 */
-func (a *Client) AppendForgeToBuild(params *AppendForgeToBuildParams) (*AppendForgeToBuildOK, error) {
+func (a *Client) AppendForgeToBuild(params *AppendForgeToBuildParams, opts ...ClientOption) (*AppendForgeToBuildOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAppendForgeToBuildParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "AppendForgeToBuild",
 		Method:             "POST",
 		PathPattern:        "/forge/{forge_id}/builds",
@@ -44,24 +62,33 @@ func (a *Client) AppendForgeToBuild(params *AppendForgeToBuildParams) (*AppendFo
 		Reader:             &AppendForgeToBuildReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*AppendForgeToBuildOK), nil
-
+	success, ok := result.(*AppendForgeToBuildOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*AppendForgeToBuildDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-DeleteForgeFromBuild unlinks a build from a forge version
+  DeleteForgeFromBuild unlinks a build from a forge version
 */
-func (a *Client) DeleteForgeFromBuild(params *DeleteForgeFromBuildParams) (*DeleteForgeFromBuildOK, error) {
+func (a *Client) DeleteForgeFromBuild(params *DeleteForgeFromBuildParams, opts ...ClientOption) (*DeleteForgeFromBuildOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteForgeFromBuildParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteForgeFromBuild",
 		Method:             "DELETE",
 		PathPattern:        "/forge/{forge_id}/builds",
@@ -72,24 +99,33 @@ func (a *Client) DeleteForgeFromBuild(params *DeleteForgeFromBuildParams) (*Dele
 		Reader:             &DeleteForgeFromBuildReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteForgeFromBuildOK), nil
-
+	success, ok := result.(*DeleteForgeFromBuildOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*DeleteForgeFromBuildDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListForgeBuilds fetches the builds assigned to a forge version
+  ListForgeBuilds fetches the builds assigned to a forge version
 */
-func (a *Client) ListForgeBuilds(params *ListForgeBuildsParams) (*ListForgeBuildsOK, error) {
+func (a *Client) ListForgeBuilds(params *ListForgeBuildsParams, opts ...ClientOption) (*ListForgeBuildsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListForgeBuildsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListForgeBuilds",
 		Method:             "GET",
 		PathPattern:        "/forge/{forge_id}/builds",
@@ -100,24 +136,33 @@ func (a *Client) ListForgeBuilds(params *ListForgeBuildsParams) (*ListForgeBuild
 		Reader:             &ListForgeBuildsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListForgeBuildsOK), nil
-
+	success, ok := result.(*ListForgeBuildsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListForgeBuildsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListForges fetches the available forge versions
+  ListForges fetches the available forge versions
 */
-func (a *Client) ListForges(params *ListForgesParams) (*ListForgesOK, error) {
+func (a *Client) ListForges(params *ListForgesParams, opts ...ClientOption) (*ListForgesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListForgesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListForges",
 		Method:             "GET",
 		PathPattern:        "/forge",
@@ -128,24 +173,33 @@ func (a *Client) ListForges(params *ListForgesParams) (*ListForgesOK, error) {
 		Reader:             &ListForgesReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListForgesOK), nil
-
+	success, ok := result.(*ListForgesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListForgesDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-SearchForges searches for available forge versions
+  SearchForges searches for available forge versions
 */
-func (a *Client) SearchForges(params *SearchForgesParams) (*SearchForgesOK, error) {
+func (a *Client) SearchForges(params *SearchForgesParams, opts ...ClientOption) (*SearchForgesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSearchForgesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "SearchForges",
 		Method:             "GET",
 		PathPattern:        "/forge/{forge_id}",
@@ -156,24 +210,33 @@ func (a *Client) SearchForges(params *SearchForgesParams) (*SearchForgesOK, erro
 		Reader:             &SearchForgesReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*SearchForgesOK), nil
-
+	success, ok := result.(*SearchForgesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SearchForgesDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-UpdateForge updates the available forge versions
+  UpdateForge updates the available forge versions
 */
-func (a *Client) UpdateForge(params *UpdateForgeParams) (*UpdateForgeOK, error) {
+func (a *Client) UpdateForge(params *UpdateForgeParams, opts ...ClientOption) (*UpdateForgeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateForgeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "UpdateForge",
 		Method:             "PUT",
 		PathPattern:        "/forge",
@@ -184,12 +247,22 @@ func (a *Client) UpdateForge(params *UpdateForgeParams) (*UpdateForgeOK, error) 
 		Reader:             &UpdateForgeReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateForgeOK), nil
-
+	success, ok := result.(*UpdateForgeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*UpdateForgeDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 // SetTransport changes the transport on the client

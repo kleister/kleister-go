@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // AppendBuildToVersionReader is a Reader for the AppendBuildToVersion structure.
@@ -24,35 +23,30 @@ type AppendBuildToVersionReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AppendBuildToVersionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAppendBuildToVersionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewAppendBuildToVersionForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewAppendBuildToVersionPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewAppendBuildToVersionUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewAppendBuildToVersionDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewAppendBuildToVersionOK() *AppendBuildToVersionOK {
 	return &AppendBuildToVersionOK{}
 }
 
-/*AppendBuildToVersionOK handles this case with default header values.
+/* AppendBuildToVersionOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -80,6 +74,9 @@ type AppendBuildToVersionOK struct {
 
 func (o *AppendBuildToVersionOK) Error() string {
 	return fmt.Sprintf("[POST /packs/{pack_id}/builds/{build_id}/versions][%d] appendBuildToVersionOK  %+v", 200, o.Payload)
+}
+func (o *AppendBuildToVersionOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendBuildToVersionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewAppendBuildToVersionForbidden() *AppendBuildToVersionForbidden {
 	return &AppendBuildToVersionForbidden{}
 }
 
-/*AppendBuildToVersionForbidden handles this case with default header values.
+/* AppendBuildToVersionForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type AppendBuildToVersionForbidden struct {
 
 func (o *AppendBuildToVersionForbidden) Error() string {
 	return fmt.Sprintf("[POST /packs/{pack_id}/builds/{build_id}/versions][%d] appendBuildToVersionForbidden  %+v", 403, o.Payload)
+}
+func (o *AppendBuildToVersionForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendBuildToVersionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewAppendBuildToVersionPreconditionFailed() *AppendBuildToVersionPreconditi
 	return &AppendBuildToVersionPreconditionFailed{}
 }
 
-/*AppendBuildToVersionPreconditionFailed handles this case with default header values.
+/* AppendBuildToVersionPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type AppendBuildToVersionPreconditionFailed struct {
 
 func (o *AppendBuildToVersionPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /packs/{pack_id}/builds/{build_id}/versions][%d] appendBuildToVersionPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *AppendBuildToVersionPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendBuildToVersionPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewAppendBuildToVersionUnprocessableEntity() *AppendBuildToVersionUnprocess
 	return &AppendBuildToVersionUnprocessableEntity{}
 }
 
-/*AppendBuildToVersionUnprocessableEntity handles this case with default header values.
+/* AppendBuildToVersionUnprocessableEntity describes a response with status code 422, with default header values.
 
 Version is already appended
 */
@@ -167,6 +170,9 @@ type AppendBuildToVersionUnprocessableEntity struct {
 
 func (o *AppendBuildToVersionUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /packs/{pack_id}/builds/{build_id}/versions][%d] appendBuildToVersionUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *AppendBuildToVersionUnprocessableEntity) GetPayload() *models.ValidationError {
+	return o.Payload
 }
 
 func (o *AppendBuildToVersionUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewAppendBuildToVersionDefault(code int) *AppendBuildToVersionDefault {
 	}
 }
 
-/*AppendBuildToVersionDefault handles this case with default header values.
+/* AppendBuildToVersionDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *AppendBuildToVersionDefault) Code() int {
 
 func (o *AppendBuildToVersionDefault) Error() string {
 	return fmt.Sprintf("[POST /packs/{pack_id}/builds/{build_id}/versions][%d] AppendBuildToVersion default  %+v", o._statusCode, o.Payload)
+}
+func (o *AppendBuildToVersionDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendBuildToVersionDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

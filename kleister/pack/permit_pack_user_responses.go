@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // PermitPackUserReader is a Reader for the PermitPackUser structure.
@@ -24,35 +23,30 @@ type PermitPackUserReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PermitPackUserReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPermitPackUserOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewPermitPackUserForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewPermitPackUserPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewPermitPackUserUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewPermitPackUserDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewPermitPackUserOK() *PermitPackUserOK {
 	return &PermitPackUserOK{}
 }
 
-/*PermitPackUserOK handles this case with default header values.
+/* PermitPackUserOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -80,6 +74,9 @@ type PermitPackUserOK struct {
 
 func (o *PermitPackUserOK) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}/users][%d] permitPackUserOK  %+v", 200, o.Payload)
+}
+func (o *PermitPackUserOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitPackUserOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewPermitPackUserForbidden() *PermitPackUserForbidden {
 	return &PermitPackUserForbidden{}
 }
 
-/*PermitPackUserForbidden handles this case with default header values.
+/* PermitPackUserForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type PermitPackUserForbidden struct {
 
 func (o *PermitPackUserForbidden) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}/users][%d] permitPackUserForbidden  %+v", 403, o.Payload)
+}
+func (o *PermitPackUserForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitPackUserForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewPermitPackUserPreconditionFailed() *PermitPackUserPreconditionFailed {
 	return &PermitPackUserPreconditionFailed{}
 }
 
-/*PermitPackUserPreconditionFailed handles this case with default header values.
+/* PermitPackUserPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type PermitPackUserPreconditionFailed struct {
 
 func (o *PermitPackUserPreconditionFailed) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}/users][%d] permitPackUserPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *PermitPackUserPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitPackUserPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewPermitPackUserUnprocessableEntity() *PermitPackUserUnprocessableEntity {
 	return &PermitPackUserUnprocessableEntity{}
 }
 
-/*PermitPackUserUnprocessableEntity handles this case with default header values.
+/* PermitPackUserUnprocessableEntity describes a response with status code 422, with default header values.
 
 User is not assigned
 */
@@ -167,6 +170,9 @@ type PermitPackUserUnprocessableEntity struct {
 
 func (o *PermitPackUserUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}/users][%d] permitPackUserUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *PermitPackUserUnprocessableEntity) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitPackUserUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewPermitPackUserDefault(code int) *PermitPackUserDefault {
 	}
 }
 
-/*PermitPackUserDefault handles this case with default header values.
+/* PermitPackUserDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *PermitPackUserDefault) Code() int {
 
 func (o *PermitPackUserDefault) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}/users][%d] PermitPackUser default  %+v", o._statusCode, o.Payload)
+}
+func (o *PermitPackUserDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitPackUserDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

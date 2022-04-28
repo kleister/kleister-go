@@ -13,63 +13,76 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
-// NewSearchMinecraftsParams creates a new SearchMinecraftsParams object
-// with the default values initialized.
+// NewSearchMinecraftsParams creates a new SearchMinecraftsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewSearchMinecraftsParams() *SearchMinecraftsParams {
-	var ()
 	return &SearchMinecraftsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewSearchMinecraftsParamsWithTimeout creates a new SearchMinecraftsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewSearchMinecraftsParamsWithTimeout(timeout time.Duration) *SearchMinecraftsParams {
-	var ()
 	return &SearchMinecraftsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewSearchMinecraftsParamsWithContext creates a new SearchMinecraftsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewSearchMinecraftsParamsWithContext(ctx context.Context) *SearchMinecraftsParams {
-	var ()
 	return &SearchMinecraftsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewSearchMinecraftsParamsWithHTTPClient creates a new SearchMinecraftsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewSearchMinecraftsParamsWithHTTPClient(client *http.Client) *SearchMinecraftsParams {
-	var ()
 	return &SearchMinecraftsParams{
 		HTTPClient: client,
 	}
 }
 
-/*SearchMinecraftsParams contains all the parameters to send to the API endpoint
-for the search minecrafts operation typically these are written to a http.Request
+/* SearchMinecraftsParams contains all the parameters to send to the API endpoint
+   for the search minecrafts operation.
+
+   Typically these are written to a http.Request.
 */
 type SearchMinecraftsParams struct {
 
-	/*MinecraftID
-	  A search token to search Minecraft versions
+	/* MinecraftID.
 
+	   A search token to search Minecraft versions
 	*/
 	MinecraftID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the search minecrafts params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *SearchMinecraftsParams) WithDefaults() *SearchMinecraftsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the search minecrafts params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *SearchMinecraftsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the search minecrafts params

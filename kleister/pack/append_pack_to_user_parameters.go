@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewAppendPackToUserParams creates a new AppendPackToUserParams object
-// with the default values initialized.
+// NewAppendPackToUserParams creates a new AppendPackToUserParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAppendPackToUserParams() *AppendPackToUserParams {
-	var ()
 	return &AppendPackToUserParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAppendPackToUserParamsWithTimeout creates a new AppendPackToUserParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAppendPackToUserParamsWithTimeout(timeout time.Duration) *AppendPackToUserParams {
-	var ()
 	return &AppendPackToUserParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAppendPackToUserParamsWithContext creates a new AppendPackToUserParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAppendPackToUserParamsWithContext(ctx context.Context) *AppendPackToUserParams {
-	var ()
 	return &AppendPackToUserParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAppendPackToUserParamsWithHTTPClient creates a new AppendPackToUserParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAppendPackToUserParamsWithHTTPClient(client *http.Client) *AppendPackToUserParams {
-	var ()
 	return &AppendPackToUserParams{
 		HTTPClient: client,
 	}
 }
 
-/*AppendPackToUserParams contains all the parameters to send to the API endpoint
-for the append pack to user operation typically these are written to a http.Request
+/* AppendPackToUserParams contains all the parameters to send to the API endpoint
+   for the append pack to user operation.
+
+   Typically these are written to a http.Request.
 */
 type AppendPackToUserParams struct {
 
-	/*PackID
-	  A pack UUID or slug
+	/* PackID.
 
+	   A pack UUID or slug
 	*/
 	PackID string
-	/*PackUser
-	  The pack user data to assign
 
+	/* PackUser.
+
+	   The pack user data to assign
 	*/
 	PackUser *models.PackUserParams
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the append pack to user params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AppendPackToUserParams) WithDefaults() *AppendPackToUserParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the append pack to user params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AppendPackToUserParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the append pack to user params
@@ -146,7 +160,6 @@ func (o *AppendPackToUserParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if err := r.SetPathParam("pack_id", o.PackID); err != nil {
 		return err
 	}
-
 	if o.PackUser != nil {
 		if err := r.SetBodyParam(o.PackUser); err != nil {
 			return err

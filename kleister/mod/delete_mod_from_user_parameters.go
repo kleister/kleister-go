@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewDeleteModFromUserParams creates a new DeleteModFromUserParams object
-// with the default values initialized.
+// NewDeleteModFromUserParams creates a new DeleteModFromUserParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteModFromUserParams() *DeleteModFromUserParams {
-	var ()
 	return &DeleteModFromUserParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteModFromUserParamsWithTimeout creates a new DeleteModFromUserParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteModFromUserParamsWithTimeout(timeout time.Duration) *DeleteModFromUserParams {
-	var ()
 	return &DeleteModFromUserParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteModFromUserParamsWithContext creates a new DeleteModFromUserParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteModFromUserParamsWithContext(ctx context.Context) *DeleteModFromUserParams {
-	var ()
 	return &DeleteModFromUserParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteModFromUserParamsWithHTTPClient creates a new DeleteModFromUserParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteModFromUserParamsWithHTTPClient(client *http.Client) *DeleteModFromUserParams {
-	var ()
 	return &DeleteModFromUserParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteModFromUserParams contains all the parameters to send to the API endpoint
-for the delete mod from user operation typically these are written to a http.Request
+/* DeleteModFromUserParams contains all the parameters to send to the API endpoint
+   for the delete mod from user operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteModFromUserParams struct {
 
-	/*ModID
-	  A mod UUID or slug
+	/* ModID.
 
+	   A mod UUID or slug
 	*/
 	ModID string
-	/*ModUser
-	  The mod user data to delete
 
+	/* ModUser.
+
+	   The mod user data to delete
 	*/
 	ModUser *models.ModUserParams
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete mod from user params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteModFromUserParams) WithDefaults() *DeleteModFromUserParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete mod from user params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteModFromUserParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete mod from user params
@@ -146,7 +160,6 @@ func (o *DeleteModFromUserParams) WriteToRequest(r runtime.ClientRequest, reg st
 	if err := r.SetPathParam("mod_id", o.ModID); err != nil {
 		return err
 	}
-
 	if o.ModUser != nil {
 		if err := r.SetBodyParam(o.ModUser); err != nil {
 			return err

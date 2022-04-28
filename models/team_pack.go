@@ -6,16 +6,17 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // TeamPack team pack
+//
 // swagger:model team_pack
 type TeamPack struct {
 
@@ -96,7 +97,7 @@ const (
 
 // prop value enum
 func (m *TeamPack) validatePermEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, teamPackTypePermPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, teamPackTypePermPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -126,6 +127,11 @@ func (m *TeamPack) validateTeamID(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this team pack based on context it is used
+func (m *TeamPack) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

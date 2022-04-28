@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewAppendForgeToBuildParams creates a new AppendForgeToBuildParams object
-// with the default values initialized.
+// NewAppendForgeToBuildParams creates a new AppendForgeToBuildParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAppendForgeToBuildParams() *AppendForgeToBuildParams {
-	var ()
 	return &AppendForgeToBuildParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAppendForgeToBuildParamsWithTimeout creates a new AppendForgeToBuildParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAppendForgeToBuildParamsWithTimeout(timeout time.Duration) *AppendForgeToBuildParams {
-	var ()
 	return &AppendForgeToBuildParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAppendForgeToBuildParamsWithContext creates a new AppendForgeToBuildParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAppendForgeToBuildParamsWithContext(ctx context.Context) *AppendForgeToBuildParams {
-	var ()
 	return &AppendForgeToBuildParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAppendForgeToBuildParamsWithHTTPClient creates a new AppendForgeToBuildParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAppendForgeToBuildParamsWithHTTPClient(client *http.Client) *AppendForgeToBuildParams {
-	var ()
 	return &AppendForgeToBuildParams{
 		HTTPClient: client,
 	}
 }
 
-/*AppendForgeToBuildParams contains all the parameters to send to the API endpoint
-for the append forge to build operation typically these are written to a http.Request
+/* AppendForgeToBuildParams contains all the parameters to send to the API endpoint
+   for the append forge to build operation.
+
+   Typically these are written to a http.Request.
 */
 type AppendForgeToBuildParams struct {
 
-	/*ForgeBuild
-	  The build data to append
+	/* ForgeBuild.
 
+	   The build data to append
 	*/
 	ForgeBuild *models.ForgeBuildParams
-	/*ForgeID
-	  A forge UUID or slug
 
+	/* ForgeID.
+
+	   A forge UUID or slug
 	*/
 	ForgeID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the append forge to build params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AppendForgeToBuildParams) WithDefaults() *AppendForgeToBuildParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the append forge to build params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AppendForgeToBuildParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the append forge to build params
@@ -141,7 +155,6 @@ func (o *AppendForgeToBuildParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
-
 	if o.ForgeBuild != nil {
 		if err := r.SetBodyParam(o.ForgeBuild); err != nil {
 			return err

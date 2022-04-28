@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewDeleteTeamFromModParams creates a new DeleteTeamFromModParams object
-// with the default values initialized.
+// NewDeleteTeamFromModParams creates a new DeleteTeamFromModParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteTeamFromModParams() *DeleteTeamFromModParams {
-	var ()
 	return &DeleteTeamFromModParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteTeamFromModParamsWithTimeout creates a new DeleteTeamFromModParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteTeamFromModParamsWithTimeout(timeout time.Duration) *DeleteTeamFromModParams {
-	var ()
 	return &DeleteTeamFromModParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteTeamFromModParamsWithContext creates a new DeleteTeamFromModParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteTeamFromModParamsWithContext(ctx context.Context) *DeleteTeamFromModParams {
-	var ()
 	return &DeleteTeamFromModParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteTeamFromModParamsWithHTTPClient creates a new DeleteTeamFromModParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteTeamFromModParamsWithHTTPClient(client *http.Client) *DeleteTeamFromModParams {
-	var ()
 	return &DeleteTeamFromModParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteTeamFromModParams contains all the parameters to send to the API endpoint
-for the delete team from mod operation typically these are written to a http.Request
+/* DeleteTeamFromModParams contains all the parameters to send to the API endpoint
+   for the delete team from mod operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteTeamFromModParams struct {
 
-	/*TeamID
-	  A team UUID or slug
+	/* TeamID.
 
+	   A team UUID or slug
 	*/
 	TeamID string
-	/*TeamMod
-	  The team mod data to delete
 
+	/* TeamMod.
+
+	   The team mod data to delete
 	*/
 	TeamMod *models.TeamModParams
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete team from mod params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteTeamFromModParams) WithDefaults() *DeleteTeamFromModParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete team from mod params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteTeamFromModParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete team from mod params
@@ -146,7 +160,6 @@ func (o *DeleteTeamFromModParams) WriteToRequest(r runtime.ClientRequest, reg st
 	if err := r.SetPathParam("team_id", o.TeamID); err != nil {
 		return err
 	}
-
 	if o.TeamMod != nil {
 		if err := r.SetBodyParam(o.TeamMod); err != nil {
 			return err

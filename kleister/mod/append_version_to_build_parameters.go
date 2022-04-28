@@ -13,75 +13,90 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewAppendVersionToBuildParams creates a new AppendVersionToBuildParams object
-// with the default values initialized.
+// NewAppendVersionToBuildParams creates a new AppendVersionToBuildParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAppendVersionToBuildParams() *AppendVersionToBuildParams {
-	var ()
 	return &AppendVersionToBuildParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAppendVersionToBuildParamsWithTimeout creates a new AppendVersionToBuildParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAppendVersionToBuildParamsWithTimeout(timeout time.Duration) *AppendVersionToBuildParams {
-	var ()
 	return &AppendVersionToBuildParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAppendVersionToBuildParamsWithContext creates a new AppendVersionToBuildParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAppendVersionToBuildParamsWithContext(ctx context.Context) *AppendVersionToBuildParams {
-	var ()
 	return &AppendVersionToBuildParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAppendVersionToBuildParamsWithHTTPClient creates a new AppendVersionToBuildParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAppendVersionToBuildParamsWithHTTPClient(client *http.Client) *AppendVersionToBuildParams {
-	var ()
 	return &AppendVersionToBuildParams{
 		HTTPClient: client,
 	}
 }
 
-/*AppendVersionToBuildParams contains all the parameters to send to the API endpoint
-for the append version to build operation typically these are written to a http.Request
+/* AppendVersionToBuildParams contains all the parameters to send to the API endpoint
+   for the append version to build operation.
+
+   Typically these are written to a http.Request.
 */
 type AppendVersionToBuildParams struct {
 
-	/*ModID
-	  A mod UUID or slug
+	/* ModID.
 
+	   A mod UUID or slug
 	*/
 	ModID string
-	/*VersionBuild
-	  The build data to append to version
 
+	/* VersionBuild.
+
+	   The build data to append to version
 	*/
 	VersionBuild *models.VersionBuildParams
-	/*VersionID
-	  A version UUID or slug
 
+	/* VersionID.
+
+	   A version UUID or slug
 	*/
 	VersionID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the append version to build params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AppendVersionToBuildParams) WithDefaults() *AppendVersionToBuildParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the append version to build params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AppendVersionToBuildParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the append version to build params
@@ -162,7 +177,6 @@ func (o *AppendVersionToBuildParams) WriteToRequest(r runtime.ClientRequest, reg
 	if err := r.SetPathParam("mod_id", o.ModID); err != nil {
 		return err
 	}
-
 	if o.VersionBuild != nil {
 		if err := r.SetBodyParam(o.VersionBuild); err != nil {
 			return err

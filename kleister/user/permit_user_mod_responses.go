@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // PermitUserModReader is a Reader for the PermitUserMod structure.
@@ -24,35 +23,30 @@ type PermitUserModReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PermitUserModReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPermitUserModOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewPermitUserModForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewPermitUserModPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewPermitUserModUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewPermitUserModDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewPermitUserModOK() *PermitUserModOK {
 	return &PermitUserModOK{}
 }
 
-/*PermitUserModOK handles this case with default header values.
+/* PermitUserModOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -80,6 +74,9 @@ type PermitUserModOK struct {
 
 func (o *PermitUserModOK) Error() string {
 	return fmt.Sprintf("[PUT /users/{user_id}/mods][%d] permitUserModOK  %+v", 200, o.Payload)
+}
+func (o *PermitUserModOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitUserModOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewPermitUserModForbidden() *PermitUserModForbidden {
 	return &PermitUserModForbidden{}
 }
 
-/*PermitUserModForbidden handles this case with default header values.
+/* PermitUserModForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type PermitUserModForbidden struct {
 
 func (o *PermitUserModForbidden) Error() string {
 	return fmt.Sprintf("[PUT /users/{user_id}/mods][%d] permitUserModForbidden  %+v", 403, o.Payload)
+}
+func (o *PermitUserModForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitUserModForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewPermitUserModPreconditionFailed() *PermitUserModPreconditionFailed {
 	return &PermitUserModPreconditionFailed{}
 }
 
-/*PermitUserModPreconditionFailed handles this case with default header values.
+/* PermitUserModPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type PermitUserModPreconditionFailed struct {
 
 func (o *PermitUserModPreconditionFailed) Error() string {
 	return fmt.Sprintf("[PUT /users/{user_id}/mods][%d] permitUserModPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *PermitUserModPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitUserModPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewPermitUserModUnprocessableEntity() *PermitUserModUnprocessableEntity {
 	return &PermitUserModUnprocessableEntity{}
 }
 
-/*PermitUserModUnprocessableEntity handles this case with default header values.
+/* PermitUserModUnprocessableEntity describes a response with status code 422, with default header values.
 
 Mod is not assigned
 */
@@ -167,6 +170,9 @@ type PermitUserModUnprocessableEntity struct {
 
 func (o *PermitUserModUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /users/{user_id}/mods][%d] permitUserModUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *PermitUserModUnprocessableEntity) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitUserModUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewPermitUserModDefault(code int) *PermitUserModDefault {
 	}
 }
 
-/*PermitUserModDefault handles this case with default header values.
+/* PermitUserModDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *PermitUserModDefault) Code() int {
 
 func (o *PermitUserModDefault) Error() string {
 	return fmt.Sprintf("[PUT /users/{user_id}/mods][%d] PermitUserMod default  %+v", o._statusCode, o.Payload)
+}
+func (o *PermitUserModDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitUserModDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

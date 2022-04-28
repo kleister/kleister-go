@@ -13,63 +13,76 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
-// NewListTeamModsParams creates a new ListTeamModsParams object
-// with the default values initialized.
+// NewListTeamModsParams creates a new ListTeamModsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListTeamModsParams() *ListTeamModsParams {
-	var ()
 	return &ListTeamModsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListTeamModsParamsWithTimeout creates a new ListTeamModsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListTeamModsParamsWithTimeout(timeout time.Duration) *ListTeamModsParams {
-	var ()
 	return &ListTeamModsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewListTeamModsParamsWithContext creates a new ListTeamModsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListTeamModsParamsWithContext(ctx context.Context) *ListTeamModsParams {
-	var ()
 	return &ListTeamModsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewListTeamModsParamsWithHTTPClient creates a new ListTeamModsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListTeamModsParamsWithHTTPClient(client *http.Client) *ListTeamModsParams {
-	var ()
 	return &ListTeamModsParams{
 		HTTPClient: client,
 	}
 }
 
-/*ListTeamModsParams contains all the parameters to send to the API endpoint
-for the list team mods operation typically these are written to a http.Request
+/* ListTeamModsParams contains all the parameters to send to the API endpoint
+   for the list team mods operation.
+
+   Typically these are written to a http.Request.
 */
 type ListTeamModsParams struct {
 
-	/*TeamID
-	  A team UUID or slug
+	/* TeamID.
 
+	   A team UUID or slug
 	*/
 	TeamID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list team mods params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListTeamModsParams) WithDefaults() *ListTeamModsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list team mods params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListTeamModsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the list team mods params

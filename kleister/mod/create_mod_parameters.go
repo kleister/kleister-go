@@ -13,65 +13,78 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewCreateModParams creates a new CreateModParams object
-// with the default values initialized.
+// NewCreateModParams creates a new CreateModParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateModParams() *CreateModParams {
-	var ()
 	return &CreateModParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateModParamsWithTimeout creates a new CreateModParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateModParamsWithTimeout(timeout time.Duration) *CreateModParams {
-	var ()
 	return &CreateModParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateModParamsWithContext creates a new CreateModParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateModParamsWithContext(ctx context.Context) *CreateModParams {
-	var ()
 	return &CreateModParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateModParamsWithHTTPClient creates a new CreateModParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateModParamsWithHTTPClient(client *http.Client) *CreateModParams {
-	var ()
 	return &CreateModParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateModParams contains all the parameters to send to the API endpoint
-for the create mod operation typically these are written to a http.Request
+/* CreateModParams contains all the parameters to send to the API endpoint
+   for the create mod operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateModParams struct {
 
-	/*Mod
-	  The mod data to create
+	/* Mod.
 
+	   The mod data to create
 	*/
 	Mod *models.Mod
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create mod params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateModParams) WithDefaults() *CreateModParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create mod params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateModParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create mod params
@@ -125,7 +138,6 @@ func (o *CreateModParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
-
 	if o.Mod != nil {
 		if err := r.SetBodyParam(o.Mod); err != nil {
 			return err

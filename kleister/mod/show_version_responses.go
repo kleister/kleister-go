@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // ShowVersionReader is a Reader for the ShowVersion structure.
@@ -24,21 +23,18 @@ type ShowVersionReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ShowVersionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewShowVersionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewShowVersionForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewShowVersionDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -56,7 +52,7 @@ func NewShowVersionOK() *ShowVersionOK {
 	return &ShowVersionOK{}
 }
 
-/*ShowVersionOK handles this case with default header values.
+/* ShowVersionOK describes a response with status code 200, with default header values.
 
 The fetched version details
 */
@@ -66,6 +62,9 @@ type ShowVersionOK struct {
 
 func (o *ShowVersionOK) Error() string {
 	return fmt.Sprintf("[GET /mods/{mod_id}/versions/{version_id}][%d] showVersionOK  %+v", 200, o.Payload)
+}
+func (o *ShowVersionOK) GetPayload() *models.Version {
+	return o.Payload
 }
 
 func (o *ShowVersionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -85,7 +84,7 @@ func NewShowVersionForbidden() *ShowVersionForbidden {
 	return &ShowVersionForbidden{}
 }
 
-/*ShowVersionForbidden handles this case with default header values.
+/* ShowVersionForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -95,6 +94,9 @@ type ShowVersionForbidden struct {
 
 func (o *ShowVersionForbidden) Error() string {
 	return fmt.Sprintf("[GET /mods/{mod_id}/versions/{version_id}][%d] showVersionForbidden  %+v", 403, o.Payload)
+}
+func (o *ShowVersionForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ShowVersionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -116,7 +118,7 @@ func NewShowVersionDefault(code int) *ShowVersionDefault {
 	}
 }
 
-/*ShowVersionDefault handles this case with default header values.
+/* ShowVersionDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -133,6 +135,9 @@ func (o *ShowVersionDefault) Code() int {
 
 func (o *ShowVersionDefault) Error() string {
 	return fmt.Sprintf("[GET /mods/{mod_id}/versions/{version_id}][%d] ShowVersion default  %+v", o._statusCode, o.Payload)
+}
+func (o *ShowVersionDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ShowVersionDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

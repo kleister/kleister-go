@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewPermitModTeamParams creates a new PermitModTeamParams object
-// with the default values initialized.
+// NewPermitModTeamParams creates a new PermitModTeamParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPermitModTeamParams() *PermitModTeamParams {
-	var ()
 	return &PermitModTeamParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPermitModTeamParamsWithTimeout creates a new PermitModTeamParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPermitModTeamParamsWithTimeout(timeout time.Duration) *PermitModTeamParams {
-	var ()
 	return &PermitModTeamParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPermitModTeamParamsWithContext creates a new PermitModTeamParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPermitModTeamParamsWithContext(ctx context.Context) *PermitModTeamParams {
-	var ()
 	return &PermitModTeamParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPermitModTeamParamsWithHTTPClient creates a new PermitModTeamParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPermitModTeamParamsWithHTTPClient(client *http.Client) *PermitModTeamParams {
-	var ()
 	return &PermitModTeamParams{
 		HTTPClient: client,
 	}
 }
 
-/*PermitModTeamParams contains all the parameters to send to the API endpoint
-for the permit mod team operation typically these are written to a http.Request
+/* PermitModTeamParams contains all the parameters to send to the API endpoint
+   for the permit mod team operation.
+
+   Typically these are written to a http.Request.
 */
 type PermitModTeamParams struct {
 
-	/*ModID
-	  A mod UUID or slug
+	/* ModID.
 
+	   A mod UUID or slug
 	*/
 	ModID string
-	/*ModTeam
-	  The mod team data to update
 
+	/* ModTeam.
+
+	   The mod team data to update
 	*/
 	ModTeam *models.ModTeamParams
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the permit mod team params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PermitModTeamParams) WithDefaults() *PermitModTeamParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the permit mod team params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PermitModTeamParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the permit mod team params
@@ -146,7 +160,6 @@ func (o *PermitModTeamParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if err := r.SetPathParam("mod_id", o.ModID); err != nil {
 		return err
 	}
-
 	if o.ModTeam != nil {
 		if err := r.SetBodyParam(o.ModTeam); err != nil {
 			return err

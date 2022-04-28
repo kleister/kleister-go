@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // UpdateForgeReader is a Reader for the UpdateForge structure.
@@ -24,28 +23,24 @@ type UpdateForgeReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateForgeReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateForgeOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewUpdateForgeForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 503:
 		result := NewUpdateForgeServiceUnavailable()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewUpdateForgeDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -63,7 +58,7 @@ func NewUpdateForgeOK() *UpdateForgeOK {
 	return &UpdateForgeOK{}
 }
 
-/*UpdateForgeOK handles this case with default header values.
+/* UpdateForgeOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -73,6 +68,9 @@ type UpdateForgeOK struct {
 
 func (o *UpdateForgeOK) Error() string {
 	return fmt.Sprintf("[PUT /forge][%d] updateForgeOK  %+v", 200, o.Payload)
+}
+func (o *UpdateForgeOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateForgeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -92,7 +90,7 @@ func NewUpdateForgeForbidden() *UpdateForgeForbidden {
 	return &UpdateForgeForbidden{}
 }
 
-/*UpdateForgeForbidden handles this case with default header values.
+/* UpdateForgeForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -102,6 +100,9 @@ type UpdateForgeForbidden struct {
 
 func (o *UpdateForgeForbidden) Error() string {
 	return fmt.Sprintf("[PUT /forge][%d] updateForgeForbidden  %+v", 403, o.Payload)
+}
+func (o *UpdateForgeForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateForgeForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -121,7 +122,7 @@ func NewUpdateForgeServiceUnavailable() *UpdateForgeServiceUnavailable {
 	return &UpdateForgeServiceUnavailable{}
 }
 
-/*UpdateForgeServiceUnavailable handles this case with default header values.
+/* UpdateForgeServiceUnavailable describes a response with status code 503, with default header values.
 
 If remote source is not available
 */
@@ -131,6 +132,9 @@ type UpdateForgeServiceUnavailable struct {
 
 func (o *UpdateForgeServiceUnavailable) Error() string {
 	return fmt.Sprintf("[PUT /forge][%d] updateForgeServiceUnavailable  %+v", 503, o.Payload)
+}
+func (o *UpdateForgeServiceUnavailable) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateForgeServiceUnavailable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +156,7 @@ func NewUpdateForgeDefault(code int) *UpdateForgeDefault {
 	}
 }
 
-/*UpdateForgeDefault handles this case with default header values.
+/* UpdateForgeDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -169,6 +173,9 @@ func (o *UpdateForgeDefault) Code() int {
 
 func (o *UpdateForgeDefault) Error() string {
 	return fmt.Sprintf("[PUT /forge][%d] UpdateForge default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateForgeDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateForgeDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // AppendUserToPackReader is a Reader for the AppendUserToPack structure.
@@ -24,35 +23,30 @@ type AppendUserToPackReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AppendUserToPackReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAppendUserToPackOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewAppendUserToPackForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewAppendUserToPackPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewAppendUserToPackUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewAppendUserToPackDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewAppendUserToPackOK() *AppendUserToPackOK {
 	return &AppendUserToPackOK{}
 }
 
-/*AppendUserToPackOK handles this case with default header values.
+/* AppendUserToPackOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -80,6 +74,9 @@ type AppendUserToPackOK struct {
 
 func (o *AppendUserToPackOK) Error() string {
 	return fmt.Sprintf("[POST /users/{user_id}/packs][%d] appendUserToPackOK  %+v", 200, o.Payload)
+}
+func (o *AppendUserToPackOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendUserToPackOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewAppendUserToPackForbidden() *AppendUserToPackForbidden {
 	return &AppendUserToPackForbidden{}
 }
 
-/*AppendUserToPackForbidden handles this case with default header values.
+/* AppendUserToPackForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type AppendUserToPackForbidden struct {
 
 func (o *AppendUserToPackForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{user_id}/packs][%d] appendUserToPackForbidden  %+v", 403, o.Payload)
+}
+func (o *AppendUserToPackForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendUserToPackForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewAppendUserToPackPreconditionFailed() *AppendUserToPackPreconditionFailed
 	return &AppendUserToPackPreconditionFailed{}
 }
 
-/*AppendUserToPackPreconditionFailed handles this case with default header values.
+/* AppendUserToPackPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type AppendUserToPackPreconditionFailed struct {
 
 func (o *AppendUserToPackPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /users/{user_id}/packs][%d] appendUserToPackPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *AppendUserToPackPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendUserToPackPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewAppendUserToPackUnprocessableEntity() *AppendUserToPackUnprocessableEnti
 	return &AppendUserToPackUnprocessableEntity{}
 }
 
-/*AppendUserToPackUnprocessableEntity handles this case with default header values.
+/* AppendUserToPackUnprocessableEntity describes a response with status code 422, with default header values.
 
 Pack is already assigned
 */
@@ -167,6 +170,9 @@ type AppendUserToPackUnprocessableEntity struct {
 
 func (o *AppendUserToPackUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /users/{user_id}/packs][%d] appendUserToPackUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *AppendUserToPackUnprocessableEntity) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendUserToPackUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewAppendUserToPackDefault(code int) *AppendUserToPackDefault {
 	}
 }
 
-/*AppendUserToPackDefault handles this case with default header values.
+/* AppendUserToPackDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *AppendUserToPackDefault) Code() int {
 
 func (o *AppendUserToPackDefault) Error() string {
 	return fmt.Sprintf("[POST /users/{user_id}/packs][%d] AppendUserToPack default  %+v", o._statusCode, o.Payload)
+}
+func (o *AppendUserToPackDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendUserToPackDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

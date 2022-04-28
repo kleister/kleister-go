@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewPermitUserModParams creates a new PermitUserModParams object
-// with the default values initialized.
+// NewPermitUserModParams creates a new PermitUserModParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPermitUserModParams() *PermitUserModParams {
-	var ()
 	return &PermitUserModParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPermitUserModParamsWithTimeout creates a new PermitUserModParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPermitUserModParamsWithTimeout(timeout time.Duration) *PermitUserModParams {
-	var ()
 	return &PermitUserModParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPermitUserModParamsWithContext creates a new PermitUserModParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPermitUserModParamsWithContext(ctx context.Context) *PermitUserModParams {
-	var ()
 	return &PermitUserModParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPermitUserModParamsWithHTTPClient creates a new PermitUserModParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPermitUserModParamsWithHTTPClient(client *http.Client) *PermitUserModParams {
-	var ()
 	return &PermitUserModParams{
 		HTTPClient: client,
 	}
 }
 
-/*PermitUserModParams contains all the parameters to send to the API endpoint
-for the permit user mod operation typically these are written to a http.Request
+/* PermitUserModParams contains all the parameters to send to the API endpoint
+   for the permit user mod operation.
+
+   Typically these are written to a http.Request.
 */
 type PermitUserModParams struct {
 
-	/*UserID
-	  A user UUID or slug
+	/* UserID.
 
+	   A user UUID or slug
 	*/
 	UserID string
-	/*UserMod
-	  The user mod data to update
 
+	/* UserMod.
+
+	   The user mod data to update
 	*/
 	UserMod *models.UserModParams
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the permit user mod params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PermitUserModParams) WithDefaults() *PermitUserModParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the permit user mod params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PermitUserModParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the permit user mod params
@@ -146,7 +160,6 @@ func (o *PermitUserModParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if err := r.SetPathParam("user_id", o.UserID); err != nil {
 		return err
 	}
-
 	if o.UserMod != nil {
 		if err := r.SetBodyParam(o.UserMod); err != nil {
 			return err

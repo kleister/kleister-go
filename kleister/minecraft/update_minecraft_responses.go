@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // UpdateMinecraftReader is a Reader for the UpdateMinecraft structure.
@@ -24,28 +23,24 @@ type UpdateMinecraftReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateMinecraftReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateMinecraftOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewUpdateMinecraftForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 503:
 		result := NewUpdateMinecraftServiceUnavailable()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewUpdateMinecraftDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -63,7 +58,7 @@ func NewUpdateMinecraftOK() *UpdateMinecraftOK {
 	return &UpdateMinecraftOK{}
 }
 
-/*UpdateMinecraftOK handles this case with default header values.
+/* UpdateMinecraftOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -73,6 +68,9 @@ type UpdateMinecraftOK struct {
 
 func (o *UpdateMinecraftOK) Error() string {
 	return fmt.Sprintf("[PUT /minecraft][%d] updateMinecraftOK  %+v", 200, o.Payload)
+}
+func (o *UpdateMinecraftOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateMinecraftOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -92,7 +90,7 @@ func NewUpdateMinecraftForbidden() *UpdateMinecraftForbidden {
 	return &UpdateMinecraftForbidden{}
 }
 
-/*UpdateMinecraftForbidden handles this case with default header values.
+/* UpdateMinecraftForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -102,6 +100,9 @@ type UpdateMinecraftForbidden struct {
 
 func (o *UpdateMinecraftForbidden) Error() string {
 	return fmt.Sprintf("[PUT /minecraft][%d] updateMinecraftForbidden  %+v", 403, o.Payload)
+}
+func (o *UpdateMinecraftForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateMinecraftForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -121,7 +122,7 @@ func NewUpdateMinecraftServiceUnavailable() *UpdateMinecraftServiceUnavailable {
 	return &UpdateMinecraftServiceUnavailable{}
 }
 
-/*UpdateMinecraftServiceUnavailable handles this case with default header values.
+/* UpdateMinecraftServiceUnavailable describes a response with status code 503, with default header values.
 
 If remote source is not available
 */
@@ -131,6 +132,9 @@ type UpdateMinecraftServiceUnavailable struct {
 
 func (o *UpdateMinecraftServiceUnavailable) Error() string {
 	return fmt.Sprintf("[PUT /minecraft][%d] updateMinecraftServiceUnavailable  %+v", 503, o.Payload)
+}
+func (o *UpdateMinecraftServiceUnavailable) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateMinecraftServiceUnavailable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +156,7 @@ func NewUpdateMinecraftDefault(code int) *UpdateMinecraftDefault {
 	}
 }
 
-/*UpdateMinecraftDefault handles this case with default header values.
+/* UpdateMinecraftDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -169,6 +173,9 @@ func (o *UpdateMinecraftDefault) Code() int {
 
 func (o *UpdateMinecraftDefault) Error() string {
 	return fmt.Sprintf("[PUT /minecraft][%d] UpdateMinecraft default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateMinecraftDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateMinecraftDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

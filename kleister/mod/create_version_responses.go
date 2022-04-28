@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // CreateVersionReader is a Reader for the CreateVersion structure.
@@ -24,35 +23,30 @@ type CreateVersionReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CreateVersionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewCreateVersionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewCreateVersionForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewCreateVersionPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewCreateVersionUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewCreateVersionDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewCreateVersionOK() *CreateVersionOK {
 	return &CreateVersionOK{}
 }
 
-/*CreateVersionOK handles this case with default header values.
+/* CreateVersionOK describes a response with status code 200, with default header values.
 
 The created version data
 */
@@ -80,6 +74,9 @@ type CreateVersionOK struct {
 
 func (o *CreateVersionOK) Error() string {
 	return fmt.Sprintf("[POST /mods/{mod_id}/versions][%d] createVersionOK  %+v", 200, o.Payload)
+}
+func (o *CreateVersionOK) GetPayload() *models.Version {
+	return o.Payload
 }
 
 func (o *CreateVersionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewCreateVersionForbidden() *CreateVersionForbidden {
 	return &CreateVersionForbidden{}
 }
 
-/*CreateVersionForbidden handles this case with default header values.
+/* CreateVersionForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type CreateVersionForbidden struct {
 
 func (o *CreateVersionForbidden) Error() string {
 	return fmt.Sprintf("[POST /mods/{mod_id}/versions][%d] createVersionForbidden  %+v", 403, o.Payload)
+}
+func (o *CreateVersionForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *CreateVersionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewCreateVersionPreconditionFailed() *CreateVersionPreconditionFailed {
 	return &CreateVersionPreconditionFailed{}
 }
 
-/*CreateVersionPreconditionFailed handles this case with default header values.
+/* CreateVersionPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type CreateVersionPreconditionFailed struct {
 
 func (o *CreateVersionPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /mods/{mod_id}/versions][%d] createVersionPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *CreateVersionPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *CreateVersionPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewCreateVersionUnprocessableEntity() *CreateVersionUnprocessableEntity {
 	return &CreateVersionUnprocessableEntity{}
 }
 
-/*CreateVersionUnprocessableEntity handles this case with default header values.
+/* CreateVersionUnprocessableEntity describes a response with status code 422, with default header values.
 
 Failed to validate request
 */
@@ -167,6 +170,9 @@ type CreateVersionUnprocessableEntity struct {
 
 func (o *CreateVersionUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /mods/{mod_id}/versions][%d] createVersionUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *CreateVersionUnprocessableEntity) GetPayload() *models.ValidationError {
+	return o.Payload
 }
 
 func (o *CreateVersionUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewCreateVersionDefault(code int) *CreateVersionDefault {
 	}
 }
 
-/*CreateVersionDefault handles this case with default header values.
+/* CreateVersionDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *CreateVersionDefault) Code() int {
 
 func (o *CreateVersionDefault) Error() string {
 	return fmt.Sprintf("[POST /mods/{mod_id}/versions][%d] CreateVersion default  %+v", o._statusCode, o.Payload)
+}
+func (o *CreateVersionDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *CreateVersionDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

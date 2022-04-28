@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewUpdateModParams creates a new UpdateModParams object
-// with the default values initialized.
+// NewUpdateModParams creates a new UpdateModParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateModParams() *UpdateModParams {
-	var ()
 	return &UpdateModParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateModParamsWithTimeout creates a new UpdateModParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateModParamsWithTimeout(timeout time.Duration) *UpdateModParams {
-	var ()
 	return &UpdateModParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateModParamsWithContext creates a new UpdateModParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateModParamsWithContext(ctx context.Context) *UpdateModParams {
-	var ()
 	return &UpdateModParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateModParamsWithHTTPClient creates a new UpdateModParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateModParamsWithHTTPClient(client *http.Client) *UpdateModParams {
-	var ()
 	return &UpdateModParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateModParams contains all the parameters to send to the API endpoint
-for the update mod operation typically these are written to a http.Request
+/* UpdateModParams contains all the parameters to send to the API endpoint
+   for the update mod operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateModParams struct {
 
-	/*Mod
-	  The mod data to update
+	/* Mod.
 
+	   The mod data to update
 	*/
 	Mod *models.Mod
-	/*ModID
-	  A mod UUID or slug
 
+	/* ModID.
+
+	   A mod UUID or slug
 	*/
 	ModID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update mod params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateModParams) WithDefaults() *UpdateModParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update mod params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateModParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update mod params
@@ -141,7 +155,6 @@ func (o *UpdateModParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
-
 	if o.Mod != nil {
 		if err := r.SetBodyParam(o.Mod); err != nil {
 			return err

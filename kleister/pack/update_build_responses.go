@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // UpdateBuildReader is a Reader for the UpdateBuild structure.
@@ -24,35 +23,30 @@ type UpdateBuildReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateBuildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateBuildOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewUpdateBuildForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewUpdateBuildPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewUpdateBuildUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewUpdateBuildDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewUpdateBuildOK() *UpdateBuildOK {
 	return &UpdateBuildOK{}
 }
 
-/*UpdateBuildOK handles this case with default header values.
+/* UpdateBuildOK describes a response with status code 200, with default header values.
 
 The updated build details
 */
@@ -80,6 +74,9 @@ type UpdateBuildOK struct {
 
 func (o *UpdateBuildOK) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}/builds/{build_id}][%d] updateBuildOK  %+v", 200, o.Payload)
+}
+func (o *UpdateBuildOK) GetPayload() *models.Build {
+	return o.Payload
 }
 
 func (o *UpdateBuildOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewUpdateBuildForbidden() *UpdateBuildForbidden {
 	return &UpdateBuildForbidden{}
 }
 
-/*UpdateBuildForbidden handles this case with default header values.
+/* UpdateBuildForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type UpdateBuildForbidden struct {
 
 func (o *UpdateBuildForbidden) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}/builds/{build_id}][%d] updateBuildForbidden  %+v", 403, o.Payload)
+}
+func (o *UpdateBuildForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateBuildForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewUpdateBuildPreconditionFailed() *UpdateBuildPreconditionFailed {
 	return &UpdateBuildPreconditionFailed{}
 }
 
-/*UpdateBuildPreconditionFailed handles this case with default header values.
+/* UpdateBuildPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type UpdateBuildPreconditionFailed struct {
 
 func (o *UpdateBuildPreconditionFailed) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}/builds/{build_id}][%d] updateBuildPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *UpdateBuildPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateBuildPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewUpdateBuildUnprocessableEntity() *UpdateBuildUnprocessableEntity {
 	return &UpdateBuildUnprocessableEntity{}
 }
 
-/*UpdateBuildUnprocessableEntity handles this case with default header values.
+/* UpdateBuildUnprocessableEntity describes a response with status code 422, with default header values.
 
 Failed to validate request
 */
@@ -167,6 +170,9 @@ type UpdateBuildUnprocessableEntity struct {
 
 func (o *UpdateBuildUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}/builds/{build_id}][%d] updateBuildUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *UpdateBuildUnprocessableEntity) GetPayload() *models.ValidationError {
+	return o.Payload
 }
 
 func (o *UpdateBuildUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewUpdateBuildDefault(code int) *UpdateBuildDefault {
 	}
 }
 
-/*UpdateBuildDefault handles this case with default header values.
+/* UpdateBuildDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *UpdateBuildDefault) Code() int {
 
 func (o *UpdateBuildDefault) Error() string {
 	return fmt.Sprintf("[PUT /packs/{pack_id}/builds/{build_id}][%d] UpdateBuild default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateBuildDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateBuildDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

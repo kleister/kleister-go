@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // ListBuildsReader is a Reader for the ListBuilds structure.
@@ -24,21 +23,18 @@ type ListBuildsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ListBuildsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewListBuildsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewListBuildsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewListBuildsDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -56,7 +52,7 @@ func NewListBuildsOK() *ListBuildsOK {
 	return &ListBuildsOK{}
 }
 
-/*ListBuildsOK handles this case with default header values.
+/* ListBuildsOK describes a response with status code 200, with default header values.
 
 A collection of builds
 */
@@ -66,6 +62,9 @@ type ListBuildsOK struct {
 
 func (o *ListBuildsOK) Error() string {
 	return fmt.Sprintf("[GET /packs/{pack_id}/builds][%d] listBuildsOK  %+v", 200, o.Payload)
+}
+func (o *ListBuildsOK) GetPayload() []*models.Build {
+	return o.Payload
 }
 
 func (o *ListBuildsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -83,7 +82,7 @@ func NewListBuildsForbidden() *ListBuildsForbidden {
 	return &ListBuildsForbidden{}
 }
 
-/*ListBuildsForbidden handles this case with default header values.
+/* ListBuildsForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -93,6 +92,9 @@ type ListBuildsForbidden struct {
 
 func (o *ListBuildsForbidden) Error() string {
 	return fmt.Sprintf("[GET /packs/{pack_id}/builds][%d] listBuildsForbidden  %+v", 403, o.Payload)
+}
+func (o *ListBuildsForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListBuildsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,7 +116,7 @@ func NewListBuildsDefault(code int) *ListBuildsDefault {
 	}
 }
 
-/*ListBuildsDefault handles this case with default header values.
+/* ListBuildsDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -131,6 +133,9 @@ func (o *ListBuildsDefault) Code() int {
 
 func (o *ListBuildsDefault) Error() string {
 	return fmt.Sprintf("[GET /packs/{pack_id}/builds][%d] ListBuilds default  %+v", o._statusCode, o.Payload)
+}
+func (o *ListBuildsDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListBuildsDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

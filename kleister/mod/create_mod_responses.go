@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // CreateModReader is a Reader for the CreateMod structure.
@@ -24,35 +23,30 @@ type CreateModReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CreateModReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewCreateModOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewCreateModForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewCreateModPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewCreateModUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewCreateModDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewCreateModOK() *CreateModOK {
 	return &CreateModOK{}
 }
 
-/*CreateModOK handles this case with default header values.
+/* CreateModOK describes a response with status code 200, with default header values.
 
 The created mod data
 */
@@ -80,6 +74,9 @@ type CreateModOK struct {
 
 func (o *CreateModOK) Error() string {
 	return fmt.Sprintf("[POST /mods][%d] createModOK  %+v", 200, o.Payload)
+}
+func (o *CreateModOK) GetPayload() *models.Mod {
+	return o.Payload
 }
 
 func (o *CreateModOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewCreateModForbidden() *CreateModForbidden {
 	return &CreateModForbidden{}
 }
 
-/*CreateModForbidden handles this case with default header values.
+/* CreateModForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type CreateModForbidden struct {
 
 func (o *CreateModForbidden) Error() string {
 	return fmt.Sprintf("[POST /mods][%d] createModForbidden  %+v", 403, o.Payload)
+}
+func (o *CreateModForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *CreateModForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewCreateModPreconditionFailed() *CreateModPreconditionFailed {
 	return &CreateModPreconditionFailed{}
 }
 
-/*CreateModPreconditionFailed handles this case with default header values.
+/* CreateModPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type CreateModPreconditionFailed struct {
 
 func (o *CreateModPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /mods][%d] createModPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *CreateModPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *CreateModPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewCreateModUnprocessableEntity() *CreateModUnprocessableEntity {
 	return &CreateModUnprocessableEntity{}
 }
 
-/*CreateModUnprocessableEntity handles this case with default header values.
+/* CreateModUnprocessableEntity describes a response with status code 422, with default header values.
 
 Failed to validate request
 */
@@ -167,6 +170,9 @@ type CreateModUnprocessableEntity struct {
 
 func (o *CreateModUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /mods][%d] createModUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *CreateModUnprocessableEntity) GetPayload() *models.ValidationError {
+	return o.Payload
 }
 
 func (o *CreateModUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewCreateModDefault(code int) *CreateModDefault {
 	}
 }
 
-/*CreateModDefault handles this case with default header values.
+/* CreateModDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *CreateModDefault) Code() int {
 
 func (o *CreateModDefault) Error() string {
 	return fmt.Sprintf("[POST /mods][%d] CreateMod default  %+v", o._statusCode, o.Payload)
+}
+func (o *CreateModDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *CreateModDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

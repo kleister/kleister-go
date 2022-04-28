@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // ListForgesReader is a Reader for the ListForges structure.
@@ -24,21 +23,18 @@ type ListForgesReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ListForgesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewListForgesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewListForgesForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewListForgesDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -56,7 +52,7 @@ func NewListForgesOK() *ListForgesOK {
 	return &ListForgesOK{}
 }
 
-/*ListForgesOK handles this case with default header values.
+/* ListForgesOK describes a response with status code 200, with default header values.
 
 A collection of Forge versions
 */
@@ -66,6 +62,9 @@ type ListForgesOK struct {
 
 func (o *ListForgesOK) Error() string {
 	return fmt.Sprintf("[GET /forge][%d] listForgesOK  %+v", 200, o.Payload)
+}
+func (o *ListForgesOK) GetPayload() []*models.Forge {
+	return o.Payload
 }
 
 func (o *ListForgesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -83,7 +82,7 @@ func NewListForgesForbidden() *ListForgesForbidden {
 	return &ListForgesForbidden{}
 }
 
-/*ListForgesForbidden handles this case with default header values.
+/* ListForgesForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -93,6 +92,9 @@ type ListForgesForbidden struct {
 
 func (o *ListForgesForbidden) Error() string {
 	return fmt.Sprintf("[GET /forge][%d] listForgesForbidden  %+v", 403, o.Payload)
+}
+func (o *ListForgesForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListForgesForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,7 +116,7 @@ func NewListForgesDefault(code int) *ListForgesDefault {
 	}
 }
 
-/*ListForgesDefault handles this case with default header values.
+/* ListForgesDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -131,6 +133,9 @@ func (o *ListForgesDefault) Code() int {
 
 func (o *ListForgesDefault) Error() string {
 	return fmt.Sprintf("[GET /forge][%d] ListForges default  %+v", o._statusCode, o.Payload)
+}
+func (o *ListForgesDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListForgesDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

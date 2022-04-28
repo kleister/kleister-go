@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // DeleteBuildFromVersionReader is a Reader for the DeleteBuildFromVersion structure.
@@ -24,28 +23,24 @@ type DeleteBuildFromVersionReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteBuildFromVersionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteBuildFromVersionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeleteBuildFromVersionBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewDeleteBuildFromVersionForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewDeleteBuildFromVersionDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -63,7 +58,7 @@ func NewDeleteBuildFromVersionOK() *DeleteBuildFromVersionOK {
 	return &DeleteBuildFromVersionOK{}
 }
 
-/*DeleteBuildFromVersionOK handles this case with default header values.
+/* DeleteBuildFromVersionOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -73,6 +68,9 @@ type DeleteBuildFromVersionOK struct {
 
 func (o *DeleteBuildFromVersionOK) Error() string {
 	return fmt.Sprintf("[DELETE /packs/{pack_id}/builds/{build_id}/versions][%d] deleteBuildFromVersionOK  %+v", 200, o.Payload)
+}
+func (o *DeleteBuildFromVersionOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteBuildFromVersionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -92,7 +90,7 @@ func NewDeleteBuildFromVersionBadRequest() *DeleteBuildFromVersionBadRequest {
 	return &DeleteBuildFromVersionBadRequest{}
 }
 
-/*DeleteBuildFromVersionBadRequest handles this case with default header values.
+/* DeleteBuildFromVersionBadRequest describes a response with status code 400, with default header values.
 
 Failed to unlink version
 */
@@ -102,6 +100,9 @@ type DeleteBuildFromVersionBadRequest struct {
 
 func (o *DeleteBuildFromVersionBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /packs/{pack_id}/builds/{build_id}/versions][%d] deleteBuildFromVersionBadRequest  %+v", 400, o.Payload)
+}
+func (o *DeleteBuildFromVersionBadRequest) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteBuildFromVersionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -121,7 +122,7 @@ func NewDeleteBuildFromVersionForbidden() *DeleteBuildFromVersionForbidden {
 	return &DeleteBuildFromVersionForbidden{}
 }
 
-/*DeleteBuildFromVersionForbidden handles this case with default header values.
+/* DeleteBuildFromVersionForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -131,6 +132,9 @@ type DeleteBuildFromVersionForbidden struct {
 
 func (o *DeleteBuildFromVersionForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /packs/{pack_id}/builds/{build_id}/versions][%d] deleteBuildFromVersionForbidden  %+v", 403, o.Payload)
+}
+func (o *DeleteBuildFromVersionForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteBuildFromVersionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +156,7 @@ func NewDeleteBuildFromVersionDefault(code int) *DeleteBuildFromVersionDefault {
 	}
 }
 
-/*DeleteBuildFromVersionDefault handles this case with default header values.
+/* DeleteBuildFromVersionDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -169,6 +173,9 @@ func (o *DeleteBuildFromVersionDefault) Code() int {
 
 func (o *DeleteBuildFromVersionDefault) Error() string {
 	return fmt.Sprintf("[DELETE /packs/{pack_id}/builds/{build_id}/versions][%d] DeleteBuildFromVersion default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteBuildFromVersionDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteBuildFromVersionDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewAppendPackToTeamParams creates a new AppendPackToTeamParams object
-// with the default values initialized.
+// NewAppendPackToTeamParams creates a new AppendPackToTeamParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAppendPackToTeamParams() *AppendPackToTeamParams {
-	var ()
 	return &AppendPackToTeamParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAppendPackToTeamParamsWithTimeout creates a new AppendPackToTeamParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAppendPackToTeamParamsWithTimeout(timeout time.Duration) *AppendPackToTeamParams {
-	var ()
 	return &AppendPackToTeamParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAppendPackToTeamParamsWithContext creates a new AppendPackToTeamParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAppendPackToTeamParamsWithContext(ctx context.Context) *AppendPackToTeamParams {
-	var ()
 	return &AppendPackToTeamParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAppendPackToTeamParamsWithHTTPClient creates a new AppendPackToTeamParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAppendPackToTeamParamsWithHTTPClient(client *http.Client) *AppendPackToTeamParams {
-	var ()
 	return &AppendPackToTeamParams{
 		HTTPClient: client,
 	}
 }
 
-/*AppendPackToTeamParams contains all the parameters to send to the API endpoint
-for the append pack to team operation typically these are written to a http.Request
+/* AppendPackToTeamParams contains all the parameters to send to the API endpoint
+   for the append pack to team operation.
+
+   Typically these are written to a http.Request.
 */
 type AppendPackToTeamParams struct {
 
-	/*PackID
-	  A pack UUID or slug
+	/* PackID.
 
+	   A pack UUID or slug
 	*/
 	PackID string
-	/*PackTeam
-	  The pack team data to assign
 
+	/* PackTeam.
+
+	   The pack team data to assign
 	*/
 	PackTeam *models.PackTeamParams
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the append pack to team params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AppendPackToTeamParams) WithDefaults() *AppendPackToTeamParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the append pack to team params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AppendPackToTeamParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the append pack to team params
@@ -146,7 +160,6 @@ func (o *AppendPackToTeamParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if err := r.SetPathParam("pack_id", o.PackID); err != nil {
 		return err
 	}
-
 	if o.PackTeam != nil {
 		if err := r.SetBodyParam(o.PackTeam); err != nil {
 			return err

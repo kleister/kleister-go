@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // ListMinecraftsReader is a Reader for the ListMinecrafts structure.
@@ -24,21 +23,18 @@ type ListMinecraftsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ListMinecraftsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewListMinecraftsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewListMinecraftsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewListMinecraftsDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -56,7 +52,7 @@ func NewListMinecraftsOK() *ListMinecraftsOK {
 	return &ListMinecraftsOK{}
 }
 
-/*ListMinecraftsOK handles this case with default header values.
+/* ListMinecraftsOK describes a response with status code 200, with default header values.
 
 A collection of Minecraft versions
 */
@@ -66,6 +62,9 @@ type ListMinecraftsOK struct {
 
 func (o *ListMinecraftsOK) Error() string {
 	return fmt.Sprintf("[GET /minecraft][%d] listMinecraftsOK  %+v", 200, o.Payload)
+}
+func (o *ListMinecraftsOK) GetPayload() []*models.Minecraft {
+	return o.Payload
 }
 
 func (o *ListMinecraftsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -83,7 +82,7 @@ func NewListMinecraftsForbidden() *ListMinecraftsForbidden {
 	return &ListMinecraftsForbidden{}
 }
 
-/*ListMinecraftsForbidden handles this case with default header values.
+/* ListMinecraftsForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -93,6 +92,9 @@ type ListMinecraftsForbidden struct {
 
 func (o *ListMinecraftsForbidden) Error() string {
 	return fmt.Sprintf("[GET /minecraft][%d] listMinecraftsForbidden  %+v", 403, o.Payload)
+}
+func (o *ListMinecraftsForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListMinecraftsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,7 +116,7 @@ func NewListMinecraftsDefault(code int) *ListMinecraftsDefault {
 	}
 }
 
-/*ListMinecraftsDefault handles this case with default header values.
+/* ListMinecraftsDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -131,6 +133,9 @@ func (o *ListMinecraftsDefault) Code() int {
 
 func (o *ListMinecraftsDefault) Error() string {
 	return fmt.Sprintf("[GET /minecraft][%d] ListMinecrafts default  %+v", o._statusCode, o.Payload)
+}
+func (o *ListMinecraftsDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListMinecraftsDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

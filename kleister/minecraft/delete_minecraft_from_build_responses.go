@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // DeleteMinecraftFromBuildReader is a Reader for the DeleteMinecraftFromBuild structure.
@@ -24,35 +23,30 @@ type DeleteMinecraftFromBuildReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteMinecraftFromBuildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteMinecraftFromBuildOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewDeleteMinecraftFromBuildForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewDeleteMinecraftFromBuildPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewDeleteMinecraftFromBuildUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewDeleteMinecraftFromBuildDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewDeleteMinecraftFromBuildOK() *DeleteMinecraftFromBuildOK {
 	return &DeleteMinecraftFromBuildOK{}
 }
 
-/*DeleteMinecraftFromBuildOK handles this case with default header values.
+/* DeleteMinecraftFromBuildOK describes a response with status code 200, with default header values.
 
 A collection of assigned builds
 */
@@ -80,6 +74,9 @@ type DeleteMinecraftFromBuildOK struct {
 
 func (o *DeleteMinecraftFromBuildOK) Error() string {
 	return fmt.Sprintf("[DELETE /minecraft/{minecraft_id}/builds][%d] deleteMinecraftFromBuildOK  %+v", 200, o.Payload)
+}
+func (o *DeleteMinecraftFromBuildOK) GetPayload() []*models.Build {
+	return o.Payload
 }
 
 func (o *DeleteMinecraftFromBuildOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -97,7 +94,7 @@ func NewDeleteMinecraftFromBuildForbidden() *DeleteMinecraftFromBuildForbidden {
 	return &DeleteMinecraftFromBuildForbidden{}
 }
 
-/*DeleteMinecraftFromBuildForbidden handles this case with default header values.
+/* DeleteMinecraftFromBuildForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -107,6 +104,9 @@ type DeleteMinecraftFromBuildForbidden struct {
 
 func (o *DeleteMinecraftFromBuildForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /minecraft/{minecraft_id}/builds][%d] deleteMinecraftFromBuildForbidden  %+v", 403, o.Payload)
+}
+func (o *DeleteMinecraftFromBuildForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteMinecraftFromBuildForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -126,7 +126,7 @@ func NewDeleteMinecraftFromBuildPreconditionFailed() *DeleteMinecraftFromBuildPr
 	return &DeleteMinecraftFromBuildPreconditionFailed{}
 }
 
-/*DeleteMinecraftFromBuildPreconditionFailed handles this case with default header values.
+/* DeleteMinecraftFromBuildPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -136,6 +136,9 @@ type DeleteMinecraftFromBuildPreconditionFailed struct {
 
 func (o *DeleteMinecraftFromBuildPreconditionFailed) Error() string {
 	return fmt.Sprintf("[DELETE /minecraft/{minecraft_id}/builds][%d] deleteMinecraftFromBuildPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *DeleteMinecraftFromBuildPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteMinecraftFromBuildPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -155,7 +158,7 @@ func NewDeleteMinecraftFromBuildUnprocessableEntity() *DeleteMinecraftFromBuildU
 	return &DeleteMinecraftFromBuildUnprocessableEntity{}
 }
 
-/*DeleteMinecraftFromBuildUnprocessableEntity handles this case with default header values.
+/* DeleteMinecraftFromBuildUnprocessableEntity describes a response with status code 422, with default header values.
 
 Build is not assigned
 */
@@ -165,6 +168,9 @@ type DeleteMinecraftFromBuildUnprocessableEntity struct {
 
 func (o *DeleteMinecraftFromBuildUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /minecraft/{minecraft_id}/builds][%d] deleteMinecraftFromBuildUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *DeleteMinecraftFromBuildUnprocessableEntity) GetPayload() *models.ValidationError {
+	return o.Payload
 }
 
 func (o *DeleteMinecraftFromBuildUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -186,7 +192,7 @@ func NewDeleteMinecraftFromBuildDefault(code int) *DeleteMinecraftFromBuildDefau
 	}
 }
 
-/*DeleteMinecraftFromBuildDefault handles this case with default header values.
+/* DeleteMinecraftFromBuildDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -203,6 +209,9 @@ func (o *DeleteMinecraftFromBuildDefault) Code() int {
 
 func (o *DeleteMinecraftFromBuildDefault) Error() string {
 	return fmt.Sprintf("[DELETE /minecraft/{minecraft_id}/builds][%d] DeleteMinecraftFromBuild default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteMinecraftFromBuildDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteMinecraftFromBuildDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

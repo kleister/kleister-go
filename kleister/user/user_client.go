@@ -7,12 +7,11 @@ package user
 
 import (
 	"github.com/go-openapi/runtime"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new user API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -24,16 +23,57 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
+// ClientService is the interface for Client methods
+type ClientService interface {
+	AppendUserToMod(params *AppendUserToModParams, opts ...ClientOption) (*AppendUserToModOK, error)
+
+	AppendUserToPack(params *AppendUserToPackParams, opts ...ClientOption) (*AppendUserToPackOK, error)
+
+	AppendUserToTeam(params *AppendUserToTeamParams, opts ...ClientOption) (*AppendUserToTeamOK, error)
+
+	CreateUser(params *CreateUserParams, opts ...ClientOption) (*CreateUserOK, error)
+
+	DeleteUser(params *DeleteUserParams, opts ...ClientOption) (*DeleteUserOK, error)
+
+	DeleteUserFromMod(params *DeleteUserFromModParams, opts ...ClientOption) (*DeleteUserFromModOK, error)
+
+	DeleteUserFromPack(params *DeleteUserFromPackParams, opts ...ClientOption) (*DeleteUserFromPackOK, error)
+
+	DeleteUserFromTeam(params *DeleteUserFromTeamParams, opts ...ClientOption) (*DeleteUserFromTeamOK, error)
+
+	ListUserMods(params *ListUserModsParams, opts ...ClientOption) (*ListUserModsOK, error)
+
+	ListUserPacks(params *ListUserPacksParams, opts ...ClientOption) (*ListUserPacksOK, error)
+
+	ListUserTeams(params *ListUserTeamsParams, opts ...ClientOption) (*ListUserTeamsOK, error)
+
+	ListUsers(params *ListUsersParams, opts ...ClientOption) (*ListUsersOK, error)
+
+	PermitUserMod(params *PermitUserModParams, opts ...ClientOption) (*PermitUserModOK, error)
+
+	PermitUserPack(params *PermitUserPackParams, opts ...ClientOption) (*PermitUserPackOK, error)
+
+	PermitUserTeam(params *PermitUserTeamParams, opts ...ClientOption) (*PermitUserTeamOK, error)
+
+	ShowUser(params *ShowUserParams, opts ...ClientOption) (*ShowUserOK, error)
+
+	UpdateUser(params *UpdateUserParams, opts ...ClientOption) (*UpdateUserOK, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
 /*
-AppendUserToMod assigns a mod to user
+  AppendUserToMod assigns a mod to user
 */
-func (a *Client) AppendUserToMod(params *AppendUserToModParams) (*AppendUserToModOK, error) {
+func (a *Client) AppendUserToMod(params *AppendUserToModParams, opts ...ClientOption) (*AppendUserToModOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAppendUserToModParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "AppendUserToMod",
 		Method:             "POST",
 		PathPattern:        "/users/{user_id}/mods",
@@ -44,24 +84,33 @@ func (a *Client) AppendUserToMod(params *AppendUserToModParams) (*AppendUserToMo
 		Reader:             &AppendUserToModReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*AppendUserToModOK), nil
-
+	success, ok := result.(*AppendUserToModOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*AppendUserToModDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-AppendUserToPack assigns a pack to user
+  AppendUserToPack assigns a pack to user
 */
-func (a *Client) AppendUserToPack(params *AppendUserToPackParams) (*AppendUserToPackOK, error) {
+func (a *Client) AppendUserToPack(params *AppendUserToPackParams, opts ...ClientOption) (*AppendUserToPackOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAppendUserToPackParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "AppendUserToPack",
 		Method:             "POST",
 		PathPattern:        "/users/{user_id}/packs",
@@ -72,24 +121,33 @@ func (a *Client) AppendUserToPack(params *AppendUserToPackParams) (*AppendUserTo
 		Reader:             &AppendUserToPackReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*AppendUserToPackOK), nil
-
+	success, ok := result.(*AppendUserToPackOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*AppendUserToPackDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-AppendUserToTeam assigns a team to user
+  AppendUserToTeam assigns a team to user
 */
-func (a *Client) AppendUserToTeam(params *AppendUserToTeamParams) (*AppendUserToTeamOK, error) {
+func (a *Client) AppendUserToTeam(params *AppendUserToTeamParams, opts ...ClientOption) (*AppendUserToTeamOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAppendUserToTeamParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "AppendUserToTeam",
 		Method:             "POST",
 		PathPattern:        "/users/{user_id}/teams",
@@ -100,24 +158,33 @@ func (a *Client) AppendUserToTeam(params *AppendUserToTeamParams) (*AppendUserTo
 		Reader:             &AppendUserToTeamReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*AppendUserToTeamOK), nil
-
+	success, ok := result.(*AppendUserToTeamOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*AppendUserToTeamDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-CreateUser creates a new user
+  CreateUser creates a new user
 */
-func (a *Client) CreateUser(params *CreateUserParams) (*CreateUserOK, error) {
+func (a *Client) CreateUser(params *CreateUserParams, opts ...ClientOption) (*CreateUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "CreateUser",
 		Method:             "POST",
 		PathPattern:        "/users",
@@ -128,24 +195,33 @@ func (a *Client) CreateUser(params *CreateUserParams) (*CreateUserOK, error) {
 		Reader:             &CreateUserReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*CreateUserOK), nil
-
+	success, ok := result.(*CreateUserOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*CreateUserDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-DeleteUser deletes a specific user
+  DeleteUser deletes a specific user
 */
-func (a *Client) DeleteUser(params *DeleteUserParams) (*DeleteUserOK, error) {
+func (a *Client) DeleteUser(params *DeleteUserParams, opts ...ClientOption) (*DeleteUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteUser",
 		Method:             "DELETE",
 		PathPattern:        "/users/{user_id}",
@@ -156,24 +232,33 @@ func (a *Client) DeleteUser(params *DeleteUserParams) (*DeleteUserOK, error) {
 		Reader:             &DeleteUserReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteUserOK), nil
-
+	success, ok := result.(*DeleteUserOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*DeleteUserDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-DeleteUserFromMod removes a mod from user
+  DeleteUserFromMod removes a mod from user
 */
-func (a *Client) DeleteUserFromMod(params *DeleteUserFromModParams) (*DeleteUserFromModOK, error) {
+func (a *Client) DeleteUserFromMod(params *DeleteUserFromModParams, opts ...ClientOption) (*DeleteUserFromModOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteUserFromModParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteUserFromMod",
 		Method:             "DELETE",
 		PathPattern:        "/users/{user_id}/mods",
@@ -184,24 +269,33 @@ func (a *Client) DeleteUserFromMod(params *DeleteUserFromModParams) (*DeleteUser
 		Reader:             &DeleteUserFromModReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteUserFromModOK), nil
-
+	success, ok := result.(*DeleteUserFromModOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*DeleteUserFromModDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-DeleteUserFromPack removes a pack from user
+  DeleteUserFromPack removes a pack from user
 */
-func (a *Client) DeleteUserFromPack(params *DeleteUserFromPackParams) (*DeleteUserFromPackOK, error) {
+func (a *Client) DeleteUserFromPack(params *DeleteUserFromPackParams, opts ...ClientOption) (*DeleteUserFromPackOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteUserFromPackParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteUserFromPack",
 		Method:             "DELETE",
 		PathPattern:        "/users/{user_id}/packs",
@@ -212,24 +306,33 @@ func (a *Client) DeleteUserFromPack(params *DeleteUserFromPackParams) (*DeleteUs
 		Reader:             &DeleteUserFromPackReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteUserFromPackOK), nil
-
+	success, ok := result.(*DeleteUserFromPackOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*DeleteUserFromPackDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-DeleteUserFromTeam removes a team from user
+  DeleteUserFromTeam removes a team from user
 */
-func (a *Client) DeleteUserFromTeam(params *DeleteUserFromTeamParams) (*DeleteUserFromTeamOK, error) {
+func (a *Client) DeleteUserFromTeam(params *DeleteUserFromTeamParams, opts ...ClientOption) (*DeleteUserFromTeamOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteUserFromTeamParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteUserFromTeam",
 		Method:             "DELETE",
 		PathPattern:        "/users/{user_id}/teams",
@@ -240,24 +343,33 @@ func (a *Client) DeleteUserFromTeam(params *DeleteUserFromTeamParams) (*DeleteUs
 		Reader:             &DeleteUserFromTeamReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteUserFromTeamOK), nil
-
+	success, ok := result.(*DeleteUserFromTeamOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*DeleteUserFromTeamDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListUserMods fetches all mods assigned to user
+  ListUserMods fetches all mods assigned to user
 */
-func (a *Client) ListUserMods(params *ListUserModsParams) (*ListUserModsOK, error) {
+func (a *Client) ListUserMods(params *ListUserModsParams, opts ...ClientOption) (*ListUserModsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListUserModsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListUserMods",
 		Method:             "GET",
 		PathPattern:        "/users/{user_id}/mods",
@@ -268,24 +380,33 @@ func (a *Client) ListUserMods(params *ListUserModsParams) (*ListUserModsOK, erro
 		Reader:             &ListUserModsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListUserModsOK), nil
-
+	success, ok := result.(*ListUserModsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListUserModsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListUserPacks fetches all packs assigned to user
+  ListUserPacks fetches all packs assigned to user
 */
-func (a *Client) ListUserPacks(params *ListUserPacksParams) (*ListUserPacksOK, error) {
+func (a *Client) ListUserPacks(params *ListUserPacksParams, opts ...ClientOption) (*ListUserPacksOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListUserPacksParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListUserPacks",
 		Method:             "GET",
 		PathPattern:        "/users/{user_id}/packs",
@@ -296,24 +417,33 @@ func (a *Client) ListUserPacks(params *ListUserPacksParams) (*ListUserPacksOK, e
 		Reader:             &ListUserPacksReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListUserPacksOK), nil
-
+	success, ok := result.(*ListUserPacksOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListUserPacksDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListUserTeams fetches all teams assigned to user
+  ListUserTeams fetches all teams assigned to user
 */
-func (a *Client) ListUserTeams(params *ListUserTeamsParams) (*ListUserTeamsOK, error) {
+func (a *Client) ListUserTeams(params *ListUserTeamsParams, opts ...ClientOption) (*ListUserTeamsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListUserTeamsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListUserTeams",
 		Method:             "GET",
 		PathPattern:        "/users/{user_id}/teams",
@@ -324,24 +454,33 @@ func (a *Client) ListUserTeams(params *ListUserTeamsParams) (*ListUserTeamsOK, e
 		Reader:             &ListUserTeamsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListUserTeamsOK), nil
-
+	success, ok := result.(*ListUserTeamsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListUserTeamsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListUsers fetches all available users
+  ListUsers fetches all available users
 */
-func (a *Client) ListUsers(params *ListUsersParams) (*ListUsersOK, error) {
+func (a *Client) ListUsers(params *ListUsersParams, opts ...ClientOption) (*ListUsersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListUsersParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListUsers",
 		Method:             "GET",
 		PathPattern:        "/users",
@@ -352,24 +491,33 @@ func (a *Client) ListUsers(params *ListUsersParams) (*ListUsersOK, error) {
 		Reader:             &ListUsersReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListUsersOK), nil
-
+	success, ok := result.(*ListUsersOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListUsersDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-PermitUserMod updates mod perms for user
+  PermitUserMod updates mod perms for user
 */
-func (a *Client) PermitUserMod(params *PermitUserModParams) (*PermitUserModOK, error) {
+func (a *Client) PermitUserMod(params *PermitUserModParams, opts ...ClientOption) (*PermitUserModOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPermitUserModParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PermitUserMod",
 		Method:             "PUT",
 		PathPattern:        "/users/{user_id}/mods",
@@ -380,24 +528,33 @@ func (a *Client) PermitUserMod(params *PermitUserModParams) (*PermitUserModOK, e
 		Reader:             &PermitUserModReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PermitUserModOK), nil
-
+	success, ok := result.(*PermitUserModOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*PermitUserModDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-PermitUserPack updates pack perms for user
+  PermitUserPack updates pack perms for user
 */
-func (a *Client) PermitUserPack(params *PermitUserPackParams) (*PermitUserPackOK, error) {
+func (a *Client) PermitUserPack(params *PermitUserPackParams, opts ...ClientOption) (*PermitUserPackOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPermitUserPackParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PermitUserPack",
 		Method:             "PUT",
 		PathPattern:        "/users/{user_id}/packs",
@@ -408,24 +565,33 @@ func (a *Client) PermitUserPack(params *PermitUserPackParams) (*PermitUserPackOK
 		Reader:             &PermitUserPackReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PermitUserPackOK), nil
-
+	success, ok := result.(*PermitUserPackOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*PermitUserPackDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-PermitUserTeam updates team perms for user
+  PermitUserTeam updates team perms for user
 */
-func (a *Client) PermitUserTeam(params *PermitUserTeamParams) (*PermitUserTeamOK, error) {
+func (a *Client) PermitUserTeam(params *PermitUserTeamParams, opts ...ClientOption) (*PermitUserTeamOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPermitUserTeamParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PermitUserTeam",
 		Method:             "PUT",
 		PathPattern:        "/users/{user_id}/teams",
@@ -436,24 +602,33 @@ func (a *Client) PermitUserTeam(params *PermitUserTeamParams) (*PermitUserTeamOK
 		Reader:             &PermitUserTeamReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PermitUserTeamOK), nil
-
+	success, ok := result.(*PermitUserTeamOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*PermitUserTeamDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ShowUser fetches a specific user
+  ShowUser fetches a specific user
 */
-func (a *Client) ShowUser(params *ShowUserParams) (*ShowUserOK, error) {
+func (a *Client) ShowUser(params *ShowUserParams, opts ...ClientOption) (*ShowUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewShowUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ShowUser",
 		Method:             "GET",
 		PathPattern:        "/users/{user_id}",
@@ -464,24 +639,33 @@ func (a *Client) ShowUser(params *ShowUserParams) (*ShowUserOK, error) {
 		Reader:             &ShowUserReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ShowUserOK), nil
-
+	success, ok := result.(*ShowUserOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ShowUserDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-UpdateUser updates a specific user
+  UpdateUser updates a specific user
 */
-func (a *Client) UpdateUser(params *UpdateUserParams) (*UpdateUserOK, error) {
+func (a *Client) UpdateUser(params *UpdateUserParams, opts ...ClientOption) (*UpdateUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "UpdateUser",
 		Method:             "PUT",
 		PathPattern:        "/users/{user_id}",
@@ -492,12 +676,22 @@ func (a *Client) UpdateUser(params *UpdateUserParams) (*UpdateUserOK, error) {
 		Reader:             &UpdateUserReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateUserOK), nil
-
+	success, ok := result.(*UpdateUserOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*UpdateUserDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 // SetTransport changes the transport on the client

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // DeletePackReader is a Reader for the DeletePack structure.
@@ -24,28 +23,24 @@ type DeletePackReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeletePackReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeletePackOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeletePackBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewDeletePackForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewDeletePackDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -63,7 +58,7 @@ func NewDeletePackOK() *DeletePackOK {
 	return &DeletePackOK{}
 }
 
-/*DeletePackOK handles this case with default header values.
+/* DeletePackOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -73,6 +68,9 @@ type DeletePackOK struct {
 
 func (o *DeletePackOK) Error() string {
 	return fmt.Sprintf("[DELETE /packs/{pack_id}][%d] deletePackOK  %+v", 200, o.Payload)
+}
+func (o *DeletePackOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeletePackOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -92,7 +90,7 @@ func NewDeletePackBadRequest() *DeletePackBadRequest {
 	return &DeletePackBadRequest{}
 }
 
-/*DeletePackBadRequest handles this case with default header values.
+/* DeletePackBadRequest describes a response with status code 400, with default header values.
 
 Failed to delete the pack
 */
@@ -102,6 +100,9 @@ type DeletePackBadRequest struct {
 
 func (o *DeletePackBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /packs/{pack_id}][%d] deletePackBadRequest  %+v", 400, o.Payload)
+}
+func (o *DeletePackBadRequest) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeletePackBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -121,7 +122,7 @@ func NewDeletePackForbidden() *DeletePackForbidden {
 	return &DeletePackForbidden{}
 }
 
-/*DeletePackForbidden handles this case with default header values.
+/* DeletePackForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -131,6 +132,9 @@ type DeletePackForbidden struct {
 
 func (o *DeletePackForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /packs/{pack_id}][%d] deletePackForbidden  %+v", 403, o.Payload)
+}
+func (o *DeletePackForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeletePackForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +156,7 @@ func NewDeletePackDefault(code int) *DeletePackDefault {
 	}
 }
 
-/*DeletePackDefault handles this case with default header values.
+/* DeletePackDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -169,6 +173,9 @@ func (o *DeletePackDefault) Code() int {
 
 func (o *DeletePackDefault) Error() string {
 	return fmt.Sprintf("[DELETE /packs/{pack_id}][%d] DeletePack default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeletePackDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeletePackDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

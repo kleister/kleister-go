@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // AppendForgeToBuildReader is a Reader for the AppendForgeToBuild structure.
@@ -24,35 +23,30 @@ type AppendForgeToBuildReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AppendForgeToBuildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAppendForgeToBuildOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewAppendForgeToBuildForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewAppendForgeToBuildPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewAppendForgeToBuildUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewAppendForgeToBuildDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewAppendForgeToBuildOK() *AppendForgeToBuildOK {
 	return &AppendForgeToBuildOK{}
 }
 
-/*AppendForgeToBuildOK handles this case with default header values.
+/* AppendForgeToBuildOK describes a response with status code 200, with default header values.
 
 A collection of assigned builds
 */
@@ -80,6 +74,9 @@ type AppendForgeToBuildOK struct {
 
 func (o *AppendForgeToBuildOK) Error() string {
 	return fmt.Sprintf("[POST /forge/{forge_id}/builds][%d] appendForgeToBuildOK  %+v", 200, o.Payload)
+}
+func (o *AppendForgeToBuildOK) GetPayload() []*models.Build {
+	return o.Payload
 }
 
 func (o *AppendForgeToBuildOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -97,7 +94,7 @@ func NewAppendForgeToBuildForbidden() *AppendForgeToBuildForbidden {
 	return &AppendForgeToBuildForbidden{}
 }
 
-/*AppendForgeToBuildForbidden handles this case with default header values.
+/* AppendForgeToBuildForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -107,6 +104,9 @@ type AppendForgeToBuildForbidden struct {
 
 func (o *AppendForgeToBuildForbidden) Error() string {
 	return fmt.Sprintf("[POST /forge/{forge_id}/builds][%d] appendForgeToBuildForbidden  %+v", 403, o.Payload)
+}
+func (o *AppendForgeToBuildForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendForgeToBuildForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -126,7 +126,7 @@ func NewAppendForgeToBuildPreconditionFailed() *AppendForgeToBuildPreconditionFa
 	return &AppendForgeToBuildPreconditionFailed{}
 }
 
-/*AppendForgeToBuildPreconditionFailed handles this case with default header values.
+/* AppendForgeToBuildPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -136,6 +136,9 @@ type AppendForgeToBuildPreconditionFailed struct {
 
 func (o *AppendForgeToBuildPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /forge/{forge_id}/builds][%d] appendForgeToBuildPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *AppendForgeToBuildPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendForgeToBuildPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -155,7 +158,7 @@ func NewAppendForgeToBuildUnprocessableEntity() *AppendForgeToBuildUnprocessable
 	return &AppendForgeToBuildUnprocessableEntity{}
 }
 
-/*AppendForgeToBuildUnprocessableEntity handles this case with default header values.
+/* AppendForgeToBuildUnprocessableEntity describes a response with status code 422, with default header values.
 
 Build is already appended
 */
@@ -165,6 +168,9 @@ type AppendForgeToBuildUnprocessableEntity struct {
 
 func (o *AppendForgeToBuildUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /forge/{forge_id}/builds][%d] appendForgeToBuildUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *AppendForgeToBuildUnprocessableEntity) GetPayload() *models.ValidationError {
+	return o.Payload
 }
 
 func (o *AppendForgeToBuildUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -186,7 +192,7 @@ func NewAppendForgeToBuildDefault(code int) *AppendForgeToBuildDefault {
 	}
 }
 
-/*AppendForgeToBuildDefault handles this case with default header values.
+/* AppendForgeToBuildDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -203,6 +209,9 @@ func (o *AppendForgeToBuildDefault) Code() int {
 
 func (o *AppendForgeToBuildDefault) Error() string {
 	return fmt.Sprintf("[POST /forge/{forge_id}/builds][%d] AppendForgeToBuild default  %+v", o._statusCode, o.Payload)
+}
+func (o *AppendForgeToBuildDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendForgeToBuildDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // DeleteModFromUserReader is a Reader for the DeleteModFromUser structure.
@@ -24,35 +23,30 @@ type DeleteModFromUserReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteModFromUserReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteModFromUserOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewDeleteModFromUserForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewDeleteModFromUserPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewDeleteModFromUserUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewDeleteModFromUserDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewDeleteModFromUserOK() *DeleteModFromUserOK {
 	return &DeleteModFromUserOK{}
 }
 
-/*DeleteModFromUserOK handles this case with default header values.
+/* DeleteModFromUserOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -80,6 +74,9 @@ type DeleteModFromUserOK struct {
 
 func (o *DeleteModFromUserOK) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}/users][%d] deleteModFromUserOK  %+v", 200, o.Payload)
+}
+func (o *DeleteModFromUserOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteModFromUserOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewDeleteModFromUserForbidden() *DeleteModFromUserForbidden {
 	return &DeleteModFromUserForbidden{}
 }
 
-/*DeleteModFromUserForbidden handles this case with default header values.
+/* DeleteModFromUserForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type DeleteModFromUserForbidden struct {
 
 func (o *DeleteModFromUserForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}/users][%d] deleteModFromUserForbidden  %+v", 403, o.Payload)
+}
+func (o *DeleteModFromUserForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteModFromUserForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewDeleteModFromUserPreconditionFailed() *DeleteModFromUserPreconditionFail
 	return &DeleteModFromUserPreconditionFailed{}
 }
 
-/*DeleteModFromUserPreconditionFailed handles this case with default header values.
+/* DeleteModFromUserPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type DeleteModFromUserPreconditionFailed struct {
 
 func (o *DeleteModFromUserPreconditionFailed) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}/users][%d] deleteModFromUserPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *DeleteModFromUserPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteModFromUserPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewDeleteModFromUserUnprocessableEntity() *DeleteModFromUserUnprocessableEn
 	return &DeleteModFromUserUnprocessableEntity{}
 }
 
-/*DeleteModFromUserUnprocessableEntity handles this case with default header values.
+/* DeleteModFromUserUnprocessableEntity describes a response with status code 422, with default header values.
 
 User is not assigned
 */
@@ -167,6 +170,9 @@ type DeleteModFromUserUnprocessableEntity struct {
 
 func (o *DeleteModFromUserUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}/users][%d] deleteModFromUserUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *DeleteModFromUserUnprocessableEntity) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteModFromUserUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewDeleteModFromUserDefault(code int) *DeleteModFromUserDefault {
 	}
 }
 
-/*DeleteModFromUserDefault handles this case with default header values.
+/* DeleteModFromUserDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *DeleteModFromUserDefault) Code() int {
 
 func (o *DeleteModFromUserDefault) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}/users][%d] DeleteModFromUser default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteModFromUserDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteModFromUserDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -13,63 +13,76 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
-// NewListTeamPacksParams creates a new ListTeamPacksParams object
-// with the default values initialized.
+// NewListTeamPacksParams creates a new ListTeamPacksParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListTeamPacksParams() *ListTeamPacksParams {
-	var ()
 	return &ListTeamPacksParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListTeamPacksParamsWithTimeout creates a new ListTeamPacksParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListTeamPacksParamsWithTimeout(timeout time.Duration) *ListTeamPacksParams {
-	var ()
 	return &ListTeamPacksParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewListTeamPacksParamsWithContext creates a new ListTeamPacksParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListTeamPacksParamsWithContext(ctx context.Context) *ListTeamPacksParams {
-	var ()
 	return &ListTeamPacksParams{
-
 		Context: ctx,
 	}
 }
 
 // NewListTeamPacksParamsWithHTTPClient creates a new ListTeamPacksParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListTeamPacksParamsWithHTTPClient(client *http.Client) *ListTeamPacksParams {
-	var ()
 	return &ListTeamPacksParams{
 		HTTPClient: client,
 	}
 }
 
-/*ListTeamPacksParams contains all the parameters to send to the API endpoint
-for the list team packs operation typically these are written to a http.Request
+/* ListTeamPacksParams contains all the parameters to send to the API endpoint
+   for the list team packs operation.
+
+   Typically these are written to a http.Request.
 */
 type ListTeamPacksParams struct {
 
-	/*TeamID
-	  A team UUID or slug
+	/* TeamID.
 
+	   A team UUID or slug
 	*/
 	TeamID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list team packs params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListTeamPacksParams) WithDefaults() *ListTeamPacksParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list team packs params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListTeamPacksParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the list team packs params

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // ListVersionsReader is a Reader for the ListVersions structure.
@@ -24,21 +23,18 @@ type ListVersionsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ListVersionsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewListVersionsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewListVersionsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewListVersionsDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -56,7 +52,7 @@ func NewListVersionsOK() *ListVersionsOK {
 	return &ListVersionsOK{}
 }
 
-/*ListVersionsOK handles this case with default header values.
+/* ListVersionsOK describes a response with status code 200, with default header values.
 
 A collection of versions
 */
@@ -66,6 +62,9 @@ type ListVersionsOK struct {
 
 func (o *ListVersionsOK) Error() string {
 	return fmt.Sprintf("[GET /mods/{mod_id}/versions][%d] listVersionsOK  %+v", 200, o.Payload)
+}
+func (o *ListVersionsOK) GetPayload() []*models.Version {
+	return o.Payload
 }
 
 func (o *ListVersionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -83,7 +82,7 @@ func NewListVersionsForbidden() *ListVersionsForbidden {
 	return &ListVersionsForbidden{}
 }
 
-/*ListVersionsForbidden handles this case with default header values.
+/* ListVersionsForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -93,6 +92,9 @@ type ListVersionsForbidden struct {
 
 func (o *ListVersionsForbidden) Error() string {
 	return fmt.Sprintf("[GET /mods/{mod_id}/versions][%d] listVersionsForbidden  %+v", 403, o.Payload)
+}
+func (o *ListVersionsForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListVersionsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,7 +116,7 @@ func NewListVersionsDefault(code int) *ListVersionsDefault {
 	}
 }
 
-/*ListVersionsDefault handles this case with default header values.
+/* ListVersionsDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -131,6 +133,9 @@ func (o *ListVersionsDefault) Code() int {
 
 func (o *ListVersionsDefault) Error() string {
 	return fmt.Sprintf("[GET /mods/{mod_id}/versions][%d] ListVersions default  %+v", o._statusCode, o.Payload)
+}
+func (o *ListVersionsDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListVersionsDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

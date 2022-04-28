@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // ListUserPacksReader is a Reader for the ListUserPacks structure.
@@ -24,21 +23,18 @@ type ListUserPacksReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ListUserPacksReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewListUserPacksOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewListUserPacksForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewListUserPacksDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -56,7 +52,7 @@ func NewListUserPacksOK() *ListUserPacksOK {
 	return &ListUserPacksOK{}
 }
 
-/*ListUserPacksOK handles this case with default header values.
+/* ListUserPacksOK describes a response with status code 200, with default header values.
 
 A collection of team packs
 */
@@ -66,6 +62,9 @@ type ListUserPacksOK struct {
 
 func (o *ListUserPacksOK) Error() string {
 	return fmt.Sprintf("[GET /users/{user_id}/packs][%d] listUserPacksOK  %+v", 200, o.Payload)
+}
+func (o *ListUserPacksOK) GetPayload() []*models.UserPack {
+	return o.Payload
 }
 
 func (o *ListUserPacksOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -83,7 +82,7 @@ func NewListUserPacksForbidden() *ListUserPacksForbidden {
 	return &ListUserPacksForbidden{}
 }
 
-/*ListUserPacksForbidden handles this case with default header values.
+/* ListUserPacksForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -93,6 +92,9 @@ type ListUserPacksForbidden struct {
 
 func (o *ListUserPacksForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{user_id}/packs][%d] listUserPacksForbidden  %+v", 403, o.Payload)
+}
+func (o *ListUserPacksForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListUserPacksForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,7 +116,7 @@ func NewListUserPacksDefault(code int) *ListUserPacksDefault {
 	}
 }
 
-/*ListUserPacksDefault handles this case with default header values.
+/* ListUserPacksDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -131,6 +133,9 @@ func (o *ListUserPacksDefault) Code() int {
 
 func (o *ListUserPacksDefault) Error() string {
 	return fmt.Sprintf("[GET /users/{user_id}/packs][%d] ListUserPacks default  %+v", o._statusCode, o.Payload)
+}
+func (o *ListUserPacksDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListUserPacksDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

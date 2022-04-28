@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // Pack pack
+//
 // swagger:model pack
 type Pack struct {
 
@@ -96,7 +98,6 @@ func (m *Pack) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Pack) validateCreatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -109,7 +110,6 @@ func (m *Pack) validateCreatedAt(formats strfmt.Registry) error {
 }
 
 func (m *Pack) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
@@ -122,7 +122,6 @@ func (m *Pack) validateID(formats strfmt.Registry) error {
 }
 
 func (m *Pack) validateLatestID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.LatestID) { // not required
 		return nil
 	}
@@ -144,7 +143,6 @@ func (m *Pack) validateName(formats strfmt.Registry) error {
 }
 
 func (m *Pack) validateRecommendedID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.RecommendedID) { // not required
 		return nil
 	}
@@ -157,12 +155,34 @@ func (m *Pack) validateRecommendedID(formats strfmt.Registry) error {
 }
 
 func (m *Pack) validateUpdatedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this pack based on the context it is used
+func (m *Pack) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Pack) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", strfmt.UUID(m.ID)); err != nil {
 		return err
 	}
 

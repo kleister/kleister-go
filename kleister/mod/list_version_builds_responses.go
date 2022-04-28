@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // ListVersionBuildsReader is a Reader for the ListVersionBuilds structure.
@@ -24,21 +23,18 @@ type ListVersionBuildsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ListVersionBuildsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewListVersionBuildsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewListVersionBuildsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewListVersionBuildsDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -56,7 +52,7 @@ func NewListVersionBuildsOK() *ListVersionBuildsOK {
 	return &ListVersionBuildsOK{}
 }
 
-/*ListVersionBuildsOK handles this case with default header values.
+/* ListVersionBuildsOK describes a response with status code 200, with default header values.
 
 A collection of version builds
 */
@@ -66,6 +62,9 @@ type ListVersionBuildsOK struct {
 
 func (o *ListVersionBuildsOK) Error() string {
 	return fmt.Sprintf("[GET /mods/{mod_id}/versions/{version_id}/builds][%d] listVersionBuildsOK  %+v", 200, o.Payload)
+}
+func (o *ListVersionBuildsOK) GetPayload() []*models.BuildVersion {
+	return o.Payload
 }
 
 func (o *ListVersionBuildsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -83,7 +82,7 @@ func NewListVersionBuildsForbidden() *ListVersionBuildsForbidden {
 	return &ListVersionBuildsForbidden{}
 }
 
-/*ListVersionBuildsForbidden handles this case with default header values.
+/* ListVersionBuildsForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -93,6 +92,9 @@ type ListVersionBuildsForbidden struct {
 
 func (o *ListVersionBuildsForbidden) Error() string {
 	return fmt.Sprintf("[GET /mods/{mod_id}/versions/{version_id}/builds][%d] listVersionBuildsForbidden  %+v", 403, o.Payload)
+}
+func (o *ListVersionBuildsForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListVersionBuildsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,7 +116,7 @@ func NewListVersionBuildsDefault(code int) *ListVersionBuildsDefault {
 	}
 }
 
-/*ListVersionBuildsDefault handles this case with default header values.
+/* ListVersionBuildsDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -131,6 +133,9 @@ func (o *ListVersionBuildsDefault) Code() int {
 
 func (o *ListVersionBuildsDefault) Error() string {
 	return fmt.Sprintf("[GET /mods/{mod_id}/versions/{version_id}/builds][%d] ListVersionBuilds default  %+v", o._statusCode, o.Payload)
+}
+func (o *ListVersionBuildsDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListVersionBuildsDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

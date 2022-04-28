@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // DeleteModReader is a Reader for the DeleteMod structure.
@@ -24,28 +23,24 @@ type DeleteModReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteModReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteModOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeleteModBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewDeleteModForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewDeleteModDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -63,7 +58,7 @@ func NewDeleteModOK() *DeleteModOK {
 	return &DeleteModOK{}
 }
 
-/*DeleteModOK handles this case with default header values.
+/* DeleteModOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -73,6 +68,9 @@ type DeleteModOK struct {
 
 func (o *DeleteModOK) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}][%d] deleteModOK  %+v", 200, o.Payload)
+}
+func (o *DeleteModOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteModOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -92,7 +90,7 @@ func NewDeleteModBadRequest() *DeleteModBadRequest {
 	return &DeleteModBadRequest{}
 }
 
-/*DeleteModBadRequest handles this case with default header values.
+/* DeleteModBadRequest describes a response with status code 400, with default header values.
 
 Failed to delete the mod
 */
@@ -102,6 +100,9 @@ type DeleteModBadRequest struct {
 
 func (o *DeleteModBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}][%d] deleteModBadRequest  %+v", 400, o.Payload)
+}
+func (o *DeleteModBadRequest) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteModBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -121,7 +122,7 @@ func NewDeleteModForbidden() *DeleteModForbidden {
 	return &DeleteModForbidden{}
 }
 
-/*DeleteModForbidden handles this case with default header values.
+/* DeleteModForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -131,6 +132,9 @@ type DeleteModForbidden struct {
 
 func (o *DeleteModForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}][%d] deleteModForbidden  %+v", 403, o.Payload)
+}
+func (o *DeleteModForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteModForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +156,7 @@ func NewDeleteModDefault(code int) *DeleteModDefault {
 	}
 }
 
-/*DeleteModDefault handles this case with default header values.
+/* DeleteModDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -169,6 +173,9 @@ func (o *DeleteModDefault) Code() int {
 
 func (o *DeleteModDefault) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}][%d] DeleteMod default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteModDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteModDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

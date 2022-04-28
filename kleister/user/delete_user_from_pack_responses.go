@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // DeleteUserFromPackReader is a Reader for the DeleteUserFromPack structure.
@@ -24,35 +23,30 @@ type DeleteUserFromPackReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteUserFromPackReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteUserFromPackOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewDeleteUserFromPackForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewDeleteUserFromPackPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewDeleteUserFromPackUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewDeleteUserFromPackDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewDeleteUserFromPackOK() *DeleteUserFromPackOK {
 	return &DeleteUserFromPackOK{}
 }
 
-/*DeleteUserFromPackOK handles this case with default header values.
+/* DeleteUserFromPackOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -80,6 +74,9 @@ type DeleteUserFromPackOK struct {
 
 func (o *DeleteUserFromPackOK) Error() string {
 	return fmt.Sprintf("[DELETE /users/{user_id}/packs][%d] deleteUserFromPackOK  %+v", 200, o.Payload)
+}
+func (o *DeleteUserFromPackOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteUserFromPackOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewDeleteUserFromPackForbidden() *DeleteUserFromPackForbidden {
 	return &DeleteUserFromPackForbidden{}
 }
 
-/*DeleteUserFromPackForbidden handles this case with default header values.
+/* DeleteUserFromPackForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type DeleteUserFromPackForbidden struct {
 
 func (o *DeleteUserFromPackForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /users/{user_id}/packs][%d] deleteUserFromPackForbidden  %+v", 403, o.Payload)
+}
+func (o *DeleteUserFromPackForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteUserFromPackForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewDeleteUserFromPackPreconditionFailed() *DeleteUserFromPackPreconditionFa
 	return &DeleteUserFromPackPreconditionFailed{}
 }
 
-/*DeleteUserFromPackPreconditionFailed handles this case with default header values.
+/* DeleteUserFromPackPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type DeleteUserFromPackPreconditionFailed struct {
 
 func (o *DeleteUserFromPackPreconditionFailed) Error() string {
 	return fmt.Sprintf("[DELETE /users/{user_id}/packs][%d] deleteUserFromPackPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *DeleteUserFromPackPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteUserFromPackPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewDeleteUserFromPackUnprocessableEntity() *DeleteUserFromPackUnprocessable
 	return &DeleteUserFromPackUnprocessableEntity{}
 }
 
-/*DeleteUserFromPackUnprocessableEntity handles this case with default header values.
+/* DeleteUserFromPackUnprocessableEntity describes a response with status code 422, with default header values.
 
 Pack is not assigned
 */
@@ -167,6 +170,9 @@ type DeleteUserFromPackUnprocessableEntity struct {
 
 func (o *DeleteUserFromPackUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /users/{user_id}/packs][%d] deleteUserFromPackUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *DeleteUserFromPackUnprocessableEntity) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteUserFromPackUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewDeleteUserFromPackDefault(code int) *DeleteUserFromPackDefault {
 	}
 }
 
-/*DeleteUserFromPackDefault handles this case with default header values.
+/* DeleteUserFromPackDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *DeleteUserFromPackDefault) Code() int {
 
 func (o *DeleteUserFromPackDefault) Error() string {
 	return fmt.Sprintf("[DELETE /users/{user_id}/packs][%d] DeleteUserFromPack default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteUserFromPackDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteUserFromPackDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // SearchForgesReader is a Reader for the SearchForges structure.
@@ -24,21 +23,18 @@ type SearchForgesReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *SearchForgesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewSearchForgesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewSearchForgesForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewSearchForgesDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -56,7 +52,7 @@ func NewSearchForgesOK() *SearchForgesOK {
 	return &SearchForgesOK{}
 }
 
-/*SearchForgesOK handles this case with default header values.
+/* SearchForgesOK describes a response with status code 200, with default header values.
 
 A collection of Forge versions
 */
@@ -66,6 +62,9 @@ type SearchForgesOK struct {
 
 func (o *SearchForgesOK) Error() string {
 	return fmt.Sprintf("[GET /forge/{forge_id}][%d] searchForgesOK  %+v", 200, o.Payload)
+}
+func (o *SearchForgesOK) GetPayload() []*models.Forge {
+	return o.Payload
 }
 
 func (o *SearchForgesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -83,7 +82,7 @@ func NewSearchForgesForbidden() *SearchForgesForbidden {
 	return &SearchForgesForbidden{}
 }
 
-/*SearchForgesForbidden handles this case with default header values.
+/* SearchForgesForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -93,6 +92,9 @@ type SearchForgesForbidden struct {
 
 func (o *SearchForgesForbidden) Error() string {
 	return fmt.Sprintf("[GET /forge/{forge_id}][%d] searchForgesForbidden  %+v", 403, o.Payload)
+}
+func (o *SearchForgesForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *SearchForgesForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,7 +116,7 @@ func NewSearchForgesDefault(code int) *SearchForgesDefault {
 	}
 }
 
-/*SearchForgesDefault handles this case with default header values.
+/* SearchForgesDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -131,6 +133,9 @@ func (o *SearchForgesDefault) Code() int {
 
 func (o *SearchForgesDefault) Error() string {
 	return fmt.Sprintf("[GET /forge/{forge_id}][%d] SearchForges default  %+v", o._statusCode, o.Payload)
+}
+func (o *SearchForgesDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *SearchForgesDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

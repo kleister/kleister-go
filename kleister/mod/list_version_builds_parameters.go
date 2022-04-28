@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
-// NewListVersionBuildsParams creates a new ListVersionBuildsParams object
-// with the default values initialized.
+// NewListVersionBuildsParams creates a new ListVersionBuildsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListVersionBuildsParams() *ListVersionBuildsParams {
-	var ()
 	return &ListVersionBuildsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListVersionBuildsParamsWithTimeout creates a new ListVersionBuildsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListVersionBuildsParamsWithTimeout(timeout time.Duration) *ListVersionBuildsParams {
-	var ()
 	return &ListVersionBuildsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewListVersionBuildsParamsWithContext creates a new ListVersionBuildsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListVersionBuildsParamsWithContext(ctx context.Context) *ListVersionBuildsParams {
-	var ()
 	return &ListVersionBuildsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewListVersionBuildsParamsWithHTTPClient creates a new ListVersionBuildsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListVersionBuildsParamsWithHTTPClient(client *http.Client) *ListVersionBuildsParams {
-	var ()
 	return &ListVersionBuildsParams{
 		HTTPClient: client,
 	}
 }
 
-/*ListVersionBuildsParams contains all the parameters to send to the API endpoint
-for the list version builds operation typically these are written to a http.Request
+/* ListVersionBuildsParams contains all the parameters to send to the API endpoint
+   for the list version builds operation.
+
+   Typically these are written to a http.Request.
 */
 type ListVersionBuildsParams struct {
 
-	/*ModID
-	  A mod UUID or slug
+	/* ModID.
 
+	   A mod UUID or slug
 	*/
 	ModID string
-	/*VersionID
-	  A version UUID or slug
 
+	/* VersionID.
+
+	   A version UUID or slug
 	*/
 	VersionID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list version builds params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListVersionBuildsParams) WithDefaults() *ListVersionBuildsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list version builds params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListVersionBuildsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the list version builds params

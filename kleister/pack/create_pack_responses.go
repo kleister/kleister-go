@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // CreatePackReader is a Reader for the CreatePack structure.
@@ -24,35 +23,30 @@ type CreatePackReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CreatePackReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewCreatePackOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewCreatePackForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewCreatePackPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewCreatePackUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewCreatePackDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewCreatePackOK() *CreatePackOK {
 	return &CreatePackOK{}
 }
 
-/*CreatePackOK handles this case with default header values.
+/* CreatePackOK describes a response with status code 200, with default header values.
 
 The created pack data
 */
@@ -80,6 +74,9 @@ type CreatePackOK struct {
 
 func (o *CreatePackOK) Error() string {
 	return fmt.Sprintf("[POST /packs][%d] createPackOK  %+v", 200, o.Payload)
+}
+func (o *CreatePackOK) GetPayload() *models.Pack {
+	return o.Payload
 }
 
 func (o *CreatePackOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewCreatePackForbidden() *CreatePackForbidden {
 	return &CreatePackForbidden{}
 }
 
-/*CreatePackForbidden handles this case with default header values.
+/* CreatePackForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type CreatePackForbidden struct {
 
 func (o *CreatePackForbidden) Error() string {
 	return fmt.Sprintf("[POST /packs][%d] createPackForbidden  %+v", 403, o.Payload)
+}
+func (o *CreatePackForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *CreatePackForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewCreatePackPreconditionFailed() *CreatePackPreconditionFailed {
 	return &CreatePackPreconditionFailed{}
 }
 
-/*CreatePackPreconditionFailed handles this case with default header values.
+/* CreatePackPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type CreatePackPreconditionFailed struct {
 
 func (o *CreatePackPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /packs][%d] createPackPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *CreatePackPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *CreatePackPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewCreatePackUnprocessableEntity() *CreatePackUnprocessableEntity {
 	return &CreatePackUnprocessableEntity{}
 }
 
-/*CreatePackUnprocessableEntity handles this case with default header values.
+/* CreatePackUnprocessableEntity describes a response with status code 422, with default header values.
 
 Failed to validate request
 */
@@ -167,6 +170,9 @@ type CreatePackUnprocessableEntity struct {
 
 func (o *CreatePackUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /packs][%d] createPackUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *CreatePackUnprocessableEntity) GetPayload() *models.ValidationError {
+	return o.Payload
 }
 
 func (o *CreatePackUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewCreatePackDefault(code int) *CreatePackDefault {
 	}
 }
 
-/*CreatePackDefault handles this case with default header values.
+/* CreatePackDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *CreatePackDefault) Code() int {
 
 func (o *CreatePackDefault) Error() string {
 	return fmt.Sprintf("[POST /packs][%d] CreatePack default  %+v", o._statusCode, o.Payload)
+}
+func (o *CreatePackDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *CreatePackDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

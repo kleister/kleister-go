@@ -13,56 +13,69 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
-// NewUpdateForgeParams creates a new UpdateForgeParams object
-// with the default values initialized.
+// NewUpdateForgeParams creates a new UpdateForgeParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateForgeParams() *UpdateForgeParams {
-
 	return &UpdateForgeParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateForgeParamsWithTimeout creates a new UpdateForgeParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateForgeParamsWithTimeout(timeout time.Duration) *UpdateForgeParams {
-
 	return &UpdateForgeParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateForgeParamsWithContext creates a new UpdateForgeParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateForgeParamsWithContext(ctx context.Context) *UpdateForgeParams {
-
 	return &UpdateForgeParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateForgeParamsWithHTTPClient creates a new UpdateForgeParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateForgeParamsWithHTTPClient(client *http.Client) *UpdateForgeParams {
-
 	return &UpdateForgeParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateForgeParams contains all the parameters to send to the API endpoint
-for the update forge operation typically these are written to a http.Request
+/* UpdateForgeParams contains all the parameters to send to the API endpoint
+   for the update forge operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateForgeParams struct {
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update forge params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateForgeParams) WithDefaults() *UpdateForgeParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update forge params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateForgeParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update forge params

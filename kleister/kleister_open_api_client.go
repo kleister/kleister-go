@@ -8,20 +8,19 @@ package kleister
 import (
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	"github.com/kleister/kleister-go/kleister/auth"
-	"github.com/kleister/kleister-go/kleister/forge"
-	"github.com/kleister/kleister-go/kleister/minecraft"
-	"github.com/kleister/kleister-go/kleister/mod"
-	"github.com/kleister/kleister-go/kleister/pack"
-	"github.com/kleister/kleister-go/kleister/profile"
-	"github.com/kleister/kleister-go/kleister/team"
-	"github.com/kleister/kleister-go/kleister/user"
+	"github.com/kleister/kleister-go/v1/kleister/auth"
+	"github.com/kleister/kleister-go/v1/kleister/forge"
+	"github.com/kleister/kleister-go/v1/kleister/minecraft"
+	"github.com/kleister/kleister-go/v1/kleister/mod"
+	"github.com/kleister/kleister-go/v1/kleister/pack"
+	"github.com/kleister/kleister-go/v1/kleister/profile"
+	"github.com/kleister/kleister-go/v1/kleister/team"
+	"github.com/kleister/kleister-go/v1/kleister/user"
 )
 
-// Default kleister open HTTP client.
+// Default kleister open API HTTP client.
 var Default = NewHTTPClient(nil)
 
 const (
@@ -36,14 +35,14 @@ const (
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
 var DefaultSchemes = []string{"http", "https"}
 
-// NewHTTPClient creates a new kleister open HTTP client.
-func NewHTTPClient(formats strfmt.Registry) *KleisterOpen {
+// NewHTTPClient creates a new kleister open API HTTP client.
+func NewHTTPClient(formats strfmt.Registry) *KleisterOpenAPI {
 	return NewHTTPClientWithConfig(formats, nil)
 }
 
-// NewHTTPClientWithConfig creates a new kleister open HTTP client,
+// NewHTTPClientWithConfig creates a new kleister open API HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *KleisterOpen {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *KleisterOpenAPI {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -54,32 +53,23 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Kle
 	return New(transport, formats)
 }
 
-// New creates a new kleister open client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *KleisterOpen {
+// New creates a new kleister open API client
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *KleisterOpenAPI {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
 	}
 
-	cli := new(KleisterOpen)
+	cli := new(KleisterOpenAPI)
 	cli.Transport = transport
-
 	cli.Auth = auth.New(transport, formats)
-
 	cli.Forge = forge.New(transport, formats)
-
 	cli.Minecraft = minecraft.New(transport, formats)
-
 	cli.Mod = mod.New(transport, formats)
-
 	cli.Pack = pack.New(transport, formats)
-
 	cli.Profile = profile.New(transport, formats)
-
 	cli.Team = team.New(transport, formats)
-
 	cli.User = user.New(transport, formats)
-
 	return cli
 }
 
@@ -122,45 +112,36 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 	return cfg
 }
 
-// KleisterOpen is a client for kleister open
-type KleisterOpen struct {
-	Auth *auth.Client
+// KleisterOpenAPI is a client for kleister open API
+type KleisterOpenAPI struct {
+	Auth auth.ClientService
 
-	Forge *forge.Client
+	Forge forge.ClientService
 
-	Minecraft *minecraft.Client
+	Minecraft minecraft.ClientService
 
-	Mod *mod.Client
+	Mod mod.ClientService
 
-	Pack *pack.Client
+	Pack pack.ClientService
 
-	Profile *profile.Client
+	Profile profile.ClientService
 
-	Team *team.Client
+	Team team.ClientService
 
-	User *user.Client
+	User user.ClientService
 
 	Transport runtime.ClientTransport
 }
 
 // SetTransport changes the transport on the client and all its subresources
-func (c *KleisterOpen) SetTransport(transport runtime.ClientTransport) {
+func (c *KleisterOpenAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
-
 	c.Auth.SetTransport(transport)
-
 	c.Forge.SetTransport(transport)
-
 	c.Minecraft.SetTransport(transport)
-
 	c.Mod.SetTransport(transport)
-
 	c.Pack.SetTransport(transport)
-
 	c.Profile.SetTransport(transport)
-
 	c.Team.SetTransport(transport)
-
 	c.User.SetTransport(transport)
-
 }

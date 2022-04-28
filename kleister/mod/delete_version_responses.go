@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // DeleteVersionReader is a Reader for the DeleteVersion structure.
@@ -24,28 +23,24 @@ type DeleteVersionReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteVersionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteVersionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeleteVersionBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewDeleteVersionForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewDeleteVersionDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -63,7 +58,7 @@ func NewDeleteVersionOK() *DeleteVersionOK {
 	return &DeleteVersionOK{}
 }
 
-/*DeleteVersionOK handles this case with default header values.
+/* DeleteVersionOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -73,6 +68,9 @@ type DeleteVersionOK struct {
 
 func (o *DeleteVersionOK) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}/versions/{version_id}][%d] deleteVersionOK  %+v", 200, o.Payload)
+}
+func (o *DeleteVersionOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteVersionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -92,7 +90,7 @@ func NewDeleteVersionBadRequest() *DeleteVersionBadRequest {
 	return &DeleteVersionBadRequest{}
 }
 
-/*DeleteVersionBadRequest handles this case with default header values.
+/* DeleteVersionBadRequest describes a response with status code 400, with default header values.
 
 Failed to delete the version
 */
@@ -102,6 +100,9 @@ type DeleteVersionBadRequest struct {
 
 func (o *DeleteVersionBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}/versions/{version_id}][%d] deleteVersionBadRequest  %+v", 400, o.Payload)
+}
+func (o *DeleteVersionBadRequest) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteVersionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -121,7 +122,7 @@ func NewDeleteVersionForbidden() *DeleteVersionForbidden {
 	return &DeleteVersionForbidden{}
 }
 
-/*DeleteVersionForbidden handles this case with default header values.
+/* DeleteVersionForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -131,6 +132,9 @@ type DeleteVersionForbidden struct {
 
 func (o *DeleteVersionForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}/versions/{version_id}][%d] deleteVersionForbidden  %+v", 403, o.Payload)
+}
+func (o *DeleteVersionForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteVersionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +156,7 @@ func NewDeleteVersionDefault(code int) *DeleteVersionDefault {
 	}
 }
 
-/*DeleteVersionDefault handles this case with default header values.
+/* DeleteVersionDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -169,6 +173,9 @@ func (o *DeleteVersionDefault) Code() int {
 
 func (o *DeleteVersionDefault) Error() string {
 	return fmt.Sprintf("[DELETE /mods/{mod_id}/versions/{version_id}][%d] DeleteVersion default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteVersionDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteVersionDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

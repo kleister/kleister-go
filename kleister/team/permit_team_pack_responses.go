@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // PermitTeamPackReader is a Reader for the PermitTeamPack structure.
@@ -24,35 +23,30 @@ type PermitTeamPackReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PermitTeamPackReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPermitTeamPackOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewPermitTeamPackForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewPermitTeamPackPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewPermitTeamPackUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewPermitTeamPackDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewPermitTeamPackOK() *PermitTeamPackOK {
 	return &PermitTeamPackOK{}
 }
 
-/*PermitTeamPackOK handles this case with default header values.
+/* PermitTeamPackOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -80,6 +74,9 @@ type PermitTeamPackOK struct {
 
 func (o *PermitTeamPackOK) Error() string {
 	return fmt.Sprintf("[PUT /teams/{team_id}/packs][%d] permitTeamPackOK  %+v", 200, o.Payload)
+}
+func (o *PermitTeamPackOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitTeamPackOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewPermitTeamPackForbidden() *PermitTeamPackForbidden {
 	return &PermitTeamPackForbidden{}
 }
 
-/*PermitTeamPackForbidden handles this case with default header values.
+/* PermitTeamPackForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type PermitTeamPackForbidden struct {
 
 func (o *PermitTeamPackForbidden) Error() string {
 	return fmt.Sprintf("[PUT /teams/{team_id}/packs][%d] permitTeamPackForbidden  %+v", 403, o.Payload)
+}
+func (o *PermitTeamPackForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitTeamPackForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewPermitTeamPackPreconditionFailed() *PermitTeamPackPreconditionFailed {
 	return &PermitTeamPackPreconditionFailed{}
 }
 
-/*PermitTeamPackPreconditionFailed handles this case with default header values.
+/* PermitTeamPackPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type PermitTeamPackPreconditionFailed struct {
 
 func (o *PermitTeamPackPreconditionFailed) Error() string {
 	return fmt.Sprintf("[PUT /teams/{team_id}/packs][%d] permitTeamPackPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *PermitTeamPackPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitTeamPackPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewPermitTeamPackUnprocessableEntity() *PermitTeamPackUnprocessableEntity {
 	return &PermitTeamPackUnprocessableEntity{}
 }
 
-/*PermitTeamPackUnprocessableEntity handles this case with default header values.
+/* PermitTeamPackUnprocessableEntity describes a response with status code 422, with default header values.
 
 Pack is not assigned
 */
@@ -167,6 +170,9 @@ type PermitTeamPackUnprocessableEntity struct {
 
 func (o *PermitTeamPackUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /teams/{team_id}/packs][%d] permitTeamPackUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *PermitTeamPackUnprocessableEntity) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitTeamPackUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewPermitTeamPackDefault(code int) *PermitTeamPackDefault {
 	}
 }
 
-/*PermitTeamPackDefault handles this case with default header values.
+/* PermitTeamPackDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *PermitTeamPackDefault) Code() int {
 
 func (o *PermitTeamPackDefault) Error() string {
 	return fmt.Sprintf("[PUT /teams/{team_id}/packs][%d] PermitTeamPack default  %+v", o._statusCode, o.Payload)
+}
+func (o *PermitTeamPackDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *PermitTeamPackDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

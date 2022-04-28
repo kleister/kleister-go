@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewPermitPackTeamParams creates a new PermitPackTeamParams object
-// with the default values initialized.
+// NewPermitPackTeamParams creates a new PermitPackTeamParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPermitPackTeamParams() *PermitPackTeamParams {
-	var ()
 	return &PermitPackTeamParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPermitPackTeamParamsWithTimeout creates a new PermitPackTeamParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPermitPackTeamParamsWithTimeout(timeout time.Duration) *PermitPackTeamParams {
-	var ()
 	return &PermitPackTeamParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPermitPackTeamParamsWithContext creates a new PermitPackTeamParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPermitPackTeamParamsWithContext(ctx context.Context) *PermitPackTeamParams {
-	var ()
 	return &PermitPackTeamParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPermitPackTeamParamsWithHTTPClient creates a new PermitPackTeamParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPermitPackTeamParamsWithHTTPClient(client *http.Client) *PermitPackTeamParams {
-	var ()
 	return &PermitPackTeamParams{
 		HTTPClient: client,
 	}
 }
 
-/*PermitPackTeamParams contains all the parameters to send to the API endpoint
-for the permit pack team operation typically these are written to a http.Request
+/* PermitPackTeamParams contains all the parameters to send to the API endpoint
+   for the permit pack team operation.
+
+   Typically these are written to a http.Request.
 */
 type PermitPackTeamParams struct {
 
-	/*PackID
-	  A pack UUID or slug
+	/* PackID.
 
+	   A pack UUID or slug
 	*/
 	PackID string
-	/*PackTeam
-	  The pack team data to update
 
+	/* PackTeam.
+
+	   The pack team data to update
 	*/
 	PackTeam *models.PackTeamParams
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the permit pack team params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PermitPackTeamParams) WithDefaults() *PermitPackTeamParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the permit pack team params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PermitPackTeamParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the permit pack team params
@@ -146,7 +160,6 @@ func (o *PermitPackTeamParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	if err := r.SetPathParam("pack_id", o.PackID); err != nil {
 		return err
 	}
-
 	if o.PackTeam != nil {
 		if err := r.SetBodyParam(o.PackTeam); err != nil {
 			return err

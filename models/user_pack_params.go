@@ -6,16 +6,17 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // UserPackParams user pack params
+//
 // swagger:model user_pack_params
 type UserPackParams struct {
 
@@ -82,7 +83,7 @@ const (
 
 // prop value enum
 func (m *UserPackParams) validatePermEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, userPackParamsTypePermPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, userPackParamsTypePermPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -99,6 +100,11 @@ func (m *UserPackParams) validatePerm(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this user pack params based on context it is used
+func (m *UserPackParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // CreateBuildReader is a Reader for the CreateBuild structure.
@@ -24,35 +23,30 @@ type CreateBuildReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CreateBuildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewCreateBuildOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewCreateBuildForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewCreateBuildPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewCreateBuildUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewCreateBuildDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewCreateBuildOK() *CreateBuildOK {
 	return &CreateBuildOK{}
 }
 
-/*CreateBuildOK handles this case with default header values.
+/* CreateBuildOK describes a response with status code 200, with default header values.
 
 The created build data
 */
@@ -80,6 +74,9 @@ type CreateBuildOK struct {
 
 func (o *CreateBuildOK) Error() string {
 	return fmt.Sprintf("[POST /packs/{pack_id}/builds][%d] createBuildOK  %+v", 200, o.Payload)
+}
+func (o *CreateBuildOK) GetPayload() *models.Build {
+	return o.Payload
 }
 
 func (o *CreateBuildOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewCreateBuildForbidden() *CreateBuildForbidden {
 	return &CreateBuildForbidden{}
 }
 
-/*CreateBuildForbidden handles this case with default header values.
+/* CreateBuildForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type CreateBuildForbidden struct {
 
 func (o *CreateBuildForbidden) Error() string {
 	return fmt.Sprintf("[POST /packs/{pack_id}/builds][%d] createBuildForbidden  %+v", 403, o.Payload)
+}
+func (o *CreateBuildForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *CreateBuildForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewCreateBuildPreconditionFailed() *CreateBuildPreconditionFailed {
 	return &CreateBuildPreconditionFailed{}
 }
 
-/*CreateBuildPreconditionFailed handles this case with default header values.
+/* CreateBuildPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type CreateBuildPreconditionFailed struct {
 
 func (o *CreateBuildPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /packs/{pack_id}/builds][%d] createBuildPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *CreateBuildPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *CreateBuildPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewCreateBuildUnprocessableEntity() *CreateBuildUnprocessableEntity {
 	return &CreateBuildUnprocessableEntity{}
 }
 
-/*CreateBuildUnprocessableEntity handles this case with default header values.
+/* CreateBuildUnprocessableEntity describes a response with status code 422, with default header values.
 
 Failed to validate request
 */
@@ -167,6 +170,9 @@ type CreateBuildUnprocessableEntity struct {
 
 func (o *CreateBuildUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /packs/{pack_id}/builds][%d] createBuildUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *CreateBuildUnprocessableEntity) GetPayload() *models.ValidationError {
+	return o.Payload
 }
 
 func (o *CreateBuildUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewCreateBuildDefault(code int) *CreateBuildDefault {
 	}
 }
 
-/*CreateBuildDefault handles this case with default header values.
+/* CreateBuildDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *CreateBuildDefault) Code() int {
 
 func (o *CreateBuildDefault) Error() string {
 	return fmt.Sprintf("[POST /packs/{pack_id}/builds][%d] CreateBuild default  %+v", o._statusCode, o.Payload)
+}
+func (o *CreateBuildDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *CreateBuildDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

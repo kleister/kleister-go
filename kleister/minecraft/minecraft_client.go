@@ -7,12 +7,11 @@ package minecraft
 
 import (
 	"github.com/go-openapi/runtime"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new minecraft API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -24,16 +23,35 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
+// ClientService is the interface for Client methods
+type ClientService interface {
+	AppendMinecraftToBuild(params *AppendMinecraftToBuildParams, opts ...ClientOption) (*AppendMinecraftToBuildOK, error)
+
+	DeleteMinecraftFromBuild(params *DeleteMinecraftFromBuildParams, opts ...ClientOption) (*DeleteMinecraftFromBuildOK, error)
+
+	ListMinecraftBuilds(params *ListMinecraftBuildsParams, opts ...ClientOption) (*ListMinecraftBuildsOK, error)
+
+	ListMinecrafts(params *ListMinecraftsParams, opts ...ClientOption) (*ListMinecraftsOK, error)
+
+	SearchMinecrafts(params *SearchMinecraftsParams, opts ...ClientOption) (*SearchMinecraftsOK, error)
+
+	UpdateMinecraft(params *UpdateMinecraftParams, opts ...ClientOption) (*UpdateMinecraftOK, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
 /*
-AppendMinecraftToBuild assigns a build to a minecraft version
+  AppendMinecraftToBuild assigns a build to a minecraft version
 */
-func (a *Client) AppendMinecraftToBuild(params *AppendMinecraftToBuildParams) (*AppendMinecraftToBuildOK, error) {
+func (a *Client) AppendMinecraftToBuild(params *AppendMinecraftToBuildParams, opts ...ClientOption) (*AppendMinecraftToBuildOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAppendMinecraftToBuildParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "AppendMinecraftToBuild",
 		Method:             "POST",
 		PathPattern:        "/minecraft/{minecraft_id}/builds",
@@ -44,24 +62,33 @@ func (a *Client) AppendMinecraftToBuild(params *AppendMinecraftToBuildParams) (*
 		Reader:             &AppendMinecraftToBuildReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*AppendMinecraftToBuildOK), nil
-
+	success, ok := result.(*AppendMinecraftToBuildOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*AppendMinecraftToBuildDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-DeleteMinecraftFromBuild unlinks a build from a minecraft version
+  DeleteMinecraftFromBuild unlinks a build from a minecraft version
 */
-func (a *Client) DeleteMinecraftFromBuild(params *DeleteMinecraftFromBuildParams) (*DeleteMinecraftFromBuildOK, error) {
+func (a *Client) DeleteMinecraftFromBuild(params *DeleteMinecraftFromBuildParams, opts ...ClientOption) (*DeleteMinecraftFromBuildOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteMinecraftFromBuildParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteMinecraftFromBuild",
 		Method:             "DELETE",
 		PathPattern:        "/minecraft/{minecraft_id}/builds",
@@ -72,24 +99,33 @@ func (a *Client) DeleteMinecraftFromBuild(params *DeleteMinecraftFromBuildParams
 		Reader:             &DeleteMinecraftFromBuildReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteMinecraftFromBuildOK), nil
-
+	success, ok := result.(*DeleteMinecraftFromBuildOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*DeleteMinecraftFromBuildDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListMinecraftBuilds fetches the builds assigned to a minecraft version
+  ListMinecraftBuilds fetches the builds assigned to a minecraft version
 */
-func (a *Client) ListMinecraftBuilds(params *ListMinecraftBuildsParams) (*ListMinecraftBuildsOK, error) {
+func (a *Client) ListMinecraftBuilds(params *ListMinecraftBuildsParams, opts ...ClientOption) (*ListMinecraftBuildsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListMinecraftBuildsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListMinecraftBuilds",
 		Method:             "GET",
 		PathPattern:        "/minecraft/{minecraft_id}/builds",
@@ -100,24 +136,33 @@ func (a *Client) ListMinecraftBuilds(params *ListMinecraftBuildsParams) (*ListMi
 		Reader:             &ListMinecraftBuildsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListMinecraftBuildsOK), nil
-
+	success, ok := result.(*ListMinecraftBuildsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListMinecraftBuildsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-ListMinecrafts fetches the available minecraft versions
+  ListMinecrafts fetches the available minecraft versions
 */
-func (a *Client) ListMinecrafts(params *ListMinecraftsParams) (*ListMinecraftsOK, error) {
+func (a *Client) ListMinecrafts(params *ListMinecraftsParams, opts ...ClientOption) (*ListMinecraftsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListMinecraftsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "ListMinecrafts",
 		Method:             "GET",
 		PathPattern:        "/minecraft",
@@ -128,24 +173,33 @@ func (a *Client) ListMinecrafts(params *ListMinecraftsParams) (*ListMinecraftsOK
 		Reader:             &ListMinecraftsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*ListMinecraftsOK), nil
-
+	success, ok := result.(*ListMinecraftsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ListMinecraftsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-SearchMinecrafts searches for available minecraft versions
+  SearchMinecrafts searches for available minecraft versions
 */
-func (a *Client) SearchMinecrafts(params *SearchMinecraftsParams) (*SearchMinecraftsOK, error) {
+func (a *Client) SearchMinecrafts(params *SearchMinecraftsParams, opts ...ClientOption) (*SearchMinecraftsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSearchMinecraftsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "SearchMinecrafts",
 		Method:             "GET",
 		PathPattern:        "/minecraft/{minecraft_id}",
@@ -156,24 +210,33 @@ func (a *Client) SearchMinecrafts(params *SearchMinecraftsParams) (*SearchMinecr
 		Reader:             &SearchMinecraftsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*SearchMinecraftsOK), nil
-
+	success, ok := result.(*SearchMinecraftsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SearchMinecraftsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-UpdateMinecraft updates the available minecraft versions
+  UpdateMinecraft updates the available minecraft versions
 */
-func (a *Client) UpdateMinecraft(params *UpdateMinecraftParams) (*UpdateMinecraftOK, error) {
+func (a *Client) UpdateMinecraft(params *UpdateMinecraftParams, opts ...ClientOption) (*UpdateMinecraftOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateMinecraftParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "UpdateMinecraft",
 		Method:             "PUT",
 		PathPattern:        "/minecraft",
@@ -184,12 +247,22 @@ func (a *Client) UpdateMinecraft(params *UpdateMinecraftParams) (*UpdateMinecraf
 		Reader:             &UpdateMinecraftReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
-	return result.(*UpdateMinecraftOK), nil
-
+	success, ok := result.(*UpdateMinecraftOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*UpdateMinecraftDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 // SetTransport changes the transport on the client

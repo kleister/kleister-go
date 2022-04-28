@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewCreateVersionParams creates a new CreateVersionParams object
-// with the default values initialized.
+// NewCreateVersionParams creates a new CreateVersionParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateVersionParams() *CreateVersionParams {
-	var ()
 	return &CreateVersionParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateVersionParamsWithTimeout creates a new CreateVersionParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateVersionParamsWithTimeout(timeout time.Duration) *CreateVersionParams {
-	var ()
 	return &CreateVersionParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateVersionParamsWithContext creates a new CreateVersionParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateVersionParamsWithContext(ctx context.Context) *CreateVersionParams {
-	var ()
 	return &CreateVersionParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateVersionParamsWithHTTPClient creates a new CreateVersionParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateVersionParamsWithHTTPClient(client *http.Client) *CreateVersionParams {
-	var ()
 	return &CreateVersionParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateVersionParams contains all the parameters to send to the API endpoint
-for the create version operation typically these are written to a http.Request
+/* CreateVersionParams contains all the parameters to send to the API endpoint
+   for the create version operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateVersionParams struct {
 
-	/*ModID
-	  A mod UUID or slug
+	/* ModID.
 
+	   A mod UUID or slug
 	*/
 	ModID string
-	/*Version
-	  The version data to create
 
+	/* Version.
+
+	   The version data to create
 	*/
 	Version *models.Version
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create version params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateVersionParams) WithDefaults() *CreateVersionParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create version params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateVersionParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create version params
@@ -146,7 +160,6 @@ func (o *CreateVersionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if err := r.SetPathParam("mod_id", o.ModID); err != nil {
 		return err
 	}
-
 	if o.Version != nil {
 		if err := r.SetBodyParam(o.Version); err != nil {
 			return err

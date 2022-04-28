@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // ShowModReader is a Reader for the ShowMod structure.
@@ -24,21 +23,18 @@ type ShowModReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ShowModReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewShowModOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewShowModForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewShowModDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -56,7 +52,7 @@ func NewShowModOK() *ShowModOK {
 	return &ShowModOK{}
 }
 
-/*ShowModOK handles this case with default header values.
+/* ShowModOK describes a response with status code 200, with default header values.
 
 The fetched mod details
 */
@@ -66,6 +62,9 @@ type ShowModOK struct {
 
 func (o *ShowModOK) Error() string {
 	return fmt.Sprintf("[GET /mods/{mod_id}][%d] showModOK  %+v", 200, o.Payload)
+}
+func (o *ShowModOK) GetPayload() *models.Mod {
+	return o.Payload
 }
 
 func (o *ShowModOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -85,7 +84,7 @@ func NewShowModForbidden() *ShowModForbidden {
 	return &ShowModForbidden{}
 }
 
-/*ShowModForbidden handles this case with default header values.
+/* ShowModForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -95,6 +94,9 @@ type ShowModForbidden struct {
 
 func (o *ShowModForbidden) Error() string {
 	return fmt.Sprintf("[GET /mods/{mod_id}][%d] showModForbidden  %+v", 403, o.Payload)
+}
+func (o *ShowModForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ShowModForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -116,7 +118,7 @@ func NewShowModDefault(code int) *ShowModDefault {
 	}
 }
 
-/*ShowModDefault handles this case with default header values.
+/* ShowModDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -133,6 +135,9 @@ func (o *ShowModDefault) Code() int {
 
 func (o *ShowModDefault) Error() string {
 	return fmt.Sprintf("[GET /mods/{mod_id}][%d] ShowMod default  %+v", o._statusCode, o.Payload)
+}
+func (o *ShowModDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ShowModDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

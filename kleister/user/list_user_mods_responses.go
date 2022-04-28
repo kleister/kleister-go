@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // ListUserModsReader is a Reader for the ListUserMods structure.
@@ -24,21 +23,18 @@ type ListUserModsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ListUserModsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewListUserModsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewListUserModsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewListUserModsDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -56,7 +52,7 @@ func NewListUserModsOK() *ListUserModsOK {
 	return &ListUserModsOK{}
 }
 
-/*ListUserModsOK handles this case with default header values.
+/* ListUserModsOK describes a response with status code 200, with default header values.
 
 A collection of user mods
 */
@@ -66,6 +62,9 @@ type ListUserModsOK struct {
 
 func (o *ListUserModsOK) Error() string {
 	return fmt.Sprintf("[GET /users/{user_id}/mods][%d] listUserModsOK  %+v", 200, o.Payload)
+}
+func (o *ListUserModsOK) GetPayload() []*models.UserMod {
+	return o.Payload
 }
 
 func (o *ListUserModsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -83,7 +82,7 @@ func NewListUserModsForbidden() *ListUserModsForbidden {
 	return &ListUserModsForbidden{}
 }
 
-/*ListUserModsForbidden handles this case with default header values.
+/* ListUserModsForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -93,6 +92,9 @@ type ListUserModsForbidden struct {
 
 func (o *ListUserModsForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{user_id}/mods][%d] listUserModsForbidden  %+v", 403, o.Payload)
+}
+func (o *ListUserModsForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListUserModsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -114,7 +116,7 @@ func NewListUserModsDefault(code int) *ListUserModsDefault {
 	}
 }
 
-/*ListUserModsDefault handles this case with default header values.
+/* ListUserModsDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -131,6 +133,9 @@ func (o *ListUserModsDefault) Code() int {
 
 func (o *ListUserModsDefault) Error() string {
 	return fmt.Sprintf("[GET /users/{user_id}/mods][%d] ListUserMods default  %+v", o._statusCode, o.Payload)
+}
+func (o *ListUserModsDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *ListUserModsDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

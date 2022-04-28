@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // AppendModToUserReader is a Reader for the AppendModToUser structure.
@@ -24,35 +23,30 @@ type AppendModToUserReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AppendModToUserReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAppendModToUserOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewAppendModToUserForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewAppendModToUserPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewAppendModToUserUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewAppendModToUserDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewAppendModToUserOK() *AppendModToUserOK {
 	return &AppendModToUserOK{}
 }
 
-/*AppendModToUserOK handles this case with default header values.
+/* AppendModToUserOK describes a response with status code 200, with default header values.
 
 Plain success message
 */
@@ -80,6 +74,9 @@ type AppendModToUserOK struct {
 
 func (o *AppendModToUserOK) Error() string {
 	return fmt.Sprintf("[POST /mods/{mod_id}/users][%d] appendModToUserOK  %+v", 200, o.Payload)
+}
+func (o *AppendModToUserOK) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendModToUserOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewAppendModToUserForbidden() *AppendModToUserForbidden {
 	return &AppendModToUserForbidden{}
 }
 
-/*AppendModToUserForbidden handles this case with default header values.
+/* AppendModToUserForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type AppendModToUserForbidden struct {
 
 func (o *AppendModToUserForbidden) Error() string {
 	return fmt.Sprintf("[POST /mods/{mod_id}/users][%d] appendModToUserForbidden  %+v", 403, o.Payload)
+}
+func (o *AppendModToUserForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendModToUserForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewAppendModToUserPreconditionFailed() *AppendModToUserPreconditionFailed {
 	return &AppendModToUserPreconditionFailed{}
 }
 
-/*AppendModToUserPreconditionFailed handles this case with default header values.
+/* AppendModToUserPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type AppendModToUserPreconditionFailed struct {
 
 func (o *AppendModToUserPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /mods/{mod_id}/users][%d] appendModToUserPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *AppendModToUserPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendModToUserPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewAppendModToUserUnprocessableEntity() *AppendModToUserUnprocessableEntity
 	return &AppendModToUserUnprocessableEntity{}
 }
 
-/*AppendModToUserUnprocessableEntity handles this case with default header values.
+/* AppendModToUserUnprocessableEntity describes a response with status code 422, with default header values.
 
 User is already assigned
 */
@@ -167,6 +170,9 @@ type AppendModToUserUnprocessableEntity struct {
 
 func (o *AppendModToUserUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /mods/{mod_id}/users][%d] appendModToUserUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *AppendModToUserUnprocessableEntity) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendModToUserUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewAppendModToUserDefault(code int) *AppendModToUserDefault {
 	}
 }
 
-/*AppendModToUserDefault handles this case with default header values.
+/* AppendModToUserDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *AppendModToUserDefault) Code() int {
 
 func (o *AppendModToUserDefault) Error() string {
 	return fmt.Sprintf("[POST /mods/{mod_id}/users][%d] AppendModToUser default  %+v", o._statusCode, o.Payload)
+}
+func (o *AppendModToUserDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendModToUserDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

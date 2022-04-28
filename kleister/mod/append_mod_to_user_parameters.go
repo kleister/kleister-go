@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewAppendModToUserParams creates a new AppendModToUserParams object
-// with the default values initialized.
+// NewAppendModToUserParams creates a new AppendModToUserParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAppendModToUserParams() *AppendModToUserParams {
-	var ()
 	return &AppendModToUserParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAppendModToUserParamsWithTimeout creates a new AppendModToUserParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAppendModToUserParamsWithTimeout(timeout time.Duration) *AppendModToUserParams {
-	var ()
 	return &AppendModToUserParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAppendModToUserParamsWithContext creates a new AppendModToUserParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAppendModToUserParamsWithContext(ctx context.Context) *AppendModToUserParams {
-	var ()
 	return &AppendModToUserParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAppendModToUserParamsWithHTTPClient creates a new AppendModToUserParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAppendModToUserParamsWithHTTPClient(client *http.Client) *AppendModToUserParams {
-	var ()
 	return &AppendModToUserParams{
 		HTTPClient: client,
 	}
 }
 
-/*AppendModToUserParams contains all the parameters to send to the API endpoint
-for the append mod to user operation typically these are written to a http.Request
+/* AppendModToUserParams contains all the parameters to send to the API endpoint
+   for the append mod to user operation.
+
+   Typically these are written to a http.Request.
 */
 type AppendModToUserParams struct {
 
-	/*ModID
-	  A mod UUID or slug
+	/* ModID.
 
+	   A mod UUID or slug
 	*/
 	ModID string
-	/*ModUser
-	  The mod user data to assign
 
+	/* ModUser.
+
+	   The mod user data to assign
 	*/
 	ModUser *models.ModUserParams
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the append mod to user params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AppendModToUserParams) WithDefaults() *AppendModToUserParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the append mod to user params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AppendModToUserParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the append mod to user params
@@ -146,7 +160,6 @@ func (o *AppendModToUserParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	if err := r.SetPathParam("mod_id", o.ModID); err != nil {
 		return err
 	}
-
 	if o.ModUser != nil {
 		if err := r.SetBodyParam(o.ModUser); err != nil {
 			return err

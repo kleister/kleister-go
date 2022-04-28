@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // UpdateVersionReader is a Reader for the UpdateVersion structure.
@@ -24,35 +23,30 @@ type UpdateVersionReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateVersionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateVersionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewUpdateVersionForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewUpdateVersionPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewUpdateVersionUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewUpdateVersionDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewUpdateVersionOK() *UpdateVersionOK {
 	return &UpdateVersionOK{}
 }
 
-/*UpdateVersionOK handles this case with default header values.
+/* UpdateVersionOK describes a response with status code 200, with default header values.
 
 The updated version details
 */
@@ -80,6 +74,9 @@ type UpdateVersionOK struct {
 
 func (o *UpdateVersionOK) Error() string {
 	return fmt.Sprintf("[PUT /mods/{mod_id}/versions/{version_id}][%d] updateVersionOK  %+v", 200, o.Payload)
+}
+func (o *UpdateVersionOK) GetPayload() *models.Version {
+	return o.Payload
 }
 
 func (o *UpdateVersionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +96,7 @@ func NewUpdateVersionForbidden() *UpdateVersionForbidden {
 	return &UpdateVersionForbidden{}
 }
 
-/*UpdateVersionForbidden handles this case with default header values.
+/* UpdateVersionForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -109,6 +106,9 @@ type UpdateVersionForbidden struct {
 
 func (o *UpdateVersionForbidden) Error() string {
 	return fmt.Sprintf("[PUT /mods/{mod_id}/versions/{version_id}][%d] updateVersionForbidden  %+v", 403, o.Payload)
+}
+func (o *UpdateVersionForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateVersionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -128,7 +128,7 @@ func NewUpdateVersionPreconditionFailed() *UpdateVersionPreconditionFailed {
 	return &UpdateVersionPreconditionFailed{}
 }
 
-/*UpdateVersionPreconditionFailed handles this case with default header values.
+/* UpdateVersionPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -138,6 +138,9 @@ type UpdateVersionPreconditionFailed struct {
 
 func (o *UpdateVersionPreconditionFailed) Error() string {
 	return fmt.Sprintf("[PUT /mods/{mod_id}/versions/{version_id}][%d] updateVersionPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *UpdateVersionPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateVersionPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -157,7 +160,7 @@ func NewUpdateVersionUnprocessableEntity() *UpdateVersionUnprocessableEntity {
 	return &UpdateVersionUnprocessableEntity{}
 }
 
-/*UpdateVersionUnprocessableEntity handles this case with default header values.
+/* UpdateVersionUnprocessableEntity describes a response with status code 422, with default header values.
 
 Failed to validate request
 */
@@ -167,6 +170,9 @@ type UpdateVersionUnprocessableEntity struct {
 
 func (o *UpdateVersionUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /mods/{mod_id}/versions/{version_id}][%d] updateVersionUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *UpdateVersionUnprocessableEntity) GetPayload() *models.ValidationError {
+	return o.Payload
 }
 
 func (o *UpdateVersionUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -188,7 +194,7 @@ func NewUpdateVersionDefault(code int) *UpdateVersionDefault {
 	}
 }
 
-/*UpdateVersionDefault handles this case with default header values.
+/* UpdateVersionDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -205,6 +211,9 @@ func (o *UpdateVersionDefault) Code() int {
 
 func (o *UpdateVersionDefault) Error() string {
 	return fmt.Sprintf("[PUT /mods/{mod_id}/versions/{version_id}][%d] UpdateVersion default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateVersionDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *UpdateVersionDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

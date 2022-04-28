@@ -13,65 +13,78 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewCreatePackParams creates a new CreatePackParams object
-// with the default values initialized.
+// NewCreatePackParams creates a new CreatePackParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreatePackParams() *CreatePackParams {
-	var ()
 	return &CreatePackParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreatePackParamsWithTimeout creates a new CreatePackParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreatePackParamsWithTimeout(timeout time.Duration) *CreatePackParams {
-	var ()
 	return &CreatePackParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreatePackParamsWithContext creates a new CreatePackParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreatePackParamsWithContext(ctx context.Context) *CreatePackParams {
-	var ()
 	return &CreatePackParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreatePackParamsWithHTTPClient creates a new CreatePackParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreatePackParamsWithHTTPClient(client *http.Client) *CreatePackParams {
-	var ()
 	return &CreatePackParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreatePackParams contains all the parameters to send to the API endpoint
-for the create pack operation typically these are written to a http.Request
+/* CreatePackParams contains all the parameters to send to the API endpoint
+   for the create pack operation.
+
+   Typically these are written to a http.Request.
 */
 type CreatePackParams struct {
 
-	/*Pack
-	  The pack data to create
+	/* Pack.
 
+	   The pack data to create
 	*/
 	Pack *models.Pack
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create pack params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreatePackParams) WithDefaults() *CreatePackParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create pack params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreatePackParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create pack params
@@ -125,7 +138,6 @@ func (o *CreatePackParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
-
 	if o.Pack != nil {
 		if err := r.SetBodyParam(o.Pack); err != nil {
 			return err

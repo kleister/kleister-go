@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // AppendMinecraftToBuildReader is a Reader for the AppendMinecraftToBuild structure.
@@ -24,35 +23,30 @@ type AppendMinecraftToBuildReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AppendMinecraftToBuildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAppendMinecraftToBuildOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewAppendMinecraftToBuildForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewAppendMinecraftToBuildPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewAppendMinecraftToBuildUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewAppendMinecraftToBuildDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewAppendMinecraftToBuildOK() *AppendMinecraftToBuildOK {
 	return &AppendMinecraftToBuildOK{}
 }
 
-/*AppendMinecraftToBuildOK handles this case with default header values.
+/* AppendMinecraftToBuildOK describes a response with status code 200, with default header values.
 
 A collection of assigned builds
 */
@@ -80,6 +74,9 @@ type AppendMinecraftToBuildOK struct {
 
 func (o *AppendMinecraftToBuildOK) Error() string {
 	return fmt.Sprintf("[POST /minecraft/{minecraft_id}/builds][%d] appendMinecraftToBuildOK  %+v", 200, o.Payload)
+}
+func (o *AppendMinecraftToBuildOK) GetPayload() []*models.Build {
+	return o.Payload
 }
 
 func (o *AppendMinecraftToBuildOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -97,7 +94,7 @@ func NewAppendMinecraftToBuildForbidden() *AppendMinecraftToBuildForbidden {
 	return &AppendMinecraftToBuildForbidden{}
 }
 
-/*AppendMinecraftToBuildForbidden handles this case with default header values.
+/* AppendMinecraftToBuildForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -107,6 +104,9 @@ type AppendMinecraftToBuildForbidden struct {
 
 func (o *AppendMinecraftToBuildForbidden) Error() string {
 	return fmt.Sprintf("[POST /minecraft/{minecraft_id}/builds][%d] appendMinecraftToBuildForbidden  %+v", 403, o.Payload)
+}
+func (o *AppendMinecraftToBuildForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendMinecraftToBuildForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -126,7 +126,7 @@ func NewAppendMinecraftToBuildPreconditionFailed() *AppendMinecraftToBuildPrecon
 	return &AppendMinecraftToBuildPreconditionFailed{}
 }
 
-/*AppendMinecraftToBuildPreconditionFailed handles this case with default header values.
+/* AppendMinecraftToBuildPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -136,6 +136,9 @@ type AppendMinecraftToBuildPreconditionFailed struct {
 
 func (o *AppendMinecraftToBuildPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /minecraft/{minecraft_id}/builds][%d] appendMinecraftToBuildPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *AppendMinecraftToBuildPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendMinecraftToBuildPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -155,7 +158,7 @@ func NewAppendMinecraftToBuildUnprocessableEntity() *AppendMinecraftToBuildUnpro
 	return &AppendMinecraftToBuildUnprocessableEntity{}
 }
 
-/*AppendMinecraftToBuildUnprocessableEntity handles this case with default header values.
+/* AppendMinecraftToBuildUnprocessableEntity describes a response with status code 422, with default header values.
 
 Build is already appended
 */
@@ -165,6 +168,9 @@ type AppendMinecraftToBuildUnprocessableEntity struct {
 
 func (o *AppendMinecraftToBuildUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /minecraft/{minecraft_id}/builds][%d] appendMinecraftToBuildUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *AppendMinecraftToBuildUnprocessableEntity) GetPayload() *models.ValidationError {
+	return o.Payload
 }
 
 func (o *AppendMinecraftToBuildUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -186,7 +192,7 @@ func NewAppendMinecraftToBuildDefault(code int) *AppendMinecraftToBuildDefault {
 	}
 }
 
-/*AppendMinecraftToBuildDefault handles this case with default header values.
+/* AppendMinecraftToBuildDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -203,6 +209,9 @@ func (o *AppendMinecraftToBuildDefault) Code() int {
 
 func (o *AppendMinecraftToBuildDefault) Error() string {
 	return fmt.Sprintf("[POST /minecraft/{minecraft_id}/builds][%d] AppendMinecraftToBuild default  %+v", o._statusCode, o.Payload)
+}
+func (o *AppendMinecraftToBuildDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *AppendMinecraftToBuildDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

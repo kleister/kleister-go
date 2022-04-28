@@ -13,75 +13,90 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewDeleteBuildFromVersionParams creates a new DeleteBuildFromVersionParams object
-// with the default values initialized.
+// NewDeleteBuildFromVersionParams creates a new DeleteBuildFromVersionParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteBuildFromVersionParams() *DeleteBuildFromVersionParams {
-	var ()
 	return &DeleteBuildFromVersionParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteBuildFromVersionParamsWithTimeout creates a new DeleteBuildFromVersionParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteBuildFromVersionParamsWithTimeout(timeout time.Duration) *DeleteBuildFromVersionParams {
-	var ()
 	return &DeleteBuildFromVersionParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteBuildFromVersionParamsWithContext creates a new DeleteBuildFromVersionParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteBuildFromVersionParamsWithContext(ctx context.Context) *DeleteBuildFromVersionParams {
-	var ()
 	return &DeleteBuildFromVersionParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteBuildFromVersionParamsWithHTTPClient creates a new DeleteBuildFromVersionParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteBuildFromVersionParamsWithHTTPClient(client *http.Client) *DeleteBuildFromVersionParams {
-	var ()
 	return &DeleteBuildFromVersionParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteBuildFromVersionParams contains all the parameters to send to the API endpoint
-for the delete build from version operation typically these are written to a http.Request
+/* DeleteBuildFromVersionParams contains all the parameters to send to the API endpoint
+   for the delete build from version operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteBuildFromVersionParams struct {
 
-	/*BuildID
-	  A build UUID or slug
+	/* BuildID.
 
+	   A build UUID or slug
 	*/
 	BuildID string
-	/*BuildVersion
-	  The version data to unlink from build
 
+	/* BuildVersion.
+
+	   The version data to unlink from build
 	*/
 	BuildVersion *models.BuildVersionParams
-	/*PackID
-	  A pack UUID or slug
 
+	/* PackID.
+
+	   A pack UUID or slug
 	*/
 	PackID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete build from version params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteBuildFromVersionParams) WithDefaults() *DeleteBuildFromVersionParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete build from version params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteBuildFromVersionParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete build from version params
@@ -162,7 +177,6 @@ func (o *DeleteBuildFromVersionParams) WriteToRequest(r runtime.ClientRequest, r
 	if err := r.SetPathParam("build_id", o.BuildID); err != nil {
 		return err
 	}
-
 	if o.BuildVersion != nil {
 		if err := r.SetBodyParam(o.BuildVersion); err != nil {
 			return err

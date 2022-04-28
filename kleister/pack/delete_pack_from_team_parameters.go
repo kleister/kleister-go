@@ -13,70 +13,84 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
-// NewDeletePackFromTeamParams creates a new DeletePackFromTeamParams object
-// with the default values initialized.
+// NewDeletePackFromTeamParams creates a new DeletePackFromTeamParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeletePackFromTeamParams() *DeletePackFromTeamParams {
-	var ()
 	return &DeletePackFromTeamParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeletePackFromTeamParamsWithTimeout creates a new DeletePackFromTeamParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeletePackFromTeamParamsWithTimeout(timeout time.Duration) *DeletePackFromTeamParams {
-	var ()
 	return &DeletePackFromTeamParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeletePackFromTeamParamsWithContext creates a new DeletePackFromTeamParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeletePackFromTeamParamsWithContext(ctx context.Context) *DeletePackFromTeamParams {
-	var ()
 	return &DeletePackFromTeamParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeletePackFromTeamParamsWithHTTPClient creates a new DeletePackFromTeamParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeletePackFromTeamParamsWithHTTPClient(client *http.Client) *DeletePackFromTeamParams {
-	var ()
 	return &DeletePackFromTeamParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeletePackFromTeamParams contains all the parameters to send to the API endpoint
-for the delete pack from team operation typically these are written to a http.Request
+/* DeletePackFromTeamParams contains all the parameters to send to the API endpoint
+   for the delete pack from team operation.
+
+   Typically these are written to a http.Request.
 */
 type DeletePackFromTeamParams struct {
 
-	/*PackID
-	  A pack UUID or slug
+	/* PackID.
 
+	   A pack UUID or slug
 	*/
 	PackID string
-	/*PackTeam
-	  The pack team data to delete
 
+	/* PackTeam.
+
+	   The pack team data to delete
 	*/
 	PackTeam *models.PackTeamParams
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete pack from team params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeletePackFromTeamParams) WithDefaults() *DeletePackFromTeamParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete pack from team params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeletePackFromTeamParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete pack from team params
@@ -146,7 +160,6 @@ func (o *DeletePackFromTeamParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if err := r.SetPathParam("pack_id", o.PackID); err != nil {
 		return err
 	}
-
 	if o.PackTeam != nil {
 		if err := r.SetBodyParam(o.PackTeam); err != nil {
 			return err

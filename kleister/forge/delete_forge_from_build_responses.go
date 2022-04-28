@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/kleister/kleister-go/models"
+	"github.com/kleister/kleister-go/v1/models"
 )
 
 // DeleteForgeFromBuildReader is a Reader for the DeleteForgeFromBuild structure.
@@ -24,35 +23,30 @@ type DeleteForgeFromBuildReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteForgeFromBuildReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteForgeFromBuildOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 403:
 		result := NewDeleteForgeFromBuildForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 412:
 		result := NewDeleteForgeFromBuildPreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 422:
 		result := NewDeleteForgeFromBuildUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		result := NewDeleteForgeFromBuildDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,7 +64,7 @@ func NewDeleteForgeFromBuildOK() *DeleteForgeFromBuildOK {
 	return &DeleteForgeFromBuildOK{}
 }
 
-/*DeleteForgeFromBuildOK handles this case with default header values.
+/* DeleteForgeFromBuildOK describes a response with status code 200, with default header values.
 
 A collection of assigned builds
 */
@@ -80,6 +74,9 @@ type DeleteForgeFromBuildOK struct {
 
 func (o *DeleteForgeFromBuildOK) Error() string {
 	return fmt.Sprintf("[DELETE /forge/{forge_id}/builds][%d] deleteForgeFromBuildOK  %+v", 200, o.Payload)
+}
+func (o *DeleteForgeFromBuildOK) GetPayload() []*models.Build {
+	return o.Payload
 }
 
 func (o *DeleteForgeFromBuildOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -97,7 +94,7 @@ func NewDeleteForgeFromBuildForbidden() *DeleteForgeFromBuildForbidden {
 	return &DeleteForgeFromBuildForbidden{}
 }
 
-/*DeleteForgeFromBuildForbidden handles this case with default header values.
+/* DeleteForgeFromBuildForbidden describes a response with status code 403, with default header values.
 
 User is not authorized
 */
@@ -107,6 +104,9 @@ type DeleteForgeFromBuildForbidden struct {
 
 func (o *DeleteForgeFromBuildForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /forge/{forge_id}/builds][%d] deleteForgeFromBuildForbidden  %+v", 403, o.Payload)
+}
+func (o *DeleteForgeFromBuildForbidden) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteForgeFromBuildForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -126,7 +126,7 @@ func NewDeleteForgeFromBuildPreconditionFailed() *DeleteForgeFromBuildPreconditi
 	return &DeleteForgeFromBuildPreconditionFailed{}
 }
 
-/*DeleteForgeFromBuildPreconditionFailed handles this case with default header values.
+/* DeleteForgeFromBuildPreconditionFailed describes a response with status code 412, with default header values.
 
 Failed to parse request body
 */
@@ -136,6 +136,9 @@ type DeleteForgeFromBuildPreconditionFailed struct {
 
 func (o *DeleteForgeFromBuildPreconditionFailed) Error() string {
 	return fmt.Sprintf("[DELETE /forge/{forge_id}/builds][%d] deleteForgeFromBuildPreconditionFailed  %+v", 412, o.Payload)
+}
+func (o *DeleteForgeFromBuildPreconditionFailed) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteForgeFromBuildPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -155,7 +158,7 @@ func NewDeleteForgeFromBuildUnprocessableEntity() *DeleteForgeFromBuildUnprocess
 	return &DeleteForgeFromBuildUnprocessableEntity{}
 }
 
-/*DeleteForgeFromBuildUnprocessableEntity handles this case with default header values.
+/* DeleteForgeFromBuildUnprocessableEntity describes a response with status code 422, with default header values.
 
 Build is not assigned
 */
@@ -165,6 +168,9 @@ type DeleteForgeFromBuildUnprocessableEntity struct {
 
 func (o *DeleteForgeFromBuildUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /forge/{forge_id}/builds][%d] deleteForgeFromBuildUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *DeleteForgeFromBuildUnprocessableEntity) GetPayload() *models.ValidationError {
+	return o.Payload
 }
 
 func (o *DeleteForgeFromBuildUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -186,7 +192,7 @@ func NewDeleteForgeFromBuildDefault(code int) *DeleteForgeFromBuildDefault {
 	}
 }
 
-/*DeleteForgeFromBuildDefault handles this case with default header values.
+/* DeleteForgeFromBuildDefault describes a response with status code -1, with default header values.
 
 Some error unrelated to the handler
 */
@@ -203,6 +209,9 @@ func (o *DeleteForgeFromBuildDefault) Code() int {
 
 func (o *DeleteForgeFromBuildDefault) Error() string {
 	return fmt.Sprintf("[DELETE /forge/{forge_id}/builds][%d] DeleteForgeFromBuild default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteForgeFromBuildDefault) GetPayload() *models.GeneralError {
+	return o.Payload
 }
 
 func (o *DeleteForgeFromBuildDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
