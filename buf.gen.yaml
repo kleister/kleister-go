@@ -1,0 +1,22 @@
+---
+version: v1
+
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/kleister/kleister-go/kleister
+    except:
+      - buf.build/googleapis/googleapis
+
+plugins:
+  - plugin: buf.build/bufbuild/connect-go
+    out: kleister
+    opt:
+      - paths=source_relative
+
+  - plugin: buf.build/protocolbuffers/go
+    out: kleister
+    opt:
+      - paths=source_relative
+
+...
