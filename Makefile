@@ -36,8 +36,8 @@ staticcheck: $(STATICCHECK)
 	$(STATICCHECK) -tags '$(TAGS)' $(PACKAGES)
 
 .PHONY: lint
-lint: $(GOLINT)
-	for PKG in $(PACKAGES); do $(GOLINT) -set_exit_status $$PKG || exit 1; done;
+lint: $(REVIVE)
+	for PKG in $(PACKAGES); do $(REVIVE) -config revive.toml -set_exit_status $$PKG || exit 1; done;
 
 .PHONY: generate
 generate:
@@ -58,3 +58,7 @@ test:
 .PHONY: build
 build: $(SOURCES)
 	go build -v -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o /dev/null ./...
+
+.PHONY: buf
+buf:
+	buf generate buf.build/kleister/api
