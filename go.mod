@@ -1,6 +1,6 @@
 module github.com/kleister/kleister-go/v1
 
-go 1.21.7
+go 1.18
 
 require (
 	github.com/go-openapi/errors v0.22.0
