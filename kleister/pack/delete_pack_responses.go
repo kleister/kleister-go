@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/kleister/kleister-go/v1/models"
+	"github.com/kleister/kleister-go/models"
 )
 
 // DeletePackReader is a Reader for the DeletePack structure.

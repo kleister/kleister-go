@@ -1,4 +1,4 @@
-module github.com/kleister/kleister-go/v1
+module github.com/kleister/kleister-go
 
 go 1.18
 

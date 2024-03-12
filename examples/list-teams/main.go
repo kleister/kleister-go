@@ -5,8 +5,8 @@ import (
 
 	"github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/kleister/kleister-go/v1/kleister"
-	"github.com/kleister/kleister-go/v1/kleister/team"
+	"github.com/kleister/kleister-go/kleister"
+	"github.com/kleister/kleister-go/kleister/team"
 )
 
 func main() {

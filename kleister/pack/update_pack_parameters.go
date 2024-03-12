@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/kleister/kleister-go/v1/models"
+	"github.com/kleister/kleister-go/models"
 )
 
 // NewUpdatePackParams creates a new UpdatePackParams object,

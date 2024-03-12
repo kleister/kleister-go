@@ -10,17 +10,17 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/kleister/kleister-go/v1/kleister/auth"
-	"github.com/kleister/kleister-go/v1/kleister/fabric"
-	"github.com/kleister/kleister-go/v1/kleister/forge"
-	"github.com/kleister/kleister-go/v1/kleister/minecraft"
-	"github.com/kleister/kleister-go/v1/kleister/mod"
-	"github.com/kleister/kleister-go/v1/kleister/neoforge"
-	"github.com/kleister/kleister-go/v1/kleister/pack"
-	"github.com/kleister/kleister-go/v1/kleister/profile"
-	"github.com/kleister/kleister-go/v1/kleister/quilt"
-	"github.com/kleister/kleister-go/v1/kleister/team"
-	"github.com/kleister/kleister-go/v1/kleister/user"
+	"github.com/kleister/kleister-go/kleister/auth"
+	"github.com/kleister/kleister-go/kleister/fabric"
+	"github.com/kleister/kleister-go/kleister/forge"
+	"github.com/kleister/kleister-go/kleister/minecraft"
+	"github.com/kleister/kleister-go/kleister/mod"
+	"github.com/kleister/kleister-go/kleister/neoforge"
+	"github.com/kleister/kleister-go/kleister/pack"
+	"github.com/kleister/kleister-go/kleister/profile"
+	"github.com/kleister/kleister-go/kleister/quilt"
+	"github.com/kleister/kleister-go/kleister/team"
+	"github.com/kleister/kleister-go/kleister/user"
 )
 
 // Default kleister HTTP client.
