@@ -1,12 +1,16 @@
 include .bingo/Variables.mk
 
+OPENAPI_VERSION ?= 1.0.0-alpha1
+OPENAPI_URL ?= ../api/openapi/v1.yml
+# https://dl.kleister.eu/openapi/$(OPENAPI_VERSION).yml
+
 SHELL := bash
 NAME := kleister-go
 IMPORT := github.com/kleister/$(NAME)
 
 GOBUILD ?= CGO_ENABLED=0 go build
 PACKAGES ?= $(shell go list ./...)
-SOURCES ?= $(shell find . -name "*.go" -type f -not -iname mock.go -not -path ./.devenv/\*)
+SOURCES ?= $(shell find . -name "*.go" -type f -not -path */.devenv/* -not -path */.direnv/*)
 GENERATE ?= $(PACKAGES)
 TAGS ?= netgo
 
@@ -14,6 +18,10 @@ LDFLAGS += -s -w -extldflags "-static"
 
 .PHONY: all
 all: build
+
+.PHONY: sync
+sync:
+	go mod download
 
 .PHONY: clean
 clean:
@@ -27,6 +35,10 @@ fmt:
 vet:
 	go vet $(PACKAGES)
 
+.PHONY: golangci
+golangci: $(GOLANGCI_LINT)
+	$(GOLANGCI_LINT) run ./...
+
 .PHONY: staticcheck
 staticcheck: $(STATICCHECK)
 	$(STATICCHECK) -tags '$(TAGS)' $(PACKAGES)
@@ -38,6 +50,10 @@ lint: $(REVIVE)
 .PHONY: generate
 generate:
 	go generate $(GENERATE)
+
+.PHONY: openapi
+openapi: $(OAPI_CODEGEN)
+	$(OAPI_CODEGEN) -generate types,client -package kleister -o kleister/gen.go $(OPENAPI_URL)
 
 .PHONY: test
 test:

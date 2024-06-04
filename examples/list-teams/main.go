@@ -1,37 +1,31 @@
 package main
 
 import (
+	"context"
 	"log"
 
-	"github.com/go-openapi/runtime/client"
-	"github.com/go-openapi/strfmt"
 	"github.com/kleister/kleister-go/kleister"
-	"github.com/kleister/kleister-go/kleister/team"
 )
 
 func main() {
-	transport := client.New(
-		"localhost:8080",
-		kleister.DefaultBasePath,
-		[]string{"http"},
+	client, err := kleister.NewClientWithResponses(
+		"http://localhost:8080/api/v1",
 	)
 
-	resp, err := kleister.New(
-		transport,
-		strfmt.Default,
-	).Team.ListTeams(
-		team.NewListTeamsParams(),
-		client.BasicAuth(
-			"admin",
-			"admin",
-		),
+	if err != nil {
+		log.Fatalf("Failed to initialize client: %s", err)
+	}
+
+	resp, err := client.ListTeamsWithResponse(
+		context.Background(),
+		&kleister.ListTeamsParams{},
 	)
 
 	if err != nil {
 		log.Fatalf("Failed to get teams: %s", err)
 	}
 
-	for _, t := range resp.Payload.Teams {
-		log.Println(kleister.PtrString(t.Name))
+	for _, t := range kleister.FromPtr(resp.JSON200.Teams) {
+		log.Println(kleister.FromPtr(t.Name))
 	}
 }

@@ -7,27 +7,27 @@ GO     ?= $(shell which go)
 
 # Below generated variables ensure that every time a tool under each variable is invoked, the correct version
 # will be used; reinstalling only if needed.
-# For example for bingo variable:
+# For example for golangci-lint variable:
 #
 # In your main Makefile (for non array binaries):
 #
 #include .bingo/Variables.mk # Assuming -dir was set to .bingo .
 #
-#command: $(BINGO)
-#	@echo "Running bingo"
-#	@$(BINGO) <flags/args..>
+#command: $(GOLANGCI_LINT)
+#	@echo "Running golangci-lint"
+#	@$(GOLANGCI_LINT) <flags/args..>
 #
-BINGO := $(GOBIN)/bingo-v0.9.0
-$(BINGO): $(BINGO_DIR)/bingo.mod
+GOLANGCI_LINT := $(GOBIN)/golangci-lint-v1.59.0
+$(GOLANGCI_LINT): $(BINGO_DIR)/golangci-lint.mod
 	@# Install binary/ries using Go 1.14+ build command. This is using bwplotka/bingo-controlled, separate go module with pinned dependencies.
-	@echo "(re)installing $(GOBIN)/bingo-v0.9.0"
-	@cd $(BINGO_DIR) && GOWORK=off $(GO) build -mod=mod -modfile=bingo.mod -o=$(GOBIN)/bingo-v0.9.0 "github.com/bwplotka/bingo"
+	@echo "(re)installing $(GOBIN)/golangci-lint-v1.59.0"
+	@cd $(BINGO_DIR) && GOWORK=off $(GO) build -mod=mod -modfile=golangci-lint.mod -o=$(GOBIN)/golangci-lint-v1.59.0 "github.com/golangci/golangci-lint/cmd/golangci-lint"
 
-REFLEX := $(GOBIN)/reflex-v0.3.1
-$(REFLEX): $(BINGO_DIR)/reflex.mod
+OAPI_CODEGEN := $(GOBIN)/oapi-codegen-v2.1.0
+$(OAPI_CODEGEN): $(BINGO_DIR)/oapi-codegen.mod
 	@# Install binary/ries using Go 1.14+ build command. This is using bwplotka/bingo-controlled, separate go module with pinned dependencies.
-	@echo "(re)installing $(GOBIN)/reflex-v0.3.1"
-	@cd $(BINGO_DIR) && GOWORK=off $(GO) build -mod=mod -modfile=reflex.mod -o=$(GOBIN)/reflex-v0.3.1 "github.com/cespare/reflex"
+	@echo "(re)installing $(GOBIN)/oapi-codegen-v2.1.0"
+	@cd $(BINGO_DIR) && GOWORK=off $(GO) build -mod=mod -modfile=oapi-codegen.mod -o=$(GOBIN)/oapi-codegen-v2.1.0 "github.com/deepmap/oapi-codegen/v2/cmd/oapi-codegen"
 
 REVIVE := $(GOBIN)/revive-v1.3.7
 $(REVIVE): $(BINGO_DIR)/revive.mod

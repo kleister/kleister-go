@@ -1,10 +1,11 @@
 package kleister
 
-// PtrString simple converts a pointer string to a regular string.
-func PtrString(val *string) string {
-	if val == nil {
-		return ""
-	}
+// FromPtr transform input from pointer.
+func FromPtr[T any](v *T) T {
+	return *v
+}
 
-	return *val
+// ToPtr transform input to a pointer.
+func ToPtr[T any](v T) *T {
+	return &v
 }

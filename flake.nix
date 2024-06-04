@@ -43,27 +43,16 @@
             default = {
               name = "kleister-go";
 
-              pre-commit = {
-                hooks = {
-                  nixpkgs-fmt = {
-                    enable = true;
-                  };
-                  golangci-lint = {
-                    enable = true;
-                  };
-                };
-              };
-
               languages = {
                 go = {
                   enable = true;
+                  package = pkgs.go_1_22;
                 };
               };
 
               packages = with pkgs; [
                 bingo
                 gnumake
-                golangci-lint
                 nixpkgs-fmt
               ];
 
