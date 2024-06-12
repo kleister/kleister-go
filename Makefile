@@ -1,8 +1,7 @@
 include .bingo/Variables.mk
 
 OPENAPI_VERSION ?= 1.0.0-alpha1
-OPENAPI_URL ?= ../api/openapi/v1.yml
-# https://dl.kleister.eu/openapi/$(OPENAPI_VERSION).yml
+OPENAPI_URL ?= https://dl.kleister.eu/openapi/$(OPENAPI_VERSION).yml
 
 SHELL := bash
 NAME := kleister-go
