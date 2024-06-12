@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/kleister/kleister-go/compare/v1.2.0...v1.2.1) (2024-06-12)
+
+
+### Bugfixes
+
+* correctly use online openapi spec ([31dc5f4](https://github.com/kleister/kleister-go/commit/31dc5f462aa17fbe8ea210a6bc9b750e18730924))
+
 ## [1.2.0](https://github.com/kleister/kleister-go/compare/v1.1.0...v1.2.0) (2024-06-11)
 
 
