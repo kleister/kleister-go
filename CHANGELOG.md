@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/kleister/kleister-go/compare/v1.3.0...v1.3.1) (2024-06-26)
+
+
+### Bugfixes
+
+* use right values for perm enum ([7c9ebae](https://github.com/kleister/kleister-go/commit/7c9ebaefbe14fc0d3ded3b4704dd897569b6fe80))
+
 ## [1.3.0](https://github.com/kleister/kleister-go/compare/v1.2.1...v1.3.0) (2024-06-26)
 
 
