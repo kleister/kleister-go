@@ -32,8 +32,8 @@ const (
 )
 
 var (
-	// InvalidModTeamParamsPerm defines an error if an invalid value gets mapped.
-	InvalidModTeamParamsPerm = fmt.Errorf("invalid type for ModTeamParamsPerm")
+	// ErrModTeamParamsPerm defines an error if an invalid value gets mapped.
+	ErrModTeamParamsPerm = fmt.Errorf("invalid type for ModTeamParamsPerm")
 
 	stringToModTeamParamsPerm = map[string]ModTeamParamsPerm{
 		"admin": ModTeamParamsPermAdmin,
@@ -43,12 +43,12 @@ var (
 )
 
 // ToModTeamParamsPerm acts as a helper to map a string to the defined enum.
-func ToModTeamParamsPerm(val string) ModTeamParamsPerm {
+func ToModTeamParamsPerm(val string) (ModTeamParamsPerm, error) {
 	if res, ok := stringToModTeamParamsPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ModTeamParamsPerm(val)
+	return ModTeamParamsPerm(""), ErrModTeamParamsPerm
 }
 
 // Defines values for ModUserParamsPerm.
@@ -59,8 +59,8 @@ const (
 )
 
 var (
-	// InvalidModUserParamsPerm defines an error if an invalid value gets mapped.
-	InvalidModUserParamsPerm = fmt.Errorf("invalid type for ModUserParamsPerm")
+	// ErrModUserParamsPerm defines an error if an invalid value gets mapped.
+	ErrModUserParamsPerm = fmt.Errorf("invalid type for ModUserParamsPerm")
 
 	stringToModUserParamsPerm = map[string]ModUserParamsPerm{
 		"admin": ModUserParamsPermAdmin,
@@ -70,12 +70,12 @@ var (
 )
 
 // ToModUserParamsPerm acts as a helper to map a string to the defined enum.
-func ToModUserParamsPerm(val string) ModUserParamsPerm {
+func ToModUserParamsPerm(val string) (ModUserParamsPerm, error) {
 	if res, ok := stringToModUserParamsPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ModUserParamsPerm(val)
+	return ModUserParamsPerm(""), ErrModUserParamsPerm
 }
 
 // Defines values for PackTeamParamsPerm.
@@ -86,8 +86,8 @@ const (
 )
 
 var (
-	// InvalidPackTeamParamsPerm defines an error if an invalid value gets mapped.
-	InvalidPackTeamParamsPerm = fmt.Errorf("invalid type for PackTeamParamsPerm")
+	// ErrPackTeamParamsPerm defines an error if an invalid value gets mapped.
+	ErrPackTeamParamsPerm = fmt.Errorf("invalid type for PackTeamParamsPerm")
 
 	stringToPackTeamParamsPerm = map[string]PackTeamParamsPerm{
 		"admin": PackTeamParamsPermAdmin,
@@ -97,12 +97,12 @@ var (
 )
 
 // ToPackTeamParamsPerm acts as a helper to map a string to the defined enum.
-func ToPackTeamParamsPerm(val string) PackTeamParamsPerm {
+func ToPackTeamParamsPerm(val string) (PackTeamParamsPerm, error) {
 	if res, ok := stringToPackTeamParamsPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return PackTeamParamsPerm(val)
+	return PackTeamParamsPerm(""), ErrPackTeamParamsPerm
 }
 
 // Defines values for PackUserParamsPerm.
@@ -113,8 +113,8 @@ const (
 )
 
 var (
-	// InvalidPackUserParamsPerm defines an error if an invalid value gets mapped.
-	InvalidPackUserParamsPerm = fmt.Errorf("invalid type for PackUserParamsPerm")
+	// ErrPackUserParamsPerm defines an error if an invalid value gets mapped.
+	ErrPackUserParamsPerm = fmt.Errorf("invalid type for PackUserParamsPerm")
 
 	stringToPackUserParamsPerm = map[string]PackUserParamsPerm{
 		"admin": PackUserParamsPermAdmin,
@@ -124,12 +124,12 @@ var (
 )
 
 // ToPackUserParamsPerm acts as a helper to map a string to the defined enum.
-func ToPackUserParamsPerm(val string) PackUserParamsPerm {
+func ToPackUserParamsPerm(val string) (PackUserParamsPerm, error) {
 	if res, ok := stringToPackUserParamsPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return PackUserParamsPerm(val)
+	return PackUserParamsPerm(""), ErrPackUserParamsPerm
 }
 
 // Defines values for TeamModPerm.
@@ -140,8 +140,8 @@ const (
 )
 
 var (
-	// InvalidTeamModPerm defines an error if an invalid value gets mapped.
-	InvalidTeamModPerm = fmt.Errorf("invalid type for TeamModPerm")
+	// ErrTeamModPerm defines an error if an invalid value gets mapped.
+	ErrTeamModPerm = fmt.Errorf("invalid type for TeamModPerm")
 
 	stringToTeamModPerm = map[string]TeamModPerm{
 		"admin": TeamModPermAdmin,
@@ -151,12 +151,12 @@ var (
 )
 
 // ToTeamModPerm acts as a helper to map a string to the defined enum.
-func ToTeamModPerm(val string) TeamModPerm {
+func ToTeamModPerm(val string) (TeamModPerm, error) {
 	if res, ok := stringToTeamModPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return TeamModPerm(val)
+	return TeamModPerm(""), ErrTeamModPerm
 }
 
 // Defines values for TeamModParamsPerm.
@@ -167,8 +167,8 @@ const (
 )
 
 var (
-	// InvalidTeamModParamsPerm defines an error if an invalid value gets mapped.
-	InvalidTeamModParamsPerm = fmt.Errorf("invalid type for TeamModParamsPerm")
+	// ErrTeamModParamsPerm defines an error if an invalid value gets mapped.
+	ErrTeamModParamsPerm = fmt.Errorf("invalid type for TeamModParamsPerm")
 
 	stringToTeamModParamsPerm = map[string]TeamModParamsPerm{
 		"admin": TeamModParamsPermAdmin,
@@ -178,12 +178,12 @@ var (
 )
 
 // ToTeamModParamsPerm acts as a helper to map a string to the defined enum.
-func ToTeamModParamsPerm(val string) TeamModParamsPerm {
+func ToTeamModParamsPerm(val string) (TeamModParamsPerm, error) {
 	if res, ok := stringToTeamModParamsPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return TeamModParamsPerm(val)
+	return TeamModParamsPerm(""), ErrTeamModParamsPerm
 }
 
 // Defines values for TeamPackPerm.
@@ -194,8 +194,8 @@ const (
 )
 
 var (
-	// InvalidTeamPackPerm defines an error if an invalid value gets mapped.
-	InvalidTeamPackPerm = fmt.Errorf("invalid type for TeamPackPerm")
+	// ErrTeamPackPerm defines an error if an invalid value gets mapped.
+	ErrTeamPackPerm = fmt.Errorf("invalid type for TeamPackPerm")
 
 	stringToTeamPackPerm = map[string]TeamPackPerm{
 		"admin": TeamPackPermAdmin,
@@ -205,12 +205,12 @@ var (
 )
 
 // ToTeamPackPerm acts as a helper to map a string to the defined enum.
-func ToTeamPackPerm(val string) TeamPackPerm {
+func ToTeamPackPerm(val string) (TeamPackPerm, error) {
 	if res, ok := stringToTeamPackPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return TeamPackPerm(val)
+	return TeamPackPerm(""), ErrTeamPackPerm
 }
 
 // Defines values for TeamPackParamsPerm.
@@ -221,8 +221,8 @@ const (
 )
 
 var (
-	// InvalidTeamPackParamsPerm defines an error if an invalid value gets mapped.
-	InvalidTeamPackParamsPerm = fmt.Errorf("invalid type for TeamPackParamsPerm")
+	// ErrTeamPackParamsPerm defines an error if an invalid value gets mapped.
+	ErrTeamPackParamsPerm = fmt.Errorf("invalid type for TeamPackParamsPerm")
 
 	stringToTeamPackParamsPerm = map[string]TeamPackParamsPerm{
 		"admin": TeamPackParamsPermAdmin,
@@ -232,12 +232,12 @@ var (
 )
 
 // ToTeamPackParamsPerm acts as a helper to map a string to the defined enum.
-func ToTeamPackParamsPerm(val string) TeamPackParamsPerm {
+func ToTeamPackParamsPerm(val string) (TeamPackParamsPerm, error) {
 	if res, ok := stringToTeamPackParamsPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return TeamPackParamsPerm(val)
+	return TeamPackParamsPerm(""), ErrTeamPackParamsPerm
 }
 
 // Defines values for TeamUserParamsPerm.
@@ -248,8 +248,8 @@ const (
 )
 
 var (
-	// InvalidTeamUserParamsPerm defines an error if an invalid value gets mapped.
-	InvalidTeamUserParamsPerm = fmt.Errorf("invalid type for TeamUserParamsPerm")
+	// ErrTeamUserParamsPerm defines an error if an invalid value gets mapped.
+	ErrTeamUserParamsPerm = fmt.Errorf("invalid type for TeamUserParamsPerm")
 
 	stringToTeamUserParamsPerm = map[string]TeamUserParamsPerm{
 		"admin": TeamUserParamsPermAdmin,
@@ -259,12 +259,12 @@ var (
 )
 
 // ToTeamUserParamsPerm acts as a helper to map a string to the defined enum.
-func ToTeamUserParamsPerm(val string) TeamUserParamsPerm {
+func ToTeamUserParamsPerm(val string) (TeamUserParamsPerm, error) {
 	if res, ok := stringToTeamUserParamsPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return TeamUserParamsPerm(val)
+	return TeamUserParamsPerm(""), ErrTeamUserParamsPerm
 }
 
 // Defines values for UserModPerm.
@@ -275,8 +275,8 @@ const (
 )
 
 var (
-	// InvalidUserModPerm defines an error if an invalid value gets mapped.
-	InvalidUserModPerm = fmt.Errorf("invalid type for UserModPerm")
+	// ErrUserModPerm defines an error if an invalid value gets mapped.
+	ErrUserModPerm = fmt.Errorf("invalid type for UserModPerm")
 
 	stringToUserModPerm = map[string]UserModPerm{
 		"admin": UserModPermAdmin,
@@ -286,12 +286,12 @@ var (
 )
 
 // ToUserModPerm acts as a helper to map a string to the defined enum.
-func ToUserModPerm(val string) UserModPerm {
+func ToUserModPerm(val string) (UserModPerm, error) {
 	if res, ok := stringToUserModPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return UserModPerm(val)
+	return UserModPerm(""), ErrUserModPerm
 }
 
 // Defines values for UserModParamsPerm.
@@ -302,8 +302,8 @@ const (
 )
 
 var (
-	// InvalidUserModParamsPerm defines an error if an invalid value gets mapped.
-	InvalidUserModParamsPerm = fmt.Errorf("invalid type for UserModParamsPerm")
+	// ErrUserModParamsPerm defines an error if an invalid value gets mapped.
+	ErrUserModParamsPerm = fmt.Errorf("invalid type for UserModParamsPerm")
 
 	stringToUserModParamsPerm = map[string]UserModParamsPerm{
 		"admin": UserModParamsPermAdmin,
@@ -313,12 +313,12 @@ var (
 )
 
 // ToUserModParamsPerm acts as a helper to map a string to the defined enum.
-func ToUserModParamsPerm(val string) UserModParamsPerm {
+func ToUserModParamsPerm(val string) (UserModParamsPerm, error) {
 	if res, ok := stringToUserModParamsPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return UserModParamsPerm(val)
+	return UserModParamsPerm(""), ErrUserModParamsPerm
 }
 
 // Defines values for UserPackPerm.
@@ -329,8 +329,8 @@ const (
 )
 
 var (
-	// InvalidUserPackPerm defines an error if an invalid value gets mapped.
-	InvalidUserPackPerm = fmt.Errorf("invalid type for UserPackPerm")
+	// ErrUserPackPerm defines an error if an invalid value gets mapped.
+	ErrUserPackPerm = fmt.Errorf("invalid type for UserPackPerm")
 
 	stringToUserPackPerm = map[string]UserPackPerm{
 		"admin": UserPackPermAdmin,
@@ -340,12 +340,12 @@ var (
 )
 
 // ToUserPackPerm acts as a helper to map a string to the defined enum.
-func ToUserPackPerm(val string) UserPackPerm {
+func ToUserPackPerm(val string) (UserPackPerm, error) {
 	if res, ok := stringToUserPackPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return UserPackPerm(val)
+	return UserPackPerm(""), ErrUserPackPerm
 }
 
 // Defines values for UserPackParamsPerm.
@@ -356,8 +356,8 @@ const (
 )
 
 var (
-	// InvalidUserPackParamsPerm defines an error if an invalid value gets mapped.
-	InvalidUserPackParamsPerm = fmt.Errorf("invalid type for UserPackParamsPerm")
+	// ErrUserPackParamsPerm defines an error if an invalid value gets mapped.
+	ErrUserPackParamsPerm = fmt.Errorf("invalid type for UserPackParamsPerm")
 
 	stringToUserPackParamsPerm = map[string]UserPackParamsPerm{
 		"admin": UserPackParamsPermAdmin,
@@ -367,12 +367,12 @@ var (
 )
 
 // ToUserPackParamsPerm acts as a helper to map a string to the defined enum.
-func ToUserPackParamsPerm(val string) UserPackParamsPerm {
+func ToUserPackParamsPerm(val string) (UserPackParamsPerm, error) {
 	if res, ok := stringToUserPackParamsPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return UserPackParamsPerm(val)
+	return UserPackParamsPerm(""), ErrUserPackParamsPerm
 }
 
 // Defines values for UserTeamPerm.
@@ -383,8 +383,8 @@ const (
 )
 
 var (
-	// InvalidUserTeamPerm defines an error if an invalid value gets mapped.
-	InvalidUserTeamPerm = fmt.Errorf("invalid type for UserTeamPerm")
+	// ErrUserTeamPerm defines an error if an invalid value gets mapped.
+	ErrUserTeamPerm = fmt.Errorf("invalid type for UserTeamPerm")
 
 	stringToUserTeamPerm = map[string]UserTeamPerm{
 		"admin": UserTeamPermAdmin,
@@ -394,12 +394,12 @@ var (
 )
 
 // ToUserTeamPerm acts as a helper to map a string to the defined enum.
-func ToUserTeamPerm(val string) UserTeamPerm {
+func ToUserTeamPerm(val string) (UserTeamPerm, error) {
 	if res, ok := stringToUserTeamPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return UserTeamPerm(val)
+	return UserTeamPerm(""), ErrUserTeamPerm
 }
 
 // Defines values for UserTeamParamsPerm.
@@ -410,8 +410,8 @@ const (
 )
 
 var (
-	// InvalidUserTeamParamsPerm defines an error if an invalid value gets mapped.
-	InvalidUserTeamParamsPerm = fmt.Errorf("invalid type for UserTeamParamsPerm")
+	// ErrUserTeamParamsPerm defines an error if an invalid value gets mapped.
+	ErrUserTeamParamsPerm = fmt.Errorf("invalid type for UserTeamParamsPerm")
 
 	stringToUserTeamParamsPerm = map[string]UserTeamParamsPerm{
 		"admin": UserTeamParamsPermAdmin,
@@ -421,12 +421,12 @@ var (
 )
 
 // ToUserTeamParamsPerm acts as a helper to map a string to the defined enum.
-func ToUserTeamParamsPerm(val string) UserTeamParamsPerm {
+func ToUserTeamParamsPerm(val string) (UserTeamParamsPerm, error) {
 	if res, ok := stringToUserTeamParamsPerm[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return UserTeamParamsPerm(val)
+	return UserTeamParamsPerm(""), ErrUserTeamParamsPerm
 }
 
 // Defines values for ListFabricBuildsParamsSort.
@@ -438,8 +438,8 @@ const (
 )
 
 var (
-	// InvalidListFabricBuildsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListFabricBuildsParamsSort = fmt.Errorf("invalid type for ListFabricBuildsParamsSort")
+	// ErrListFabricBuildsParamsSort defines an error if an invalid value gets mapped.
+	ErrListFabricBuildsParamsSort = fmt.Errorf("invalid type for ListFabricBuildsParamsSort")
 
 	stringToListFabricBuildsParamsSort = map[string]ListFabricBuildsParamsSort{
 		"build_name":   ListFabricBuildsParamsSortBuildName,
@@ -450,12 +450,12 @@ var (
 )
 
 // ToListFabricBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListFabricBuildsParamsSort(val string) ListFabricBuildsParamsSort {
+func ToListFabricBuildsParamsSort(val string) (ListFabricBuildsParamsSort, error) {
 	if res, ok := stringToListFabricBuildsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListFabricBuildsParamsSort(val)
+	return ListFabricBuildsParamsSort(""), ErrListFabricBuildsParamsSort
 }
 
 // Defines values for ListFabricBuildsParamsOrder.
@@ -465,8 +465,8 @@ const (
 )
 
 var (
-	// InvalidListFabricBuildsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListFabricBuildsParamsOrder = fmt.Errorf("invalid type for ListFabricBuildsParamsOrder")
+	// ErrListFabricBuildsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListFabricBuildsParamsOrder = fmt.Errorf("invalid type for ListFabricBuildsParamsOrder")
 
 	stringToListFabricBuildsParamsOrder = map[string]ListFabricBuildsParamsOrder{
 		"asc":  ListFabricBuildsParamsOrderAsc,
@@ -475,12 +475,12 @@ var (
 )
 
 // ToListFabricBuildsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListFabricBuildsParamsOrder(val string) ListFabricBuildsParamsOrder {
+func ToListFabricBuildsParamsOrder(val string) (ListFabricBuildsParamsOrder, error) {
 	if res, ok := stringToListFabricBuildsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListFabricBuildsParamsOrder(val)
+	return ListFabricBuildsParamsOrder(""), ErrListFabricBuildsParamsOrder
 }
 
 // Defines values for ListForgeBuildsParamsSort.
@@ -492,8 +492,8 @@ const (
 )
 
 var (
-	// InvalidListForgeBuildsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListForgeBuildsParamsSort = fmt.Errorf("invalid type for ListForgeBuildsParamsSort")
+	// ErrListForgeBuildsParamsSort defines an error if an invalid value gets mapped.
+	ErrListForgeBuildsParamsSort = fmt.Errorf("invalid type for ListForgeBuildsParamsSort")
 
 	stringToListForgeBuildsParamsSort = map[string]ListForgeBuildsParamsSort{
 		"build_name":   ListForgeBuildsParamsSortBuildName,
@@ -504,12 +504,12 @@ var (
 )
 
 // ToListForgeBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListForgeBuildsParamsSort(val string) ListForgeBuildsParamsSort {
+func ToListForgeBuildsParamsSort(val string) (ListForgeBuildsParamsSort, error) {
 	if res, ok := stringToListForgeBuildsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListForgeBuildsParamsSort(val)
+	return ListForgeBuildsParamsSort(""), ErrListForgeBuildsParamsSort
 }
 
 // Defines values for ListForgeBuildsParamsOrder.
@@ -519,8 +519,8 @@ const (
 )
 
 var (
-	// InvalidListForgeBuildsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListForgeBuildsParamsOrder = fmt.Errorf("invalid type for ListForgeBuildsParamsOrder")
+	// ErrListForgeBuildsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListForgeBuildsParamsOrder = fmt.Errorf("invalid type for ListForgeBuildsParamsOrder")
 
 	stringToListForgeBuildsParamsOrder = map[string]ListForgeBuildsParamsOrder{
 		"asc":  ListForgeBuildsParamsOrderAsc,
@@ -529,12 +529,12 @@ var (
 )
 
 // ToListForgeBuildsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListForgeBuildsParamsOrder(val string) ListForgeBuildsParamsOrder {
+func ToListForgeBuildsParamsOrder(val string) (ListForgeBuildsParamsOrder, error) {
 	if res, ok := stringToListForgeBuildsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListForgeBuildsParamsOrder(val)
+	return ListForgeBuildsParamsOrder(""), ErrListForgeBuildsParamsOrder
 }
 
 // Defines values for ListMinecraftBuildsParamsSort.
@@ -546,8 +546,8 @@ const (
 )
 
 var (
-	// InvalidListMinecraftBuildsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListMinecraftBuildsParamsSort = fmt.Errorf("invalid type for ListMinecraftBuildsParamsSort")
+	// ErrListMinecraftBuildsParamsSort defines an error if an invalid value gets mapped.
+	ErrListMinecraftBuildsParamsSort = fmt.Errorf("invalid type for ListMinecraftBuildsParamsSort")
 
 	stringToListMinecraftBuildsParamsSort = map[string]ListMinecraftBuildsParamsSort{
 		"build_name":   ListMinecraftBuildsParamsSortBuildName,
@@ -558,12 +558,12 @@ var (
 )
 
 // ToListMinecraftBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListMinecraftBuildsParamsSort(val string) ListMinecraftBuildsParamsSort {
+func ToListMinecraftBuildsParamsSort(val string) (ListMinecraftBuildsParamsSort, error) {
 	if res, ok := stringToListMinecraftBuildsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListMinecraftBuildsParamsSort(val)
+	return ListMinecraftBuildsParamsSort(""), ErrListMinecraftBuildsParamsSort
 }
 
 // Defines values for ListMinecraftBuildsParamsOrder.
@@ -573,8 +573,8 @@ const (
 )
 
 var (
-	// InvalidListMinecraftBuildsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListMinecraftBuildsParamsOrder = fmt.Errorf("invalid type for ListMinecraftBuildsParamsOrder")
+	// ErrListMinecraftBuildsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListMinecraftBuildsParamsOrder = fmt.Errorf("invalid type for ListMinecraftBuildsParamsOrder")
 
 	stringToListMinecraftBuildsParamsOrder = map[string]ListMinecraftBuildsParamsOrder{
 		"asc":  ListMinecraftBuildsParamsOrderAsc,
@@ -583,12 +583,12 @@ var (
 )
 
 // ToListMinecraftBuildsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListMinecraftBuildsParamsOrder(val string) ListMinecraftBuildsParamsOrder {
+func ToListMinecraftBuildsParamsOrder(val string) (ListMinecraftBuildsParamsOrder, error) {
 	if res, ok := stringToListMinecraftBuildsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListMinecraftBuildsParamsOrder(val)
+	return ListMinecraftBuildsParamsOrder(""), ErrListMinecraftBuildsParamsOrder
 }
 
 // Defines values for ListModsParamsSort.
@@ -599,8 +599,8 @@ const (
 )
 
 var (
-	// InvalidListModsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListModsParamsSort = fmt.Errorf("invalid type for ListModsParamsSort")
+	// ErrListModsParamsSort defines an error if an invalid value gets mapped.
+	ErrListModsParamsSort = fmt.Errorf("invalid type for ListModsParamsSort")
 
 	stringToListModsParamsSort = map[string]ListModsParamsSort{
 		"name":   ListModsParamsSortName,
@@ -610,12 +610,12 @@ var (
 )
 
 // ToListModsParamsSort acts as a helper to map a string to the defined enum.
-func ToListModsParamsSort(val string) ListModsParamsSort {
+func ToListModsParamsSort(val string) (ListModsParamsSort, error) {
 	if res, ok := stringToListModsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListModsParamsSort(val)
+	return ListModsParamsSort(""), ErrListModsParamsSort
 }
 
 // Defines values for ListModsParamsOrder.
@@ -625,8 +625,8 @@ const (
 )
 
 var (
-	// InvalidListModsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListModsParamsOrder = fmt.Errorf("invalid type for ListModsParamsOrder")
+	// ErrListModsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListModsParamsOrder = fmt.Errorf("invalid type for ListModsParamsOrder")
 
 	stringToListModsParamsOrder = map[string]ListModsParamsOrder{
 		"asc":  ListModsParamsOrderAsc,
@@ -635,12 +635,12 @@ var (
 )
 
 // ToListModsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListModsParamsOrder(val string) ListModsParamsOrder {
+func ToListModsParamsOrder(val string) (ListModsParamsOrder, error) {
 	if res, ok := stringToListModsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListModsParamsOrder(val)
+	return ListModsParamsOrder(""), ErrListModsParamsOrder
 }
 
 // Defines values for ListModTeamsParamsSort.
@@ -650,8 +650,8 @@ const (
 )
 
 var (
-	// InvalidListModTeamsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListModTeamsParamsSort = fmt.Errorf("invalid type for ListModTeamsParamsSort")
+	// ErrListModTeamsParamsSort defines an error if an invalid value gets mapped.
+	ErrListModTeamsParamsSort = fmt.Errorf("invalid type for ListModTeamsParamsSort")
 
 	stringToListModTeamsParamsSort = map[string]ListModTeamsParamsSort{
 		"name": ListModTeamsParamsSortName,
@@ -660,12 +660,12 @@ var (
 )
 
 // ToListModTeamsParamsSort acts as a helper to map a string to the defined enum.
-func ToListModTeamsParamsSort(val string) ListModTeamsParamsSort {
+func ToListModTeamsParamsSort(val string) (ListModTeamsParamsSort, error) {
 	if res, ok := stringToListModTeamsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListModTeamsParamsSort(val)
+	return ListModTeamsParamsSort(""), ErrListModTeamsParamsSort
 }
 
 // Defines values for ListModTeamsParamsOrder.
@@ -675,8 +675,8 @@ const (
 )
 
 var (
-	// InvalidListModTeamsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListModTeamsParamsOrder = fmt.Errorf("invalid type for ListModTeamsParamsOrder")
+	// ErrListModTeamsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListModTeamsParamsOrder = fmt.Errorf("invalid type for ListModTeamsParamsOrder")
 
 	stringToListModTeamsParamsOrder = map[string]ListModTeamsParamsOrder{
 		"asc":  ListModTeamsParamsOrderAsc,
@@ -685,12 +685,12 @@ var (
 )
 
 // ToListModTeamsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListModTeamsParamsOrder(val string) ListModTeamsParamsOrder {
+func ToListModTeamsParamsOrder(val string) (ListModTeamsParamsOrder, error) {
 	if res, ok := stringToListModTeamsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListModTeamsParamsOrder(val)
+	return ListModTeamsParamsOrder(""), ErrListModTeamsParamsOrder
 }
 
 // Defines values for ListModUsersParamsSort.
@@ -703,8 +703,8 @@ const (
 )
 
 var (
-	// InvalidListModUsersParamsSort defines an error if an invalid value gets mapped.
-	InvalidListModUsersParamsSort = fmt.Errorf("invalid type for ListModUsersParamsSort")
+	// ErrListModUsersParamsSort defines an error if an invalid value gets mapped.
+	ErrListModUsersParamsSort = fmt.Errorf("invalid type for ListModUsersParamsSort")
 
 	stringToListModUsersParamsSort = map[string]ListModUsersParamsSort{
 		"active":   ListModUsersParamsSortActive,
@@ -716,12 +716,12 @@ var (
 )
 
 // ToListModUsersParamsSort acts as a helper to map a string to the defined enum.
-func ToListModUsersParamsSort(val string) ListModUsersParamsSort {
+func ToListModUsersParamsSort(val string) (ListModUsersParamsSort, error) {
 	if res, ok := stringToListModUsersParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListModUsersParamsSort(val)
+	return ListModUsersParamsSort(""), ErrListModUsersParamsSort
 }
 
 // Defines values for ListModUsersParamsOrder.
@@ -731,8 +731,8 @@ const (
 )
 
 var (
-	// InvalidListModUsersParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListModUsersParamsOrder = fmt.Errorf("invalid type for ListModUsersParamsOrder")
+	// ErrListModUsersParamsOrder defines an error if an invalid value gets mapped.
+	ErrListModUsersParamsOrder = fmt.Errorf("invalid type for ListModUsersParamsOrder")
 
 	stringToListModUsersParamsOrder = map[string]ListModUsersParamsOrder{
 		"asc":  ListModUsersParamsOrderAsc,
@@ -741,12 +741,12 @@ var (
 )
 
 // ToListModUsersParamsOrder acts as a helper to map a string to the defined enum.
-func ToListModUsersParamsOrder(val string) ListModUsersParamsOrder {
+func ToListModUsersParamsOrder(val string) (ListModUsersParamsOrder, error) {
 	if res, ok := stringToListModUsersParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListModUsersParamsOrder(val)
+	return ListModUsersParamsOrder(""), ErrListModUsersParamsOrder
 }
 
 // Defines values for ListVersionsParamsSort.
@@ -756,8 +756,8 @@ const (
 )
 
 var (
-	// InvalidListVersionsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListVersionsParamsSort = fmt.Errorf("invalid type for ListVersionsParamsSort")
+	// ErrListVersionsParamsSort defines an error if an invalid value gets mapped.
+	ErrListVersionsParamsSort = fmt.Errorf("invalid type for ListVersionsParamsSort")
 
 	stringToListVersionsParamsSort = map[string]ListVersionsParamsSort{
 		"name":   ListVersionsParamsSortName,
@@ -766,12 +766,12 @@ var (
 )
 
 // ToListVersionsParamsSort acts as a helper to map a string to the defined enum.
-func ToListVersionsParamsSort(val string) ListVersionsParamsSort {
+func ToListVersionsParamsSort(val string) (ListVersionsParamsSort, error) {
 	if res, ok := stringToListVersionsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListVersionsParamsSort(val)
+	return ListVersionsParamsSort(""), ErrListVersionsParamsSort
 }
 
 // Defines values for ListVersionsParamsOrder.
@@ -781,8 +781,8 @@ const (
 )
 
 var (
-	// InvalidListVersionsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListVersionsParamsOrder = fmt.Errorf("invalid type for ListVersionsParamsOrder")
+	// ErrListVersionsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListVersionsParamsOrder = fmt.Errorf("invalid type for ListVersionsParamsOrder")
 
 	stringToListVersionsParamsOrder = map[string]ListVersionsParamsOrder{
 		"asc":  ListVersionsParamsOrderAsc,
@@ -791,12 +791,12 @@ var (
 )
 
 // ToListVersionsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListVersionsParamsOrder(val string) ListVersionsParamsOrder {
+func ToListVersionsParamsOrder(val string) (ListVersionsParamsOrder, error) {
 	if res, ok := stringToListVersionsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListVersionsParamsOrder(val)
+	return ListVersionsParamsOrder(""), ErrListVersionsParamsOrder
 }
 
 // Defines values for ListVersionBuildsParamsSort.
@@ -806,8 +806,8 @@ const (
 )
 
 var (
-	// InvalidListVersionBuildsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListVersionBuildsParamsSort = fmt.Errorf("invalid type for ListVersionBuildsParamsSort")
+	// ErrListVersionBuildsParamsSort defines an error if an invalid value gets mapped.
+	ErrListVersionBuildsParamsSort = fmt.Errorf("invalid type for ListVersionBuildsParamsSort")
 
 	stringToListVersionBuildsParamsSort = map[string]ListVersionBuildsParamsSort{
 		"name":   ListVersionBuildsParamsSortName,
@@ -816,12 +816,12 @@ var (
 )
 
 // ToListVersionBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListVersionBuildsParamsSort(val string) ListVersionBuildsParamsSort {
+func ToListVersionBuildsParamsSort(val string) (ListVersionBuildsParamsSort, error) {
 	if res, ok := stringToListVersionBuildsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListVersionBuildsParamsSort(val)
+	return ListVersionBuildsParamsSort(""), ErrListVersionBuildsParamsSort
 }
 
 // Defines values for ListVersionBuildsParamsOrder.
@@ -831,8 +831,8 @@ const (
 )
 
 var (
-	// InvalidListVersionBuildsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListVersionBuildsParamsOrder = fmt.Errorf("invalid type for ListVersionBuildsParamsOrder")
+	// ErrListVersionBuildsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListVersionBuildsParamsOrder = fmt.Errorf("invalid type for ListVersionBuildsParamsOrder")
 
 	stringToListVersionBuildsParamsOrder = map[string]ListVersionBuildsParamsOrder{
 		"asc":  ListVersionBuildsParamsOrderAsc,
@@ -841,12 +841,12 @@ var (
 )
 
 // ToListVersionBuildsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListVersionBuildsParamsOrder(val string) ListVersionBuildsParamsOrder {
+func ToListVersionBuildsParamsOrder(val string) (ListVersionBuildsParamsOrder, error) {
 	if res, ok := stringToListVersionBuildsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListVersionBuildsParamsOrder(val)
+	return ListVersionBuildsParamsOrder(""), ErrListVersionBuildsParamsOrder
 }
 
 // Defines values for ListNeoforgeBuildsParamsSort.
@@ -858,8 +858,8 @@ const (
 )
 
 var (
-	// InvalidListNeoforgeBuildsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListNeoforgeBuildsParamsSort = fmt.Errorf("invalid type for ListNeoforgeBuildsParamsSort")
+	// ErrListNeoforgeBuildsParamsSort defines an error if an invalid value gets mapped.
+	ErrListNeoforgeBuildsParamsSort = fmt.Errorf("invalid type for ListNeoforgeBuildsParamsSort")
 
 	stringToListNeoforgeBuildsParamsSort = map[string]ListNeoforgeBuildsParamsSort{
 		"build_name":   ListNeoforgeBuildsParamsSortBuildName,
@@ -870,12 +870,12 @@ var (
 )
 
 // ToListNeoforgeBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListNeoforgeBuildsParamsSort(val string) ListNeoforgeBuildsParamsSort {
+func ToListNeoforgeBuildsParamsSort(val string) (ListNeoforgeBuildsParamsSort, error) {
 	if res, ok := stringToListNeoforgeBuildsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListNeoforgeBuildsParamsSort(val)
+	return ListNeoforgeBuildsParamsSort(""), ErrListNeoforgeBuildsParamsSort
 }
 
 // Defines values for ListNeoforgeBuildsParamsOrder.
@@ -885,8 +885,8 @@ const (
 )
 
 var (
-	// InvalidListNeoforgeBuildsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListNeoforgeBuildsParamsOrder = fmt.Errorf("invalid type for ListNeoforgeBuildsParamsOrder")
+	// ErrListNeoforgeBuildsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListNeoforgeBuildsParamsOrder = fmt.Errorf("invalid type for ListNeoforgeBuildsParamsOrder")
 
 	stringToListNeoforgeBuildsParamsOrder = map[string]ListNeoforgeBuildsParamsOrder{
 		"asc":  ListNeoforgeBuildsParamsOrderAsc,
@@ -895,12 +895,12 @@ var (
 )
 
 // ToListNeoforgeBuildsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListNeoforgeBuildsParamsOrder(val string) ListNeoforgeBuildsParamsOrder {
+func ToListNeoforgeBuildsParamsOrder(val string) (ListNeoforgeBuildsParamsOrder, error) {
 	if res, ok := stringToListNeoforgeBuildsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListNeoforgeBuildsParamsOrder(val)
+	return ListNeoforgeBuildsParamsOrder(""), ErrListNeoforgeBuildsParamsOrder
 }
 
 // Defines values for ListPacksParamsSort.
@@ -911,8 +911,8 @@ const (
 )
 
 var (
-	// InvalidListPacksParamsSort defines an error if an invalid value gets mapped.
-	InvalidListPacksParamsSort = fmt.Errorf("invalid type for ListPacksParamsSort")
+	// ErrListPacksParamsSort defines an error if an invalid value gets mapped.
+	ErrListPacksParamsSort = fmt.Errorf("invalid type for ListPacksParamsSort")
 
 	stringToListPacksParamsSort = map[string]ListPacksParamsSort{
 		"name":   ListPacksParamsSortName,
@@ -922,12 +922,12 @@ var (
 )
 
 // ToListPacksParamsSort acts as a helper to map a string to the defined enum.
-func ToListPacksParamsSort(val string) ListPacksParamsSort {
+func ToListPacksParamsSort(val string) (ListPacksParamsSort, error) {
 	if res, ok := stringToListPacksParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListPacksParamsSort(val)
+	return ListPacksParamsSort(""), ErrListPacksParamsSort
 }
 
 // Defines values for ListPacksParamsOrder.
@@ -937,8 +937,8 @@ const (
 )
 
 var (
-	// InvalidListPacksParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListPacksParamsOrder = fmt.Errorf("invalid type for ListPacksParamsOrder")
+	// ErrListPacksParamsOrder defines an error if an invalid value gets mapped.
+	ErrListPacksParamsOrder = fmt.Errorf("invalid type for ListPacksParamsOrder")
 
 	stringToListPacksParamsOrder = map[string]ListPacksParamsOrder{
 		"asc":  ListPacksParamsOrderAsc,
@@ -947,12 +947,12 @@ var (
 )
 
 // ToListPacksParamsOrder acts as a helper to map a string to the defined enum.
-func ToListPacksParamsOrder(val string) ListPacksParamsOrder {
+func ToListPacksParamsOrder(val string) (ListPacksParamsOrder, error) {
 	if res, ok := stringToListPacksParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListPacksParamsOrder(val)
+	return ListPacksParamsOrder(""), ErrListPacksParamsOrder
 }
 
 // Defines values for ListBuildsParamsSort.
@@ -962,8 +962,8 @@ const (
 )
 
 var (
-	// InvalidListBuildsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListBuildsParamsSort = fmt.Errorf("invalid type for ListBuildsParamsSort")
+	// ErrListBuildsParamsSort defines an error if an invalid value gets mapped.
+	ErrListBuildsParamsSort = fmt.Errorf("invalid type for ListBuildsParamsSort")
 
 	stringToListBuildsParamsSort = map[string]ListBuildsParamsSort{
 		"name":   ListBuildsParamsSortName,
@@ -972,12 +972,12 @@ var (
 )
 
 // ToListBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListBuildsParamsSort(val string) ListBuildsParamsSort {
+func ToListBuildsParamsSort(val string) (ListBuildsParamsSort, error) {
 	if res, ok := stringToListBuildsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListBuildsParamsSort(val)
+	return ListBuildsParamsSort(""), ErrListBuildsParamsSort
 }
 
 // Defines values for ListBuildsParamsOrder.
@@ -987,8 +987,8 @@ const (
 )
 
 var (
-	// InvalidListBuildsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListBuildsParamsOrder = fmt.Errorf("invalid type for ListBuildsParamsOrder")
+	// ErrListBuildsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListBuildsParamsOrder = fmt.Errorf("invalid type for ListBuildsParamsOrder")
 
 	stringToListBuildsParamsOrder = map[string]ListBuildsParamsOrder{
 		"asc":  ListBuildsParamsOrderAsc,
@@ -997,12 +997,12 @@ var (
 )
 
 // ToListBuildsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListBuildsParamsOrder(val string) ListBuildsParamsOrder {
+func ToListBuildsParamsOrder(val string) (ListBuildsParamsOrder, error) {
 	if res, ok := stringToListBuildsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListBuildsParamsOrder(val)
+	return ListBuildsParamsOrder(""), ErrListBuildsParamsOrder
 }
 
 // Defines values for ListBuildVersionsParamsSort.
@@ -1012,8 +1012,8 @@ const (
 )
 
 var (
-	// InvalidListBuildVersionsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListBuildVersionsParamsSort = fmt.Errorf("invalid type for ListBuildVersionsParamsSort")
+	// ErrListBuildVersionsParamsSort defines an error if an invalid value gets mapped.
+	ErrListBuildVersionsParamsSort = fmt.Errorf("invalid type for ListBuildVersionsParamsSort")
 
 	stringToListBuildVersionsParamsSort = map[string]ListBuildVersionsParamsSort{
 		"name":   ListBuildVersionsParamsSortName,
@@ -1022,12 +1022,12 @@ var (
 )
 
 // ToListBuildVersionsParamsSort acts as a helper to map a string to the defined enum.
-func ToListBuildVersionsParamsSort(val string) ListBuildVersionsParamsSort {
+func ToListBuildVersionsParamsSort(val string) (ListBuildVersionsParamsSort, error) {
 	if res, ok := stringToListBuildVersionsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListBuildVersionsParamsSort(val)
+	return ListBuildVersionsParamsSort(""), ErrListBuildVersionsParamsSort
 }
 
 // Defines values for ListBuildVersionsParamsOrder.
@@ -1037,8 +1037,8 @@ const (
 )
 
 var (
-	// InvalidListBuildVersionsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListBuildVersionsParamsOrder = fmt.Errorf("invalid type for ListBuildVersionsParamsOrder")
+	// ErrListBuildVersionsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListBuildVersionsParamsOrder = fmt.Errorf("invalid type for ListBuildVersionsParamsOrder")
 
 	stringToListBuildVersionsParamsOrder = map[string]ListBuildVersionsParamsOrder{
 		"asc":  ListBuildVersionsParamsOrderAsc,
@@ -1047,12 +1047,12 @@ var (
 )
 
 // ToListBuildVersionsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListBuildVersionsParamsOrder(val string) ListBuildVersionsParamsOrder {
+func ToListBuildVersionsParamsOrder(val string) (ListBuildVersionsParamsOrder, error) {
 	if res, ok := stringToListBuildVersionsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListBuildVersionsParamsOrder(val)
+	return ListBuildVersionsParamsOrder(""), ErrListBuildVersionsParamsOrder
 }
 
 // Defines values for ListPackTeamsParamsSort.
@@ -1062,8 +1062,8 @@ const (
 )
 
 var (
-	// InvalidListPackTeamsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListPackTeamsParamsSort = fmt.Errorf("invalid type for ListPackTeamsParamsSort")
+	// ErrListPackTeamsParamsSort defines an error if an invalid value gets mapped.
+	ErrListPackTeamsParamsSort = fmt.Errorf("invalid type for ListPackTeamsParamsSort")
 
 	stringToListPackTeamsParamsSort = map[string]ListPackTeamsParamsSort{
 		"name": ListPackTeamsParamsSortName,
@@ -1072,12 +1072,12 @@ var (
 )
 
 // ToListPackTeamsParamsSort acts as a helper to map a string to the defined enum.
-func ToListPackTeamsParamsSort(val string) ListPackTeamsParamsSort {
+func ToListPackTeamsParamsSort(val string) (ListPackTeamsParamsSort, error) {
 	if res, ok := stringToListPackTeamsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListPackTeamsParamsSort(val)
+	return ListPackTeamsParamsSort(""), ErrListPackTeamsParamsSort
 }
 
 // Defines values for ListPackTeamsParamsOrder.
@@ -1087,8 +1087,8 @@ const (
 )
 
 var (
-	// InvalidListPackTeamsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListPackTeamsParamsOrder = fmt.Errorf("invalid type for ListPackTeamsParamsOrder")
+	// ErrListPackTeamsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListPackTeamsParamsOrder = fmt.Errorf("invalid type for ListPackTeamsParamsOrder")
 
 	stringToListPackTeamsParamsOrder = map[string]ListPackTeamsParamsOrder{
 		"asc":  ListPackTeamsParamsOrderAsc,
@@ -1097,12 +1097,12 @@ var (
 )
 
 // ToListPackTeamsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListPackTeamsParamsOrder(val string) ListPackTeamsParamsOrder {
+func ToListPackTeamsParamsOrder(val string) (ListPackTeamsParamsOrder, error) {
 	if res, ok := stringToListPackTeamsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListPackTeamsParamsOrder(val)
+	return ListPackTeamsParamsOrder(""), ErrListPackTeamsParamsOrder
 }
 
 // Defines values for ListPackUsersParamsSort.
@@ -1115,8 +1115,8 @@ const (
 )
 
 var (
-	// InvalidListPackUsersParamsSort defines an error if an invalid value gets mapped.
-	InvalidListPackUsersParamsSort = fmt.Errorf("invalid type for ListPackUsersParamsSort")
+	// ErrListPackUsersParamsSort defines an error if an invalid value gets mapped.
+	ErrListPackUsersParamsSort = fmt.Errorf("invalid type for ListPackUsersParamsSort")
 
 	stringToListPackUsersParamsSort = map[string]ListPackUsersParamsSort{
 		"active":   ListPackUsersParamsSortActive,
@@ -1128,12 +1128,12 @@ var (
 )
 
 // ToListPackUsersParamsSort acts as a helper to map a string to the defined enum.
-func ToListPackUsersParamsSort(val string) ListPackUsersParamsSort {
+func ToListPackUsersParamsSort(val string) (ListPackUsersParamsSort, error) {
 	if res, ok := stringToListPackUsersParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListPackUsersParamsSort(val)
+	return ListPackUsersParamsSort(""), ErrListPackUsersParamsSort
 }
 
 // Defines values for ListPackUsersParamsOrder.
@@ -1143,8 +1143,8 @@ const (
 )
 
 var (
-	// InvalidListPackUsersParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListPackUsersParamsOrder = fmt.Errorf("invalid type for ListPackUsersParamsOrder")
+	// ErrListPackUsersParamsOrder defines an error if an invalid value gets mapped.
+	ErrListPackUsersParamsOrder = fmt.Errorf("invalid type for ListPackUsersParamsOrder")
 
 	stringToListPackUsersParamsOrder = map[string]ListPackUsersParamsOrder{
 		"asc":  ListPackUsersParamsOrderAsc,
@@ -1153,12 +1153,12 @@ var (
 )
 
 // ToListPackUsersParamsOrder acts as a helper to map a string to the defined enum.
-func ToListPackUsersParamsOrder(val string) ListPackUsersParamsOrder {
+func ToListPackUsersParamsOrder(val string) (ListPackUsersParamsOrder, error) {
 	if res, ok := stringToListPackUsersParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListPackUsersParamsOrder(val)
+	return ListPackUsersParamsOrder(""), ErrListPackUsersParamsOrder
 }
 
 // Defines values for ListQuiltBuildsParamsSort.
@@ -1170,8 +1170,8 @@ const (
 )
 
 var (
-	// InvalidListQuiltBuildsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListQuiltBuildsParamsSort = fmt.Errorf("invalid type for ListQuiltBuildsParamsSort")
+	// ErrListQuiltBuildsParamsSort defines an error if an invalid value gets mapped.
+	ErrListQuiltBuildsParamsSort = fmt.Errorf("invalid type for ListQuiltBuildsParamsSort")
 
 	stringToListQuiltBuildsParamsSort = map[string]ListQuiltBuildsParamsSort{
 		"build_name":   BuildName,
@@ -1182,12 +1182,12 @@ var (
 )
 
 // ToListQuiltBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListQuiltBuildsParamsSort(val string) ListQuiltBuildsParamsSort {
+func ToListQuiltBuildsParamsSort(val string) (ListQuiltBuildsParamsSort, error) {
 	if res, ok := stringToListQuiltBuildsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListQuiltBuildsParamsSort(val)
+	return ListQuiltBuildsParamsSort(""), ErrListQuiltBuildsParamsSort
 }
 
 // Defines values for ListQuiltBuildsParamsOrder.
@@ -1197,8 +1197,8 @@ const (
 )
 
 var (
-	// InvalidListQuiltBuildsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListQuiltBuildsParamsOrder = fmt.Errorf("invalid type for ListQuiltBuildsParamsOrder")
+	// ErrListQuiltBuildsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListQuiltBuildsParamsOrder = fmt.Errorf("invalid type for ListQuiltBuildsParamsOrder")
 
 	stringToListQuiltBuildsParamsOrder = map[string]ListQuiltBuildsParamsOrder{
 		"asc":  ListQuiltBuildsParamsOrderAsc,
@@ -1207,12 +1207,12 @@ var (
 )
 
 // ToListQuiltBuildsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListQuiltBuildsParamsOrder(val string) ListQuiltBuildsParamsOrder {
+func ToListQuiltBuildsParamsOrder(val string) (ListQuiltBuildsParamsOrder, error) {
 	if res, ok := stringToListQuiltBuildsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListQuiltBuildsParamsOrder(val)
+	return ListQuiltBuildsParamsOrder(""), ErrListQuiltBuildsParamsOrder
 }
 
 // Defines values for ListTeamsParamsSort.
@@ -1222,8 +1222,8 @@ const (
 )
 
 var (
-	// InvalidListTeamsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListTeamsParamsSort = fmt.Errorf("invalid type for ListTeamsParamsSort")
+	// ErrListTeamsParamsSort defines an error if an invalid value gets mapped.
+	ErrListTeamsParamsSort = fmt.Errorf("invalid type for ListTeamsParamsSort")
 
 	stringToListTeamsParamsSort = map[string]ListTeamsParamsSort{
 		"name": ListTeamsParamsSortName,
@@ -1232,12 +1232,12 @@ var (
 )
 
 // ToListTeamsParamsSort acts as a helper to map a string to the defined enum.
-func ToListTeamsParamsSort(val string) ListTeamsParamsSort {
+func ToListTeamsParamsSort(val string) (ListTeamsParamsSort, error) {
 	if res, ok := stringToListTeamsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListTeamsParamsSort(val)
+	return ListTeamsParamsSort(""), ErrListTeamsParamsSort
 }
 
 // Defines values for ListTeamsParamsOrder.
@@ -1247,8 +1247,8 @@ const (
 )
 
 var (
-	// InvalidListTeamsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListTeamsParamsOrder = fmt.Errorf("invalid type for ListTeamsParamsOrder")
+	// ErrListTeamsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListTeamsParamsOrder = fmt.Errorf("invalid type for ListTeamsParamsOrder")
 
 	stringToListTeamsParamsOrder = map[string]ListTeamsParamsOrder{
 		"asc":  ListTeamsParamsOrderAsc,
@@ -1257,12 +1257,12 @@ var (
 )
 
 // ToListTeamsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListTeamsParamsOrder(val string) ListTeamsParamsOrder {
+func ToListTeamsParamsOrder(val string) (ListTeamsParamsOrder, error) {
 	if res, ok := stringToListTeamsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListTeamsParamsOrder(val)
+	return ListTeamsParamsOrder(""), ErrListTeamsParamsOrder
 }
 
 // Defines values for ListTeamModsParamsSort.
@@ -1273,8 +1273,8 @@ const (
 )
 
 var (
-	// InvalidListTeamModsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListTeamModsParamsSort = fmt.Errorf("invalid type for ListTeamModsParamsSort")
+	// ErrListTeamModsParamsSort defines an error if an invalid value gets mapped.
+	ErrListTeamModsParamsSort = fmt.Errorf("invalid type for ListTeamModsParamsSort")
 
 	stringToListTeamModsParamsSort = map[string]ListTeamModsParamsSort{
 		"name":   ListTeamModsParamsSortName,
@@ -1284,12 +1284,12 @@ var (
 )
 
 // ToListTeamModsParamsSort acts as a helper to map a string to the defined enum.
-func ToListTeamModsParamsSort(val string) ListTeamModsParamsSort {
+func ToListTeamModsParamsSort(val string) (ListTeamModsParamsSort, error) {
 	if res, ok := stringToListTeamModsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListTeamModsParamsSort(val)
+	return ListTeamModsParamsSort(""), ErrListTeamModsParamsSort
 }
 
 // Defines values for ListTeamModsParamsOrder.
@@ -1299,8 +1299,8 @@ const (
 )
 
 var (
-	// InvalidListTeamModsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListTeamModsParamsOrder = fmt.Errorf("invalid type for ListTeamModsParamsOrder")
+	// ErrListTeamModsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListTeamModsParamsOrder = fmt.Errorf("invalid type for ListTeamModsParamsOrder")
 
 	stringToListTeamModsParamsOrder = map[string]ListTeamModsParamsOrder{
 		"asc":  ListTeamModsParamsOrderAsc,
@@ -1309,12 +1309,12 @@ var (
 )
 
 // ToListTeamModsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListTeamModsParamsOrder(val string) ListTeamModsParamsOrder {
+func ToListTeamModsParamsOrder(val string) (ListTeamModsParamsOrder, error) {
 	if res, ok := stringToListTeamModsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListTeamModsParamsOrder(val)
+	return ListTeamModsParamsOrder(""), ErrListTeamModsParamsOrder
 }
 
 // Defines values for ListTeamPacksParamsSort.
@@ -1325,8 +1325,8 @@ const (
 )
 
 var (
-	// InvalidListTeamPacksParamsSort defines an error if an invalid value gets mapped.
-	InvalidListTeamPacksParamsSort = fmt.Errorf("invalid type for ListTeamPacksParamsSort")
+	// ErrListTeamPacksParamsSort defines an error if an invalid value gets mapped.
+	ErrListTeamPacksParamsSort = fmt.Errorf("invalid type for ListTeamPacksParamsSort")
 
 	stringToListTeamPacksParamsSort = map[string]ListTeamPacksParamsSort{
 		"name":   ListTeamPacksParamsSortName,
@@ -1336,12 +1336,12 @@ var (
 )
 
 // ToListTeamPacksParamsSort acts as a helper to map a string to the defined enum.
-func ToListTeamPacksParamsSort(val string) ListTeamPacksParamsSort {
+func ToListTeamPacksParamsSort(val string) (ListTeamPacksParamsSort, error) {
 	if res, ok := stringToListTeamPacksParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListTeamPacksParamsSort(val)
+	return ListTeamPacksParamsSort(""), ErrListTeamPacksParamsSort
 }
 
 // Defines values for ListTeamPacksParamsOrder.
@@ -1351,8 +1351,8 @@ const (
 )
 
 var (
-	// InvalidListTeamPacksParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListTeamPacksParamsOrder = fmt.Errorf("invalid type for ListTeamPacksParamsOrder")
+	// ErrListTeamPacksParamsOrder defines an error if an invalid value gets mapped.
+	ErrListTeamPacksParamsOrder = fmt.Errorf("invalid type for ListTeamPacksParamsOrder")
 
 	stringToListTeamPacksParamsOrder = map[string]ListTeamPacksParamsOrder{
 		"asc":  ListTeamPacksParamsOrderAsc,
@@ -1361,12 +1361,12 @@ var (
 )
 
 // ToListTeamPacksParamsOrder acts as a helper to map a string to the defined enum.
-func ToListTeamPacksParamsOrder(val string) ListTeamPacksParamsOrder {
+func ToListTeamPacksParamsOrder(val string) (ListTeamPacksParamsOrder, error) {
 	if res, ok := stringToListTeamPacksParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListTeamPacksParamsOrder(val)
+	return ListTeamPacksParamsOrder(""), ErrListTeamPacksParamsOrder
 }
 
 // Defines values for ListTeamUsersParamsSort.
@@ -1379,8 +1379,8 @@ const (
 )
 
 var (
-	// InvalidListTeamUsersParamsSort defines an error if an invalid value gets mapped.
-	InvalidListTeamUsersParamsSort = fmt.Errorf("invalid type for ListTeamUsersParamsSort")
+	// ErrListTeamUsersParamsSort defines an error if an invalid value gets mapped.
+	ErrListTeamUsersParamsSort = fmt.Errorf("invalid type for ListTeamUsersParamsSort")
 
 	stringToListTeamUsersParamsSort = map[string]ListTeamUsersParamsSort{
 		"active":   ListTeamUsersParamsSortActive,
@@ -1392,12 +1392,12 @@ var (
 )
 
 // ToListTeamUsersParamsSort acts as a helper to map a string to the defined enum.
-func ToListTeamUsersParamsSort(val string) ListTeamUsersParamsSort {
+func ToListTeamUsersParamsSort(val string) (ListTeamUsersParamsSort, error) {
 	if res, ok := stringToListTeamUsersParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListTeamUsersParamsSort(val)
+	return ListTeamUsersParamsSort(""), ErrListTeamUsersParamsSort
 }
 
 // Defines values for ListTeamUsersParamsOrder.
@@ -1407,8 +1407,8 @@ const (
 )
 
 var (
-	// InvalidListTeamUsersParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListTeamUsersParamsOrder = fmt.Errorf("invalid type for ListTeamUsersParamsOrder")
+	// ErrListTeamUsersParamsOrder defines an error if an invalid value gets mapped.
+	ErrListTeamUsersParamsOrder = fmt.Errorf("invalid type for ListTeamUsersParamsOrder")
 
 	stringToListTeamUsersParamsOrder = map[string]ListTeamUsersParamsOrder{
 		"asc":  ListTeamUsersParamsOrderAsc,
@@ -1417,12 +1417,12 @@ var (
 )
 
 // ToListTeamUsersParamsOrder acts as a helper to map a string to the defined enum.
-func ToListTeamUsersParamsOrder(val string) ListTeamUsersParamsOrder {
+func ToListTeamUsersParamsOrder(val string) (ListTeamUsersParamsOrder, error) {
 	if res, ok := stringToListTeamUsersParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListTeamUsersParamsOrder(val)
+	return ListTeamUsersParamsOrder(""), ErrListTeamUsersParamsOrder
 }
 
 // Defines values for ListUsersParamsSort.
@@ -1435,8 +1435,8 @@ const (
 )
 
 var (
-	// InvalidListUsersParamsSort defines an error if an invalid value gets mapped.
-	InvalidListUsersParamsSort = fmt.Errorf("invalid type for ListUsersParamsSort")
+	// ErrListUsersParamsSort defines an error if an invalid value gets mapped.
+	ErrListUsersParamsSort = fmt.Errorf("invalid type for ListUsersParamsSort")
 
 	stringToListUsersParamsSort = map[string]ListUsersParamsSort{
 		"active":   Active,
@@ -1448,12 +1448,12 @@ var (
 )
 
 // ToListUsersParamsSort acts as a helper to map a string to the defined enum.
-func ToListUsersParamsSort(val string) ListUsersParamsSort {
+func ToListUsersParamsSort(val string) (ListUsersParamsSort, error) {
 	if res, ok := stringToListUsersParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListUsersParamsSort(val)
+	return ListUsersParamsSort(""), ErrListUsersParamsSort
 }
 
 // Defines values for ListUsersParamsOrder.
@@ -1463,8 +1463,8 @@ const (
 )
 
 var (
-	// InvalidListUsersParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListUsersParamsOrder = fmt.Errorf("invalid type for ListUsersParamsOrder")
+	// ErrListUsersParamsOrder defines an error if an invalid value gets mapped.
+	ErrListUsersParamsOrder = fmt.Errorf("invalid type for ListUsersParamsOrder")
 
 	stringToListUsersParamsOrder = map[string]ListUsersParamsOrder{
 		"asc":  ListUsersParamsOrderAsc,
@@ -1473,12 +1473,12 @@ var (
 )
 
 // ToListUsersParamsOrder acts as a helper to map a string to the defined enum.
-func ToListUsersParamsOrder(val string) ListUsersParamsOrder {
+func ToListUsersParamsOrder(val string) (ListUsersParamsOrder, error) {
 	if res, ok := stringToListUsersParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListUsersParamsOrder(val)
+	return ListUsersParamsOrder(""), ErrListUsersParamsOrder
 }
 
 // Defines values for ListUserModsParamsSort.
@@ -1489,8 +1489,8 @@ const (
 )
 
 var (
-	// InvalidListUserModsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListUserModsParamsSort = fmt.Errorf("invalid type for ListUserModsParamsSort")
+	// ErrListUserModsParamsSort defines an error if an invalid value gets mapped.
+	ErrListUserModsParamsSort = fmt.Errorf("invalid type for ListUserModsParamsSort")
 
 	stringToListUserModsParamsSort = map[string]ListUserModsParamsSort{
 		"name":   ListUserModsParamsSortName,
@@ -1500,12 +1500,12 @@ var (
 )
 
 // ToListUserModsParamsSort acts as a helper to map a string to the defined enum.
-func ToListUserModsParamsSort(val string) ListUserModsParamsSort {
+func ToListUserModsParamsSort(val string) (ListUserModsParamsSort, error) {
 	if res, ok := stringToListUserModsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListUserModsParamsSort(val)
+	return ListUserModsParamsSort(""), ErrListUserModsParamsSort
 }
 
 // Defines values for ListUserModsParamsOrder.
@@ -1515,8 +1515,8 @@ const (
 )
 
 var (
-	// InvalidListUserModsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListUserModsParamsOrder = fmt.Errorf("invalid type for ListUserModsParamsOrder")
+	// ErrListUserModsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListUserModsParamsOrder = fmt.Errorf("invalid type for ListUserModsParamsOrder")
 
 	stringToListUserModsParamsOrder = map[string]ListUserModsParamsOrder{
 		"asc":  ListUserModsParamsOrderAsc,
@@ -1525,12 +1525,12 @@ var (
 )
 
 // ToListUserModsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListUserModsParamsOrder(val string) ListUserModsParamsOrder {
+func ToListUserModsParamsOrder(val string) (ListUserModsParamsOrder, error) {
 	if res, ok := stringToListUserModsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListUserModsParamsOrder(val)
+	return ListUserModsParamsOrder(""), ErrListUserModsParamsOrder
 }
 
 // Defines values for ListUserPacksParamsSort.
@@ -1541,8 +1541,8 @@ const (
 )
 
 var (
-	// InvalidListUserPacksParamsSort defines an error if an invalid value gets mapped.
-	InvalidListUserPacksParamsSort = fmt.Errorf("invalid type for ListUserPacksParamsSort")
+	// ErrListUserPacksParamsSort defines an error if an invalid value gets mapped.
+	ErrListUserPacksParamsSort = fmt.Errorf("invalid type for ListUserPacksParamsSort")
 
 	stringToListUserPacksParamsSort = map[string]ListUserPacksParamsSort{
 		"name":   ListUserPacksParamsSortName,
@@ -1552,12 +1552,12 @@ var (
 )
 
 // ToListUserPacksParamsSort acts as a helper to map a string to the defined enum.
-func ToListUserPacksParamsSort(val string) ListUserPacksParamsSort {
+func ToListUserPacksParamsSort(val string) (ListUserPacksParamsSort, error) {
 	if res, ok := stringToListUserPacksParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListUserPacksParamsSort(val)
+	return ListUserPacksParamsSort(""), ErrListUserPacksParamsSort
 }
 
 // Defines values for ListUserPacksParamsOrder.
@@ -1567,8 +1567,8 @@ const (
 )
 
 var (
-	// InvalidListUserPacksParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListUserPacksParamsOrder = fmt.Errorf("invalid type for ListUserPacksParamsOrder")
+	// ErrListUserPacksParamsOrder defines an error if an invalid value gets mapped.
+	ErrListUserPacksParamsOrder = fmt.Errorf("invalid type for ListUserPacksParamsOrder")
 
 	stringToListUserPacksParamsOrder = map[string]ListUserPacksParamsOrder{
 		"asc":  ListUserPacksParamsOrderAsc,
@@ -1577,12 +1577,12 @@ var (
 )
 
 // ToListUserPacksParamsOrder acts as a helper to map a string to the defined enum.
-func ToListUserPacksParamsOrder(val string) ListUserPacksParamsOrder {
+func ToListUserPacksParamsOrder(val string) (ListUserPacksParamsOrder, error) {
 	if res, ok := stringToListUserPacksParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListUserPacksParamsOrder(val)
+	return ListUserPacksParamsOrder(""), ErrListUserPacksParamsOrder
 }
 
 // Defines values for ListUserTeamsParamsSort.
@@ -1592,8 +1592,8 @@ const (
 )
 
 var (
-	// InvalidListUserTeamsParamsSort defines an error if an invalid value gets mapped.
-	InvalidListUserTeamsParamsSort = fmt.Errorf("invalid type for ListUserTeamsParamsSort")
+	// ErrListUserTeamsParamsSort defines an error if an invalid value gets mapped.
+	ErrListUserTeamsParamsSort = fmt.Errorf("invalid type for ListUserTeamsParamsSort")
 
 	stringToListUserTeamsParamsSort = map[string]ListUserTeamsParamsSort{
 		"name": ListUserTeamsParamsSortName,
@@ -1602,12 +1602,12 @@ var (
 )
 
 // ToListUserTeamsParamsSort acts as a helper to map a string to the defined enum.
-func ToListUserTeamsParamsSort(val string) ListUserTeamsParamsSort {
+func ToListUserTeamsParamsSort(val string) (ListUserTeamsParamsSort, error) {
 	if res, ok := stringToListUserTeamsParamsSort[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListUserTeamsParamsSort(val)
+	return ListUserTeamsParamsSort(""), ErrListUserTeamsParamsSort
 }
 
 // Defines values for ListUserTeamsParamsOrder.
@@ -1617,8 +1617,8 @@ const (
 )
 
 var (
-	// InvalidListUserTeamsParamsOrder defines an error if an invalid value gets mapped.
-	InvalidListUserTeamsParamsOrder = fmt.Errorf("invalid type for ListUserTeamsParamsOrder")
+	// ErrListUserTeamsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListUserTeamsParamsOrder = fmt.Errorf("invalid type for ListUserTeamsParamsOrder")
 
 	stringToListUserTeamsParamsOrder = map[string]ListUserTeamsParamsOrder{
 		"asc":  Asc,
@@ -1627,12 +1627,12 @@ var (
 )
 
 // ToListUserTeamsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListUserTeamsParamsOrder(val string) ListUserTeamsParamsOrder {
+func ToListUserTeamsParamsOrder(val string) (ListUserTeamsParamsOrder, error) {
 	if res, ok := stringToListUserTeamsParamsOrder[val]; ok {
-		return res
+		return res, nil
 	}
 
-	return ListUserTeamsParamsOrder(val)
+	return ListUserTeamsParamsOrder(""), ErrListUserTeamsParamsOrder
 }
 
 // AuthLogin defines model for auth_login.
