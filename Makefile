@@ -52,7 +52,7 @@ generate:
 
 .PHONY: openapi
 openapi: $(OAPI_CODEGEN)
-	$(OAPI_CODEGEN) -generate types,client -package kleister -o kleister/gen.go $(OPENAPI_URL)
+	$(OAPI_CODEGEN) -templates hack/templates/ -generate types,client -package kleister -o kleister/gen.go $(OPENAPI_URL)
 
 .PHONY: test
 test:

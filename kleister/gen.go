@@ -31,12 +31,52 @@ const (
 	ModTeamParamsPermTeam  ModTeamParamsPerm = "team"
 )
 
+var (
+	// InvalidModTeamParamsPerm defines an error if an invalid value gets mapped.
+	InvalidModTeamParamsPerm = fmt.Errorf("invalid type for ModTeamParamsPerm")
+
+	stringToModTeamParamsPerm = map[string]ModTeamParamsPerm{
+		"admin": ModTeamParamsPermAdmin,
+		"owner": ModTeamParamsPermOwner,
+		"team":  ModTeamParamsPermTeam,
+	}
+)
+
+// ToModTeamParamsPerm acts as a helper to map a string to the defined enum.
+func ToModTeamParamsPerm(val string) ModTeamParamsPerm {
+	if res, ok := stringToModTeamParamsPerm[val]; ok {
+		return res
+	}
+
+	return ModTeamParamsPerm(val)
+}
+
 // Defines values for ModUserParamsPerm.
 const (
 	ModUserParamsPermAdmin ModUserParamsPerm = "admin"
 	ModUserParamsPermOwner ModUserParamsPerm = "owner"
 	ModUserParamsPermUser  ModUserParamsPerm = "user"
 )
+
+var (
+	// InvalidModUserParamsPerm defines an error if an invalid value gets mapped.
+	InvalidModUserParamsPerm = fmt.Errorf("invalid type for ModUserParamsPerm")
+
+	stringToModUserParamsPerm = map[string]ModUserParamsPerm{
+		"admin": ModUserParamsPermAdmin,
+		"owner": ModUserParamsPermOwner,
+		"user":  ModUserParamsPermUser,
+	}
+)
+
+// ToModUserParamsPerm acts as a helper to map a string to the defined enum.
+func ToModUserParamsPerm(val string) ModUserParamsPerm {
+	if res, ok := stringToModUserParamsPerm[val]; ok {
+		return res
+	}
+
+	return ModUserParamsPerm(val)
+}
 
 // Defines values for PackTeamParamsPerm.
 const (
@@ -45,12 +85,52 @@ const (
 	PackTeamParamsPermTeam  PackTeamParamsPerm = "team"
 )
 
+var (
+	// InvalidPackTeamParamsPerm defines an error if an invalid value gets mapped.
+	InvalidPackTeamParamsPerm = fmt.Errorf("invalid type for PackTeamParamsPerm")
+
+	stringToPackTeamParamsPerm = map[string]PackTeamParamsPerm{
+		"admin": PackTeamParamsPermAdmin,
+		"owner": PackTeamParamsPermOwner,
+		"team":  PackTeamParamsPermTeam,
+	}
+)
+
+// ToPackTeamParamsPerm acts as a helper to map a string to the defined enum.
+func ToPackTeamParamsPerm(val string) PackTeamParamsPerm {
+	if res, ok := stringToPackTeamParamsPerm[val]; ok {
+		return res
+	}
+
+	return PackTeamParamsPerm(val)
+}
+
 // Defines values for PackUserParamsPerm.
 const (
 	PackUserParamsPermAdmin PackUserParamsPerm = "admin"
 	PackUserParamsPermOwner PackUserParamsPerm = "owner"
 	PackUserParamsPermUser  PackUserParamsPerm = "user"
 )
+
+var (
+	// InvalidPackUserParamsPerm defines an error if an invalid value gets mapped.
+	InvalidPackUserParamsPerm = fmt.Errorf("invalid type for PackUserParamsPerm")
+
+	stringToPackUserParamsPerm = map[string]PackUserParamsPerm{
+		"admin": PackUserParamsPermAdmin,
+		"owner": PackUserParamsPermOwner,
+		"user":  PackUserParamsPermUser,
+	}
+)
+
+// ToPackUserParamsPerm acts as a helper to map a string to the defined enum.
+func ToPackUserParamsPerm(val string) PackUserParamsPerm {
+	if res, ok := stringToPackUserParamsPerm[val]; ok {
+		return res
+	}
+
+	return PackUserParamsPerm(val)
+}
 
 // Defines values for TeamModPerm.
 const (
@@ -59,12 +139,52 @@ const (
 	TeamModPermTeam  TeamModPerm = "team"
 )
 
+var (
+	// InvalidTeamModPerm defines an error if an invalid value gets mapped.
+	InvalidTeamModPerm = fmt.Errorf("invalid type for TeamModPerm")
+
+	stringToTeamModPerm = map[string]TeamModPerm{
+		"admin": TeamModPermAdmin,
+		"owner": TeamModPermOwner,
+		"team":  TeamModPermTeam,
+	}
+)
+
+// ToTeamModPerm acts as a helper to map a string to the defined enum.
+func ToTeamModPerm(val string) TeamModPerm {
+	if res, ok := stringToTeamModPerm[val]; ok {
+		return res
+	}
+
+	return TeamModPerm(val)
+}
+
 // Defines values for TeamModParamsPerm.
 const (
 	TeamModParamsPermAdmin TeamModParamsPerm = "admin"
 	TeamModParamsPermOwner TeamModParamsPerm = "owner"
 	TeamModParamsPermTeam  TeamModParamsPerm = "team"
 )
+
+var (
+	// InvalidTeamModParamsPerm defines an error if an invalid value gets mapped.
+	InvalidTeamModParamsPerm = fmt.Errorf("invalid type for TeamModParamsPerm")
+
+	stringToTeamModParamsPerm = map[string]TeamModParamsPerm{
+		"admin": TeamModParamsPermAdmin,
+		"owner": TeamModParamsPermOwner,
+		"team":  TeamModParamsPermTeam,
+	}
+)
+
+// ToTeamModParamsPerm acts as a helper to map a string to the defined enum.
+func ToTeamModParamsPerm(val string) TeamModParamsPerm {
+	if res, ok := stringToTeamModParamsPerm[val]; ok {
+		return res
+	}
+
+	return TeamModParamsPerm(val)
+}
 
 // Defines values for TeamPackPerm.
 const (
@@ -73,12 +193,52 @@ const (
 	TeamPackPermTeam  TeamPackPerm = "team"
 )
 
+var (
+	// InvalidTeamPackPerm defines an error if an invalid value gets mapped.
+	InvalidTeamPackPerm = fmt.Errorf("invalid type for TeamPackPerm")
+
+	stringToTeamPackPerm = map[string]TeamPackPerm{
+		"admin": TeamPackPermAdmin,
+		"owner": TeamPackPermOwner,
+		"team":  TeamPackPermTeam,
+	}
+)
+
+// ToTeamPackPerm acts as a helper to map a string to the defined enum.
+func ToTeamPackPerm(val string) TeamPackPerm {
+	if res, ok := stringToTeamPackPerm[val]; ok {
+		return res
+	}
+
+	return TeamPackPerm(val)
+}
+
 // Defines values for TeamPackParamsPerm.
 const (
 	TeamPackParamsPermAdmin TeamPackParamsPerm = "admin"
 	TeamPackParamsPermOwner TeamPackParamsPerm = "owner"
 	TeamPackParamsPermTeam  TeamPackParamsPerm = "team"
 )
+
+var (
+	// InvalidTeamPackParamsPerm defines an error if an invalid value gets mapped.
+	InvalidTeamPackParamsPerm = fmt.Errorf("invalid type for TeamPackParamsPerm")
+
+	stringToTeamPackParamsPerm = map[string]TeamPackParamsPerm{
+		"admin": TeamPackParamsPermAdmin,
+		"owner": TeamPackParamsPermOwner,
+		"team":  TeamPackParamsPermTeam,
+	}
+)
+
+// ToTeamPackParamsPerm acts as a helper to map a string to the defined enum.
+func ToTeamPackParamsPerm(val string) TeamPackParamsPerm {
+	if res, ok := stringToTeamPackParamsPerm[val]; ok {
+		return res
+	}
+
+	return TeamPackParamsPerm(val)
+}
 
 // Defines values for TeamUserParamsPerm.
 const (
@@ -87,12 +247,52 @@ const (
 	TeamUserParamsPermUser  TeamUserParamsPerm = "user"
 )
 
+var (
+	// InvalidTeamUserParamsPerm defines an error if an invalid value gets mapped.
+	InvalidTeamUserParamsPerm = fmt.Errorf("invalid type for TeamUserParamsPerm")
+
+	stringToTeamUserParamsPerm = map[string]TeamUserParamsPerm{
+		"admin": TeamUserParamsPermAdmin,
+		"owner": TeamUserParamsPermOwner,
+		"user":  TeamUserParamsPermUser,
+	}
+)
+
+// ToTeamUserParamsPerm acts as a helper to map a string to the defined enum.
+func ToTeamUserParamsPerm(val string) TeamUserParamsPerm {
+	if res, ok := stringToTeamUserParamsPerm[val]; ok {
+		return res
+	}
+
+	return TeamUserParamsPerm(val)
+}
+
 // Defines values for UserModPerm.
 const (
 	UserModPermAdmin UserModPerm = "admin"
 	UserModPermOwner UserModPerm = "owner"
 	UserModPermUser  UserModPerm = "user"
 )
+
+var (
+	// InvalidUserModPerm defines an error if an invalid value gets mapped.
+	InvalidUserModPerm = fmt.Errorf("invalid type for UserModPerm")
+
+	stringToUserModPerm = map[string]UserModPerm{
+		"admin": UserModPermAdmin,
+		"owner": UserModPermOwner,
+		"user":  UserModPermUser,
+	}
+)
+
+// ToUserModPerm acts as a helper to map a string to the defined enum.
+func ToUserModPerm(val string) UserModPerm {
+	if res, ok := stringToUserModPerm[val]; ok {
+		return res
+	}
+
+	return UserModPerm(val)
+}
 
 // Defines values for UserModParamsPerm.
 const (
@@ -101,12 +301,52 @@ const (
 	UserModParamsPermUser  UserModParamsPerm = "user"
 )
 
+var (
+	// InvalidUserModParamsPerm defines an error if an invalid value gets mapped.
+	InvalidUserModParamsPerm = fmt.Errorf("invalid type for UserModParamsPerm")
+
+	stringToUserModParamsPerm = map[string]UserModParamsPerm{
+		"admin": UserModParamsPermAdmin,
+		"owner": UserModParamsPermOwner,
+		"user":  UserModParamsPermUser,
+	}
+)
+
+// ToUserModParamsPerm acts as a helper to map a string to the defined enum.
+func ToUserModParamsPerm(val string) UserModParamsPerm {
+	if res, ok := stringToUserModParamsPerm[val]; ok {
+		return res
+	}
+
+	return UserModParamsPerm(val)
+}
+
 // Defines values for UserPackPerm.
 const (
 	UserPackPermAdmin UserPackPerm = "admin"
 	UserPackPermOwner UserPackPerm = "owner"
 	UserPackPermUser  UserPackPerm = "user"
 )
+
+var (
+	// InvalidUserPackPerm defines an error if an invalid value gets mapped.
+	InvalidUserPackPerm = fmt.Errorf("invalid type for UserPackPerm")
+
+	stringToUserPackPerm = map[string]UserPackPerm{
+		"admin": UserPackPermAdmin,
+		"owner": UserPackPermOwner,
+		"user":  UserPackPermUser,
+	}
+)
+
+// ToUserPackPerm acts as a helper to map a string to the defined enum.
+func ToUserPackPerm(val string) UserPackPerm {
+	if res, ok := stringToUserPackPerm[val]; ok {
+		return res
+	}
+
+	return UserPackPerm(val)
+}
 
 // Defines values for UserPackParamsPerm.
 const (
@@ -115,6 +355,26 @@ const (
 	UserPackParamsPermUser  UserPackParamsPerm = "user"
 )
 
+var (
+	// InvalidUserPackParamsPerm defines an error if an invalid value gets mapped.
+	InvalidUserPackParamsPerm = fmt.Errorf("invalid type for UserPackParamsPerm")
+
+	stringToUserPackParamsPerm = map[string]UserPackParamsPerm{
+		"admin": UserPackParamsPermAdmin,
+		"owner": UserPackParamsPermOwner,
+		"user":  UserPackParamsPermUser,
+	}
+)
+
+// ToUserPackParamsPerm acts as a helper to map a string to the defined enum.
+func ToUserPackParamsPerm(val string) UserPackParamsPerm {
+	if res, ok := stringToUserPackParamsPerm[val]; ok {
+		return res
+	}
+
+	return UserPackParamsPerm(val)
+}
+
 // Defines values for UserTeamPerm.
 const (
 	UserTeamPermAdmin UserTeamPerm = "admin"
@@ -122,12 +382,52 @@ const (
 	UserTeamPermUser  UserTeamPerm = "user"
 )
 
+var (
+	// InvalidUserTeamPerm defines an error if an invalid value gets mapped.
+	InvalidUserTeamPerm = fmt.Errorf("invalid type for UserTeamPerm")
+
+	stringToUserTeamPerm = map[string]UserTeamPerm{
+		"admin": UserTeamPermAdmin,
+		"owner": UserTeamPermOwner,
+		"user":  UserTeamPermUser,
+	}
+)
+
+// ToUserTeamPerm acts as a helper to map a string to the defined enum.
+func ToUserTeamPerm(val string) UserTeamPerm {
+	if res, ok := stringToUserTeamPerm[val]; ok {
+		return res
+	}
+
+	return UserTeamPerm(val)
+}
+
 // Defines values for UserTeamParamsPerm.
 const (
 	UserTeamParamsPermAdmin UserTeamParamsPerm = "admin"
 	UserTeamParamsPermOwner UserTeamParamsPerm = "owner"
 	UserTeamParamsPermUser  UserTeamParamsPerm = "user"
 )
+
+var (
+	// InvalidUserTeamParamsPerm defines an error if an invalid value gets mapped.
+	InvalidUserTeamParamsPerm = fmt.Errorf("invalid type for UserTeamParamsPerm")
+
+	stringToUserTeamParamsPerm = map[string]UserTeamParamsPerm{
+		"admin": UserTeamParamsPermAdmin,
+		"owner": UserTeamParamsPermOwner,
+		"user":  UserTeamParamsPermUser,
+	}
+)
+
+// ToUserTeamParamsPerm acts as a helper to map a string to the defined enum.
+func ToUserTeamParamsPerm(val string) UserTeamParamsPerm {
+	if res, ok := stringToUserTeamParamsPerm[val]; ok {
+		return res
+	}
+
+	return UserTeamParamsPerm(val)
+}
 
 // Defines values for ListFabricBuildsParamsSort.
 const (
@@ -137,11 +437,51 @@ const (
 	ListFabricBuildsParamsSortPackSlug    ListFabricBuildsParamsSort = "pack_slug"
 )
 
+var (
+	// InvalidListFabricBuildsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListFabricBuildsParamsSort = fmt.Errorf("invalid type for ListFabricBuildsParamsSort")
+
+	stringToListFabricBuildsParamsSort = map[string]ListFabricBuildsParamsSort{
+		"build_name":   ListFabricBuildsParamsSortBuildName,
+		"build_public": ListFabricBuildsParamsSortBuildPublic,
+		"pack_name":    ListFabricBuildsParamsSortPackName,
+		"pack_slug":    ListFabricBuildsParamsSortPackSlug,
+	}
+)
+
+// ToListFabricBuildsParamsSort acts as a helper to map a string to the defined enum.
+func ToListFabricBuildsParamsSort(val string) ListFabricBuildsParamsSort {
+	if res, ok := stringToListFabricBuildsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListFabricBuildsParamsSort(val)
+}
+
 // Defines values for ListFabricBuildsParamsOrder.
 const (
 	ListFabricBuildsParamsOrderAsc  ListFabricBuildsParamsOrder = "asc"
 	ListFabricBuildsParamsOrderDesc ListFabricBuildsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListFabricBuildsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListFabricBuildsParamsOrder = fmt.Errorf("invalid type for ListFabricBuildsParamsOrder")
+
+	stringToListFabricBuildsParamsOrder = map[string]ListFabricBuildsParamsOrder{
+		"asc":  ListFabricBuildsParamsOrderAsc,
+		"desc": ListFabricBuildsParamsOrderDesc,
+	}
+)
+
+// ToListFabricBuildsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListFabricBuildsParamsOrder(val string) ListFabricBuildsParamsOrder {
+	if res, ok := stringToListFabricBuildsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListFabricBuildsParamsOrder(val)
+}
 
 // Defines values for ListForgeBuildsParamsSort.
 const (
@@ -151,11 +491,51 @@ const (
 	ListForgeBuildsParamsSortPackSlug    ListForgeBuildsParamsSort = "pack_slug"
 )
 
+var (
+	// InvalidListForgeBuildsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListForgeBuildsParamsSort = fmt.Errorf("invalid type for ListForgeBuildsParamsSort")
+
+	stringToListForgeBuildsParamsSort = map[string]ListForgeBuildsParamsSort{
+		"build_name":   ListForgeBuildsParamsSortBuildName,
+		"build_public": ListForgeBuildsParamsSortBuildPublic,
+		"pack_name":    ListForgeBuildsParamsSortPackName,
+		"pack_slug":    ListForgeBuildsParamsSortPackSlug,
+	}
+)
+
+// ToListForgeBuildsParamsSort acts as a helper to map a string to the defined enum.
+func ToListForgeBuildsParamsSort(val string) ListForgeBuildsParamsSort {
+	if res, ok := stringToListForgeBuildsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListForgeBuildsParamsSort(val)
+}
+
 // Defines values for ListForgeBuildsParamsOrder.
 const (
 	ListForgeBuildsParamsOrderAsc  ListForgeBuildsParamsOrder = "asc"
 	ListForgeBuildsParamsOrderDesc ListForgeBuildsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListForgeBuildsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListForgeBuildsParamsOrder = fmt.Errorf("invalid type for ListForgeBuildsParamsOrder")
+
+	stringToListForgeBuildsParamsOrder = map[string]ListForgeBuildsParamsOrder{
+		"asc":  ListForgeBuildsParamsOrderAsc,
+		"desc": ListForgeBuildsParamsOrderDesc,
+	}
+)
+
+// ToListForgeBuildsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListForgeBuildsParamsOrder(val string) ListForgeBuildsParamsOrder {
+	if res, ok := stringToListForgeBuildsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListForgeBuildsParamsOrder(val)
+}
 
 // Defines values for ListMinecraftBuildsParamsSort.
 const (
@@ -165,11 +545,51 @@ const (
 	ListMinecraftBuildsParamsSortPackSlug    ListMinecraftBuildsParamsSort = "pack_slug"
 )
 
+var (
+	// InvalidListMinecraftBuildsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListMinecraftBuildsParamsSort = fmt.Errorf("invalid type for ListMinecraftBuildsParamsSort")
+
+	stringToListMinecraftBuildsParamsSort = map[string]ListMinecraftBuildsParamsSort{
+		"build_name":   ListMinecraftBuildsParamsSortBuildName,
+		"build_public": ListMinecraftBuildsParamsSortBuildPublic,
+		"pack_name":    ListMinecraftBuildsParamsSortPackName,
+		"pack_slug":    ListMinecraftBuildsParamsSortPackSlug,
+	}
+)
+
+// ToListMinecraftBuildsParamsSort acts as a helper to map a string to the defined enum.
+func ToListMinecraftBuildsParamsSort(val string) ListMinecraftBuildsParamsSort {
+	if res, ok := stringToListMinecraftBuildsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListMinecraftBuildsParamsSort(val)
+}
+
 // Defines values for ListMinecraftBuildsParamsOrder.
 const (
 	ListMinecraftBuildsParamsOrderAsc  ListMinecraftBuildsParamsOrder = "asc"
 	ListMinecraftBuildsParamsOrderDesc ListMinecraftBuildsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListMinecraftBuildsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListMinecraftBuildsParamsOrder = fmt.Errorf("invalid type for ListMinecraftBuildsParamsOrder")
+
+	stringToListMinecraftBuildsParamsOrder = map[string]ListMinecraftBuildsParamsOrder{
+		"asc":  ListMinecraftBuildsParamsOrderAsc,
+		"desc": ListMinecraftBuildsParamsOrderDesc,
+	}
+)
+
+// ToListMinecraftBuildsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListMinecraftBuildsParamsOrder(val string) ListMinecraftBuildsParamsOrder {
+	if res, ok := stringToListMinecraftBuildsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListMinecraftBuildsParamsOrder(val)
+}
 
 // Defines values for ListModsParamsSort.
 const (
@@ -178,11 +598,50 @@ const (
 	ListModsParamsSortSlug   ListModsParamsSort = "slug"
 )
 
+var (
+	// InvalidListModsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListModsParamsSort = fmt.Errorf("invalid type for ListModsParamsSort")
+
+	stringToListModsParamsSort = map[string]ListModsParamsSort{
+		"name":   ListModsParamsSortName,
+		"public": ListModsParamsSortPublic,
+		"slug":   ListModsParamsSortSlug,
+	}
+)
+
+// ToListModsParamsSort acts as a helper to map a string to the defined enum.
+func ToListModsParamsSort(val string) ListModsParamsSort {
+	if res, ok := stringToListModsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListModsParamsSort(val)
+}
+
 // Defines values for ListModsParamsOrder.
 const (
 	ListModsParamsOrderAsc  ListModsParamsOrder = "asc"
 	ListModsParamsOrderDesc ListModsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListModsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListModsParamsOrder = fmt.Errorf("invalid type for ListModsParamsOrder")
+
+	stringToListModsParamsOrder = map[string]ListModsParamsOrder{
+		"asc":  ListModsParamsOrderAsc,
+		"desc": ListModsParamsOrderDesc,
+	}
+)
+
+// ToListModsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListModsParamsOrder(val string) ListModsParamsOrder {
+	if res, ok := stringToListModsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListModsParamsOrder(val)
+}
 
 // Defines values for ListModTeamsParamsSort.
 const (
@@ -190,11 +649,49 @@ const (
 	ListModTeamsParamsSortSlug ListModTeamsParamsSort = "slug"
 )
 
+var (
+	// InvalidListModTeamsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListModTeamsParamsSort = fmt.Errorf("invalid type for ListModTeamsParamsSort")
+
+	stringToListModTeamsParamsSort = map[string]ListModTeamsParamsSort{
+		"name": ListModTeamsParamsSortName,
+		"slug": ListModTeamsParamsSortSlug,
+	}
+)
+
+// ToListModTeamsParamsSort acts as a helper to map a string to the defined enum.
+func ToListModTeamsParamsSort(val string) ListModTeamsParamsSort {
+	if res, ok := stringToListModTeamsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListModTeamsParamsSort(val)
+}
+
 // Defines values for ListModTeamsParamsOrder.
 const (
 	ListModTeamsParamsOrderAsc  ListModTeamsParamsOrder = "asc"
 	ListModTeamsParamsOrderDesc ListModTeamsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListModTeamsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListModTeamsParamsOrder = fmt.Errorf("invalid type for ListModTeamsParamsOrder")
+
+	stringToListModTeamsParamsOrder = map[string]ListModTeamsParamsOrder{
+		"asc":  ListModTeamsParamsOrderAsc,
+		"desc": ListModTeamsParamsOrderDesc,
+	}
+)
+
+// ToListModTeamsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListModTeamsParamsOrder(val string) ListModTeamsParamsOrder {
+	if res, ok := stringToListModTeamsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListModTeamsParamsOrder(val)
+}
 
 // Defines values for ListModUsersParamsSort.
 const (
@@ -205,11 +702,52 @@ const (
 	ListModUsersParamsSortUsername ListModUsersParamsSort = "username"
 )
 
+var (
+	// InvalidListModUsersParamsSort defines an error if an invalid value gets mapped.
+	InvalidListModUsersParamsSort = fmt.Errorf("invalid type for ListModUsersParamsSort")
+
+	stringToListModUsersParamsSort = map[string]ListModUsersParamsSort{
+		"active":   ListModUsersParamsSortActive,
+		"admin":    ListModUsersParamsSortAdmin,
+		"email":    ListModUsersParamsSortEmail,
+		"fullname": ListModUsersParamsSortFullname,
+		"username": ListModUsersParamsSortUsername,
+	}
+)
+
+// ToListModUsersParamsSort acts as a helper to map a string to the defined enum.
+func ToListModUsersParamsSort(val string) ListModUsersParamsSort {
+	if res, ok := stringToListModUsersParamsSort[val]; ok {
+		return res
+	}
+
+	return ListModUsersParamsSort(val)
+}
+
 // Defines values for ListModUsersParamsOrder.
 const (
 	ListModUsersParamsOrderAsc  ListModUsersParamsOrder = "asc"
 	ListModUsersParamsOrderDesc ListModUsersParamsOrder = "desc"
 )
+
+var (
+	// InvalidListModUsersParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListModUsersParamsOrder = fmt.Errorf("invalid type for ListModUsersParamsOrder")
+
+	stringToListModUsersParamsOrder = map[string]ListModUsersParamsOrder{
+		"asc":  ListModUsersParamsOrderAsc,
+		"desc": ListModUsersParamsOrderDesc,
+	}
+)
+
+// ToListModUsersParamsOrder acts as a helper to map a string to the defined enum.
+func ToListModUsersParamsOrder(val string) ListModUsersParamsOrder {
+	if res, ok := stringToListModUsersParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListModUsersParamsOrder(val)
+}
 
 // Defines values for ListVersionsParamsSort.
 const (
@@ -217,11 +755,49 @@ const (
 	ListVersionsParamsSortPublic ListVersionsParamsSort = "public"
 )
 
+var (
+	// InvalidListVersionsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListVersionsParamsSort = fmt.Errorf("invalid type for ListVersionsParamsSort")
+
+	stringToListVersionsParamsSort = map[string]ListVersionsParamsSort{
+		"name":   ListVersionsParamsSortName,
+		"public": ListVersionsParamsSortPublic,
+	}
+)
+
+// ToListVersionsParamsSort acts as a helper to map a string to the defined enum.
+func ToListVersionsParamsSort(val string) ListVersionsParamsSort {
+	if res, ok := stringToListVersionsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListVersionsParamsSort(val)
+}
+
 // Defines values for ListVersionsParamsOrder.
 const (
 	ListVersionsParamsOrderAsc  ListVersionsParamsOrder = "asc"
 	ListVersionsParamsOrderDesc ListVersionsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListVersionsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListVersionsParamsOrder = fmt.Errorf("invalid type for ListVersionsParamsOrder")
+
+	stringToListVersionsParamsOrder = map[string]ListVersionsParamsOrder{
+		"asc":  ListVersionsParamsOrderAsc,
+		"desc": ListVersionsParamsOrderDesc,
+	}
+)
+
+// ToListVersionsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListVersionsParamsOrder(val string) ListVersionsParamsOrder {
+	if res, ok := stringToListVersionsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListVersionsParamsOrder(val)
+}
 
 // Defines values for ListVersionBuildsParamsSort.
 const (
@@ -229,11 +805,49 @@ const (
 	ListVersionBuildsParamsSortPublic ListVersionBuildsParamsSort = "public"
 )
 
+var (
+	// InvalidListVersionBuildsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListVersionBuildsParamsSort = fmt.Errorf("invalid type for ListVersionBuildsParamsSort")
+
+	stringToListVersionBuildsParamsSort = map[string]ListVersionBuildsParamsSort{
+		"name":   ListVersionBuildsParamsSortName,
+		"public": ListVersionBuildsParamsSortPublic,
+	}
+)
+
+// ToListVersionBuildsParamsSort acts as a helper to map a string to the defined enum.
+func ToListVersionBuildsParamsSort(val string) ListVersionBuildsParamsSort {
+	if res, ok := stringToListVersionBuildsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListVersionBuildsParamsSort(val)
+}
+
 // Defines values for ListVersionBuildsParamsOrder.
 const (
 	ListVersionBuildsParamsOrderAsc  ListVersionBuildsParamsOrder = "asc"
 	ListVersionBuildsParamsOrderDesc ListVersionBuildsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListVersionBuildsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListVersionBuildsParamsOrder = fmt.Errorf("invalid type for ListVersionBuildsParamsOrder")
+
+	stringToListVersionBuildsParamsOrder = map[string]ListVersionBuildsParamsOrder{
+		"asc":  ListVersionBuildsParamsOrderAsc,
+		"desc": ListVersionBuildsParamsOrderDesc,
+	}
+)
+
+// ToListVersionBuildsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListVersionBuildsParamsOrder(val string) ListVersionBuildsParamsOrder {
+	if res, ok := stringToListVersionBuildsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListVersionBuildsParamsOrder(val)
+}
 
 // Defines values for ListNeoforgeBuildsParamsSort.
 const (
@@ -243,11 +857,51 @@ const (
 	ListNeoforgeBuildsParamsSortPackSlug    ListNeoforgeBuildsParamsSort = "pack_slug"
 )
 
+var (
+	// InvalidListNeoforgeBuildsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListNeoforgeBuildsParamsSort = fmt.Errorf("invalid type for ListNeoforgeBuildsParamsSort")
+
+	stringToListNeoforgeBuildsParamsSort = map[string]ListNeoforgeBuildsParamsSort{
+		"build_name":   ListNeoforgeBuildsParamsSortBuildName,
+		"build_public": ListNeoforgeBuildsParamsSortBuildPublic,
+		"pack_name":    ListNeoforgeBuildsParamsSortPackName,
+		"pack_slug":    ListNeoforgeBuildsParamsSortPackSlug,
+	}
+)
+
+// ToListNeoforgeBuildsParamsSort acts as a helper to map a string to the defined enum.
+func ToListNeoforgeBuildsParamsSort(val string) ListNeoforgeBuildsParamsSort {
+	if res, ok := stringToListNeoforgeBuildsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListNeoforgeBuildsParamsSort(val)
+}
+
 // Defines values for ListNeoforgeBuildsParamsOrder.
 const (
 	ListNeoforgeBuildsParamsOrderAsc  ListNeoforgeBuildsParamsOrder = "asc"
 	ListNeoforgeBuildsParamsOrderDesc ListNeoforgeBuildsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListNeoforgeBuildsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListNeoforgeBuildsParamsOrder = fmt.Errorf("invalid type for ListNeoforgeBuildsParamsOrder")
+
+	stringToListNeoforgeBuildsParamsOrder = map[string]ListNeoforgeBuildsParamsOrder{
+		"asc":  ListNeoforgeBuildsParamsOrderAsc,
+		"desc": ListNeoforgeBuildsParamsOrderDesc,
+	}
+)
+
+// ToListNeoforgeBuildsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListNeoforgeBuildsParamsOrder(val string) ListNeoforgeBuildsParamsOrder {
+	if res, ok := stringToListNeoforgeBuildsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListNeoforgeBuildsParamsOrder(val)
+}
 
 // Defines values for ListPacksParamsSort.
 const (
@@ -256,11 +910,50 @@ const (
 	ListPacksParamsSortSlug   ListPacksParamsSort = "slug"
 )
 
+var (
+	// InvalidListPacksParamsSort defines an error if an invalid value gets mapped.
+	InvalidListPacksParamsSort = fmt.Errorf("invalid type for ListPacksParamsSort")
+
+	stringToListPacksParamsSort = map[string]ListPacksParamsSort{
+		"name":   ListPacksParamsSortName,
+		"public": ListPacksParamsSortPublic,
+		"slug":   ListPacksParamsSortSlug,
+	}
+)
+
+// ToListPacksParamsSort acts as a helper to map a string to the defined enum.
+func ToListPacksParamsSort(val string) ListPacksParamsSort {
+	if res, ok := stringToListPacksParamsSort[val]; ok {
+		return res
+	}
+
+	return ListPacksParamsSort(val)
+}
+
 // Defines values for ListPacksParamsOrder.
 const (
 	ListPacksParamsOrderAsc  ListPacksParamsOrder = "asc"
 	ListPacksParamsOrderDesc ListPacksParamsOrder = "desc"
 )
+
+var (
+	// InvalidListPacksParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListPacksParamsOrder = fmt.Errorf("invalid type for ListPacksParamsOrder")
+
+	stringToListPacksParamsOrder = map[string]ListPacksParamsOrder{
+		"asc":  ListPacksParamsOrderAsc,
+		"desc": ListPacksParamsOrderDesc,
+	}
+)
+
+// ToListPacksParamsOrder acts as a helper to map a string to the defined enum.
+func ToListPacksParamsOrder(val string) ListPacksParamsOrder {
+	if res, ok := stringToListPacksParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListPacksParamsOrder(val)
+}
 
 // Defines values for ListBuildsParamsSort.
 const (
@@ -268,11 +961,49 @@ const (
 	ListBuildsParamsSortPublic ListBuildsParamsSort = "public"
 )
 
+var (
+	// InvalidListBuildsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListBuildsParamsSort = fmt.Errorf("invalid type for ListBuildsParamsSort")
+
+	stringToListBuildsParamsSort = map[string]ListBuildsParamsSort{
+		"name":   ListBuildsParamsSortName,
+		"public": ListBuildsParamsSortPublic,
+	}
+)
+
+// ToListBuildsParamsSort acts as a helper to map a string to the defined enum.
+func ToListBuildsParamsSort(val string) ListBuildsParamsSort {
+	if res, ok := stringToListBuildsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListBuildsParamsSort(val)
+}
+
 // Defines values for ListBuildsParamsOrder.
 const (
 	ListBuildsParamsOrderAsc  ListBuildsParamsOrder = "asc"
 	ListBuildsParamsOrderDesc ListBuildsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListBuildsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListBuildsParamsOrder = fmt.Errorf("invalid type for ListBuildsParamsOrder")
+
+	stringToListBuildsParamsOrder = map[string]ListBuildsParamsOrder{
+		"asc":  ListBuildsParamsOrderAsc,
+		"desc": ListBuildsParamsOrderDesc,
+	}
+)
+
+// ToListBuildsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListBuildsParamsOrder(val string) ListBuildsParamsOrder {
+	if res, ok := stringToListBuildsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListBuildsParamsOrder(val)
+}
 
 // Defines values for ListBuildVersionsParamsSort.
 const (
@@ -280,11 +1011,49 @@ const (
 	ListBuildVersionsParamsSortPublic ListBuildVersionsParamsSort = "public"
 )
 
+var (
+	// InvalidListBuildVersionsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListBuildVersionsParamsSort = fmt.Errorf("invalid type for ListBuildVersionsParamsSort")
+
+	stringToListBuildVersionsParamsSort = map[string]ListBuildVersionsParamsSort{
+		"name":   ListBuildVersionsParamsSortName,
+		"public": ListBuildVersionsParamsSortPublic,
+	}
+)
+
+// ToListBuildVersionsParamsSort acts as a helper to map a string to the defined enum.
+func ToListBuildVersionsParamsSort(val string) ListBuildVersionsParamsSort {
+	if res, ok := stringToListBuildVersionsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListBuildVersionsParamsSort(val)
+}
+
 // Defines values for ListBuildVersionsParamsOrder.
 const (
 	ListBuildVersionsParamsOrderAsc  ListBuildVersionsParamsOrder = "asc"
 	ListBuildVersionsParamsOrderDesc ListBuildVersionsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListBuildVersionsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListBuildVersionsParamsOrder = fmt.Errorf("invalid type for ListBuildVersionsParamsOrder")
+
+	stringToListBuildVersionsParamsOrder = map[string]ListBuildVersionsParamsOrder{
+		"asc":  ListBuildVersionsParamsOrderAsc,
+		"desc": ListBuildVersionsParamsOrderDesc,
+	}
+)
+
+// ToListBuildVersionsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListBuildVersionsParamsOrder(val string) ListBuildVersionsParamsOrder {
+	if res, ok := stringToListBuildVersionsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListBuildVersionsParamsOrder(val)
+}
 
 // Defines values for ListPackTeamsParamsSort.
 const (
@@ -292,11 +1061,49 @@ const (
 	ListPackTeamsParamsSortSlug ListPackTeamsParamsSort = "slug"
 )
 
+var (
+	// InvalidListPackTeamsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListPackTeamsParamsSort = fmt.Errorf("invalid type for ListPackTeamsParamsSort")
+
+	stringToListPackTeamsParamsSort = map[string]ListPackTeamsParamsSort{
+		"name": ListPackTeamsParamsSortName,
+		"slug": ListPackTeamsParamsSortSlug,
+	}
+)
+
+// ToListPackTeamsParamsSort acts as a helper to map a string to the defined enum.
+func ToListPackTeamsParamsSort(val string) ListPackTeamsParamsSort {
+	if res, ok := stringToListPackTeamsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListPackTeamsParamsSort(val)
+}
+
 // Defines values for ListPackTeamsParamsOrder.
 const (
 	ListPackTeamsParamsOrderAsc  ListPackTeamsParamsOrder = "asc"
 	ListPackTeamsParamsOrderDesc ListPackTeamsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListPackTeamsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListPackTeamsParamsOrder = fmt.Errorf("invalid type for ListPackTeamsParamsOrder")
+
+	stringToListPackTeamsParamsOrder = map[string]ListPackTeamsParamsOrder{
+		"asc":  ListPackTeamsParamsOrderAsc,
+		"desc": ListPackTeamsParamsOrderDesc,
+	}
+)
+
+// ToListPackTeamsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListPackTeamsParamsOrder(val string) ListPackTeamsParamsOrder {
+	if res, ok := stringToListPackTeamsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListPackTeamsParamsOrder(val)
+}
 
 // Defines values for ListPackUsersParamsSort.
 const (
@@ -307,11 +1114,52 @@ const (
 	ListPackUsersParamsSortUsername ListPackUsersParamsSort = "username"
 )
 
+var (
+	// InvalidListPackUsersParamsSort defines an error if an invalid value gets mapped.
+	InvalidListPackUsersParamsSort = fmt.Errorf("invalid type for ListPackUsersParamsSort")
+
+	stringToListPackUsersParamsSort = map[string]ListPackUsersParamsSort{
+		"active":   ListPackUsersParamsSortActive,
+		"admin":    ListPackUsersParamsSortAdmin,
+		"email":    ListPackUsersParamsSortEmail,
+		"fullname": ListPackUsersParamsSortFullname,
+		"username": ListPackUsersParamsSortUsername,
+	}
+)
+
+// ToListPackUsersParamsSort acts as a helper to map a string to the defined enum.
+func ToListPackUsersParamsSort(val string) ListPackUsersParamsSort {
+	if res, ok := stringToListPackUsersParamsSort[val]; ok {
+		return res
+	}
+
+	return ListPackUsersParamsSort(val)
+}
+
 // Defines values for ListPackUsersParamsOrder.
 const (
 	ListPackUsersParamsOrderAsc  ListPackUsersParamsOrder = "asc"
 	ListPackUsersParamsOrderDesc ListPackUsersParamsOrder = "desc"
 )
+
+var (
+	// InvalidListPackUsersParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListPackUsersParamsOrder = fmt.Errorf("invalid type for ListPackUsersParamsOrder")
+
+	stringToListPackUsersParamsOrder = map[string]ListPackUsersParamsOrder{
+		"asc":  ListPackUsersParamsOrderAsc,
+		"desc": ListPackUsersParamsOrderDesc,
+	}
+)
+
+// ToListPackUsersParamsOrder acts as a helper to map a string to the defined enum.
+func ToListPackUsersParamsOrder(val string) ListPackUsersParamsOrder {
+	if res, ok := stringToListPackUsersParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListPackUsersParamsOrder(val)
+}
 
 // Defines values for ListQuiltBuildsParamsSort.
 const (
@@ -321,11 +1169,51 @@ const (
 	PackSlug    ListQuiltBuildsParamsSort = "pack_slug"
 )
 
+var (
+	// InvalidListQuiltBuildsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListQuiltBuildsParamsSort = fmt.Errorf("invalid type for ListQuiltBuildsParamsSort")
+
+	stringToListQuiltBuildsParamsSort = map[string]ListQuiltBuildsParamsSort{
+		"build_name":   BuildName,
+		"build_public": BuildPublic,
+		"pack_name":    PackName,
+		"pack_slug":    PackSlug,
+	}
+)
+
+// ToListQuiltBuildsParamsSort acts as a helper to map a string to the defined enum.
+func ToListQuiltBuildsParamsSort(val string) ListQuiltBuildsParamsSort {
+	if res, ok := stringToListQuiltBuildsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListQuiltBuildsParamsSort(val)
+}
+
 // Defines values for ListQuiltBuildsParamsOrder.
 const (
 	ListQuiltBuildsParamsOrderAsc  ListQuiltBuildsParamsOrder = "asc"
 	ListQuiltBuildsParamsOrderDesc ListQuiltBuildsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListQuiltBuildsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListQuiltBuildsParamsOrder = fmt.Errorf("invalid type for ListQuiltBuildsParamsOrder")
+
+	stringToListQuiltBuildsParamsOrder = map[string]ListQuiltBuildsParamsOrder{
+		"asc":  ListQuiltBuildsParamsOrderAsc,
+		"desc": ListQuiltBuildsParamsOrderDesc,
+	}
+)
+
+// ToListQuiltBuildsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListQuiltBuildsParamsOrder(val string) ListQuiltBuildsParamsOrder {
+	if res, ok := stringToListQuiltBuildsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListQuiltBuildsParamsOrder(val)
+}
 
 // Defines values for ListTeamsParamsSort.
 const (
@@ -333,11 +1221,49 @@ const (
 	ListTeamsParamsSortSlug ListTeamsParamsSort = "slug"
 )
 
+var (
+	// InvalidListTeamsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListTeamsParamsSort = fmt.Errorf("invalid type for ListTeamsParamsSort")
+
+	stringToListTeamsParamsSort = map[string]ListTeamsParamsSort{
+		"name": ListTeamsParamsSortName,
+		"slug": ListTeamsParamsSortSlug,
+	}
+)
+
+// ToListTeamsParamsSort acts as a helper to map a string to the defined enum.
+func ToListTeamsParamsSort(val string) ListTeamsParamsSort {
+	if res, ok := stringToListTeamsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListTeamsParamsSort(val)
+}
+
 // Defines values for ListTeamsParamsOrder.
 const (
 	ListTeamsParamsOrderAsc  ListTeamsParamsOrder = "asc"
 	ListTeamsParamsOrderDesc ListTeamsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListTeamsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListTeamsParamsOrder = fmt.Errorf("invalid type for ListTeamsParamsOrder")
+
+	stringToListTeamsParamsOrder = map[string]ListTeamsParamsOrder{
+		"asc":  ListTeamsParamsOrderAsc,
+		"desc": ListTeamsParamsOrderDesc,
+	}
+)
+
+// ToListTeamsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListTeamsParamsOrder(val string) ListTeamsParamsOrder {
+	if res, ok := stringToListTeamsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListTeamsParamsOrder(val)
+}
 
 // Defines values for ListTeamModsParamsSort.
 const (
@@ -346,11 +1272,50 @@ const (
 	ListTeamModsParamsSortSlug   ListTeamModsParamsSort = "slug"
 )
 
+var (
+	// InvalidListTeamModsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListTeamModsParamsSort = fmt.Errorf("invalid type for ListTeamModsParamsSort")
+
+	stringToListTeamModsParamsSort = map[string]ListTeamModsParamsSort{
+		"name":   ListTeamModsParamsSortName,
+		"public": ListTeamModsParamsSortPublic,
+		"slug":   ListTeamModsParamsSortSlug,
+	}
+)
+
+// ToListTeamModsParamsSort acts as a helper to map a string to the defined enum.
+func ToListTeamModsParamsSort(val string) ListTeamModsParamsSort {
+	if res, ok := stringToListTeamModsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListTeamModsParamsSort(val)
+}
+
 // Defines values for ListTeamModsParamsOrder.
 const (
 	ListTeamModsParamsOrderAsc  ListTeamModsParamsOrder = "asc"
 	ListTeamModsParamsOrderDesc ListTeamModsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListTeamModsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListTeamModsParamsOrder = fmt.Errorf("invalid type for ListTeamModsParamsOrder")
+
+	stringToListTeamModsParamsOrder = map[string]ListTeamModsParamsOrder{
+		"asc":  ListTeamModsParamsOrderAsc,
+		"desc": ListTeamModsParamsOrderDesc,
+	}
+)
+
+// ToListTeamModsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListTeamModsParamsOrder(val string) ListTeamModsParamsOrder {
+	if res, ok := stringToListTeamModsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListTeamModsParamsOrder(val)
+}
 
 // Defines values for ListTeamPacksParamsSort.
 const (
@@ -359,11 +1324,50 @@ const (
 	ListTeamPacksParamsSortSlug   ListTeamPacksParamsSort = "slug"
 )
 
+var (
+	// InvalidListTeamPacksParamsSort defines an error if an invalid value gets mapped.
+	InvalidListTeamPacksParamsSort = fmt.Errorf("invalid type for ListTeamPacksParamsSort")
+
+	stringToListTeamPacksParamsSort = map[string]ListTeamPacksParamsSort{
+		"name":   ListTeamPacksParamsSortName,
+		"public": ListTeamPacksParamsSortPublic,
+		"slug":   ListTeamPacksParamsSortSlug,
+	}
+)
+
+// ToListTeamPacksParamsSort acts as a helper to map a string to the defined enum.
+func ToListTeamPacksParamsSort(val string) ListTeamPacksParamsSort {
+	if res, ok := stringToListTeamPacksParamsSort[val]; ok {
+		return res
+	}
+
+	return ListTeamPacksParamsSort(val)
+}
+
 // Defines values for ListTeamPacksParamsOrder.
 const (
 	ListTeamPacksParamsOrderAsc  ListTeamPacksParamsOrder = "asc"
 	ListTeamPacksParamsOrderDesc ListTeamPacksParamsOrder = "desc"
 )
+
+var (
+	// InvalidListTeamPacksParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListTeamPacksParamsOrder = fmt.Errorf("invalid type for ListTeamPacksParamsOrder")
+
+	stringToListTeamPacksParamsOrder = map[string]ListTeamPacksParamsOrder{
+		"asc":  ListTeamPacksParamsOrderAsc,
+		"desc": ListTeamPacksParamsOrderDesc,
+	}
+)
+
+// ToListTeamPacksParamsOrder acts as a helper to map a string to the defined enum.
+func ToListTeamPacksParamsOrder(val string) ListTeamPacksParamsOrder {
+	if res, ok := stringToListTeamPacksParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListTeamPacksParamsOrder(val)
+}
 
 // Defines values for ListTeamUsersParamsSort.
 const (
@@ -374,11 +1378,52 @@ const (
 	ListTeamUsersParamsSortUsername ListTeamUsersParamsSort = "username"
 )
 
+var (
+	// InvalidListTeamUsersParamsSort defines an error if an invalid value gets mapped.
+	InvalidListTeamUsersParamsSort = fmt.Errorf("invalid type for ListTeamUsersParamsSort")
+
+	stringToListTeamUsersParamsSort = map[string]ListTeamUsersParamsSort{
+		"active":   ListTeamUsersParamsSortActive,
+		"admin":    ListTeamUsersParamsSortAdmin,
+		"email":    ListTeamUsersParamsSortEmail,
+		"fullname": ListTeamUsersParamsSortFullname,
+		"username": ListTeamUsersParamsSortUsername,
+	}
+)
+
+// ToListTeamUsersParamsSort acts as a helper to map a string to the defined enum.
+func ToListTeamUsersParamsSort(val string) ListTeamUsersParamsSort {
+	if res, ok := stringToListTeamUsersParamsSort[val]; ok {
+		return res
+	}
+
+	return ListTeamUsersParamsSort(val)
+}
+
 // Defines values for ListTeamUsersParamsOrder.
 const (
 	ListTeamUsersParamsOrderAsc  ListTeamUsersParamsOrder = "asc"
 	ListTeamUsersParamsOrderDesc ListTeamUsersParamsOrder = "desc"
 )
+
+var (
+	// InvalidListTeamUsersParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListTeamUsersParamsOrder = fmt.Errorf("invalid type for ListTeamUsersParamsOrder")
+
+	stringToListTeamUsersParamsOrder = map[string]ListTeamUsersParamsOrder{
+		"asc":  ListTeamUsersParamsOrderAsc,
+		"desc": ListTeamUsersParamsOrderDesc,
+	}
+)
+
+// ToListTeamUsersParamsOrder acts as a helper to map a string to the defined enum.
+func ToListTeamUsersParamsOrder(val string) ListTeamUsersParamsOrder {
+	if res, ok := stringToListTeamUsersParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListTeamUsersParamsOrder(val)
+}
 
 // Defines values for ListUsersParamsSort.
 const (
@@ -389,11 +1434,52 @@ const (
 	Username ListUsersParamsSort = "username"
 )
 
+var (
+	// InvalidListUsersParamsSort defines an error if an invalid value gets mapped.
+	InvalidListUsersParamsSort = fmt.Errorf("invalid type for ListUsersParamsSort")
+
+	stringToListUsersParamsSort = map[string]ListUsersParamsSort{
+		"active":   Active,
+		"admin":    Admin,
+		"email":    Email,
+		"fullname": Fullname,
+		"username": Username,
+	}
+)
+
+// ToListUsersParamsSort acts as a helper to map a string to the defined enum.
+func ToListUsersParamsSort(val string) ListUsersParamsSort {
+	if res, ok := stringToListUsersParamsSort[val]; ok {
+		return res
+	}
+
+	return ListUsersParamsSort(val)
+}
+
 // Defines values for ListUsersParamsOrder.
 const (
 	ListUsersParamsOrderAsc  ListUsersParamsOrder = "asc"
 	ListUsersParamsOrderDesc ListUsersParamsOrder = "desc"
 )
+
+var (
+	// InvalidListUsersParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListUsersParamsOrder = fmt.Errorf("invalid type for ListUsersParamsOrder")
+
+	stringToListUsersParamsOrder = map[string]ListUsersParamsOrder{
+		"asc":  ListUsersParamsOrderAsc,
+		"desc": ListUsersParamsOrderDesc,
+	}
+)
+
+// ToListUsersParamsOrder acts as a helper to map a string to the defined enum.
+func ToListUsersParamsOrder(val string) ListUsersParamsOrder {
+	if res, ok := stringToListUsersParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListUsersParamsOrder(val)
+}
 
 // Defines values for ListUserModsParamsSort.
 const (
@@ -402,11 +1488,50 @@ const (
 	ListUserModsParamsSortSlug   ListUserModsParamsSort = "slug"
 )
 
+var (
+	// InvalidListUserModsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListUserModsParamsSort = fmt.Errorf("invalid type for ListUserModsParamsSort")
+
+	stringToListUserModsParamsSort = map[string]ListUserModsParamsSort{
+		"name":   ListUserModsParamsSortName,
+		"public": ListUserModsParamsSortPublic,
+		"slug":   ListUserModsParamsSortSlug,
+	}
+)
+
+// ToListUserModsParamsSort acts as a helper to map a string to the defined enum.
+func ToListUserModsParamsSort(val string) ListUserModsParamsSort {
+	if res, ok := stringToListUserModsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListUserModsParamsSort(val)
+}
+
 // Defines values for ListUserModsParamsOrder.
 const (
 	ListUserModsParamsOrderAsc  ListUserModsParamsOrder = "asc"
 	ListUserModsParamsOrderDesc ListUserModsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListUserModsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListUserModsParamsOrder = fmt.Errorf("invalid type for ListUserModsParamsOrder")
+
+	stringToListUserModsParamsOrder = map[string]ListUserModsParamsOrder{
+		"asc":  ListUserModsParamsOrderAsc,
+		"desc": ListUserModsParamsOrderDesc,
+	}
+)
+
+// ToListUserModsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListUserModsParamsOrder(val string) ListUserModsParamsOrder {
+	if res, ok := stringToListUserModsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListUserModsParamsOrder(val)
+}
 
 // Defines values for ListUserPacksParamsSort.
 const (
@@ -415,11 +1540,50 @@ const (
 	ListUserPacksParamsSortSlug   ListUserPacksParamsSort = "slug"
 )
 
+var (
+	// InvalidListUserPacksParamsSort defines an error if an invalid value gets mapped.
+	InvalidListUserPacksParamsSort = fmt.Errorf("invalid type for ListUserPacksParamsSort")
+
+	stringToListUserPacksParamsSort = map[string]ListUserPacksParamsSort{
+		"name":   ListUserPacksParamsSortName,
+		"public": ListUserPacksParamsSortPublic,
+		"slug":   ListUserPacksParamsSortSlug,
+	}
+)
+
+// ToListUserPacksParamsSort acts as a helper to map a string to the defined enum.
+func ToListUserPacksParamsSort(val string) ListUserPacksParamsSort {
+	if res, ok := stringToListUserPacksParamsSort[val]; ok {
+		return res
+	}
+
+	return ListUserPacksParamsSort(val)
+}
+
 // Defines values for ListUserPacksParamsOrder.
 const (
 	ListUserPacksParamsOrderAsc  ListUserPacksParamsOrder = "asc"
 	ListUserPacksParamsOrderDesc ListUserPacksParamsOrder = "desc"
 )
+
+var (
+	// InvalidListUserPacksParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListUserPacksParamsOrder = fmt.Errorf("invalid type for ListUserPacksParamsOrder")
+
+	stringToListUserPacksParamsOrder = map[string]ListUserPacksParamsOrder{
+		"asc":  ListUserPacksParamsOrderAsc,
+		"desc": ListUserPacksParamsOrderDesc,
+	}
+)
+
+// ToListUserPacksParamsOrder acts as a helper to map a string to the defined enum.
+func ToListUserPacksParamsOrder(val string) ListUserPacksParamsOrder {
+	if res, ok := stringToListUserPacksParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListUserPacksParamsOrder(val)
+}
 
 // Defines values for ListUserTeamsParamsSort.
 const (
@@ -427,11 +1591,49 @@ const (
 	ListUserTeamsParamsSortSlug ListUserTeamsParamsSort = "slug"
 )
 
+var (
+	// InvalidListUserTeamsParamsSort defines an error if an invalid value gets mapped.
+	InvalidListUserTeamsParamsSort = fmt.Errorf("invalid type for ListUserTeamsParamsSort")
+
+	stringToListUserTeamsParamsSort = map[string]ListUserTeamsParamsSort{
+		"name": ListUserTeamsParamsSortName,
+		"slug": ListUserTeamsParamsSortSlug,
+	}
+)
+
+// ToListUserTeamsParamsSort acts as a helper to map a string to the defined enum.
+func ToListUserTeamsParamsSort(val string) ListUserTeamsParamsSort {
+	if res, ok := stringToListUserTeamsParamsSort[val]; ok {
+		return res
+	}
+
+	return ListUserTeamsParamsSort(val)
+}
+
 // Defines values for ListUserTeamsParamsOrder.
 const (
 	Asc  ListUserTeamsParamsOrder = "asc"
 	Desc ListUserTeamsParamsOrder = "desc"
 )
+
+var (
+	// InvalidListUserTeamsParamsOrder defines an error if an invalid value gets mapped.
+	InvalidListUserTeamsParamsOrder = fmt.Errorf("invalid type for ListUserTeamsParamsOrder")
+
+	stringToListUserTeamsParamsOrder = map[string]ListUserTeamsParamsOrder{
+		"asc":  Asc,
+		"desc": Desc,
+	}
+)
+
+// ToListUserTeamsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListUserTeamsParamsOrder(val string) ListUserTeamsParamsOrder {
+	if res, ok := stringToListUserTeamsParamsOrder[val]; ok {
+		return res
+	}
+
+	return ListUserTeamsParamsOrder(val)
+}
 
 // AuthLogin defines model for auth_login.
 type AuthLogin struct {
