@@ -28,7 +28,7 @@ const (
 const (
 	ModTeamParamsPermAdmin ModTeamParamsPerm = "admin"
 	ModTeamParamsPermOwner ModTeamParamsPerm = "owner"
-	ModTeamParamsPermTeam  ModTeamParamsPerm = "team"
+	ModTeamParamsPermUser  ModTeamParamsPerm = "user"
 )
 
 var (
@@ -38,7 +38,7 @@ var (
 	stringToModTeamParamsPerm = map[string]ModTeamParamsPerm{
 		"admin": ModTeamParamsPermAdmin,
 		"owner": ModTeamParamsPermOwner,
-		"team":  ModTeamParamsPermTeam,
+		"user":  ModTeamParamsPermUser,
 	}
 )
 
@@ -82,7 +82,7 @@ func ToModUserParamsPerm(val string) (ModUserParamsPerm, error) {
 const (
 	PackTeamParamsPermAdmin PackTeamParamsPerm = "admin"
 	PackTeamParamsPermOwner PackTeamParamsPerm = "owner"
-	PackTeamParamsPermTeam  PackTeamParamsPerm = "team"
+	PackTeamParamsPermUser  PackTeamParamsPerm = "user"
 )
 
 var (
@@ -92,7 +92,7 @@ var (
 	stringToPackTeamParamsPerm = map[string]PackTeamParamsPerm{
 		"admin": PackTeamParamsPermAdmin,
 		"owner": PackTeamParamsPermOwner,
-		"team":  PackTeamParamsPermTeam,
+		"user":  PackTeamParamsPermUser,
 	}
 )
 
@@ -136,7 +136,7 @@ func ToPackUserParamsPerm(val string) (PackUserParamsPerm, error) {
 const (
 	TeamModPermAdmin TeamModPerm = "admin"
 	TeamModPermOwner TeamModPerm = "owner"
-	TeamModPermTeam  TeamModPerm = "team"
+	TeamModPermUser  TeamModPerm = "user"
 )
 
 var (
@@ -146,7 +146,7 @@ var (
 	stringToTeamModPerm = map[string]TeamModPerm{
 		"admin": TeamModPermAdmin,
 		"owner": TeamModPermOwner,
-		"team":  TeamModPermTeam,
+		"user":  TeamModPermUser,
 	}
 )
 
@@ -163,7 +163,7 @@ func ToTeamModPerm(val string) (TeamModPerm, error) {
 const (
 	TeamModParamsPermAdmin TeamModParamsPerm = "admin"
 	TeamModParamsPermOwner TeamModParamsPerm = "owner"
-	TeamModParamsPermTeam  TeamModParamsPerm = "team"
+	TeamModParamsPermUser  TeamModParamsPerm = "user"
 )
 
 var (
@@ -173,7 +173,7 @@ var (
 	stringToTeamModParamsPerm = map[string]TeamModParamsPerm{
 		"admin": TeamModParamsPermAdmin,
 		"owner": TeamModParamsPermOwner,
-		"team":  TeamModParamsPermTeam,
+		"user":  TeamModParamsPermUser,
 	}
 )
 
@@ -190,7 +190,7 @@ func ToTeamModParamsPerm(val string) (TeamModParamsPerm, error) {
 const (
 	TeamPackPermAdmin TeamPackPerm = "admin"
 	TeamPackPermOwner TeamPackPerm = "owner"
-	TeamPackPermTeam  TeamPackPerm = "team"
+	TeamPackPermUser  TeamPackPerm = "user"
 )
 
 var (
@@ -200,7 +200,7 @@ var (
 	stringToTeamPackPerm = map[string]TeamPackPerm{
 		"admin": TeamPackPermAdmin,
 		"owner": TeamPackPermOwner,
-		"team":  TeamPackPermTeam,
+		"user":  TeamPackPermUser,
 	}
 )
 
@@ -217,7 +217,7 @@ func ToTeamPackPerm(val string) (TeamPackPerm, error) {
 const (
 	TeamPackParamsPermAdmin TeamPackParamsPerm = "admin"
 	TeamPackParamsPermOwner TeamPackParamsPerm = "owner"
-	TeamPackParamsPermTeam  TeamPackParamsPerm = "team"
+	TeamPackParamsPermUser  TeamPackParamsPerm = "user"
 )
 
 var (
@@ -227,7 +227,7 @@ var (
 	stringToTeamPackParamsPerm = map[string]TeamPackParamsPerm{
 		"admin": TeamPackParamsPermAdmin,
 		"owner": TeamPackParamsPermOwner,
-		"team":  TeamPackParamsPermTeam,
+		"user":  TeamPackParamsPermUser,
 	}
 )
 
