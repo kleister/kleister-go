@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/kleister/kleister-go/compare/v1.3.1...v1.4.0) (2024-10-07)
+
+
+### Features
+
+* upgrade all deps and tools, make linting happy again ([1207fce](https://github.com/kleister/kleister-go/commit/1207fce78fa47a19ae89a4d026ab70d0c8d6d84b))
+
 ## [1.3.1](https://github.com/kleister/kleister-go/compare/v1.3.0...v1.3.1) (2024-06-26)
 
 
