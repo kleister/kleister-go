@@ -2025,6 +2025,20 @@ type Profile struct {
 	Username  *string     `json:"username,omitempty"`
 }
 
+// Provider Model to represent auth provider
+type Provider struct {
+	Display *string `json:"display,omitempty"`
+	Driver  *string `json:"driver,omitempty"`
+	Icon    *string `json:"icon,omitempty"`
+	Name    *string `json:"name,omitempty"`
+}
+
+// Providers Model to represent list of auth providers
+type Providers struct {
+	Listing *[]Provider `json:"listing,omitempty"`
+	Total   *int64      `json:"total,omitempty"`
+}
+
 // Quilt Model to represent quilt
 type Quilt struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
@@ -3205,6 +3219,9 @@ type ClientInterface interface {
 
 	LoginAuth(ctx context.Context, body LoginAuthJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ExternalProviders request
+	ExternalProviders(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// RefreshAuth request
 	RefreshAuth(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -3658,6 +3675,18 @@ func (c *Client) LoginAuthWithBody(ctx context.Context, contentType string, body
 
 func (c *Client) LoginAuth(ctx context.Context, body LoginAuthJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewLoginAuthRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ExternalProviders(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalProvidersRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -5684,6 +5713,33 @@ func NewLoginAuthRequestWithBody(server string, contentType string, body io.Read
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewExternalProvidersRequest generates requests for ExternalProviders
+func NewExternalProvidersRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/auth/providers")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -12220,6 +12276,9 @@ type ClientWithResponsesInterface interface {
 
 	LoginAuthWithResponse(ctx context.Context, body LoginAuthJSONRequestBody, reqEditors ...RequestEditorFn) (*LoginAuthResponse, error)
 
+	// ExternalProvidersWithResponse request
+	ExternalProvidersWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ExternalProvidersResponse, error)
+
 	// RefreshAuthWithResponse request
 	RefreshAuthWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*RefreshAuthResponse, error)
 
@@ -12678,6 +12737,30 @@ func (r LoginAuthResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r LoginAuthResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ExternalProvidersResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Providers
+	JSON500      *Notification
+	JSONDefault  *Notification
+}
+
+// Status returns HTTPResponse.Status
+func (r ExternalProvidersResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ExternalProvidersResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -15577,6 +15660,15 @@ func (c *ClientWithResponses) LoginAuthWithResponse(ctx context.Context, body Lo
 	return ParseLoginAuthResponse(rsp)
 }
 
+// ExternalProvidersWithResponse request returning *ExternalProvidersResponse
+func (c *ClientWithResponses) ExternalProvidersWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ExternalProvidersResponse, error) {
+	rsp, err := c.ExternalProviders(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalProvidersResponse(rsp)
+}
+
 // RefreshAuthWithResponse request returning *RefreshAuthResponse
 func (c *ClientWithResponses) RefreshAuthWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*RefreshAuthResponse, error) {
 	rsp, err := c.RefreshAuth(ctx, reqEditors...)
@@ -17032,6 +17124,46 @@ func ParseLoginAuthResponse(rsp *http.Response) (*LoginAuthResponse, error) {
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Notification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest Notification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSONDefault = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseExternalProvidersResponse parses an HTTP response from a ExternalProvidersWithResponse call
+func ParseExternalProvidersResponse(rsp *http.Response) (*ExternalProvidersResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ExternalProvidersResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Providers
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest Notification
