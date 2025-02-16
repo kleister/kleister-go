@@ -69,6 +69,7 @@
 
                     golangci-lint = {
                       enable = true;
+                      entry = "go tool github.com/golangci/golangci-lint/cmd/golangci-lint run";
                     };
                   };
                 };
@@ -82,7 +83,6 @@
 
                 packages = with pkgs; [
                   gnumake
-                  golangci-lint
                   nixfmt-rfc-style
                 ];
 
