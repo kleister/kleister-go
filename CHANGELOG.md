@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/kleister/kleister-go/compare/v1.5.0...v1.6.0) (2025-02-17)
+
+
+### Features
+
+* upgrade whole ci stack and use latest go version ([de50f0c](https://github.com/kleister/kleister-go/commit/de50f0c88bac156c0eeb329c76a68499125ff468))
+
 ## [1.5.0](https://github.com/kleister/kleister-go/compare/v1.4.0...v1.5.0) (2024-10-21)
 
 
