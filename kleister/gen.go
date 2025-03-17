@@ -15,256 +15,94 @@ import (
 	"time"
 
 	"github.com/oapi-codegen/runtime"
+	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
 const (
 	BasicScopes  = "Basic.Scopes"
 	BearerScopes = "Bearer.Scopes"
-	CookieScopes = "Cookie.Scopes"
 	HeaderScopes = "Header.Scopes"
 )
 
-// Defines values for ModTeamParamsPerm.
+// Defines values for GroupModPerm.
 const (
-	ModTeamParamsPermAdmin ModTeamParamsPerm = "admin"
-	ModTeamParamsPermOwner ModTeamParamsPerm = "owner"
-	ModTeamParamsPermUser  ModTeamParamsPerm = "user"
+	GroupModPermAdmin GroupModPerm = "admin"
+	GroupModPermOwner GroupModPerm = "owner"
+	GroupModPermUser  GroupModPerm = "user"
 )
 
 var (
-	// ErrModTeamParamsPerm defines an error if an invalid value gets mapped.
-	ErrModTeamParamsPerm = fmt.Errorf("invalid type for ModTeamParamsPerm")
+	// ErrGroupModPerm defines an error if an invalid value gets mapped.
+	ErrGroupModPerm = fmt.Errorf("invalid type for GroupModPerm")
 
-	stringToModTeamParamsPerm = map[string]ModTeamParamsPerm{
-		"admin": ModTeamParamsPermAdmin,
-		"owner": ModTeamParamsPermOwner,
-		"user":  ModTeamParamsPermUser,
+	stringToGroupModPerm = map[string]GroupModPerm{
+		"admin": GroupModPermAdmin,
+		"owner": GroupModPermOwner,
+		"user":  GroupModPermUser,
 	}
 )
 
-// ToModTeamParamsPerm acts as a helper to map a string to the defined enum.
-func ToModTeamParamsPerm(val string) (ModTeamParamsPerm, error) {
-	if res, ok := stringToModTeamParamsPerm[val]; ok {
+// ToGroupModPerm acts as a helper to map a string to the defined enum.
+func ToGroupModPerm(val string) (GroupModPerm, error) {
+	if res, ok := stringToGroupModPerm[val]; ok {
 		return res, nil
 	}
 
-	return ModTeamParamsPerm(""), ErrModTeamParamsPerm
+	return GroupModPerm(""), ErrGroupModPerm
 }
 
-// Defines values for ModUserParamsPerm.
+// Defines values for GroupPackPerm.
 const (
-	ModUserParamsPermAdmin ModUserParamsPerm = "admin"
-	ModUserParamsPermOwner ModUserParamsPerm = "owner"
-	ModUserParamsPermUser  ModUserParamsPerm = "user"
+	GroupPackPermAdmin GroupPackPerm = "admin"
+	GroupPackPermOwner GroupPackPerm = "owner"
+	GroupPackPermUser  GroupPackPerm = "user"
 )
 
 var (
-	// ErrModUserParamsPerm defines an error if an invalid value gets mapped.
-	ErrModUserParamsPerm = fmt.Errorf("invalid type for ModUserParamsPerm")
+	// ErrGroupPackPerm defines an error if an invalid value gets mapped.
+	ErrGroupPackPerm = fmt.Errorf("invalid type for GroupPackPerm")
 
-	stringToModUserParamsPerm = map[string]ModUserParamsPerm{
-		"admin": ModUserParamsPermAdmin,
-		"owner": ModUserParamsPermOwner,
-		"user":  ModUserParamsPermUser,
+	stringToGroupPackPerm = map[string]GroupPackPerm{
+		"admin": GroupPackPermAdmin,
+		"owner": GroupPackPermOwner,
+		"user":  GroupPackPermUser,
 	}
 )
 
-// ToModUserParamsPerm acts as a helper to map a string to the defined enum.
-func ToModUserParamsPerm(val string) (ModUserParamsPerm, error) {
-	if res, ok := stringToModUserParamsPerm[val]; ok {
+// ToGroupPackPerm acts as a helper to map a string to the defined enum.
+func ToGroupPackPerm(val string) (GroupPackPerm, error) {
+	if res, ok := stringToGroupPackPerm[val]; ok {
 		return res, nil
 	}
 
-	return ModUserParamsPerm(""), ErrModUserParamsPerm
+	return GroupPackPerm(""), ErrGroupPackPerm
 }
 
-// Defines values for PackTeamParamsPerm.
+// Defines values for UserGroupPerm.
 const (
-	PackTeamParamsPermAdmin PackTeamParamsPerm = "admin"
-	PackTeamParamsPermOwner PackTeamParamsPerm = "owner"
-	PackTeamParamsPermUser  PackTeamParamsPerm = "user"
+	UserGroupPermAdmin UserGroupPerm = "admin"
+	UserGroupPermOwner UserGroupPerm = "owner"
+	UserGroupPermUser  UserGroupPerm = "user"
 )
 
 var (
-	// ErrPackTeamParamsPerm defines an error if an invalid value gets mapped.
-	ErrPackTeamParamsPerm = fmt.Errorf("invalid type for PackTeamParamsPerm")
+	// ErrUserGroupPerm defines an error if an invalid value gets mapped.
+	ErrUserGroupPerm = fmt.Errorf("invalid type for UserGroupPerm")
 
-	stringToPackTeamParamsPerm = map[string]PackTeamParamsPerm{
-		"admin": PackTeamParamsPermAdmin,
-		"owner": PackTeamParamsPermOwner,
-		"user":  PackTeamParamsPermUser,
+	stringToUserGroupPerm = map[string]UserGroupPerm{
+		"admin": UserGroupPermAdmin,
+		"owner": UserGroupPermOwner,
+		"user":  UserGroupPermUser,
 	}
 )
 
-// ToPackTeamParamsPerm acts as a helper to map a string to the defined enum.
-func ToPackTeamParamsPerm(val string) (PackTeamParamsPerm, error) {
-	if res, ok := stringToPackTeamParamsPerm[val]; ok {
+// ToUserGroupPerm acts as a helper to map a string to the defined enum.
+func ToUserGroupPerm(val string) (UserGroupPerm, error) {
+	if res, ok := stringToUserGroupPerm[val]; ok {
 		return res, nil
 	}
 
-	return PackTeamParamsPerm(""), ErrPackTeamParamsPerm
-}
-
-// Defines values for PackUserParamsPerm.
-const (
-	PackUserParamsPermAdmin PackUserParamsPerm = "admin"
-	PackUserParamsPermOwner PackUserParamsPerm = "owner"
-	PackUserParamsPermUser  PackUserParamsPerm = "user"
-)
-
-var (
-	// ErrPackUserParamsPerm defines an error if an invalid value gets mapped.
-	ErrPackUserParamsPerm = fmt.Errorf("invalid type for PackUserParamsPerm")
-
-	stringToPackUserParamsPerm = map[string]PackUserParamsPerm{
-		"admin": PackUserParamsPermAdmin,
-		"owner": PackUserParamsPermOwner,
-		"user":  PackUserParamsPermUser,
-	}
-)
-
-// ToPackUserParamsPerm acts as a helper to map a string to the defined enum.
-func ToPackUserParamsPerm(val string) (PackUserParamsPerm, error) {
-	if res, ok := stringToPackUserParamsPerm[val]; ok {
-		return res, nil
-	}
-
-	return PackUserParamsPerm(""), ErrPackUserParamsPerm
-}
-
-// Defines values for TeamModPerm.
-const (
-	TeamModPermAdmin TeamModPerm = "admin"
-	TeamModPermOwner TeamModPerm = "owner"
-	TeamModPermUser  TeamModPerm = "user"
-)
-
-var (
-	// ErrTeamModPerm defines an error if an invalid value gets mapped.
-	ErrTeamModPerm = fmt.Errorf("invalid type for TeamModPerm")
-
-	stringToTeamModPerm = map[string]TeamModPerm{
-		"admin": TeamModPermAdmin,
-		"owner": TeamModPermOwner,
-		"user":  TeamModPermUser,
-	}
-)
-
-// ToTeamModPerm acts as a helper to map a string to the defined enum.
-func ToTeamModPerm(val string) (TeamModPerm, error) {
-	if res, ok := stringToTeamModPerm[val]; ok {
-		return res, nil
-	}
-
-	return TeamModPerm(""), ErrTeamModPerm
-}
-
-// Defines values for TeamModParamsPerm.
-const (
-	TeamModParamsPermAdmin TeamModParamsPerm = "admin"
-	TeamModParamsPermOwner TeamModParamsPerm = "owner"
-	TeamModParamsPermUser  TeamModParamsPerm = "user"
-)
-
-var (
-	// ErrTeamModParamsPerm defines an error if an invalid value gets mapped.
-	ErrTeamModParamsPerm = fmt.Errorf("invalid type for TeamModParamsPerm")
-
-	stringToTeamModParamsPerm = map[string]TeamModParamsPerm{
-		"admin": TeamModParamsPermAdmin,
-		"owner": TeamModParamsPermOwner,
-		"user":  TeamModParamsPermUser,
-	}
-)
-
-// ToTeamModParamsPerm acts as a helper to map a string to the defined enum.
-func ToTeamModParamsPerm(val string) (TeamModParamsPerm, error) {
-	if res, ok := stringToTeamModParamsPerm[val]; ok {
-		return res, nil
-	}
-
-	return TeamModParamsPerm(""), ErrTeamModParamsPerm
-}
-
-// Defines values for TeamPackPerm.
-const (
-	TeamPackPermAdmin TeamPackPerm = "admin"
-	TeamPackPermOwner TeamPackPerm = "owner"
-	TeamPackPermUser  TeamPackPerm = "user"
-)
-
-var (
-	// ErrTeamPackPerm defines an error if an invalid value gets mapped.
-	ErrTeamPackPerm = fmt.Errorf("invalid type for TeamPackPerm")
-
-	stringToTeamPackPerm = map[string]TeamPackPerm{
-		"admin": TeamPackPermAdmin,
-		"owner": TeamPackPermOwner,
-		"user":  TeamPackPermUser,
-	}
-)
-
-// ToTeamPackPerm acts as a helper to map a string to the defined enum.
-func ToTeamPackPerm(val string) (TeamPackPerm, error) {
-	if res, ok := stringToTeamPackPerm[val]; ok {
-		return res, nil
-	}
-
-	return TeamPackPerm(""), ErrTeamPackPerm
-}
-
-// Defines values for TeamPackParamsPerm.
-const (
-	TeamPackParamsPermAdmin TeamPackParamsPerm = "admin"
-	TeamPackParamsPermOwner TeamPackParamsPerm = "owner"
-	TeamPackParamsPermUser  TeamPackParamsPerm = "user"
-)
-
-var (
-	// ErrTeamPackParamsPerm defines an error if an invalid value gets mapped.
-	ErrTeamPackParamsPerm = fmt.Errorf("invalid type for TeamPackParamsPerm")
-
-	stringToTeamPackParamsPerm = map[string]TeamPackParamsPerm{
-		"admin": TeamPackParamsPermAdmin,
-		"owner": TeamPackParamsPermOwner,
-		"user":  TeamPackParamsPermUser,
-	}
-)
-
-// ToTeamPackParamsPerm acts as a helper to map a string to the defined enum.
-func ToTeamPackParamsPerm(val string) (TeamPackParamsPerm, error) {
-	if res, ok := stringToTeamPackParamsPerm[val]; ok {
-		return res, nil
-	}
-
-	return TeamPackParamsPerm(""), ErrTeamPackParamsPerm
-}
-
-// Defines values for TeamUserParamsPerm.
-const (
-	TeamUserParamsPermAdmin TeamUserParamsPerm = "admin"
-	TeamUserParamsPermOwner TeamUserParamsPerm = "owner"
-	TeamUserParamsPermUser  TeamUserParamsPerm = "user"
-)
-
-var (
-	// ErrTeamUserParamsPerm defines an error if an invalid value gets mapped.
-	ErrTeamUserParamsPerm = fmt.Errorf("invalid type for TeamUserParamsPerm")
-
-	stringToTeamUserParamsPerm = map[string]TeamUserParamsPerm{
-		"admin": TeamUserParamsPermAdmin,
-		"owner": TeamUserParamsPermOwner,
-		"user":  TeamUserParamsPermUser,
-	}
-)
-
-// ToTeamUserParamsPerm acts as a helper to map a string to the defined enum.
-func ToTeamUserParamsPerm(val string) (TeamUserParamsPerm, error) {
-	if res, ok := stringToTeamUserParamsPerm[val]; ok {
-		return res, nil
-	}
-
-	return TeamUserParamsPerm(""), ErrTeamUserParamsPerm
+	return UserGroupPerm(""), ErrUserGroupPerm
 }
 
 // Defines values for UserModPerm.
@@ -294,33 +132,6 @@ func ToUserModPerm(val string) (UserModPerm, error) {
 	return UserModPerm(""), ErrUserModPerm
 }
 
-// Defines values for UserModParamsPerm.
-const (
-	UserModParamsPermAdmin UserModParamsPerm = "admin"
-	UserModParamsPermOwner UserModParamsPerm = "owner"
-	UserModParamsPermUser  UserModParamsPerm = "user"
-)
-
-var (
-	// ErrUserModParamsPerm defines an error if an invalid value gets mapped.
-	ErrUserModParamsPerm = fmt.Errorf("invalid type for UserModParamsPerm")
-
-	stringToUserModParamsPerm = map[string]UserModParamsPerm{
-		"admin": UserModParamsPermAdmin,
-		"owner": UserModParamsPermOwner,
-		"user":  UserModParamsPermUser,
-	}
-)
-
-// ToUserModParamsPerm acts as a helper to map a string to the defined enum.
-func ToUserModParamsPerm(val string) (UserModParamsPerm, error) {
-	if res, ok := stringToUserModParamsPerm[val]; ok {
-		return res, nil
-	}
-
-	return UserModParamsPerm(""), ErrUserModParamsPerm
-}
-
 // Defines values for UserPackPerm.
 const (
 	UserPackPermAdmin UserPackPerm = "admin"
@@ -348,114 +159,29 @@ func ToUserPackPerm(val string) (UserPackPerm, error) {
 	return UserPackPerm(""), ErrUserPackPerm
 }
 
-// Defines values for UserPackParamsPerm.
+// Defines values for SortOrderParam.
 const (
-	UserPackParamsPermAdmin UserPackParamsPerm = "admin"
-	UserPackParamsPermOwner UserPackParamsPerm = "owner"
-	UserPackParamsPermUser  UserPackParamsPerm = "user"
+	SortOrderParamAsc  SortOrderParam = "asc"
+	SortOrderParamDesc SortOrderParam = "desc"
 )
 
 var (
-	// ErrUserPackParamsPerm defines an error if an invalid value gets mapped.
-	ErrUserPackParamsPerm = fmt.Errorf("invalid type for UserPackParamsPerm")
+	// ErrSortOrderParam defines an error if an invalid value gets mapped.
+	ErrSortOrderParam = fmt.Errorf("invalid type for SortOrderParam")
 
-	stringToUserPackParamsPerm = map[string]UserPackParamsPerm{
-		"admin": UserPackParamsPermAdmin,
-		"owner": UserPackParamsPermOwner,
-		"user":  UserPackParamsPermUser,
+	stringToSortOrderParam = map[string]SortOrderParam{
+		"asc":  SortOrderParamAsc,
+		"desc": SortOrderParamDesc,
 	}
 )
 
-// ToUserPackParamsPerm acts as a helper to map a string to the defined enum.
-func ToUserPackParamsPerm(val string) (UserPackParamsPerm, error) {
-	if res, ok := stringToUserPackParamsPerm[val]; ok {
+// ToSortOrderParam acts as a helper to map a string to the defined enum.
+func ToSortOrderParam(val string) (SortOrderParam, error) {
+	if res, ok := stringToSortOrderParam[val]; ok {
 		return res, nil
 	}
 
-	return UserPackParamsPerm(""), ErrUserPackParamsPerm
-}
-
-// Defines values for UserTeamPerm.
-const (
-	UserTeamPermAdmin UserTeamPerm = "admin"
-	UserTeamPermOwner UserTeamPerm = "owner"
-	UserTeamPermUser  UserTeamPerm = "user"
-)
-
-var (
-	// ErrUserTeamPerm defines an error if an invalid value gets mapped.
-	ErrUserTeamPerm = fmt.Errorf("invalid type for UserTeamPerm")
-
-	stringToUserTeamPerm = map[string]UserTeamPerm{
-		"admin": UserTeamPermAdmin,
-		"owner": UserTeamPermOwner,
-		"user":  UserTeamPermUser,
-	}
-)
-
-// ToUserTeamPerm acts as a helper to map a string to the defined enum.
-func ToUserTeamPerm(val string) (UserTeamPerm, error) {
-	if res, ok := stringToUserTeamPerm[val]; ok {
-		return res, nil
-	}
-
-	return UserTeamPerm(""), ErrUserTeamPerm
-}
-
-// Defines values for UserTeamParamsPerm.
-const (
-	UserTeamParamsPermAdmin UserTeamParamsPerm = "admin"
-	UserTeamParamsPermOwner UserTeamParamsPerm = "owner"
-	UserTeamParamsPermUser  UserTeamParamsPerm = "user"
-)
-
-var (
-	// ErrUserTeamParamsPerm defines an error if an invalid value gets mapped.
-	ErrUserTeamParamsPerm = fmt.Errorf("invalid type for UserTeamParamsPerm")
-
-	stringToUserTeamParamsPerm = map[string]UserTeamParamsPerm{
-		"admin": UserTeamParamsPermAdmin,
-		"owner": UserTeamParamsPermOwner,
-		"user":  UserTeamParamsPermUser,
-	}
-)
-
-// ToUserTeamParamsPerm acts as a helper to map a string to the defined enum.
-func ToUserTeamParamsPerm(val string) (UserTeamParamsPerm, error) {
-	if res, ok := stringToUserTeamParamsPerm[val]; ok {
-		return res, nil
-	}
-
-	return UserTeamParamsPerm(""), ErrUserTeamParamsPerm
-}
-
-// Defines values for ListFabricBuildsParamsSort.
-const (
-	ListFabricBuildsParamsSortBuildName   ListFabricBuildsParamsSort = "build_name"
-	ListFabricBuildsParamsSortBuildPublic ListFabricBuildsParamsSort = "build_public"
-	ListFabricBuildsParamsSortPackName    ListFabricBuildsParamsSort = "pack_name"
-	ListFabricBuildsParamsSortPackSlug    ListFabricBuildsParamsSort = "pack_slug"
-)
-
-var (
-	// ErrListFabricBuildsParamsSort defines an error if an invalid value gets mapped.
-	ErrListFabricBuildsParamsSort = fmt.Errorf("invalid type for ListFabricBuildsParamsSort")
-
-	stringToListFabricBuildsParamsSort = map[string]ListFabricBuildsParamsSort{
-		"build_name":   ListFabricBuildsParamsSortBuildName,
-		"build_public": ListFabricBuildsParamsSortBuildPublic,
-		"pack_name":    ListFabricBuildsParamsSortPackName,
-		"pack_slug":    ListFabricBuildsParamsSortPackSlug,
-	}
-)
-
-// ToListFabricBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListFabricBuildsParamsSort(val string) (ListFabricBuildsParamsSort, error) {
-	if res, ok := stringToListFabricBuildsParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListFabricBuildsParamsSort(""), ErrListFabricBuildsParamsSort
+	return SortOrderParam(""), ErrSortOrderParam
 }
 
 // Defines values for ListFabricBuildsParamsOrder.
@@ -483,35 +209,6 @@ func ToListFabricBuildsParamsOrder(val string) (ListFabricBuildsParamsOrder, err
 	return ListFabricBuildsParamsOrder(""), ErrListFabricBuildsParamsOrder
 }
 
-// Defines values for ListForgeBuildsParamsSort.
-const (
-	ListForgeBuildsParamsSortBuildName   ListForgeBuildsParamsSort = "build_name"
-	ListForgeBuildsParamsSortBuildPublic ListForgeBuildsParamsSort = "build_public"
-	ListForgeBuildsParamsSortPackName    ListForgeBuildsParamsSort = "pack_name"
-	ListForgeBuildsParamsSortPackSlug    ListForgeBuildsParamsSort = "pack_slug"
-)
-
-var (
-	// ErrListForgeBuildsParamsSort defines an error if an invalid value gets mapped.
-	ErrListForgeBuildsParamsSort = fmt.Errorf("invalid type for ListForgeBuildsParamsSort")
-
-	stringToListForgeBuildsParamsSort = map[string]ListForgeBuildsParamsSort{
-		"build_name":   ListForgeBuildsParamsSortBuildName,
-		"build_public": ListForgeBuildsParamsSortBuildPublic,
-		"pack_name":    ListForgeBuildsParamsSortPackName,
-		"pack_slug":    ListForgeBuildsParamsSortPackSlug,
-	}
-)
-
-// ToListForgeBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListForgeBuildsParamsSort(val string) (ListForgeBuildsParamsSort, error) {
-	if res, ok := stringToListForgeBuildsParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListForgeBuildsParamsSort(""), ErrListForgeBuildsParamsSort
-}
-
 // Defines values for ListForgeBuildsParamsOrder.
 const (
 	ListForgeBuildsParamsOrderAsc  ListForgeBuildsParamsOrder = "asc"
@@ -537,33 +234,104 @@ func ToListForgeBuildsParamsOrder(val string) (ListForgeBuildsParamsOrder, error
 	return ListForgeBuildsParamsOrder(""), ErrListForgeBuildsParamsOrder
 }
 
-// Defines values for ListMinecraftBuildsParamsSort.
+// Defines values for ListGroupsParamsOrder.
 const (
-	ListMinecraftBuildsParamsSortBuildName   ListMinecraftBuildsParamsSort = "build_name"
-	ListMinecraftBuildsParamsSortBuildPublic ListMinecraftBuildsParamsSort = "build_public"
-	ListMinecraftBuildsParamsSortPackName    ListMinecraftBuildsParamsSort = "pack_name"
-	ListMinecraftBuildsParamsSortPackSlug    ListMinecraftBuildsParamsSort = "pack_slug"
+	ListGroupsParamsOrderAsc  ListGroupsParamsOrder = "asc"
+	ListGroupsParamsOrderDesc ListGroupsParamsOrder = "desc"
 )
 
 var (
-	// ErrListMinecraftBuildsParamsSort defines an error if an invalid value gets mapped.
-	ErrListMinecraftBuildsParamsSort = fmt.Errorf("invalid type for ListMinecraftBuildsParamsSort")
+	// ErrListGroupsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListGroupsParamsOrder = fmt.Errorf("invalid type for ListGroupsParamsOrder")
 
-	stringToListMinecraftBuildsParamsSort = map[string]ListMinecraftBuildsParamsSort{
-		"build_name":   ListMinecraftBuildsParamsSortBuildName,
-		"build_public": ListMinecraftBuildsParamsSortBuildPublic,
-		"pack_name":    ListMinecraftBuildsParamsSortPackName,
-		"pack_slug":    ListMinecraftBuildsParamsSortPackSlug,
+	stringToListGroupsParamsOrder = map[string]ListGroupsParamsOrder{
+		"asc":  ListGroupsParamsOrderAsc,
+		"desc": ListGroupsParamsOrderDesc,
 	}
 )
 
-// ToListMinecraftBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListMinecraftBuildsParamsSort(val string) (ListMinecraftBuildsParamsSort, error) {
-	if res, ok := stringToListMinecraftBuildsParamsSort[val]; ok {
+// ToListGroupsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListGroupsParamsOrder(val string) (ListGroupsParamsOrder, error) {
+	if res, ok := stringToListGroupsParamsOrder[val]; ok {
 		return res, nil
 	}
 
-	return ListMinecraftBuildsParamsSort(""), ErrListMinecraftBuildsParamsSort
+	return ListGroupsParamsOrder(""), ErrListGroupsParamsOrder
+}
+
+// Defines values for ListGroupModsParamsOrder.
+const (
+	ListGroupModsParamsOrderAsc  ListGroupModsParamsOrder = "asc"
+	ListGroupModsParamsOrderDesc ListGroupModsParamsOrder = "desc"
+)
+
+var (
+	// ErrListGroupModsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListGroupModsParamsOrder = fmt.Errorf("invalid type for ListGroupModsParamsOrder")
+
+	stringToListGroupModsParamsOrder = map[string]ListGroupModsParamsOrder{
+		"asc":  ListGroupModsParamsOrderAsc,
+		"desc": ListGroupModsParamsOrderDesc,
+	}
+)
+
+// ToListGroupModsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListGroupModsParamsOrder(val string) (ListGroupModsParamsOrder, error) {
+	if res, ok := stringToListGroupModsParamsOrder[val]; ok {
+		return res, nil
+	}
+
+	return ListGroupModsParamsOrder(""), ErrListGroupModsParamsOrder
+}
+
+// Defines values for ListGroupPacksParamsOrder.
+const (
+	ListGroupPacksParamsOrderAsc  ListGroupPacksParamsOrder = "asc"
+	ListGroupPacksParamsOrderDesc ListGroupPacksParamsOrder = "desc"
+)
+
+var (
+	// ErrListGroupPacksParamsOrder defines an error if an invalid value gets mapped.
+	ErrListGroupPacksParamsOrder = fmt.Errorf("invalid type for ListGroupPacksParamsOrder")
+
+	stringToListGroupPacksParamsOrder = map[string]ListGroupPacksParamsOrder{
+		"asc":  ListGroupPacksParamsOrderAsc,
+		"desc": ListGroupPacksParamsOrderDesc,
+	}
+)
+
+// ToListGroupPacksParamsOrder acts as a helper to map a string to the defined enum.
+func ToListGroupPacksParamsOrder(val string) (ListGroupPacksParamsOrder, error) {
+	if res, ok := stringToListGroupPacksParamsOrder[val]; ok {
+		return res, nil
+	}
+
+	return ListGroupPacksParamsOrder(""), ErrListGroupPacksParamsOrder
+}
+
+// Defines values for ListGroupUsersParamsOrder.
+const (
+	ListGroupUsersParamsOrderAsc  ListGroupUsersParamsOrder = "asc"
+	ListGroupUsersParamsOrderDesc ListGroupUsersParamsOrder = "desc"
+)
+
+var (
+	// ErrListGroupUsersParamsOrder defines an error if an invalid value gets mapped.
+	ErrListGroupUsersParamsOrder = fmt.Errorf("invalid type for ListGroupUsersParamsOrder")
+
+	stringToListGroupUsersParamsOrder = map[string]ListGroupUsersParamsOrder{
+		"asc":  ListGroupUsersParamsOrderAsc,
+		"desc": ListGroupUsersParamsOrderDesc,
+	}
+)
+
+// ToListGroupUsersParamsOrder acts as a helper to map a string to the defined enum.
+func ToListGroupUsersParamsOrder(val string) (ListGroupUsersParamsOrder, error) {
+	if res, ok := stringToListGroupUsersParamsOrder[val]; ok {
+		return res, nil
+	}
+
+	return ListGroupUsersParamsOrder(""), ErrListGroupUsersParamsOrder
 }
 
 // Defines values for ListMinecraftBuildsParamsOrder.
@@ -591,33 +359,6 @@ func ToListMinecraftBuildsParamsOrder(val string) (ListMinecraftBuildsParamsOrde
 	return ListMinecraftBuildsParamsOrder(""), ErrListMinecraftBuildsParamsOrder
 }
 
-// Defines values for ListModsParamsSort.
-const (
-	ListModsParamsSortName   ListModsParamsSort = "name"
-	ListModsParamsSortPublic ListModsParamsSort = "public"
-	ListModsParamsSortSlug   ListModsParamsSort = "slug"
-)
-
-var (
-	// ErrListModsParamsSort defines an error if an invalid value gets mapped.
-	ErrListModsParamsSort = fmt.Errorf("invalid type for ListModsParamsSort")
-
-	stringToListModsParamsSort = map[string]ListModsParamsSort{
-		"name":   ListModsParamsSortName,
-		"public": ListModsParamsSortPublic,
-		"slug":   ListModsParamsSortSlug,
-	}
-)
-
-// ToListModsParamsSort acts as a helper to map a string to the defined enum.
-func ToListModsParamsSort(val string) (ListModsParamsSort, error) {
-	if res, ok := stringToListModsParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListModsParamsSort(""), ErrListModsParamsSort
-}
-
 // Defines values for ListModsParamsOrder.
 const (
 	ListModsParamsOrderAsc  ListModsParamsOrder = "asc"
@@ -643,85 +384,29 @@ func ToListModsParamsOrder(val string) (ListModsParamsOrder, error) {
 	return ListModsParamsOrder(""), ErrListModsParamsOrder
 }
 
-// Defines values for ListModTeamsParamsSort.
+// Defines values for ListModGroupsParamsOrder.
 const (
-	ListModTeamsParamsSortName ListModTeamsParamsSort = "name"
-	ListModTeamsParamsSortSlug ListModTeamsParamsSort = "slug"
+	ListModGroupsParamsOrderAsc  ListModGroupsParamsOrder = "asc"
+	ListModGroupsParamsOrderDesc ListModGroupsParamsOrder = "desc"
 )
 
 var (
-	// ErrListModTeamsParamsSort defines an error if an invalid value gets mapped.
-	ErrListModTeamsParamsSort = fmt.Errorf("invalid type for ListModTeamsParamsSort")
+	// ErrListModGroupsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListModGroupsParamsOrder = fmt.Errorf("invalid type for ListModGroupsParamsOrder")
 
-	stringToListModTeamsParamsSort = map[string]ListModTeamsParamsSort{
-		"name": ListModTeamsParamsSortName,
-		"slug": ListModTeamsParamsSortSlug,
+	stringToListModGroupsParamsOrder = map[string]ListModGroupsParamsOrder{
+		"asc":  ListModGroupsParamsOrderAsc,
+		"desc": ListModGroupsParamsOrderDesc,
 	}
 )
 
-// ToListModTeamsParamsSort acts as a helper to map a string to the defined enum.
-func ToListModTeamsParamsSort(val string) (ListModTeamsParamsSort, error) {
-	if res, ok := stringToListModTeamsParamsSort[val]; ok {
+// ToListModGroupsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListModGroupsParamsOrder(val string) (ListModGroupsParamsOrder, error) {
+	if res, ok := stringToListModGroupsParamsOrder[val]; ok {
 		return res, nil
 	}
 
-	return ListModTeamsParamsSort(""), ErrListModTeamsParamsSort
-}
-
-// Defines values for ListModTeamsParamsOrder.
-const (
-	ListModTeamsParamsOrderAsc  ListModTeamsParamsOrder = "asc"
-	ListModTeamsParamsOrderDesc ListModTeamsParamsOrder = "desc"
-)
-
-var (
-	// ErrListModTeamsParamsOrder defines an error if an invalid value gets mapped.
-	ErrListModTeamsParamsOrder = fmt.Errorf("invalid type for ListModTeamsParamsOrder")
-
-	stringToListModTeamsParamsOrder = map[string]ListModTeamsParamsOrder{
-		"asc":  ListModTeamsParamsOrderAsc,
-		"desc": ListModTeamsParamsOrderDesc,
-	}
-)
-
-// ToListModTeamsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListModTeamsParamsOrder(val string) (ListModTeamsParamsOrder, error) {
-	if res, ok := stringToListModTeamsParamsOrder[val]; ok {
-		return res, nil
-	}
-
-	return ListModTeamsParamsOrder(""), ErrListModTeamsParamsOrder
-}
-
-// Defines values for ListModUsersParamsSort.
-const (
-	ListModUsersParamsSortActive   ListModUsersParamsSort = "active"
-	ListModUsersParamsSortAdmin    ListModUsersParamsSort = "admin"
-	ListModUsersParamsSortEmail    ListModUsersParamsSort = "email"
-	ListModUsersParamsSortFullname ListModUsersParamsSort = "fullname"
-	ListModUsersParamsSortUsername ListModUsersParamsSort = "username"
-)
-
-var (
-	// ErrListModUsersParamsSort defines an error if an invalid value gets mapped.
-	ErrListModUsersParamsSort = fmt.Errorf("invalid type for ListModUsersParamsSort")
-
-	stringToListModUsersParamsSort = map[string]ListModUsersParamsSort{
-		"active":   ListModUsersParamsSortActive,
-		"admin":    ListModUsersParamsSortAdmin,
-		"email":    ListModUsersParamsSortEmail,
-		"fullname": ListModUsersParamsSortFullname,
-		"username": ListModUsersParamsSortUsername,
-	}
-)
-
-// ToListModUsersParamsSort acts as a helper to map a string to the defined enum.
-func ToListModUsersParamsSort(val string) (ListModUsersParamsSort, error) {
-	if res, ok := stringToListModUsersParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListModUsersParamsSort(""), ErrListModUsersParamsSort
+	return ListModGroupsParamsOrder(""), ErrListModGroupsParamsOrder
 }
 
 // Defines values for ListModUsersParamsOrder.
@@ -749,31 +434,6 @@ func ToListModUsersParamsOrder(val string) (ListModUsersParamsOrder, error) {
 	return ListModUsersParamsOrder(""), ErrListModUsersParamsOrder
 }
 
-// Defines values for ListVersionsParamsSort.
-const (
-	ListVersionsParamsSortName   ListVersionsParamsSort = "name"
-	ListVersionsParamsSortPublic ListVersionsParamsSort = "public"
-)
-
-var (
-	// ErrListVersionsParamsSort defines an error if an invalid value gets mapped.
-	ErrListVersionsParamsSort = fmt.Errorf("invalid type for ListVersionsParamsSort")
-
-	stringToListVersionsParamsSort = map[string]ListVersionsParamsSort{
-		"name":   ListVersionsParamsSortName,
-		"public": ListVersionsParamsSortPublic,
-	}
-)
-
-// ToListVersionsParamsSort acts as a helper to map a string to the defined enum.
-func ToListVersionsParamsSort(val string) (ListVersionsParamsSort, error) {
-	if res, ok := stringToListVersionsParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListVersionsParamsSort(""), ErrListVersionsParamsSort
-}
-
 // Defines values for ListVersionsParamsOrder.
 const (
 	ListVersionsParamsOrderAsc  ListVersionsParamsOrder = "asc"
@@ -797,31 +457,6 @@ func ToListVersionsParamsOrder(val string) (ListVersionsParamsOrder, error) {
 	}
 
 	return ListVersionsParamsOrder(""), ErrListVersionsParamsOrder
-}
-
-// Defines values for ListVersionBuildsParamsSort.
-const (
-	ListVersionBuildsParamsSortName   ListVersionBuildsParamsSort = "name"
-	ListVersionBuildsParamsSortPublic ListVersionBuildsParamsSort = "public"
-)
-
-var (
-	// ErrListVersionBuildsParamsSort defines an error if an invalid value gets mapped.
-	ErrListVersionBuildsParamsSort = fmt.Errorf("invalid type for ListVersionBuildsParamsSort")
-
-	stringToListVersionBuildsParamsSort = map[string]ListVersionBuildsParamsSort{
-		"name":   ListVersionBuildsParamsSortName,
-		"public": ListVersionBuildsParamsSortPublic,
-	}
-)
-
-// ToListVersionBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListVersionBuildsParamsSort(val string) (ListVersionBuildsParamsSort, error) {
-	if res, ok := stringToListVersionBuildsParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListVersionBuildsParamsSort(""), ErrListVersionBuildsParamsSort
 }
 
 // Defines values for ListVersionBuildsParamsOrder.
@@ -849,35 +484,6 @@ func ToListVersionBuildsParamsOrder(val string) (ListVersionBuildsParamsOrder, e
 	return ListVersionBuildsParamsOrder(""), ErrListVersionBuildsParamsOrder
 }
 
-// Defines values for ListNeoforgeBuildsParamsSort.
-const (
-	ListNeoforgeBuildsParamsSortBuildName   ListNeoforgeBuildsParamsSort = "build_name"
-	ListNeoforgeBuildsParamsSortBuildPublic ListNeoforgeBuildsParamsSort = "build_public"
-	ListNeoforgeBuildsParamsSortPackName    ListNeoforgeBuildsParamsSort = "pack_name"
-	ListNeoforgeBuildsParamsSortPackSlug    ListNeoforgeBuildsParamsSort = "pack_slug"
-)
-
-var (
-	// ErrListNeoforgeBuildsParamsSort defines an error if an invalid value gets mapped.
-	ErrListNeoforgeBuildsParamsSort = fmt.Errorf("invalid type for ListNeoforgeBuildsParamsSort")
-
-	stringToListNeoforgeBuildsParamsSort = map[string]ListNeoforgeBuildsParamsSort{
-		"build_name":   ListNeoforgeBuildsParamsSortBuildName,
-		"build_public": ListNeoforgeBuildsParamsSortBuildPublic,
-		"pack_name":    ListNeoforgeBuildsParamsSortPackName,
-		"pack_slug":    ListNeoforgeBuildsParamsSortPackSlug,
-	}
-)
-
-// ToListNeoforgeBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListNeoforgeBuildsParamsSort(val string) (ListNeoforgeBuildsParamsSort, error) {
-	if res, ok := stringToListNeoforgeBuildsParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListNeoforgeBuildsParamsSort(""), ErrListNeoforgeBuildsParamsSort
-}
-
 // Defines values for ListNeoforgeBuildsParamsOrder.
 const (
 	ListNeoforgeBuildsParamsOrderAsc  ListNeoforgeBuildsParamsOrder = "asc"
@@ -901,33 +507,6 @@ func ToListNeoforgeBuildsParamsOrder(val string) (ListNeoforgeBuildsParamsOrder,
 	}
 
 	return ListNeoforgeBuildsParamsOrder(""), ErrListNeoforgeBuildsParamsOrder
-}
-
-// Defines values for ListPacksParamsSort.
-const (
-	ListPacksParamsSortName   ListPacksParamsSort = "name"
-	ListPacksParamsSortPublic ListPacksParamsSort = "public"
-	ListPacksParamsSortSlug   ListPacksParamsSort = "slug"
-)
-
-var (
-	// ErrListPacksParamsSort defines an error if an invalid value gets mapped.
-	ErrListPacksParamsSort = fmt.Errorf("invalid type for ListPacksParamsSort")
-
-	stringToListPacksParamsSort = map[string]ListPacksParamsSort{
-		"name":   ListPacksParamsSortName,
-		"public": ListPacksParamsSortPublic,
-		"slug":   ListPacksParamsSortSlug,
-	}
-)
-
-// ToListPacksParamsSort acts as a helper to map a string to the defined enum.
-func ToListPacksParamsSort(val string) (ListPacksParamsSort, error) {
-	if res, ok := stringToListPacksParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListPacksParamsSort(""), ErrListPacksParamsSort
 }
 
 // Defines values for ListPacksParamsOrder.
@@ -955,31 +534,6 @@ func ToListPacksParamsOrder(val string) (ListPacksParamsOrder, error) {
 	return ListPacksParamsOrder(""), ErrListPacksParamsOrder
 }
 
-// Defines values for ListBuildsParamsSort.
-const (
-	ListBuildsParamsSortName   ListBuildsParamsSort = "name"
-	ListBuildsParamsSortPublic ListBuildsParamsSort = "public"
-)
-
-var (
-	// ErrListBuildsParamsSort defines an error if an invalid value gets mapped.
-	ErrListBuildsParamsSort = fmt.Errorf("invalid type for ListBuildsParamsSort")
-
-	stringToListBuildsParamsSort = map[string]ListBuildsParamsSort{
-		"name":   ListBuildsParamsSortName,
-		"public": ListBuildsParamsSortPublic,
-	}
-)
-
-// ToListBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListBuildsParamsSort(val string) (ListBuildsParamsSort, error) {
-	if res, ok := stringToListBuildsParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListBuildsParamsSort(""), ErrListBuildsParamsSort
-}
-
 // Defines values for ListBuildsParamsOrder.
 const (
 	ListBuildsParamsOrderAsc  ListBuildsParamsOrder = "asc"
@@ -1003,31 +557,6 @@ func ToListBuildsParamsOrder(val string) (ListBuildsParamsOrder, error) {
 	}
 
 	return ListBuildsParamsOrder(""), ErrListBuildsParamsOrder
-}
-
-// Defines values for ListBuildVersionsParamsSort.
-const (
-	ListBuildVersionsParamsSortName   ListBuildVersionsParamsSort = "name"
-	ListBuildVersionsParamsSortPublic ListBuildVersionsParamsSort = "public"
-)
-
-var (
-	// ErrListBuildVersionsParamsSort defines an error if an invalid value gets mapped.
-	ErrListBuildVersionsParamsSort = fmt.Errorf("invalid type for ListBuildVersionsParamsSort")
-
-	stringToListBuildVersionsParamsSort = map[string]ListBuildVersionsParamsSort{
-		"name":   ListBuildVersionsParamsSortName,
-		"public": ListBuildVersionsParamsSortPublic,
-	}
-)
-
-// ToListBuildVersionsParamsSort acts as a helper to map a string to the defined enum.
-func ToListBuildVersionsParamsSort(val string) (ListBuildVersionsParamsSort, error) {
-	if res, ok := stringToListBuildVersionsParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListBuildVersionsParamsSort(""), ErrListBuildVersionsParamsSort
 }
 
 // Defines values for ListBuildVersionsParamsOrder.
@@ -1055,85 +584,29 @@ func ToListBuildVersionsParamsOrder(val string) (ListBuildVersionsParamsOrder, e
 	return ListBuildVersionsParamsOrder(""), ErrListBuildVersionsParamsOrder
 }
 
-// Defines values for ListPackTeamsParamsSort.
+// Defines values for ListPackGroupsParamsOrder.
 const (
-	ListPackTeamsParamsSortName ListPackTeamsParamsSort = "name"
-	ListPackTeamsParamsSortSlug ListPackTeamsParamsSort = "slug"
+	ListPackGroupsParamsOrderAsc  ListPackGroupsParamsOrder = "asc"
+	ListPackGroupsParamsOrderDesc ListPackGroupsParamsOrder = "desc"
 )
 
 var (
-	// ErrListPackTeamsParamsSort defines an error if an invalid value gets mapped.
-	ErrListPackTeamsParamsSort = fmt.Errorf("invalid type for ListPackTeamsParamsSort")
+	// ErrListPackGroupsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListPackGroupsParamsOrder = fmt.Errorf("invalid type for ListPackGroupsParamsOrder")
 
-	stringToListPackTeamsParamsSort = map[string]ListPackTeamsParamsSort{
-		"name": ListPackTeamsParamsSortName,
-		"slug": ListPackTeamsParamsSortSlug,
+	stringToListPackGroupsParamsOrder = map[string]ListPackGroupsParamsOrder{
+		"asc":  ListPackGroupsParamsOrderAsc,
+		"desc": ListPackGroupsParamsOrderDesc,
 	}
 )
 
-// ToListPackTeamsParamsSort acts as a helper to map a string to the defined enum.
-func ToListPackTeamsParamsSort(val string) (ListPackTeamsParamsSort, error) {
-	if res, ok := stringToListPackTeamsParamsSort[val]; ok {
+// ToListPackGroupsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListPackGroupsParamsOrder(val string) (ListPackGroupsParamsOrder, error) {
+	if res, ok := stringToListPackGroupsParamsOrder[val]; ok {
 		return res, nil
 	}
 
-	return ListPackTeamsParamsSort(""), ErrListPackTeamsParamsSort
-}
-
-// Defines values for ListPackTeamsParamsOrder.
-const (
-	ListPackTeamsParamsOrderAsc  ListPackTeamsParamsOrder = "asc"
-	ListPackTeamsParamsOrderDesc ListPackTeamsParamsOrder = "desc"
-)
-
-var (
-	// ErrListPackTeamsParamsOrder defines an error if an invalid value gets mapped.
-	ErrListPackTeamsParamsOrder = fmt.Errorf("invalid type for ListPackTeamsParamsOrder")
-
-	stringToListPackTeamsParamsOrder = map[string]ListPackTeamsParamsOrder{
-		"asc":  ListPackTeamsParamsOrderAsc,
-		"desc": ListPackTeamsParamsOrderDesc,
-	}
-)
-
-// ToListPackTeamsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListPackTeamsParamsOrder(val string) (ListPackTeamsParamsOrder, error) {
-	if res, ok := stringToListPackTeamsParamsOrder[val]; ok {
-		return res, nil
-	}
-
-	return ListPackTeamsParamsOrder(""), ErrListPackTeamsParamsOrder
-}
-
-// Defines values for ListPackUsersParamsSort.
-const (
-	ListPackUsersParamsSortActive   ListPackUsersParamsSort = "active"
-	ListPackUsersParamsSortAdmin    ListPackUsersParamsSort = "admin"
-	ListPackUsersParamsSortEmail    ListPackUsersParamsSort = "email"
-	ListPackUsersParamsSortFullname ListPackUsersParamsSort = "fullname"
-	ListPackUsersParamsSortUsername ListPackUsersParamsSort = "username"
-)
-
-var (
-	// ErrListPackUsersParamsSort defines an error if an invalid value gets mapped.
-	ErrListPackUsersParamsSort = fmt.Errorf("invalid type for ListPackUsersParamsSort")
-
-	stringToListPackUsersParamsSort = map[string]ListPackUsersParamsSort{
-		"active":   ListPackUsersParamsSortActive,
-		"admin":    ListPackUsersParamsSortAdmin,
-		"email":    ListPackUsersParamsSortEmail,
-		"fullname": ListPackUsersParamsSortFullname,
-		"username": ListPackUsersParamsSortUsername,
-	}
-)
-
-// ToListPackUsersParamsSort acts as a helper to map a string to the defined enum.
-func ToListPackUsersParamsSort(val string) (ListPackUsersParamsSort, error) {
-	if res, ok := stringToListPackUsersParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListPackUsersParamsSort(""), ErrListPackUsersParamsSort
+	return ListPackGroupsParamsOrder(""), ErrListPackGroupsParamsOrder
 }
 
 // Defines values for ListPackUsersParamsOrder.
@@ -1161,35 +634,6 @@ func ToListPackUsersParamsOrder(val string) (ListPackUsersParamsOrder, error) {
 	return ListPackUsersParamsOrder(""), ErrListPackUsersParamsOrder
 }
 
-// Defines values for ListQuiltBuildsParamsSort.
-const (
-	BuildName   ListQuiltBuildsParamsSort = "build_name"
-	BuildPublic ListQuiltBuildsParamsSort = "build_public"
-	PackName    ListQuiltBuildsParamsSort = "pack_name"
-	PackSlug    ListQuiltBuildsParamsSort = "pack_slug"
-)
-
-var (
-	// ErrListQuiltBuildsParamsSort defines an error if an invalid value gets mapped.
-	ErrListQuiltBuildsParamsSort = fmt.Errorf("invalid type for ListQuiltBuildsParamsSort")
-
-	stringToListQuiltBuildsParamsSort = map[string]ListQuiltBuildsParamsSort{
-		"build_name":   BuildName,
-		"build_public": BuildPublic,
-		"pack_name":    PackName,
-		"pack_slug":    PackSlug,
-	}
-)
-
-// ToListQuiltBuildsParamsSort acts as a helper to map a string to the defined enum.
-func ToListQuiltBuildsParamsSort(val string) (ListQuiltBuildsParamsSort, error) {
-	if res, ok := stringToListQuiltBuildsParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListQuiltBuildsParamsSort(""), ErrListQuiltBuildsParamsSort
-}
-
 // Defines values for ListQuiltBuildsParamsOrder.
 const (
 	ListQuiltBuildsParamsOrderAsc  ListQuiltBuildsParamsOrder = "asc"
@@ -1213,247 +657,6 @@ func ToListQuiltBuildsParamsOrder(val string) (ListQuiltBuildsParamsOrder, error
 	}
 
 	return ListQuiltBuildsParamsOrder(""), ErrListQuiltBuildsParamsOrder
-}
-
-// Defines values for ListTeamsParamsSort.
-const (
-	ListTeamsParamsSortName ListTeamsParamsSort = "name"
-	ListTeamsParamsSortSlug ListTeamsParamsSort = "slug"
-)
-
-var (
-	// ErrListTeamsParamsSort defines an error if an invalid value gets mapped.
-	ErrListTeamsParamsSort = fmt.Errorf("invalid type for ListTeamsParamsSort")
-
-	stringToListTeamsParamsSort = map[string]ListTeamsParamsSort{
-		"name": ListTeamsParamsSortName,
-		"slug": ListTeamsParamsSortSlug,
-	}
-)
-
-// ToListTeamsParamsSort acts as a helper to map a string to the defined enum.
-func ToListTeamsParamsSort(val string) (ListTeamsParamsSort, error) {
-	if res, ok := stringToListTeamsParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListTeamsParamsSort(""), ErrListTeamsParamsSort
-}
-
-// Defines values for ListTeamsParamsOrder.
-const (
-	ListTeamsParamsOrderAsc  ListTeamsParamsOrder = "asc"
-	ListTeamsParamsOrderDesc ListTeamsParamsOrder = "desc"
-)
-
-var (
-	// ErrListTeamsParamsOrder defines an error if an invalid value gets mapped.
-	ErrListTeamsParamsOrder = fmt.Errorf("invalid type for ListTeamsParamsOrder")
-
-	stringToListTeamsParamsOrder = map[string]ListTeamsParamsOrder{
-		"asc":  ListTeamsParamsOrderAsc,
-		"desc": ListTeamsParamsOrderDesc,
-	}
-)
-
-// ToListTeamsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListTeamsParamsOrder(val string) (ListTeamsParamsOrder, error) {
-	if res, ok := stringToListTeamsParamsOrder[val]; ok {
-		return res, nil
-	}
-
-	return ListTeamsParamsOrder(""), ErrListTeamsParamsOrder
-}
-
-// Defines values for ListTeamModsParamsSort.
-const (
-	ListTeamModsParamsSortName   ListTeamModsParamsSort = "name"
-	ListTeamModsParamsSortPublic ListTeamModsParamsSort = "public"
-	ListTeamModsParamsSortSlug   ListTeamModsParamsSort = "slug"
-)
-
-var (
-	// ErrListTeamModsParamsSort defines an error if an invalid value gets mapped.
-	ErrListTeamModsParamsSort = fmt.Errorf("invalid type for ListTeamModsParamsSort")
-
-	stringToListTeamModsParamsSort = map[string]ListTeamModsParamsSort{
-		"name":   ListTeamModsParamsSortName,
-		"public": ListTeamModsParamsSortPublic,
-		"slug":   ListTeamModsParamsSortSlug,
-	}
-)
-
-// ToListTeamModsParamsSort acts as a helper to map a string to the defined enum.
-func ToListTeamModsParamsSort(val string) (ListTeamModsParamsSort, error) {
-	if res, ok := stringToListTeamModsParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListTeamModsParamsSort(""), ErrListTeamModsParamsSort
-}
-
-// Defines values for ListTeamModsParamsOrder.
-const (
-	ListTeamModsParamsOrderAsc  ListTeamModsParamsOrder = "asc"
-	ListTeamModsParamsOrderDesc ListTeamModsParamsOrder = "desc"
-)
-
-var (
-	// ErrListTeamModsParamsOrder defines an error if an invalid value gets mapped.
-	ErrListTeamModsParamsOrder = fmt.Errorf("invalid type for ListTeamModsParamsOrder")
-
-	stringToListTeamModsParamsOrder = map[string]ListTeamModsParamsOrder{
-		"asc":  ListTeamModsParamsOrderAsc,
-		"desc": ListTeamModsParamsOrderDesc,
-	}
-)
-
-// ToListTeamModsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListTeamModsParamsOrder(val string) (ListTeamModsParamsOrder, error) {
-	if res, ok := stringToListTeamModsParamsOrder[val]; ok {
-		return res, nil
-	}
-
-	return ListTeamModsParamsOrder(""), ErrListTeamModsParamsOrder
-}
-
-// Defines values for ListTeamPacksParamsSort.
-const (
-	ListTeamPacksParamsSortName   ListTeamPacksParamsSort = "name"
-	ListTeamPacksParamsSortPublic ListTeamPacksParamsSort = "public"
-	ListTeamPacksParamsSortSlug   ListTeamPacksParamsSort = "slug"
-)
-
-var (
-	// ErrListTeamPacksParamsSort defines an error if an invalid value gets mapped.
-	ErrListTeamPacksParamsSort = fmt.Errorf("invalid type for ListTeamPacksParamsSort")
-
-	stringToListTeamPacksParamsSort = map[string]ListTeamPacksParamsSort{
-		"name":   ListTeamPacksParamsSortName,
-		"public": ListTeamPacksParamsSortPublic,
-		"slug":   ListTeamPacksParamsSortSlug,
-	}
-)
-
-// ToListTeamPacksParamsSort acts as a helper to map a string to the defined enum.
-func ToListTeamPacksParamsSort(val string) (ListTeamPacksParamsSort, error) {
-	if res, ok := stringToListTeamPacksParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListTeamPacksParamsSort(""), ErrListTeamPacksParamsSort
-}
-
-// Defines values for ListTeamPacksParamsOrder.
-const (
-	ListTeamPacksParamsOrderAsc  ListTeamPacksParamsOrder = "asc"
-	ListTeamPacksParamsOrderDesc ListTeamPacksParamsOrder = "desc"
-)
-
-var (
-	// ErrListTeamPacksParamsOrder defines an error if an invalid value gets mapped.
-	ErrListTeamPacksParamsOrder = fmt.Errorf("invalid type for ListTeamPacksParamsOrder")
-
-	stringToListTeamPacksParamsOrder = map[string]ListTeamPacksParamsOrder{
-		"asc":  ListTeamPacksParamsOrderAsc,
-		"desc": ListTeamPacksParamsOrderDesc,
-	}
-)
-
-// ToListTeamPacksParamsOrder acts as a helper to map a string to the defined enum.
-func ToListTeamPacksParamsOrder(val string) (ListTeamPacksParamsOrder, error) {
-	if res, ok := stringToListTeamPacksParamsOrder[val]; ok {
-		return res, nil
-	}
-
-	return ListTeamPacksParamsOrder(""), ErrListTeamPacksParamsOrder
-}
-
-// Defines values for ListTeamUsersParamsSort.
-const (
-	ListTeamUsersParamsSortActive   ListTeamUsersParamsSort = "active"
-	ListTeamUsersParamsSortAdmin    ListTeamUsersParamsSort = "admin"
-	ListTeamUsersParamsSortEmail    ListTeamUsersParamsSort = "email"
-	ListTeamUsersParamsSortFullname ListTeamUsersParamsSort = "fullname"
-	ListTeamUsersParamsSortUsername ListTeamUsersParamsSort = "username"
-)
-
-var (
-	// ErrListTeamUsersParamsSort defines an error if an invalid value gets mapped.
-	ErrListTeamUsersParamsSort = fmt.Errorf("invalid type for ListTeamUsersParamsSort")
-
-	stringToListTeamUsersParamsSort = map[string]ListTeamUsersParamsSort{
-		"active":   ListTeamUsersParamsSortActive,
-		"admin":    ListTeamUsersParamsSortAdmin,
-		"email":    ListTeamUsersParamsSortEmail,
-		"fullname": ListTeamUsersParamsSortFullname,
-		"username": ListTeamUsersParamsSortUsername,
-	}
-)
-
-// ToListTeamUsersParamsSort acts as a helper to map a string to the defined enum.
-func ToListTeamUsersParamsSort(val string) (ListTeamUsersParamsSort, error) {
-	if res, ok := stringToListTeamUsersParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListTeamUsersParamsSort(""), ErrListTeamUsersParamsSort
-}
-
-// Defines values for ListTeamUsersParamsOrder.
-const (
-	ListTeamUsersParamsOrderAsc  ListTeamUsersParamsOrder = "asc"
-	ListTeamUsersParamsOrderDesc ListTeamUsersParamsOrder = "desc"
-)
-
-var (
-	// ErrListTeamUsersParamsOrder defines an error if an invalid value gets mapped.
-	ErrListTeamUsersParamsOrder = fmt.Errorf("invalid type for ListTeamUsersParamsOrder")
-
-	stringToListTeamUsersParamsOrder = map[string]ListTeamUsersParamsOrder{
-		"asc":  ListTeamUsersParamsOrderAsc,
-		"desc": ListTeamUsersParamsOrderDesc,
-	}
-)
-
-// ToListTeamUsersParamsOrder acts as a helper to map a string to the defined enum.
-func ToListTeamUsersParamsOrder(val string) (ListTeamUsersParamsOrder, error) {
-	if res, ok := stringToListTeamUsersParamsOrder[val]; ok {
-		return res, nil
-	}
-
-	return ListTeamUsersParamsOrder(""), ErrListTeamUsersParamsOrder
-}
-
-// Defines values for ListUsersParamsSort.
-const (
-	Active   ListUsersParamsSort = "active"
-	Admin    ListUsersParamsSort = "admin"
-	Email    ListUsersParamsSort = "email"
-	Fullname ListUsersParamsSort = "fullname"
-	Username ListUsersParamsSort = "username"
-)
-
-var (
-	// ErrListUsersParamsSort defines an error if an invalid value gets mapped.
-	ErrListUsersParamsSort = fmt.Errorf("invalid type for ListUsersParamsSort")
-
-	stringToListUsersParamsSort = map[string]ListUsersParamsSort{
-		"active":   Active,
-		"admin":    Admin,
-		"email":    Email,
-		"fullname": Fullname,
-		"username": Username,
-	}
-)
-
-// ToListUsersParamsSort acts as a helper to map a string to the defined enum.
-func ToListUsersParamsSort(val string) (ListUsersParamsSort, error) {
-	if res, ok := stringToListUsersParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListUsersParamsSort(""), ErrListUsersParamsSort
 }
 
 // Defines values for ListUsersParamsOrder.
@@ -1481,31 +684,29 @@ func ToListUsersParamsOrder(val string) (ListUsersParamsOrder, error) {
 	return ListUsersParamsOrder(""), ErrListUsersParamsOrder
 }
 
-// Defines values for ListUserModsParamsSort.
+// Defines values for ListUserGroupsParamsOrder.
 const (
-	ListUserModsParamsSortName   ListUserModsParamsSort = "name"
-	ListUserModsParamsSortPublic ListUserModsParamsSort = "public"
-	ListUserModsParamsSortSlug   ListUserModsParamsSort = "slug"
+	ListUserGroupsParamsOrderAsc  ListUserGroupsParamsOrder = "asc"
+	ListUserGroupsParamsOrderDesc ListUserGroupsParamsOrder = "desc"
 )
 
 var (
-	// ErrListUserModsParamsSort defines an error if an invalid value gets mapped.
-	ErrListUserModsParamsSort = fmt.Errorf("invalid type for ListUserModsParamsSort")
+	// ErrListUserGroupsParamsOrder defines an error if an invalid value gets mapped.
+	ErrListUserGroupsParamsOrder = fmt.Errorf("invalid type for ListUserGroupsParamsOrder")
 
-	stringToListUserModsParamsSort = map[string]ListUserModsParamsSort{
-		"name":   ListUserModsParamsSortName,
-		"public": ListUserModsParamsSortPublic,
-		"slug":   ListUserModsParamsSortSlug,
+	stringToListUserGroupsParamsOrder = map[string]ListUserGroupsParamsOrder{
+		"asc":  ListUserGroupsParamsOrderAsc,
+		"desc": ListUserGroupsParamsOrderDesc,
 	}
 )
 
-// ToListUserModsParamsSort acts as a helper to map a string to the defined enum.
-func ToListUserModsParamsSort(val string) (ListUserModsParamsSort, error) {
-	if res, ok := stringToListUserModsParamsSort[val]; ok {
+// ToListUserGroupsParamsOrder acts as a helper to map a string to the defined enum.
+func ToListUserGroupsParamsOrder(val string) (ListUserGroupsParamsOrder, error) {
+	if res, ok := stringToListUserGroupsParamsOrder[val]; ok {
 		return res, nil
 	}
 
-	return ListUserModsParamsSort(""), ErrListUserModsParamsSort
+	return ListUserGroupsParamsOrder(""), ErrListUserGroupsParamsOrder
 }
 
 // Defines values for ListUserModsParamsOrder.
@@ -1533,33 +734,6 @@ func ToListUserModsParamsOrder(val string) (ListUserModsParamsOrder, error) {
 	return ListUserModsParamsOrder(""), ErrListUserModsParamsOrder
 }
 
-// Defines values for ListUserPacksParamsSort.
-const (
-	ListUserPacksParamsSortName   ListUserPacksParamsSort = "name"
-	ListUserPacksParamsSortPublic ListUserPacksParamsSort = "public"
-	ListUserPacksParamsSortSlug   ListUserPacksParamsSort = "slug"
-)
-
-var (
-	// ErrListUserPacksParamsSort defines an error if an invalid value gets mapped.
-	ErrListUserPacksParamsSort = fmt.Errorf("invalid type for ListUserPacksParamsSort")
-
-	stringToListUserPacksParamsSort = map[string]ListUserPacksParamsSort{
-		"name":   ListUserPacksParamsSortName,
-		"public": ListUserPacksParamsSortPublic,
-		"slug":   ListUserPacksParamsSortSlug,
-	}
-)
-
-// ToListUserPacksParamsSort acts as a helper to map a string to the defined enum.
-func ToListUserPacksParamsSort(val string) (ListUserPacksParamsSort, error) {
-	if res, ok := stringToListUserPacksParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListUserPacksParamsSort(""), ErrListUserPacksParamsSort
-}
-
 // Defines values for ListUserPacksParamsOrder.
 const (
 	ListUserPacksParamsOrderAsc  ListUserPacksParamsOrder = "asc"
@@ -1585,69 +759,13 @@ func ToListUserPacksParamsOrder(val string) (ListUserPacksParamsOrder, error) {
 	return ListUserPacksParamsOrder(""), ErrListUserPacksParamsOrder
 }
 
-// Defines values for ListUserTeamsParamsSort.
-const (
-	ListUserTeamsParamsSortName ListUserTeamsParamsSort = "name"
-	ListUserTeamsParamsSortSlug ListUserTeamsParamsSort = "slug"
-)
-
-var (
-	// ErrListUserTeamsParamsSort defines an error if an invalid value gets mapped.
-	ErrListUserTeamsParamsSort = fmt.Errorf("invalid type for ListUserTeamsParamsSort")
-
-	stringToListUserTeamsParamsSort = map[string]ListUserTeamsParamsSort{
-		"name": ListUserTeamsParamsSortName,
-		"slug": ListUserTeamsParamsSortSlug,
-	}
-)
-
-// ToListUserTeamsParamsSort acts as a helper to map a string to the defined enum.
-func ToListUserTeamsParamsSort(val string) (ListUserTeamsParamsSort, error) {
-	if res, ok := stringToListUserTeamsParamsSort[val]; ok {
-		return res, nil
-	}
-
-	return ListUserTeamsParamsSort(""), ErrListUserTeamsParamsSort
-}
-
-// Defines values for ListUserTeamsParamsOrder.
-const (
-	Asc  ListUserTeamsParamsOrder = "asc"
-	Desc ListUserTeamsParamsOrder = "desc"
-)
-
-var (
-	// ErrListUserTeamsParamsOrder defines an error if an invalid value gets mapped.
-	ErrListUserTeamsParamsOrder = fmt.Errorf("invalid type for ListUserTeamsParamsOrder")
-
-	stringToListUserTeamsParamsOrder = map[string]ListUserTeamsParamsOrder{
-		"asc":  Asc,
-		"desc": Desc,
-	}
-)
-
-// ToListUserTeamsParamsOrder acts as a helper to map a string to the defined enum.
-func ToListUserTeamsParamsOrder(val string) (ListUserTeamsParamsOrder, error) {
-	if res, ok := stringToListUserTeamsParamsOrder[val]; ok {
-		return res, nil
-	}
-
-	return ListUserTeamsParamsOrder(""), ErrListUserTeamsParamsOrder
-}
-
-// AuthLogin defines model for auth_login.
-type AuthLogin struct {
-	Password string `json:"password"`
-	Username string `json:"username"`
-}
-
-// AuthToken defines model for auth_token.
+// AuthToken defines model for AuthToken.
 type AuthToken struct {
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 	Token     *string    `json:"token,omitempty"`
 }
 
-// AuthVerify defines model for auth_verify.
+// AuthVerify defines model for AuthVerify.
 type AuthVerify struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Username  *string    `json:"username,omitempty"`
@@ -1659,24 +777,24 @@ type Build struct {
 
 	// Fabric Model to represent fabric
 	Fabric   *Fabric `json:"fabric,omitempty"`
-	FabricId *string `json:"fabric_id,omitempty"`
+	FabricID *string `json:"fabric_id,omitempty"`
 
 	// Forge Model to represent forge
 	Forge   *Forge  `json:"forge,omitempty"`
-	ForgeId *string `json:"forge_id,omitempty"`
-	Id      *string `json:"id,omitempty"`
+	ForgeID *string `json:"forge_id,omitempty"`
+	ID      *string `json:"id,omitempty"`
 	Java    *string `json:"java,omitempty"`
 	Latest  *bool   `json:"latest,omitempty"`
 	Memory  *string `json:"memory,omitempty"`
 
 	// Minecraft Model to represent minecraft
 	Minecraft   *Minecraft `json:"minecraft,omitempty"`
-	MinecraftId *string    `json:"minecraft_id,omitempty"`
+	MinecraftID *string    `json:"minecraft_id,omitempty"`
 	Name        *string    `json:"name,omitempty"`
 
 	// Neoforge Model to represent neoforge
 	Neoforge   *Neoforge `json:"neoforge,omitempty"`
-	NeoforgeId *string   `json:"neoforge_id,omitempty"`
+	NeoforgeID *string   `json:"neoforge_id,omitempty"`
 
 	// Pack Model to represent pack
 	Pack   *Pack `json:"pack,omitempty"`
@@ -1684,9 +802,8 @@ type Build struct {
 
 	// Quilt Model to represent quilt
 	Quilt       *Quilt     `json:"quilt,omitempty"`
-	QuiltId     *string    `json:"quilt_id,omitempty"`
+	QuiltID     *string    `json:"quilt_id,omitempty"`
 	Recommended *bool      `json:"recommended,omitempty"`
-	Slug        *string    `json:"slug,omitempty"`
 	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
 }
 
@@ -1694,137 +811,96 @@ type Build struct {
 type BuildVersion struct {
 	// Build Model to represent build
 	Build     *Build     `json:"build,omitempty"`
-	BuildId   string     `json:"build_id"`
+	BuildID   string     `json:"build_id"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 
 	// Version Model to represent version
 	Version   *Version `json:"version,omitempty"`
-	VersionId string   `json:"version_id"`
-}
-
-// BuildVersionParams Parameters to attach or unlink build version
-type BuildVersionParams struct {
-	Mod     string `json:"mod"`
-	Version string `json:"version"`
-}
-
-// BuildVersions Model to represent build versions
-type BuildVersions struct {
-	// Build Model to represent build
-	Build *Build `json:"build,omitempty"`
-
-	// Pack Model to represent pack
-	Pack     *Pack           `json:"pack,omitempty"`
-	Total    *int64          `json:"total,omitempty"`
-	Versions *[]BuildVersion `json:"versions,omitempty"`
-}
-
-// Builds Model to represent list of builds
-type Builds struct {
-	Builds *[]Build `json:"builds,omitempty"`
-
-	// Pack Model to represent pack
-	Pack  *Pack  `json:"pack,omitempty"`
-	Total *int64 `json:"total,omitempty"`
+	VersionID string   `json:"version_id"`
 }
 
 // Fabric Model to represent fabric
 type Fabric struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	Id        *string    `json:"id,omitempty"`
+	ID        *string    `json:"id,omitempty"`
 	Name      *string    `json:"name,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-}
-
-// FabricBuildParams Model to represent params for fabric builds
-type FabricBuildParams struct {
-	Build string `json:"build"`
-	Pack  string `json:"pack"`
-}
-
-// FabricBuilds Model to represent fabric builds
-type FabricBuilds struct {
-	Builds *[]Build `json:"builds,omitempty"`
-
-	// Fabric Model to represent fabric
-	Fabric *Fabric `json:"fabric,omitempty"`
-	Total  *int64  `json:"total,omitempty"`
-}
-
-// Fabrics Model to represent list of fabrics
-type Fabrics struct {
-	Total    *int64    `json:"total,omitempty"`
-	Versions *[]Fabric `json:"versions,omitempty"`
 }
 
 // Forge Model to represent forge
 type Forge struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	Id        *string    `json:"id,omitempty"`
+	ID        *string    `json:"id,omitempty"`
 	Minecraft *string    `json:"minecraft,omitempty"`
 	Name      *string    `json:"name,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
 
-// ForgeBuildParams Model to represent params for forge builds
-type ForgeBuildParams struct {
-	Build string `json:"build"`
-	Pack  string `json:"pack"`
+// Group Model to represent group
+type Group struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	ID        *string    `json:"id,omitempty"`
+	Name      *string    `json:"name,omitempty"`
+	Slug      *string    `json:"slug,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
 
-// ForgeBuilds Model to represent forge builds
-type ForgeBuilds struct {
-	Builds *[]Build `json:"builds,omitempty"`
+// GroupMod Model to represent group mod
+type GroupMod struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
 
-	// Forge Model to represent forge
-	Forge *Forge `json:"forge,omitempty"`
-	Total *int64 `json:"total,omitempty"`
+	// Group Model to represent group
+	Group   *Group `json:"group,omitempty"`
+	GroupID string `json:"group_id"`
+
+	// Mod Model to represent mod
+	Mod       *Mod          `json:"mod,omitempty"`
+	ModID     string        `json:"mod_id"`
+	Perm      *GroupModPerm `json:"perm,omitempty"`
+	UpdatedAt *time.Time    `json:"updated_at,omitempty"`
 }
 
-// Forges Model to represent list of forges
-type Forges struct {
-	Total    *int64   `json:"total,omitempty"`
-	Versions *[]Forge `json:"versions,omitempty"`
+// GroupModPerm defines model for GroupMod.Perm.
+type GroupModPerm string
+
+// GroupPack Model to represent group pack
+type GroupPack struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Group Model to represent group
+	Group   *Group `json:"group,omitempty"`
+	GroupID string `json:"group_id"`
+
+	// Pack Model to represent pack
+	Pack      *Pack          `json:"pack,omitempty"`
+	PackID    string         `json:"pack_id"`
+	Perm      *GroupPackPerm `json:"perm,omitempty"`
+	UpdatedAt *time.Time     `json:"updated_at,omitempty"`
 }
+
+// GroupPackPerm defines model for GroupPack.Perm.
+type GroupPackPerm string
 
 // Minecraft Model to represent minecraft
 type Minecraft struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	Id        *string    `json:"id,omitempty"`
+	ID        *string    `json:"id,omitempty"`
 	Name      *string    `json:"name,omitempty"`
 	Type      *string    `json:"type,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
 
-// MinecraftBuildParams Model to represent params for minecraft builds
-type MinecraftBuildParams struct {
-	Build string `json:"build"`
-	Pack  string `json:"pack"`
-}
-
-// MinecraftBuilds Model to represent minecraft builds
-type MinecraftBuilds struct {
-	Builds *[]Build `json:"builds,omitempty"`
-
-	// Minecraft Model to represent minecraft
-	Minecraft *Minecraft `json:"minecraft,omitempty"`
-	Total     *int64     `json:"total,omitempty"`
-}
-
-// Minecrafts Model to represent list of minecrafts
-type Minecrafts struct {
-	Total    *int64       `json:"total,omitempty"`
-	Versions *[]Minecraft `json:"versions,omitempty"`
-}
-
 // Mod Model to represent mod
 type Mod struct {
-	Author      *string    `json:"author,omitempty"`
+	Author *string `json:"author,omitempty"`
+
+	// Avatar Model to represent mod avatar
+	Avatar      *ModAvatar `json:"avatar,omitempty"`
 	CreatedAt   *time.Time `json:"created_at,omitempty"`
 	Description *string    `json:"description,omitempty"`
 	Donate      *string    `json:"donate,omitempty"`
-	Id          *string    `json:"id,omitempty"`
+	ID          *string    `json:"id,omitempty"`
 	Name        *string    `json:"name,omitempty"`
 	Public      *bool      `json:"public,omitempty"`
 	Side        *string    `json:"side,omitempty"`
@@ -1833,73 +909,20 @@ type Mod struct {
 	Website     *string    `json:"website,omitempty"`
 }
 
-// ModTeamParams Parameters to attach or unlink mod team
-type ModTeamParams struct {
-	Perm *ModTeamParamsPerm `json:"perm,omitempty"`
-	Team string             `json:"team"`
-}
-
-// ModTeamParamsPerm defines model for ModTeamParams.Perm.
-type ModTeamParamsPerm string
-
-// ModTeams Model to represent mod teams
-type ModTeams struct {
-	// Mod Model to represent mod
-	Mod   *Mod       `json:"mod,omitempty"`
-	Teams *[]TeamMod `json:"teams,omitempty"`
-	Total *int64     `json:"total,omitempty"`
-}
-
-// ModUserParams Parameters to attach or unlink mod user
-type ModUserParams struct {
-	Perm *ModUserParamsPerm `json:"perm,omitempty"`
-	User string             `json:"user"`
-}
-
-// ModUserParamsPerm defines model for ModUserParams.Perm.
-type ModUserParamsPerm string
-
-// ModUsers Model to represent mod users
-type ModUsers struct {
-	// Mod Model to represent mod
-	Mod   *Mod       `json:"mod,omitempty"`
-	Total *int64     `json:"total,omitempty"`
-	Users *[]UserMod `json:"users,omitempty"`
-}
-
-// Mods Model to represent list of mods
-type Mods struct {
-	Mods  *[]Mod `json:"mods,omitempty"`
-	Total *int64 `json:"total,omitempty"`
+// ModAvatar Model to represent mod avatar
+type ModAvatar struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	Slug      *string    `json:"slug,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	URL       *string    `json:"url,omitempty"`
 }
 
 // Neoforge Model to represent neoforge
 type Neoforge struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	Id        *string    `json:"id,omitempty"`
+	ID        *string    `json:"id,omitempty"`
 	Name      *string    `json:"name,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-}
-
-// NeoforgeBuildParams Model to represent params for neoforge builds
-type NeoforgeBuildParams struct {
-	Build string `json:"build"`
-	Pack  string `json:"pack"`
-}
-
-// NeoforgeBuilds Model to represent neoforge builds
-type NeoforgeBuilds struct {
-	Builds *[]Build `json:"builds,omitempty"`
-
-	// Neoforge Model to represent neoforge
-	Neoforge *Neoforge `json:"neoforge,omitempty"`
-	Total    *int64    `json:"total,omitempty"`
-}
-
-// Neoforges Model to represent list of neoforges
-type Neoforges struct {
-	Total    *int64      `json:"total,omitempty"`
-	Versions *[]Neoforge `json:"versions,omitempty"`
 }
 
 // Notification Generic response for errors and validations
@@ -1911,118 +934,41 @@ type Notification struct {
 
 // Pack Model to represent pack
 type Pack struct {
-	// Back Model to represent pack background
-	Back      *PackBack  `json:"back,omitempty"`
+	// Avatar Model to represent pack avatar
+	Avatar    *PackAvatar `json:"avatar,omitempty"`
+	CreatedAt *time.Time  `json:"created_at,omitempty"`
+	ID        *string     `json:"id,omitempty"`
+	Name      *string     `json:"name,omitempty"`
+	Public    *bool       `json:"public,omitempty"`
+	Slug      *string     `json:"slug,omitempty"`
+	UpdatedAt *time.Time  `json:"updated_at,omitempty"`
+	Website   *string     `json:"website,omitempty"`
+}
+
+// PackAvatar Model to represent pack avatar
+type PackAvatar struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-
-	// Icon Model to represent pack icon
-	Icon *PackIcon `json:"icon,omitempty"`
-	Id   *string   `json:"id,omitempty"`
-
-	// Logo Model to represent pack logo
-	Logo      *PackLogo  `json:"logo,omitempty"`
-	Name      *string    `json:"name,omitempty"`
-	Public    *bool      `json:"public,omitempty"`
 	Slug      *string    `json:"slug,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	Website   *string    `json:"website,omitempty"`
-}
-
-// PackBack Model to represent pack background
-type PackBack struct {
-	ContentType *string    `json:"content_type,omitempty"`
-	CreatedAt   *time.Time `json:"created_at,omitempty"`
-	Id          *string    `json:"id,omitempty"`
-	Md5         *string    `json:"md5,omitempty"`
-	Path        *string    `json:"path,omitempty"`
-	Slug        *string    `json:"slug,omitempty"`
-	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
-	Upload      *string    `json:"upload,omitempty"`
-	Url         *string    `json:"url,omitempty"`
-}
-
-// PackIcon Model to represent pack icon
-type PackIcon struct {
-	ContentType *string    `json:"content_type,omitempty"`
-	CreatedAt   *time.Time `json:"created_at,omitempty"`
-	Id          *string    `json:"id,omitempty"`
-	Md5         *string    `json:"md5,omitempty"`
-	Path        *string    `json:"path,omitempty"`
-	Slug        *string    `json:"slug,omitempty"`
-	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
-	Upload      *string    `json:"upload,omitempty"`
-	Url         *string    `json:"url,omitempty"`
-}
-
-// PackLogo Model to represent pack logo
-type PackLogo struct {
-	ContentType *string    `json:"content_type,omitempty"`
-	CreatedAt   *time.Time `json:"created_at,omitempty"`
-	Id          *string    `json:"id,omitempty"`
-	Md5         *string    `json:"md5,omitempty"`
-	Path        *string    `json:"path,omitempty"`
-	Slug        *string    `json:"slug,omitempty"`
-	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
-	Upload      *string    `json:"upload,omitempty"`
-	Url         *string    `json:"url,omitempty"`
-}
-
-// PackTeamParams Parameters to attach or unlink pack team
-type PackTeamParams struct {
-	Perm *PackTeamParamsPerm `json:"perm,omitempty"`
-	Team string              `json:"team"`
-}
-
-// PackTeamParamsPerm defines model for PackTeamParams.Perm.
-type PackTeamParamsPerm string
-
-// PackTeams Model to represent pack teams
-type PackTeams struct {
-	// Pack Model to represent pack
-	Pack  *Pack       `json:"pack,omitempty"`
-	Teams *[]TeamPack `json:"teams,omitempty"`
-	Total *int64      `json:"total,omitempty"`
-}
-
-// PackUserParams Parameters to attach or unlink pack user
-type PackUserParams struct {
-	Perm *PackUserParamsPerm `json:"perm,omitempty"`
-	User string              `json:"user"`
-}
-
-// PackUserParamsPerm defines model for PackUserParams.Perm.
-type PackUserParamsPerm string
-
-// PackUsers Model to represent pack users
-type PackUsers struct {
-	// Pack Model to represent pack
-	Pack  *Pack       `json:"pack,omitempty"`
-	Total *int64      `json:"total,omitempty"`
-	Users *[]UserPack `json:"users,omitempty"`
-}
-
-// Packs Model to represent list of packs
-type Packs struct {
-	Packs *[]Pack `json:"packs,omitempty"`
-	Total *int64  `json:"total,omitempty"`
+	URL       *string    `json:"url,omitempty"`
 }
 
 // Profile Model to represent profile
 type Profile struct {
-	Active    *bool       `json:"active,omitempty"`
-	Admin     *bool       `json:"admin,omitempty"`
-	Auths     *[]UserAuth `json:"auths,omitempty"`
-	CreatedAt *time.Time  `json:"created_at,omitempty"`
-	Email     *string     `json:"email,omitempty"`
-	Fullname  *string     `json:"fullname,omitempty"`
-	Id        *string     `json:"id,omitempty"`
-	Mods      *[]UserMod  `json:"mods,omitempty"`
-	Packs     *[]UserPack `json:"packs,omitempty"`
-	Password  *string     `json:"password,omitempty"`
-	Profile   *string     `json:"profile,omitempty"`
-	Teams     *[]UserTeam `json:"teams,omitempty"`
-	UpdatedAt *time.Time  `json:"updated_at,omitempty"`
-	Username  *string     `json:"username,omitempty"`
+	Active    *bool        `json:"active,omitempty"`
+	Admin     *bool        `json:"admin,omitempty"`
+	Auths     *[]UserAuth  `json:"auths,omitempty"`
+	CreatedAt *time.Time   `json:"created_at,omitempty"`
+	Email     *string      `json:"email,omitempty"`
+	Fullname  *string      `json:"fullname,omitempty"`
+	Groups    *[]UserGroup `json:"groups,omitempty"`
+	ID        *string      `json:"id,omitempty"`
+	Mods      *[]UserMod   `json:"mods,omitempty"`
+	Packs     *[]UserPack  `json:"packs,omitempty"`
+	Password  *string      `json:"password,omitempty"`
+	Profile   *string      `json:"profile,omitempty"`
+	UpdatedAt *time.Time   `json:"updated_at,omitempty"`
+	Username  *string      `json:"username,omitempty"`
 }
 
 // Provider Model to represent auth provider
@@ -2033,143 +979,12 @@ type Provider struct {
 	Name    *string `json:"name,omitempty"`
 }
 
-// Providers Model to represent list of auth providers
-type Providers struct {
-	Listing *[]Provider `json:"listing,omitempty"`
-	Total   *int64      `json:"total,omitempty"`
-}
-
 // Quilt Model to represent quilt
 type Quilt struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	Id        *string    `json:"id,omitempty"`
+	ID        *string    `json:"id,omitempty"`
 	Name      *string    `json:"name,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-}
-
-// QuiltBuildParams Model to represent params for quilt builds
-type QuiltBuildParams struct {
-	Build string `json:"build"`
-	Pack  string `json:"pack"`
-}
-
-// QuiltBuilds Model to represent quilt builds
-type QuiltBuilds struct {
-	Builds *[]Build `json:"builds,omitempty"`
-
-	// Quilt Model to represent quilt
-	Quilt *Quilt `json:"quilt,omitempty"`
-	Total *int64 `json:"total,omitempty"`
-}
-
-// Quilts Model to represent list of quilts
-type Quilts struct {
-	Total    *int64   `json:"total,omitempty"`
-	Versions *[]Quilt `json:"versions,omitempty"`
-}
-
-// Team Model to represent team
-type Team struct {
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	Id        *string    `json:"id,omitempty"`
-	Name      *string    `json:"name,omitempty"`
-	Slug      *string    `json:"slug,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-}
-
-// TeamMod Model to represent team mod
-type TeamMod struct {
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-
-	// Mod Model to represent mod
-	Mod   *Mod         `json:"mod,omitempty"`
-	ModId string       `json:"mod_id"`
-	Perm  *TeamModPerm `json:"perm,omitempty"`
-
-	// Team Model to represent team
-	Team      *Team      `json:"team,omitempty"`
-	TeamId    string     `json:"team_id"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-}
-
-// TeamModPerm defines model for TeamMod.Perm.
-type TeamModPerm string
-
-// TeamModParams Parameters to attach or unlink team mod
-type TeamModParams struct {
-	Mod  string             `json:"mod"`
-	Perm *TeamModParamsPerm `json:"perm,omitempty"`
-}
-
-// TeamModParamsPerm defines model for TeamModParams.Perm.
-type TeamModParamsPerm string
-
-// TeamMods Model to represent team mods
-type TeamMods struct {
-	Mods *[]TeamMod `json:"mods,omitempty"`
-
-	// Team Model to represent team
-	Team  *Team  `json:"team,omitempty"`
-	Total *int64 `json:"total,omitempty"`
-}
-
-// TeamPack Model to represent team pack
-type TeamPack struct {
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-
-	// Pack Model to represent pack
-	Pack   *Pack         `json:"pack,omitempty"`
-	PackId string        `json:"pack_id"`
-	Perm   *TeamPackPerm `json:"perm,omitempty"`
-
-	// Team Model to represent team
-	Team      *Team      `json:"team,omitempty"`
-	TeamId    string     `json:"team_id"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-}
-
-// TeamPackPerm defines model for TeamPack.Perm.
-type TeamPackPerm string
-
-// TeamPackParams Parameters to attach or unlink team pack
-type TeamPackParams struct {
-	Pack string              `json:"pack"`
-	Perm *TeamPackParamsPerm `json:"perm,omitempty"`
-}
-
-// TeamPackParamsPerm defines model for TeamPackParams.Perm.
-type TeamPackParamsPerm string
-
-// TeamPacks Model to represent team packs
-type TeamPacks struct {
-	Packs *[]TeamPack `json:"packs,omitempty"`
-
-	// Team Model to represent team
-	Team  *Team  `json:"team,omitempty"`
-	Total *int64 `json:"total,omitempty"`
-}
-
-// TeamUserParams Parameters to attach or unlink team user
-type TeamUserParams struct {
-	Perm *TeamUserParamsPerm `json:"perm,omitempty"`
-	User string              `json:"user"`
-}
-
-// TeamUserParamsPerm defines model for TeamUserParams.Perm.
-type TeamUserParamsPerm string
-
-// TeamUsers Model to represent team users
-type TeamUsers struct {
-	// Team Model to represent team
-	Team  *Team       `json:"team,omitempty"`
-	Total *int64      `json:"total,omitempty"`
-	Users *[]UserTeam `json:"users,omitempty"`
-}
-
-// Teams Model to represent list of teams
-type Teams struct {
-	Teams *[]Team `json:"teams,omitempty"`
-	Total *int64  `json:"total,omitempty"`
 }
 
 // User Model to represent user
@@ -2180,7 +995,7 @@ type User struct {
 	CreatedAt *time.Time  `json:"created_at,omitempty"`
 	Email     *string     `json:"email,omitempty"`
 	Fullname  *string     `json:"fullname,omitempty"`
-	Id        *string     `json:"id,omitempty"`
+	ID        *string     `json:"id,omitempty"`
 	Password  *string     `json:"password,omitempty"`
 	Profile   *string     `json:"profile,omitempty"`
 	UpdatedAt *time.Time  `json:"updated_at,omitempty"`
@@ -2195,41 +1010,41 @@ type UserAuth struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
 
+// UserGroup Model to represent user group
+type UserGroup struct {
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+
+	// Group Model to represent group
+	Group     *Group         `json:"group,omitempty"`
+	GroupID   string         `json:"group_id"`
+	Perm      *UserGroupPerm `json:"perm,omitempty"`
+	UpdatedAt *time.Time     `json:"updated_at,omitempty"`
+
+	// User Model to represent user
+	User   *User  `json:"user,omitempty"`
+	UserID string `json:"user_id"`
+}
+
+// UserGroupPerm defines model for UserGroup.Perm.
+type UserGroupPerm string
+
 // UserMod Model to represent user mod
 type UserMod struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 
 	// Mod Model to represent mod
 	Mod       *Mod         `json:"mod,omitempty"`
-	ModId     string       `json:"mod_id"`
+	ModID     string       `json:"mod_id"`
 	Perm      *UserModPerm `json:"perm,omitempty"`
 	UpdatedAt *time.Time   `json:"updated_at,omitempty"`
 
 	// User Model to represent user
 	User   *User  `json:"user,omitempty"`
-	UserId string `json:"user_id"`
+	UserID string `json:"user_id"`
 }
 
 // UserModPerm defines model for UserMod.Perm.
 type UserModPerm string
-
-// UserModParams Parameters to attach or unlink user mod
-type UserModParams struct {
-	Mod  string             `json:"mod"`
-	Perm *UserModParamsPerm `json:"perm,omitempty"`
-}
-
-// UserModParamsPerm defines model for UserModParams.Perm.
-type UserModParamsPerm string
-
-// UserMods Model to represent user mods
-type UserMods struct {
-	Mods  *[]UserMod `json:"mods,omitempty"`
-	Total *int64     `json:"total,omitempty"`
-
-	// User Model to represent user
-	User *User `json:"user,omitempty"`
-}
 
 // UserPack Model to represent user pack
 type UserPack struct {
@@ -2237,77 +1052,17 @@ type UserPack struct {
 
 	// Pack Model to represent pack
 	Pack      *Pack         `json:"pack,omitempty"`
-	PackId    string        `json:"pack_id"`
+	PackID    string        `json:"pack_id"`
 	Perm      *UserPackPerm `json:"perm,omitempty"`
 	UpdatedAt *time.Time    `json:"updated_at,omitempty"`
 
 	// User Model to represent user
 	User   *User  `json:"user,omitempty"`
-	UserId string `json:"user_id"`
+	UserID string `json:"user_id"`
 }
 
 // UserPackPerm defines model for UserPack.Perm.
 type UserPackPerm string
-
-// UserPackParams Parameters to attach or unlink user pack
-type UserPackParams struct {
-	Pack string              `json:"pack"`
-	Perm *UserPackParamsPerm `json:"perm,omitempty"`
-}
-
-// UserPackParamsPerm defines model for UserPackParams.Perm.
-type UserPackParamsPerm string
-
-// UserPacks Model to represent user packs
-type UserPacks struct {
-	Packs *[]UserPack `json:"packs,omitempty"`
-	Total *int64      `json:"total,omitempty"`
-
-	// User Model to represent user
-	User *User `json:"user,omitempty"`
-}
-
-// UserTeam Model to represent user team
-type UserTeam struct {
-	CreatedAt *time.Time    `json:"created_at,omitempty"`
-	Perm      *UserTeamPerm `json:"perm,omitempty"`
-
-	// Team Model to represent team
-	Team      *Team      `json:"team,omitempty"`
-	TeamId    string     `json:"team_id"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-
-	// User Model to represent user
-	User   *User  `json:"user,omitempty"`
-	UserId string `json:"user_id"`
-}
-
-// UserTeamPerm defines model for UserTeam.Perm.
-type UserTeamPerm string
-
-// UserTeamParams Parameters to attach or unlink user team
-type UserTeamParams struct {
-	Perm *UserTeamParamsPerm `json:"perm,omitempty"`
-	Team string              `json:"team"`
-}
-
-// UserTeamParamsPerm defines model for UserTeamParams.Perm.
-type UserTeamParamsPerm string
-
-// UserTeams Model to represent user teams
-type UserTeams struct {
-	Teams *[]UserTeam `json:"teams,omitempty"`
-	Total *int64      `json:"total,omitempty"`
-
-	// User Model to represent user
-	User *User `json:"user,omitempty"`
-}
-
-// Users Model to represent list of users
-type Users struct {
-	Total *int64  `json:"total,omitempty"`
-	Users *[]User `json:"users,omitempty"`
-}
 
 // Validation General structure to show validation errors
 type Validation struct {
@@ -2321,825 +1076,1837 @@ type Version struct {
 
 	// File Model to represent version file
 	File *VersionFile `json:"file,omitempty"`
-	Id   *string      `json:"id,omitempty"`
+	ID   *string      `json:"id,omitempty"`
 
 	// Mod Model to represent mod
 	Mod       *Mod       `json:"mod,omitempty"`
 	Name      *string    `json:"name,omitempty"`
 	Public    *bool      `json:"public,omitempty"`
-	Slug      *string    `json:"slug,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-}
-
-// VersionBuildParams Parameters to attach or unlink version build
-type VersionBuildParams struct {
-	Build string `json:"build"`
-	Pack  string `json:"pack"`
-}
-
-// VersionBuilds Model to represent version builds
-type VersionBuilds struct {
-	Builds *[]BuildVersion `json:"builds,omitempty"`
-
-	// Mod Model to represent mod
-	Mod   *Mod   `json:"mod,omitempty"`
-	Total *int64 `json:"total,omitempty"`
-
-	// Version Model to represent version
-	Version *Version `json:"version,omitempty"`
 }
 
 // VersionFile Model to represent version file
 type VersionFile struct {
 	ContentType *string    `json:"content_type,omitempty"`
 	CreatedAt   *time.Time `json:"created_at,omitempty"`
-	Id          *string    `json:"id,omitempty"`
-	Md5         *string    `json:"md5,omitempty"`
+	MD5         *string    `json:"md5,omitempty"`
 	Path        *string    `json:"path,omitempty"`
 	Slug        *string    `json:"slug,omitempty"`
 	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
-	Upload      *string    `json:"upload,omitempty"`
-	Url         *string    `json:"url,omitempty"`
+	URL         *string    `json:"url,omitempty"`
 }
 
-// Versions Model to represent list of versions
-type Versions struct {
+// AuthCodeParam defines model for AuthCodeParam.
+type AuthCodeParam = string
+
+// AuthProviderParam defines model for AuthProviderParam.
+type AuthProviderParam = string
+
+// AuthStateParam defines model for AuthStateParam.
+type AuthStateParam = string
+
+// BuildID defines model for BuildParam.
+type BuildID = string
+
+// FabricID defines model for FabricParam.
+type FabricID = string
+
+// ForgeID defines model for ForgeParam.
+type ForgeID = string
+
+// GroupID defines model for GroupParam.
+type GroupID = string
+
+// MinecraftID defines model for MinecraftParam.
+type MinecraftID = string
+
+// ModID defines model for ModParam.
+type ModID = string
+
+// NeoforgeID defines model for NeoforgeParam.
+type NeoforgeID = string
+
+// PackID defines model for PackParam.
+type PackID = string
+
+// PagingLimitParam defines model for PagingLimitParam.
+type PagingLimitParam = int
+
+// PagingOffsetParam defines model for PagingOffsetParam.
+type PagingOffsetParam = int
+
+// QuiltID defines model for QuiltParam.
+type QuiltID = string
+
+// SearchQueryParam defines model for SearchQueryParam.
+type SearchQueryParam = string
+
+// SortColumnParam defines model for SortColumnParam.
+type SortColumnParam = string
+
+// SortOrderParam defines model for SortOrderParam.
+type SortOrderParam string
+
+// UserID defines model for UserParam.
+type UserID = string
+
+// VersionID defines model for VersionParam.
+type VersionID = string
+
+// ActionFailedError Generic response for errors and validations
+type ActionFailedError = Notification
+
+// AlreadyAttachedError Generic response for errors and validations
+type AlreadyAttachedError = Notification
+
+// BadCredentialsError Generic response for errors and validations
+type BadCredentialsError = Notification
+
+// BadRequestError Generic response for errors and validations
+type BadRequestError = Notification
+
+// BuildResponse Model to represent build
+type BuildResponse = Build
+
+// BuildVersionsResponse defines model for BuildVersionsResponse.
+type BuildVersionsResponse struct {
+	// Build Model to represent build
+	Build  *Build `json:"build,omitempty"`
+	Limit  int64  `json:"limit"`
+	Offset int64  `json:"offset"`
+
+	// Pack Model to represent pack
+	Pack     *Pack          `json:"pack,omitempty"`
+	Total    int64          `json:"total"`
+	Versions []BuildVersion `json:"versions"`
+}
+
+// BuildsResponse defines model for BuildsResponse.
+type BuildsResponse struct {
+	Builds []Build `json:"builds"`
+	Limit  int64   `json:"limit"`
+	Offset int64   `json:"offset"`
+
+	// Pack Model to represent pack
+	Pack  *Pack `json:"pack,omitempty"`
+	Total int64 `json:"total"`
+}
+
+// FabricBuildsResponse defines model for FabricBuildsResponse.
+type FabricBuildsResponse struct {
+	Builds []Build `json:"builds"`
+
+	// Fabric Model to represent fabric
+	Fabric *Fabric `json:"fabric,omitempty"`
+	Limit  int64   `json:"limit"`
+	Offset int64   `json:"offset"`
+	Total  int64   `json:"total"`
+}
+
+// FabricsResponse defines model for FabricsResponse.
+type FabricsResponse struct {
+	Limit    int64    `json:"limit"`
+	Offset   int64    `json:"offset"`
+	Total    int64    `json:"total"`
+	Versions []Fabric `json:"versions"`
+}
+
+// ForgeBuildsResponse defines model for ForgeBuildsResponse.
+type ForgeBuildsResponse struct {
+	Builds []Build `json:"builds"`
+
+	// Forge Model to represent forge
+	Forge  *Forge `json:"forge,omitempty"`
+	Limit  int64  `json:"limit"`
+	Offset int64  `json:"offset"`
+	Total  int64  `json:"total"`
+}
+
+// ForgesResponse defines model for ForgesResponse.
+type ForgesResponse struct {
+	Limit    int64   `json:"limit"`
+	Offset   int64   `json:"offset"`
+	Total    int64   `json:"total"`
+	Versions []Forge `json:"versions"`
+}
+
+// GroupModsResponse defines model for GroupModsResponse.
+type GroupModsResponse struct {
+	// Group Model to represent group
+	Group  *Group     `json:"group,omitempty"`
+	Limit  int64      `json:"limit"`
+	Mods   []GroupMod `json:"mods"`
+	Offset int64      `json:"offset"`
+	Total  int64      `json:"total"`
+}
+
+// GroupPacksResponse defines model for GroupPacksResponse.
+type GroupPacksResponse struct {
+	// Group Model to represent group
+	Group  *Group      `json:"group,omitempty"`
+	Limit  int64       `json:"limit"`
+	Offset int64       `json:"offset"`
+	Packs  []GroupPack `json:"packs"`
+	Total  int64       `json:"total"`
+}
+
+// GroupResponse Model to represent group
+type GroupResponse = Group
+
+// GroupUsersResponse defines model for GroupUsersResponse.
+type GroupUsersResponse struct {
+	// Group Model to represent group
+	Group  *Group      `json:"group,omitempty"`
+	Limit  int64       `json:"limit"`
+	Offset int64       `json:"offset"`
+	Total  int64       `json:"total"`
+	Users  []UserGroup `json:"users"`
+}
+
+// GroupsResponse defines model for GroupsResponse.
+type GroupsResponse struct {
+	Groups []Group `json:"groups"`
+	Limit  int64   `json:"limit"`
+	Offset int64   `json:"offset"`
+	Total  int64   `json:"total"`
+}
+
+// InternalServerError Generic response for errors and validations
+type InternalServerError = Notification
+
+// InvalidTokenError Generic response for errors and validations
+type InvalidTokenError = Notification
+
+// LoginResponse defines model for LoginResponse.
+type LoginResponse = AuthToken
+
+// MinecraftBuildsResponse defines model for MinecraftBuildsResponse.
+type MinecraftBuildsResponse struct {
+	Builds []Build `json:"builds"`
+	Limit  int64   `json:"limit"`
+
+	// Minecraft Model to represent minecraft
+	Minecraft *Minecraft `json:"minecraft,omitempty"`
+	Offset    int64      `json:"offset"`
+	Total     int64      `json:"total"`
+}
+
+// MinecraftsResponse defines model for MinecraftsResponse.
+type MinecraftsResponse struct {
+	Limit    int64       `json:"limit"`
+	Offset   int64       `json:"offset"`
+	Total    int64       `json:"total"`
+	Versions []Minecraft `json:"versions"`
+}
+
+// ModAvatarResponse Model to represent mod avatar
+type ModAvatarResponse = ModAvatar
+
+// ModGroupsResponse defines model for ModGroupsResponse.
+type ModGroupsResponse struct {
+	Groups []GroupMod `json:"groups"`
+	Limit  int64      `json:"limit"`
+
 	// Mod Model to represent mod
-	Mod      *Mod       `json:"mod,omitempty"`
-	Total    *int64     `json:"total,omitempty"`
-	Versions *[]Version `json:"versions,omitempty"`
+	Mod    *Mod  `json:"mod,omitempty"`
+	Offset int64 `json:"offset"`
+	Total  int64 `json:"total"`
 }
 
-// ExternalCallbackParams defines parameters for ExternalCallback.
-type ExternalCallbackParams struct {
+// ModResponse Model to represent mod
+type ModResponse = Mod
+
+// ModUsersResponse defines model for ModUsersResponse.
+type ModUsersResponse struct {
+	Limit int64 `json:"limit"`
+
+	// Mod Model to represent mod
+	Mod    *Mod      `json:"mod,omitempty"`
+	Offset int64     `json:"offset"`
+	Total  int64     `json:"total"`
+	Users  []UserMod `json:"users"`
+}
+
+// ModsResponse defines model for ModsResponse.
+type ModsResponse struct {
+	Limit  int64 `json:"limit"`
+	Mods   []Mod `json:"mods"`
+	Offset int64 `json:"offset"`
+	Total  int64 `json:"total"`
+}
+
+// NeoforgeBuildsResponse defines model for NeoforgeBuildsResponse.
+type NeoforgeBuildsResponse struct {
+	Builds []Build `json:"builds"`
+	Limit  int64   `json:"limit"`
+
+	// Neoforge Model to represent neoforge
+	Neoforge *Neoforge `json:"neoforge,omitempty"`
+	Offset   int64     `json:"offset"`
+	Total    int64     `json:"total"`
+}
+
+// NeoforgesResponse defines model for NeoforgesResponse.
+type NeoforgesResponse struct {
+	Limit    int64      `json:"limit"`
+	Offset   int64      `json:"offset"`
+	Total    int64      `json:"total"`
+	Versions []Neoforge `json:"versions"`
+}
+
+// NotAttachedError Generic response for errors and validations
+type NotAttachedError = Notification
+
+// NotAuthorizedError Generic response for errors and validations
+type NotAuthorizedError = Notification
+
+// NotFoundError Generic response for errors and validations
+type NotFoundError = Notification
+
+// PackAvatarResponse Model to represent pack avatar
+type PackAvatarResponse = PackAvatar
+
+// PackGroupsResponse defines model for PackGroupsResponse.
+type PackGroupsResponse struct {
+	Groups []GroupPack `json:"groups"`
+	Limit  int64       `json:"limit"`
+	Offset int64       `json:"offset"`
+
+	// Pack Model to represent pack
+	Pack  *Pack `json:"pack,omitempty"`
+	Total int64 `json:"total"`
+}
+
+// PackResponse Model to represent pack
+type PackResponse = Pack
+
+// PackUsersResponse defines model for PackUsersResponse.
+type PackUsersResponse struct {
+	Limit  int64 `json:"limit"`
+	Offset int64 `json:"offset"`
+
+	// Pack Model to represent pack
+	Pack  *Pack      `json:"pack,omitempty"`
+	Total int64      `json:"total"`
+	Users []UserPack `json:"users"`
+}
+
+// PacksResponse defines model for PacksResponse.
+type PacksResponse struct {
+	Limit  int64  `json:"limit"`
+	Offset int64  `json:"offset"`
+	Packs  []Pack `json:"packs"`
+	Total  int64  `json:"total"`
+}
+
+// ProfileResponse Model to represent profile
+type ProfileResponse = Profile
+
+// ProvidersResponse defines model for ProvidersResponse.
+type ProvidersResponse struct {
+	Providers []Provider `json:"providers"`
+	Total     int64      `json:"total"`
+}
+
+// QuiltBuildsResponse defines model for QuiltBuildsResponse.
+type QuiltBuildsResponse struct {
+	Builds []Build `json:"builds"`
+	Limit  int64   `json:"limit"`
+	Offset int64   `json:"offset"`
+
+	// Quilt Model to represent quilt
+	Quilt *Quilt `json:"quilt,omitempty"`
+	Total int64  `json:"total"`
+}
+
+// QuiltsResponse defines model for QuiltsResponse.
+type QuiltsResponse struct {
+	Limit    int64   `json:"limit"`
+	Offset   int64   `json:"offset"`
+	Total    int64   `json:"total"`
+	Versions []Quilt `json:"versions"`
+}
+
+// RefreshResponse defines model for RefreshResponse.
+type RefreshResponse = AuthToken
+
+// RemoteUnavailableError Generic response for errors and validations
+type RemoteUnavailableError = Notification
+
+// SuccessMessage Generic response for errors and validations
+type SuccessMessage = Notification
+
+// TokenResponse defines model for TokenResponse.
+type TokenResponse = AuthToken
+
+// UserGroupsResponse defines model for UserGroupsResponse.
+type UserGroupsResponse struct {
+	Groups []UserGroup `json:"groups"`
+	Limit  int64       `json:"limit"`
+	Offset int64       `json:"offset"`
+	Total  int64       `json:"total"`
+
+	// User Model to represent user
+	User *User `json:"user,omitempty"`
+}
+
+// UserModsResponse defines model for UserModsResponse.
+type UserModsResponse struct {
+	Limit  int64     `json:"limit"`
+	Mods   []UserMod `json:"mods"`
+	Offset int64     `json:"offset"`
+	Total  int64     `json:"total"`
+
+	// User Model to represent user
+	User *User `json:"user,omitempty"`
+}
+
+// UserPacksResponse defines model for UserPacksResponse.
+type UserPacksResponse struct {
+	Limit  int64      `json:"limit"`
+	Offset int64      `json:"offset"`
+	Packs  []UserPack `json:"packs"`
+	Total  int64      `json:"total"`
+
+	// User Model to represent user
+	User *User `json:"user,omitempty"`
+}
+
+// UserResponse Model to represent user
+type UserResponse = User
+
+// UsersResponse defines model for UsersResponse.
+type UsersResponse struct {
+	Limit  int64  `json:"limit"`
+	Offset int64  `json:"offset"`
+	Total  int64  `json:"total"`
+	Users  []User `json:"users"`
+}
+
+// ValidationError Generic response for errors and validations
+type ValidationError = Notification
+
+// VerifyResponse defines model for VerifyResponse.
+type VerifyResponse = AuthVerify
+
+// VersionBuildsResponse defines model for VersionBuildsResponse.
+type VersionBuildsResponse struct {
+	Builds []BuildVersion `json:"builds"`
+	Limit  int64          `json:"limit"`
+
+	// Mod Model to represent mod
+	Mod    *Mod  `json:"mod,omitempty"`
+	Offset int64 `json:"offset"`
+	Total  int64 `json:"total"`
+
+	// Version Model to represent version
+	Version *Version `json:"version,omitempty"`
+}
+
+// VersionResponse Model to represent version
+type VersionResponse = Version
+
+// VersionsResponse defines model for VersionsResponse.
+type VersionsResponse struct {
+	Limit int64 `json:"limit"`
+
+	// Mod Model to represent mod
+	Mod      *Mod      `json:"mod,omitempty"`
+	Offset   int64     `json:"offset"`
+	Total    int64     `json:"total"`
+	Versions []Version `json:"versions"`
+}
+
+// BuildVersionBody defines model for BuildVersionBody.
+type BuildVersionBody struct {
+	Mod     string `json:"mod,omitempty"`
+	Version string `json:"version,omitempty"`
+}
+
+// CreateBuildBody defines model for CreateBuildBody.
+type CreateBuildBody struct {
+	FabricID    *string `json:"fabric_id,omitempty"`
+	ForgeID     *string `json:"forge_id,omitempty"`
+	Java        *string `json:"java,omitempty"`
+	Latest      *bool   `json:"latest,omitempty"`
+	Memory      *string `json:"memory,omitempty"`
+	MinecraftID *string `json:"minecraft_id,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	NeoforgeID  *string `json:"neoforge_id,omitempty"`
+	Public      *bool   `json:"public,omitempty"`
+	QuiltID     *string `json:"quilt_id,omitempty"`
+	Recommended *bool   `json:"recommended,omitempty"`
+}
+
+// CreateGroupBody defines model for CreateGroupBody.
+type CreateGroupBody struct {
+	Name *string `json:"name,omitempty"`
+	Slug *string `json:"slug,omitempty"`
+}
+
+// CreateModBody defines model for CreateModBody.
+type CreateModBody struct {
+	Author      *string `json:"author,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Donate      *string `json:"donate,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Public      *bool   `json:"public,omitempty"`
+	Side        *string `json:"side,omitempty"`
+	Slug        *string `json:"slug,omitempty"`
+	Website     *string `json:"website,omitempty"`
+}
+
+// CreatePackBody defines model for CreatePackBody.
+type CreatePackBody struct {
+	Name    *string `json:"name,omitempty"`
+	Public  *bool   `json:"public,omitempty"`
+	Slug    *string `json:"slug,omitempty"`
+	Website *string `json:"website,omitempty"`
+}
+
+// CreateUserBody defines model for CreateUserBody.
+type CreateUserBody struct {
+	Active   *bool   `json:"active,omitempty"`
+	Admin    *bool   `json:"admin,omitempty"`
+	Email    *string `json:"email,omitempty"`
+	Fullname *string `json:"fullname,omitempty"`
+	Password *string `json:"password,omitempty"`
+	Username *string `json:"username,omitempty"`
+}
+
+// CreateVersionBody defines model for CreateVersionBody.
+type CreateVersionBody struct {
+	Name   *string `json:"name,omitempty"`
+	Public *bool   `json:"public,omitempty"`
+	Upload *string `json:"upload,omitempty"`
+}
+
+// FabricBuildBody defines model for FabricBuildBody.
+type FabricBuildBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
+}
+
+// ForgeBuildBody defines model for ForgeBuildBody.
+type ForgeBuildBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
+}
+
+// GroupModDropBody defines model for GroupModDropBody.
+type GroupModDropBody struct {
+	Mod string `json:"mod"`
+}
+
+// GroupModPermBody defines model for GroupModPermBody.
+type GroupModPermBody struct {
+	Mod  string `json:"mod"`
+	Perm string `json:"perm"`
+}
+
+// GroupPackDropBody defines model for GroupPackDropBody.
+type GroupPackDropBody struct {
+	Pack string `json:"pack"`
+}
+
+// GroupPackPermBody defines model for GroupPackPermBody.
+type GroupPackPermBody struct {
+	Pack string `json:"pack"`
+	Perm string `json:"perm"`
+}
+
+// GroupUserDropBody defines model for GroupUserDropBody.
+type GroupUserDropBody struct {
+	User string `json:"user"`
+}
+
+// GroupUserPermBody defines model for GroupUserPermBody.
+type GroupUserPermBody struct {
+	Perm string `json:"perm"`
+	User string `json:"user"`
+}
+
+// LoginAuthBody defines model for LoginAuthBody.
+type LoginAuthBody struct {
+	Password string `json:"password"`
+	Username string `json:"username"`
+}
+
+// MinecraftBuildBody defines model for MinecraftBuildBody.
+type MinecraftBuildBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
+}
+
+// ModGroupDropBody defines model for ModGroupDropBody.
+type ModGroupDropBody struct {
+	Group string `json:"group"`
+}
+
+// ModGroupPermBody defines model for ModGroupPermBody.
+type ModGroupPermBody struct {
+	Group string `json:"group"`
+	Perm  string `json:"perm"`
+}
+
+// ModUserDropBody defines model for ModUserDropBody.
+type ModUserDropBody struct {
+	User string `json:"user"`
+}
+
+// ModUserPermBody defines model for ModUserPermBody.
+type ModUserPermBody struct {
+	Perm string `json:"perm"`
+	User string `json:"user"`
+}
+
+// NeoforgeBuildBody defines model for NeoforgeBuildBody.
+type NeoforgeBuildBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
+}
+
+// PackGroupDropBody defines model for PackGroupDropBody.
+type PackGroupDropBody struct {
+	Group string `json:"group"`
+}
+
+// PackGroupPermBody defines model for PackGroupPermBody.
+type PackGroupPermBody struct {
+	Group string `json:"group"`
+	Perm  string `json:"perm"`
+}
+
+// PackUserDropBody defines model for PackUserDropBody.
+type PackUserDropBody struct {
+	User string `json:"user"`
+}
+
+// PackUserPermBody defines model for PackUserPermBody.
+type PackUserPermBody struct {
+	Perm string `json:"perm"`
+	User string `json:"user"`
+}
+
+// QuiltBuildBody defines model for QuiltBuildBody.
+type QuiltBuildBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
+}
+
+// RedirectAuthBody defines model for RedirectAuthBody.
+type RedirectAuthBody struct {
+	Token string `json:"token"`
+}
+
+// UpdateBuildBody defines model for UpdateBuildBody.
+type UpdateBuildBody struct {
+	FabricID    *string `json:"fabric_id,omitempty"`
+	ForgeID     *string `json:"forge_id,omitempty"`
+	Java        *string `json:"java,omitempty"`
+	Latest      *bool   `json:"latest,omitempty"`
+	Memory      *string `json:"memory,omitempty"`
+	MinecraftID *string `json:"minecraft_id,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	NeoforgeID  *string `json:"neoforge_id,omitempty"`
+	Public      *bool   `json:"public,omitempty"`
+	QuiltID     *string `json:"quilt_id,omitempty"`
+	Recommended *bool   `json:"recommended,omitempty"`
+}
+
+// UpdateGroupBody defines model for UpdateGroupBody.
+type UpdateGroupBody struct {
+	Name *string `json:"name,omitempty"`
+	Slug *string `json:"slug,omitempty"`
+}
+
+// UpdateModBody defines model for UpdateModBody.
+type UpdateModBody struct {
+	Author      *string `json:"author,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Donate      *string `json:"donate,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Public      *bool   `json:"public,omitempty"`
+	Side        *string `json:"side,omitempty"`
+	Slug        *string `json:"slug,omitempty"`
+	Website     *string `json:"website,omitempty"`
+}
+
+// UpdatePackBody defines model for UpdatePackBody.
+type UpdatePackBody struct {
+	Name    *string `json:"name,omitempty"`
+	Public  *bool   `json:"public,omitempty"`
+	Slug    *string `json:"slug,omitempty"`
+	Website *string `json:"website,omitempty"`
+}
+
+// UpdateProfileBody defines model for UpdateProfileBody.
+type UpdateProfileBody struct {
+	Email    *string `json:"email,omitempty"`
+	Fullname *string `json:"fullname,omitempty"`
+	Password *string `json:"password,omitempty"`
+	Username *string `json:"username,omitempty"`
+}
+
+// UpdateUserBody defines model for UpdateUserBody.
+type UpdateUserBody struct {
+	Active   *bool   `json:"active,omitempty"`
+	Admin    *bool   `json:"admin,omitempty"`
+	Email    *string `json:"email,omitempty"`
+	Fullname *string `json:"fullname,omitempty"`
+	Password *string `json:"password,omitempty"`
+	Username *string `json:"username,omitempty"`
+}
+
+// UpdateVersionBody defines model for UpdateVersionBody.
+type UpdateVersionBody struct {
+	Name   *string `json:"name,omitempty"`
+	Public *bool   `json:"public,omitempty"`
+	Upload *string `json:"upload,omitempty"`
+}
+
+// UserGroupDropBody defines model for UserGroupDropBody.
+type UserGroupDropBody struct {
+	Group string `json:"group"`
+}
+
+// UserGroupPermBody defines model for UserGroupPermBody.
+type UserGroupPermBody struct {
+	Group string `json:"group"`
+	Perm  string `json:"perm"`
+}
+
+// UserModDropBody defines model for UserModDropBody.
+type UserModDropBody struct {
+	Mod string `json:"mod"`
+}
+
+// UserModPermBody defines model for UserModPermBody.
+type UserModPermBody struct {
+	Mod  string `json:"mod"`
+	Perm string `json:"perm"`
+}
+
+// UserPackDropBody defines model for UserPackDropBody.
+type UserPackDropBody struct {
+	Pack string `json:"pack"`
+}
+
+// UserPackPermBody defines model for UserPackPermBody.
+type UserPackPermBody struct {
+	Pack string `json:"pack"`
+	Perm string `json:"perm"`
+}
+
+// VersionBuildBody defines model for VersionBuildBody.
+type VersionBuildBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
+}
+
+// LoginAuthJSONBody defines parameters for LoginAuth.
+type LoginAuthJSONBody struct {
+	Password string `json:"password"`
+	Username string `json:"username"`
+}
+
+// RedirectAuthJSONBody defines parameters for RedirectAuth.
+type RedirectAuthJSONBody struct {
+	Token string `json:"token"`
+}
+
+// CallbackProviderParams defines parameters for CallbackProvider.
+type CallbackProviderParams struct {
 	// State Auth state
-	State *string `form:"state,omitempty" json:"state,omitempty"`
+	State *AuthStateParam `form:"state,omitempty" json:"state,omitempty"`
 
 	// Code Auth code
-	Code *string `form:"code,omitempty" json:"code,omitempty"`
-}
-
-// ExternalInitializeParams defines parameters for ExternalInitialize.
-type ExternalInitializeParams struct {
-	// State Auth state
-	State *string `form:"state,omitempty" json:"state,omitempty"`
+	Code *AuthCodeParam `form:"code,omitempty" json:"code,omitempty"`
 }
 
 // ListFabricsParams defines parameters for ListFabrics.
 type ListFabricsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
+}
+
+// DeleteFabricFromBuildJSONBody defines parameters for DeleteFabricFromBuild.
+type DeleteFabricFromBuildJSONBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
 }
 
 // ListFabricBuildsParams defines parameters for ListFabricBuilds.
 type ListFabricBuildsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListFabricBuildsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListFabricBuildsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListFabricBuildsParamsSort defines parameters for ListFabricBuilds.
-type ListFabricBuildsParamsSort string
 
 // ListFabricBuildsParamsOrder defines parameters for ListFabricBuilds.
 type ListFabricBuildsParamsOrder string
 
+// AttachFabricToBuildJSONBody defines parameters for AttachFabricToBuild.
+type AttachFabricToBuildJSONBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
+}
+
 // ListForgesParams defines parameters for ListForges.
 type ListForgesParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
+}
+
+// DeleteForgeFromBuildJSONBody defines parameters for DeleteForgeFromBuild.
+type DeleteForgeFromBuildJSONBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
 }
 
 // ListForgeBuildsParams defines parameters for ListForgeBuilds.
 type ListForgeBuildsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListForgeBuildsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListForgeBuildsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListForgeBuildsParamsSort defines parameters for ListForgeBuilds.
-type ListForgeBuildsParamsSort string
 
 // ListForgeBuildsParamsOrder defines parameters for ListForgeBuilds.
 type ListForgeBuildsParamsOrder string
 
+// AttachForgeToBuildJSONBody defines parameters for AttachForgeToBuild.
+type AttachForgeToBuildJSONBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
+}
+
+// ListGroupsParams defines parameters for ListGroups.
+type ListGroupsParams struct {
+	// Search Search query
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
+
+	// Sort Sorting column
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
+
+	// Order Sorting order
+	Order *ListGroupsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
+
+	// Limit Paging limit
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
+
+	// Offset Paging offset
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
+}
+
+// ListGroupsParamsOrder defines parameters for ListGroups.
+type ListGroupsParamsOrder string
+
+// CreateGroupJSONBody defines parameters for CreateGroup.
+type CreateGroupJSONBody struct {
+	Name *string `json:"name,omitempty"`
+	Slug *string `json:"slug,omitempty"`
+}
+
+// UpdateGroupJSONBody defines parameters for UpdateGroup.
+type UpdateGroupJSONBody struct {
+	Name *string `json:"name,omitempty"`
+	Slug *string `json:"slug,omitempty"`
+}
+
+// DeleteGroupFromModJSONBody defines parameters for DeleteGroupFromMod.
+type DeleteGroupFromModJSONBody struct {
+	Mod string `json:"mod"`
+}
+
+// ListGroupModsParams defines parameters for ListGroupMods.
+type ListGroupModsParams struct {
+	// Search Search query
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
+
+	// Sort Sorting column
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
+
+	// Order Sorting order
+	Order *ListGroupModsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
+
+	// Limit Paging limit
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
+
+	// Offset Paging offset
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
+}
+
+// ListGroupModsParamsOrder defines parameters for ListGroupMods.
+type ListGroupModsParamsOrder string
+
+// AttachGroupToModJSONBody defines parameters for AttachGroupToMod.
+type AttachGroupToModJSONBody struct {
+	Mod  string `json:"mod"`
+	Perm string `json:"perm"`
+}
+
+// PermitGroupModJSONBody defines parameters for PermitGroupMod.
+type PermitGroupModJSONBody struct {
+	Mod  string `json:"mod"`
+	Perm string `json:"perm"`
+}
+
+// DeleteGroupFromPackJSONBody defines parameters for DeleteGroupFromPack.
+type DeleteGroupFromPackJSONBody struct {
+	Pack string `json:"pack"`
+}
+
+// ListGroupPacksParams defines parameters for ListGroupPacks.
+type ListGroupPacksParams struct {
+	// Search Search query
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
+
+	// Sort Sorting column
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
+
+	// Order Sorting order
+	Order *ListGroupPacksParamsOrder `form:"order,omitempty" json:"order,omitempty"`
+
+	// Limit Paging limit
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
+
+	// Offset Paging offset
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
+}
+
+// ListGroupPacksParamsOrder defines parameters for ListGroupPacks.
+type ListGroupPacksParamsOrder string
+
+// AttachGroupToPackJSONBody defines parameters for AttachGroupToPack.
+type AttachGroupToPackJSONBody struct {
+	Pack string `json:"pack"`
+	Perm string `json:"perm"`
+}
+
+// PermitGroupPackJSONBody defines parameters for PermitGroupPack.
+type PermitGroupPackJSONBody struct {
+	Pack string `json:"pack"`
+	Perm string `json:"perm"`
+}
+
+// DeleteGroupFromUserJSONBody defines parameters for DeleteGroupFromUser.
+type DeleteGroupFromUserJSONBody struct {
+	User string `json:"user"`
+}
+
+// ListGroupUsersParams defines parameters for ListGroupUsers.
+type ListGroupUsersParams struct {
+	// Search Search query
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
+
+	// Sort Sorting column
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
+
+	// Order Sorting order
+	Order *ListGroupUsersParamsOrder `form:"order,omitempty" json:"order,omitempty"`
+
+	// Limit Paging limit
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
+
+	// Offset Paging offset
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
+}
+
+// ListGroupUsersParamsOrder defines parameters for ListGroupUsers.
+type ListGroupUsersParamsOrder string
+
+// AttachGroupToUserJSONBody defines parameters for AttachGroupToUser.
+type AttachGroupToUserJSONBody struct {
+	Perm string `json:"perm"`
+	User string `json:"user"`
+}
+
+// PermitGroupUserJSONBody defines parameters for PermitGroupUser.
+type PermitGroupUserJSONBody struct {
+	Perm string `json:"perm"`
+	User string `json:"user"`
+}
+
 // ListMinecraftsParams defines parameters for ListMinecrafts.
 type ListMinecraftsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
+}
+
+// DeleteMinecraftFromBuildJSONBody defines parameters for DeleteMinecraftFromBuild.
+type DeleteMinecraftFromBuildJSONBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
 }
 
 // ListMinecraftBuildsParams defines parameters for ListMinecraftBuilds.
 type ListMinecraftBuildsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListMinecraftBuildsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListMinecraftBuildsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListMinecraftBuildsParamsSort defines parameters for ListMinecraftBuilds.
-type ListMinecraftBuildsParamsSort string
 
 // ListMinecraftBuildsParamsOrder defines parameters for ListMinecraftBuilds.
 type ListMinecraftBuildsParamsOrder string
 
+// AttachMinecraftToBuildJSONBody defines parameters for AttachMinecraftToBuild.
+type AttachMinecraftToBuildJSONBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
+}
+
 // ListModsParams defines parameters for ListMods.
 type ListModsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListModsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListModsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListModsParamsSort defines parameters for ListMods.
-type ListModsParamsSort string
 
 // ListModsParamsOrder defines parameters for ListMods.
 type ListModsParamsOrder string
 
-// ListModTeamsParams defines parameters for ListModTeams.
-type ListModTeamsParams struct {
-	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
-
-	// Sort Sorting column
-	Sort *ListModTeamsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
-
-	// Order Sorting order
-	Order *ListModTeamsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
-
-	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
-
-	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+// CreateModJSONBody defines parameters for CreateMod.
+type CreateModJSONBody struct {
+	Author      *string `json:"author,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Donate      *string `json:"donate,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Public      *bool   `json:"public,omitempty"`
+	Side        *string `json:"side,omitempty"`
+	Slug        *string `json:"slug,omitempty"`
+	Website     *string `json:"website,omitempty"`
 }
 
-// ListModTeamsParamsSort defines parameters for ListModTeams.
-type ListModTeamsParamsSort string
+// UpdateModJSONBody defines parameters for UpdateMod.
+type UpdateModJSONBody struct {
+	Author      *string `json:"author,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Donate      *string `json:"donate,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Public      *bool   `json:"public,omitempty"`
+	Side        *string `json:"side,omitempty"`
+	Slug        *string `json:"slug,omitempty"`
+	Website     *string `json:"website,omitempty"`
+}
 
-// ListModTeamsParamsOrder defines parameters for ListModTeams.
-type ListModTeamsParamsOrder string
+// CreateModAvatarMultipartBody defines parameters for CreateModAvatar.
+type CreateModAvatarMultipartBody struct {
+	File *openapi_types.File `json:"file,omitempty"`
+}
+
+// DeleteModFromGroupJSONBody defines parameters for DeleteModFromGroup.
+type DeleteModFromGroupJSONBody struct {
+	Group string `json:"group"`
+}
+
+// ListModGroupsParams defines parameters for ListModGroups.
+type ListModGroupsParams struct {
+	// Search Search query
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
+
+	// Sort Sorting column
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
+
+	// Order Sorting order
+	Order *ListModGroupsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
+
+	// Limit Paging limit
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
+
+	// Offset Paging offset
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
+}
+
+// ListModGroupsParamsOrder defines parameters for ListModGroups.
+type ListModGroupsParamsOrder string
+
+// AttachModToGroupJSONBody defines parameters for AttachModToGroup.
+type AttachModToGroupJSONBody struct {
+	Group string `json:"group"`
+	Perm  string `json:"perm"`
+}
+
+// PermitModGroupJSONBody defines parameters for PermitModGroup.
+type PermitModGroupJSONBody struct {
+	Group string `json:"group"`
+	Perm  string `json:"perm"`
+}
+
+// DeleteModFromUserJSONBody defines parameters for DeleteModFromUser.
+type DeleteModFromUserJSONBody struct {
+	User string `json:"user"`
+}
 
 // ListModUsersParams defines parameters for ListModUsers.
 type ListModUsersParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListModUsersParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListModUsersParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListModUsersParamsSort defines parameters for ListModUsers.
-type ListModUsersParamsSort string
 
 // ListModUsersParamsOrder defines parameters for ListModUsers.
 type ListModUsersParamsOrder string
 
+// AttachModToUserJSONBody defines parameters for AttachModToUser.
+type AttachModToUserJSONBody struct {
+	Perm string `json:"perm"`
+	User string `json:"user"`
+}
+
+// PermitModUserJSONBody defines parameters for PermitModUser.
+type PermitModUserJSONBody struct {
+	Perm string `json:"perm"`
+	User string `json:"user"`
+}
+
 // ListVersionsParams defines parameters for ListVersions.
 type ListVersionsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListVersionsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListVersionsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListVersionsParamsSort defines parameters for ListVersions.
-type ListVersionsParamsSort string
 
 // ListVersionsParamsOrder defines parameters for ListVersions.
 type ListVersionsParamsOrder string
 
+// CreateVersionJSONBody defines parameters for CreateVersion.
+type CreateVersionJSONBody struct {
+	Name   *string `json:"name,omitempty"`
+	Public *bool   `json:"public,omitempty"`
+	Upload *string `json:"upload,omitempty"`
+}
+
+// UpdateVersionJSONBody defines parameters for UpdateVersion.
+type UpdateVersionJSONBody struct {
+	Name   *string `json:"name,omitempty"`
+	Public *bool   `json:"public,omitempty"`
+	Upload *string `json:"upload,omitempty"`
+}
+
+// DeleteVersionFromBuildJSONBody defines parameters for DeleteVersionFromBuild.
+type DeleteVersionFromBuildJSONBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
+}
+
 // ListVersionBuildsParams defines parameters for ListVersionBuilds.
 type ListVersionBuildsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListVersionBuildsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListVersionBuildsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListVersionBuildsParamsSort defines parameters for ListVersionBuilds.
-type ListVersionBuildsParamsSort string
 
 // ListVersionBuildsParamsOrder defines parameters for ListVersionBuilds.
 type ListVersionBuildsParamsOrder string
 
+// AttachVersionToBuildJSONBody defines parameters for AttachVersionToBuild.
+type AttachVersionToBuildJSONBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
+}
+
 // ListNeoforgesParams defines parameters for ListNeoforges.
 type ListNeoforgesParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
+}
+
+// DeleteNeoforgeFromBuildJSONBody defines parameters for DeleteNeoforgeFromBuild.
+type DeleteNeoforgeFromBuildJSONBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
 }
 
 // ListNeoforgeBuildsParams defines parameters for ListNeoforgeBuilds.
 type ListNeoforgeBuildsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListNeoforgeBuildsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListNeoforgeBuildsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListNeoforgeBuildsParamsSort defines parameters for ListNeoforgeBuilds.
-type ListNeoforgeBuildsParamsSort string
 
 // ListNeoforgeBuildsParamsOrder defines parameters for ListNeoforgeBuilds.
 type ListNeoforgeBuildsParamsOrder string
 
+// AttachNeoforgeToBuildJSONBody defines parameters for AttachNeoforgeToBuild.
+type AttachNeoforgeToBuildJSONBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
+}
+
 // ListPacksParams defines parameters for ListPacks.
 type ListPacksParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListPacksParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListPacksParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListPacksParamsSort defines parameters for ListPacks.
-type ListPacksParamsSort string
 
 // ListPacksParamsOrder defines parameters for ListPacks.
 type ListPacksParamsOrder string
 
+// CreatePackJSONBody defines parameters for CreatePack.
+type CreatePackJSONBody struct {
+	Name    *string `json:"name,omitempty"`
+	Public  *bool   `json:"public,omitempty"`
+	Slug    *string `json:"slug,omitempty"`
+	Website *string `json:"website,omitempty"`
+}
+
+// UpdatePackJSONBody defines parameters for UpdatePack.
+type UpdatePackJSONBody struct {
+	Name    *string `json:"name,omitempty"`
+	Public  *bool   `json:"public,omitempty"`
+	Slug    *string `json:"slug,omitempty"`
+	Website *string `json:"website,omitempty"`
+}
+
+// CreatePackAvatarMultipartBody defines parameters for CreatePackAvatar.
+type CreatePackAvatarMultipartBody struct {
+	File *openapi_types.File `json:"file,omitempty"`
+}
+
 // ListBuildsParams defines parameters for ListBuilds.
 type ListBuildsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListBuildsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListBuildsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListBuildsParamsSort defines parameters for ListBuilds.
-type ListBuildsParamsSort string
 
 // ListBuildsParamsOrder defines parameters for ListBuilds.
 type ListBuildsParamsOrder string
 
+// CreateBuildJSONBody defines parameters for CreateBuild.
+type CreateBuildJSONBody struct {
+	FabricID    *string `json:"fabric_id,omitempty"`
+	ForgeID     *string `json:"forge_id,omitempty"`
+	Java        *string `json:"java,omitempty"`
+	Latest      *bool   `json:"latest,omitempty"`
+	Memory      *string `json:"memory,omitempty"`
+	MinecraftID *string `json:"minecraft_id,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	NeoforgeID  *string `json:"neoforge_id,omitempty"`
+	Public      *bool   `json:"public,omitempty"`
+	QuiltID     *string `json:"quilt_id,omitempty"`
+	Recommended *bool   `json:"recommended,omitempty"`
+}
+
+// UpdateBuildJSONBody defines parameters for UpdateBuild.
+type UpdateBuildJSONBody struct {
+	FabricID    *string `json:"fabric_id,omitempty"`
+	ForgeID     *string `json:"forge_id,omitempty"`
+	Java        *string `json:"java,omitempty"`
+	Latest      *bool   `json:"latest,omitempty"`
+	Memory      *string `json:"memory,omitempty"`
+	MinecraftID *string `json:"minecraft_id,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	NeoforgeID  *string `json:"neoforge_id,omitempty"`
+	Public      *bool   `json:"public,omitempty"`
+	QuiltID     *string `json:"quilt_id,omitempty"`
+	Recommended *bool   `json:"recommended,omitempty"`
+}
+
+// DeleteBuildFromVersionJSONBody defines parameters for DeleteBuildFromVersion.
+type DeleteBuildFromVersionJSONBody struct {
+	Mod     string `json:"mod,omitempty"`
+	Version string `json:"version,omitempty"`
+}
+
 // ListBuildVersionsParams defines parameters for ListBuildVersions.
 type ListBuildVersionsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListBuildVersionsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListBuildVersionsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListBuildVersionsParamsSort defines parameters for ListBuildVersions.
-type ListBuildVersionsParamsSort string
 
 // ListBuildVersionsParamsOrder defines parameters for ListBuildVersions.
 type ListBuildVersionsParamsOrder string
 
-// ListPackTeamsParams defines parameters for ListPackTeams.
-type ListPackTeamsParams struct {
-	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
-
-	// Sort Sorting column
-	Sort *ListPackTeamsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
-
-	// Order Sorting order
-	Order *ListPackTeamsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
-
-	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
-
-	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+// AttachBuildToVersionJSONBody defines parameters for AttachBuildToVersion.
+type AttachBuildToVersionJSONBody struct {
+	Mod     string `json:"mod,omitempty"`
+	Version string `json:"version,omitempty"`
 }
 
-// ListPackTeamsParamsSort defines parameters for ListPackTeams.
-type ListPackTeamsParamsSort string
+// DeletePackFromGroupJSONBody defines parameters for DeletePackFromGroup.
+type DeletePackFromGroupJSONBody struct {
+	Group string `json:"group"`
+}
 
-// ListPackTeamsParamsOrder defines parameters for ListPackTeams.
-type ListPackTeamsParamsOrder string
+// ListPackGroupsParams defines parameters for ListPackGroups.
+type ListPackGroupsParams struct {
+	// Search Search query
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
+
+	// Sort Sorting column
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
+
+	// Order Sorting order
+	Order *ListPackGroupsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
+
+	// Limit Paging limit
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
+
+	// Offset Paging offset
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
+}
+
+// ListPackGroupsParamsOrder defines parameters for ListPackGroups.
+type ListPackGroupsParamsOrder string
+
+// AttachPackToGroupJSONBody defines parameters for AttachPackToGroup.
+type AttachPackToGroupJSONBody struct {
+	Group string `json:"group"`
+	Perm  string `json:"perm"`
+}
+
+// PermitPackGroupJSONBody defines parameters for PermitPackGroup.
+type PermitPackGroupJSONBody struct {
+	Group string `json:"group"`
+	Perm  string `json:"perm"`
+}
+
+// DeletePackFromUserJSONBody defines parameters for DeletePackFromUser.
+type DeletePackFromUserJSONBody struct {
+	User string `json:"user"`
+}
 
 // ListPackUsersParams defines parameters for ListPackUsers.
 type ListPackUsersParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListPackUsersParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListPackUsersParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListPackUsersParamsSort defines parameters for ListPackUsers.
-type ListPackUsersParamsSort string
 
 // ListPackUsersParamsOrder defines parameters for ListPackUsers.
 type ListPackUsersParamsOrder string
 
+// AttachPackToUserJSONBody defines parameters for AttachPackToUser.
+type AttachPackToUserJSONBody struct {
+	Perm string `json:"perm"`
+	User string `json:"user"`
+}
+
+// PermitPackUserJSONBody defines parameters for PermitPackUser.
+type PermitPackUserJSONBody struct {
+	Perm string `json:"perm"`
+	User string `json:"user"`
+}
+
+// UpdateProfileJSONBody defines parameters for UpdateProfile.
+type UpdateProfileJSONBody struct {
+	Email    *string `json:"email,omitempty"`
+	Fullname *string `json:"fullname,omitempty"`
+	Password *string `json:"password,omitempty"`
+	Username *string `json:"username,omitempty"`
+}
+
 // ListQuiltsParams defines parameters for ListQuilts.
 type ListQuiltsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
+}
+
+// DeleteQuiltFromBuildJSONBody defines parameters for DeleteQuiltFromBuild.
+type DeleteQuiltFromBuildJSONBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
 }
 
 // ListQuiltBuildsParams defines parameters for ListQuiltBuilds.
 type ListQuiltBuildsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListQuiltBuildsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListQuiltBuildsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListQuiltBuildsParamsSort defines parameters for ListQuiltBuilds.
-type ListQuiltBuildsParamsSort string
 
 // ListQuiltBuildsParamsOrder defines parameters for ListQuiltBuilds.
 type ListQuiltBuildsParamsOrder string
 
-// ListTeamsParams defines parameters for ListTeams.
-type ListTeamsParams struct {
-	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
-
-	// Sort Sorting column
-	Sort *ListTeamsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
-
-	// Order Sorting order
-	Order *ListTeamsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
-
-	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
-
-	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+// AttachQuiltToBuildJSONBody defines parameters for AttachQuiltToBuild.
+type AttachQuiltToBuildJSONBody struct {
+	Build string `json:"build,omitempty"`
+	Pack  string `json:"pack,omitempty"`
 }
-
-// ListTeamsParamsSort defines parameters for ListTeams.
-type ListTeamsParamsSort string
-
-// ListTeamsParamsOrder defines parameters for ListTeams.
-type ListTeamsParamsOrder string
-
-// ListTeamModsParams defines parameters for ListTeamMods.
-type ListTeamModsParams struct {
-	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
-
-	// Sort Sorting column
-	Sort *ListTeamModsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
-
-	// Order Sorting order
-	Order *ListTeamModsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
-
-	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
-
-	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
-}
-
-// ListTeamModsParamsSort defines parameters for ListTeamMods.
-type ListTeamModsParamsSort string
-
-// ListTeamModsParamsOrder defines parameters for ListTeamMods.
-type ListTeamModsParamsOrder string
-
-// ListTeamPacksParams defines parameters for ListTeamPacks.
-type ListTeamPacksParams struct {
-	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
-
-	// Sort Sorting column
-	Sort *ListTeamPacksParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
-
-	// Order Sorting order
-	Order *ListTeamPacksParamsOrder `form:"order,omitempty" json:"order,omitempty"`
-
-	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
-
-	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
-}
-
-// ListTeamPacksParamsSort defines parameters for ListTeamPacks.
-type ListTeamPacksParamsSort string
-
-// ListTeamPacksParamsOrder defines parameters for ListTeamPacks.
-type ListTeamPacksParamsOrder string
-
-// ListTeamUsersParams defines parameters for ListTeamUsers.
-type ListTeamUsersParams struct {
-	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
-
-	// Sort Sorting column
-	Sort *ListTeamUsersParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
-
-	// Order Sorting order
-	Order *ListTeamUsersParamsOrder `form:"order,omitempty" json:"order,omitempty"`
-
-	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
-
-	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
-}
-
-// ListTeamUsersParamsSort defines parameters for ListTeamUsers.
-type ListTeamUsersParamsSort string
-
-// ListTeamUsersParamsOrder defines parameters for ListTeamUsers.
-type ListTeamUsersParamsOrder string
 
 // ListUsersParams defines parameters for ListUsers.
 type ListUsersParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListUsersParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListUsersParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListUsersParamsSort defines parameters for ListUsers.
-type ListUsersParamsSort string
 
 // ListUsersParamsOrder defines parameters for ListUsers.
 type ListUsersParamsOrder string
 
+// CreateUserJSONBody defines parameters for CreateUser.
+type CreateUserJSONBody struct {
+	Active   *bool   `json:"active,omitempty"`
+	Admin    *bool   `json:"admin,omitempty"`
+	Email    *string `json:"email,omitempty"`
+	Fullname *string `json:"fullname,omitempty"`
+	Password *string `json:"password,omitempty"`
+	Username *string `json:"username,omitempty"`
+}
+
+// UpdateUserJSONBody defines parameters for UpdateUser.
+type UpdateUserJSONBody struct {
+	Active   *bool   `json:"active,omitempty"`
+	Admin    *bool   `json:"admin,omitempty"`
+	Email    *string `json:"email,omitempty"`
+	Fullname *string `json:"fullname,omitempty"`
+	Password *string `json:"password,omitempty"`
+	Username *string `json:"username,omitempty"`
+}
+
+// DeleteUserFromGroupJSONBody defines parameters for DeleteUserFromGroup.
+type DeleteUserFromGroupJSONBody struct {
+	Group string `json:"group"`
+}
+
+// ListUserGroupsParams defines parameters for ListUserGroups.
+type ListUserGroupsParams struct {
+	// Search Search query
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
+
+	// Sort Sorting column
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
+
+	// Order Sorting order
+	Order *ListUserGroupsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
+
+	// Limit Paging limit
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
+
+	// Offset Paging offset
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
+}
+
+// ListUserGroupsParamsOrder defines parameters for ListUserGroups.
+type ListUserGroupsParamsOrder string
+
+// AttachUserToGroupJSONBody defines parameters for AttachUserToGroup.
+type AttachUserToGroupJSONBody struct {
+	Group string `json:"group"`
+	Perm  string `json:"perm"`
+}
+
+// PermitUserGroupJSONBody defines parameters for PermitUserGroup.
+type PermitUserGroupJSONBody struct {
+	Group string `json:"group"`
+	Perm  string `json:"perm"`
+}
+
+// DeleteUserFromModJSONBody defines parameters for DeleteUserFromMod.
+type DeleteUserFromModJSONBody struct {
+	Mod string `json:"mod"`
+}
+
 // ListUserModsParams defines parameters for ListUserMods.
 type ListUserModsParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListUserModsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListUserModsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListUserModsParamsSort defines parameters for ListUserMods.
-type ListUserModsParamsSort string
 
 // ListUserModsParamsOrder defines parameters for ListUserMods.
 type ListUserModsParamsOrder string
 
+// AttachUserToModJSONBody defines parameters for AttachUserToMod.
+type AttachUserToModJSONBody struct {
+	Mod  string `json:"mod"`
+	Perm string `json:"perm"`
+}
+
+// PermitUserModJSONBody defines parameters for PermitUserMod.
+type PermitUserModJSONBody struct {
+	Mod  string `json:"mod"`
+	Perm string `json:"perm"`
+}
+
+// DeleteUserFromPackJSONBody defines parameters for DeleteUserFromPack.
+type DeleteUserFromPackJSONBody struct {
+	Pack string `json:"pack"`
+}
+
 // ListUserPacksParams defines parameters for ListUserPacks.
 type ListUserPacksParams struct {
 	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
+	Search *SearchQueryParam `form:"search,omitempty" json:"search,omitempty"`
 
 	// Sort Sorting column
-	Sort *ListUserPacksParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Sort *SortColumnParam `form:"sort,omitempty" json:"sort,omitempty"`
 
 	// Order Sorting order
 	Order *ListUserPacksParamsOrder `form:"order,omitempty" json:"order,omitempty"`
 
 	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit *PagingLimitParam `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	Offset *PagingOffsetParam `form:"offset,omitempty" json:"offset,omitempty"`
 }
-
-// ListUserPacksParamsSort defines parameters for ListUserPacks.
-type ListUserPacksParamsSort string
 
 // ListUserPacksParamsOrder defines parameters for ListUserPacks.
 type ListUserPacksParamsOrder string
 
-// ListUserTeamsParams defines parameters for ListUserTeams.
-type ListUserTeamsParams struct {
-	// Search Search query
-	Search *string `form:"search,omitempty" json:"search,omitempty"`
-
-	// Sort Sorting column
-	Sort *ListUserTeamsParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
-
-	// Order Sorting order
-	Order *ListUserTeamsParamsOrder `form:"order,omitempty" json:"order,omitempty"`
-
-	// Limit Paging limit
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
-
-	// Offset Paging offset
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+// AttachUserToPackJSONBody defines parameters for AttachUserToPack.
+type AttachUserToPackJSONBody struct {
+	Pack string `json:"pack"`
+	Perm string `json:"perm"`
 }
 
-// ListUserTeamsParamsSort defines parameters for ListUserTeams.
-type ListUserTeamsParamsSort string
-
-// ListUserTeamsParamsOrder defines parameters for ListUserTeams.
-type ListUserTeamsParamsOrder string
+// PermitUserPackJSONBody defines parameters for PermitUserPack.
+type PermitUserPackJSONBody struct {
+	Pack string `json:"pack"`
+	Perm string `json:"perm"`
+}
 
 // LoginAuthJSONRequestBody defines body for LoginAuth for application/json ContentType.
-type LoginAuthJSONRequestBody = AuthLogin
+type LoginAuthJSONRequestBody LoginAuthJSONBody
+
+// RedirectAuthJSONRequestBody defines body for RedirectAuth for application/json ContentType.
+type RedirectAuthJSONRequestBody RedirectAuthJSONBody
 
 // DeleteFabricFromBuildJSONRequestBody defines body for DeleteFabricFromBuild for application/json ContentType.
-type DeleteFabricFromBuildJSONRequestBody = FabricBuildParams
+type DeleteFabricFromBuildJSONRequestBody DeleteFabricFromBuildJSONBody
 
 // AttachFabricToBuildJSONRequestBody defines body for AttachFabricToBuild for application/json ContentType.
-type AttachFabricToBuildJSONRequestBody = FabricBuildParams
+type AttachFabricToBuildJSONRequestBody AttachFabricToBuildJSONBody
 
 // DeleteForgeFromBuildJSONRequestBody defines body for DeleteForgeFromBuild for application/json ContentType.
-type DeleteForgeFromBuildJSONRequestBody = ForgeBuildParams
+type DeleteForgeFromBuildJSONRequestBody DeleteForgeFromBuildJSONBody
 
 // AttachForgeToBuildJSONRequestBody defines body for AttachForgeToBuild for application/json ContentType.
-type AttachForgeToBuildJSONRequestBody = ForgeBuildParams
+type AttachForgeToBuildJSONRequestBody AttachForgeToBuildJSONBody
+
+// CreateGroupJSONRequestBody defines body for CreateGroup for application/json ContentType.
+type CreateGroupJSONRequestBody CreateGroupJSONBody
+
+// UpdateGroupJSONRequestBody defines body for UpdateGroup for application/json ContentType.
+type UpdateGroupJSONRequestBody UpdateGroupJSONBody
+
+// DeleteGroupFromModJSONRequestBody defines body for DeleteGroupFromMod for application/json ContentType.
+type DeleteGroupFromModJSONRequestBody DeleteGroupFromModJSONBody
+
+// AttachGroupToModJSONRequestBody defines body for AttachGroupToMod for application/json ContentType.
+type AttachGroupToModJSONRequestBody AttachGroupToModJSONBody
+
+// PermitGroupModJSONRequestBody defines body for PermitGroupMod for application/json ContentType.
+type PermitGroupModJSONRequestBody PermitGroupModJSONBody
+
+// DeleteGroupFromPackJSONRequestBody defines body for DeleteGroupFromPack for application/json ContentType.
+type DeleteGroupFromPackJSONRequestBody DeleteGroupFromPackJSONBody
+
+// AttachGroupToPackJSONRequestBody defines body for AttachGroupToPack for application/json ContentType.
+type AttachGroupToPackJSONRequestBody AttachGroupToPackJSONBody
+
+// PermitGroupPackJSONRequestBody defines body for PermitGroupPack for application/json ContentType.
+type PermitGroupPackJSONRequestBody PermitGroupPackJSONBody
+
+// DeleteGroupFromUserJSONRequestBody defines body for DeleteGroupFromUser for application/json ContentType.
+type DeleteGroupFromUserJSONRequestBody DeleteGroupFromUserJSONBody
+
+// AttachGroupToUserJSONRequestBody defines body for AttachGroupToUser for application/json ContentType.
+type AttachGroupToUserJSONRequestBody AttachGroupToUserJSONBody
+
+// PermitGroupUserJSONRequestBody defines body for PermitGroupUser for application/json ContentType.
+type PermitGroupUserJSONRequestBody PermitGroupUserJSONBody
 
 // DeleteMinecraftFromBuildJSONRequestBody defines body for DeleteMinecraftFromBuild for application/json ContentType.
-type DeleteMinecraftFromBuildJSONRequestBody = MinecraftBuildParams
+type DeleteMinecraftFromBuildJSONRequestBody DeleteMinecraftFromBuildJSONBody
 
 // AttachMinecraftToBuildJSONRequestBody defines body for AttachMinecraftToBuild for application/json ContentType.
-type AttachMinecraftToBuildJSONRequestBody = MinecraftBuildParams
+type AttachMinecraftToBuildJSONRequestBody AttachMinecraftToBuildJSONBody
 
 // CreateModJSONRequestBody defines body for CreateMod for application/json ContentType.
-type CreateModJSONRequestBody = Mod
+type CreateModJSONRequestBody CreateModJSONBody
 
 // UpdateModJSONRequestBody defines body for UpdateMod for application/json ContentType.
-type UpdateModJSONRequestBody = Mod
+type UpdateModJSONRequestBody UpdateModJSONBody
 
-// DeleteModFromTeamJSONRequestBody defines body for DeleteModFromTeam for application/json ContentType.
-type DeleteModFromTeamJSONRequestBody = ModTeamParams
+// CreateModAvatarMultipartRequestBody defines body for CreateModAvatar for multipart/form-data ContentType.
+type CreateModAvatarMultipartRequestBody CreateModAvatarMultipartBody
 
-// AttachModToTeamJSONRequestBody defines body for AttachModToTeam for application/json ContentType.
-type AttachModToTeamJSONRequestBody = ModTeamParams
+// DeleteModFromGroupJSONRequestBody defines body for DeleteModFromGroup for application/json ContentType.
+type DeleteModFromGroupJSONRequestBody DeleteModFromGroupJSONBody
 
-// PermitModTeamJSONRequestBody defines body for PermitModTeam for application/json ContentType.
-type PermitModTeamJSONRequestBody = ModTeamParams
+// AttachModToGroupJSONRequestBody defines body for AttachModToGroup for application/json ContentType.
+type AttachModToGroupJSONRequestBody AttachModToGroupJSONBody
+
+// PermitModGroupJSONRequestBody defines body for PermitModGroup for application/json ContentType.
+type PermitModGroupJSONRequestBody PermitModGroupJSONBody
 
 // DeleteModFromUserJSONRequestBody defines body for DeleteModFromUser for application/json ContentType.
-type DeleteModFromUserJSONRequestBody = ModUserParams
+type DeleteModFromUserJSONRequestBody DeleteModFromUserJSONBody
 
 // AttachModToUserJSONRequestBody defines body for AttachModToUser for application/json ContentType.
-type AttachModToUserJSONRequestBody = ModUserParams
+type AttachModToUserJSONRequestBody AttachModToUserJSONBody
 
 // PermitModUserJSONRequestBody defines body for PermitModUser for application/json ContentType.
-type PermitModUserJSONRequestBody = ModUserParams
+type PermitModUserJSONRequestBody PermitModUserJSONBody
 
 // CreateVersionJSONRequestBody defines body for CreateVersion for application/json ContentType.
-type CreateVersionJSONRequestBody = Version
+type CreateVersionJSONRequestBody CreateVersionJSONBody
 
 // UpdateVersionJSONRequestBody defines body for UpdateVersion for application/json ContentType.
-type UpdateVersionJSONRequestBody = Version
+type UpdateVersionJSONRequestBody UpdateVersionJSONBody
 
 // DeleteVersionFromBuildJSONRequestBody defines body for DeleteVersionFromBuild for application/json ContentType.
-type DeleteVersionFromBuildJSONRequestBody = VersionBuildParams
+type DeleteVersionFromBuildJSONRequestBody DeleteVersionFromBuildJSONBody
 
 // AttachVersionToBuildJSONRequestBody defines body for AttachVersionToBuild for application/json ContentType.
-type AttachVersionToBuildJSONRequestBody = VersionBuildParams
+type AttachVersionToBuildJSONRequestBody AttachVersionToBuildJSONBody
 
 // DeleteNeoforgeFromBuildJSONRequestBody defines body for DeleteNeoforgeFromBuild for application/json ContentType.
-type DeleteNeoforgeFromBuildJSONRequestBody = NeoforgeBuildParams
+type DeleteNeoforgeFromBuildJSONRequestBody DeleteNeoforgeFromBuildJSONBody
 
 // AttachNeoforgeToBuildJSONRequestBody defines body for AttachNeoforgeToBuild for application/json ContentType.
-type AttachNeoforgeToBuildJSONRequestBody = NeoforgeBuildParams
+type AttachNeoforgeToBuildJSONRequestBody AttachNeoforgeToBuildJSONBody
 
 // CreatePackJSONRequestBody defines body for CreatePack for application/json ContentType.
-type CreatePackJSONRequestBody = Pack
+type CreatePackJSONRequestBody CreatePackJSONBody
 
 // UpdatePackJSONRequestBody defines body for UpdatePack for application/json ContentType.
-type UpdatePackJSONRequestBody = Pack
+type UpdatePackJSONRequestBody UpdatePackJSONBody
+
+// CreatePackAvatarMultipartRequestBody defines body for CreatePackAvatar for multipart/form-data ContentType.
+type CreatePackAvatarMultipartRequestBody CreatePackAvatarMultipartBody
 
 // CreateBuildJSONRequestBody defines body for CreateBuild for application/json ContentType.
-type CreateBuildJSONRequestBody = Build
+type CreateBuildJSONRequestBody CreateBuildJSONBody
 
 // UpdateBuildJSONRequestBody defines body for UpdateBuild for application/json ContentType.
-type UpdateBuildJSONRequestBody = Build
+type UpdateBuildJSONRequestBody UpdateBuildJSONBody
 
 // DeleteBuildFromVersionJSONRequestBody defines body for DeleteBuildFromVersion for application/json ContentType.
-type DeleteBuildFromVersionJSONRequestBody = BuildVersionParams
+type DeleteBuildFromVersionJSONRequestBody DeleteBuildFromVersionJSONBody
 
 // AttachBuildToVersionJSONRequestBody defines body for AttachBuildToVersion for application/json ContentType.
-type AttachBuildToVersionJSONRequestBody = BuildVersionParams
+type AttachBuildToVersionJSONRequestBody AttachBuildToVersionJSONBody
 
-// DeletePackFromTeamJSONRequestBody defines body for DeletePackFromTeam for application/json ContentType.
-type DeletePackFromTeamJSONRequestBody = PackTeamParams
+// DeletePackFromGroupJSONRequestBody defines body for DeletePackFromGroup for application/json ContentType.
+type DeletePackFromGroupJSONRequestBody DeletePackFromGroupJSONBody
 
-// AttachPackToTeamJSONRequestBody defines body for AttachPackToTeam for application/json ContentType.
-type AttachPackToTeamJSONRequestBody = PackTeamParams
+// AttachPackToGroupJSONRequestBody defines body for AttachPackToGroup for application/json ContentType.
+type AttachPackToGroupJSONRequestBody AttachPackToGroupJSONBody
 
-// PermitPackTeamJSONRequestBody defines body for PermitPackTeam for application/json ContentType.
-type PermitPackTeamJSONRequestBody = PackTeamParams
+// PermitPackGroupJSONRequestBody defines body for PermitPackGroup for application/json ContentType.
+type PermitPackGroupJSONRequestBody PermitPackGroupJSONBody
 
 // DeletePackFromUserJSONRequestBody defines body for DeletePackFromUser for application/json ContentType.
-type DeletePackFromUserJSONRequestBody = PackUserParams
+type DeletePackFromUserJSONRequestBody DeletePackFromUserJSONBody
 
 // AttachPackToUserJSONRequestBody defines body for AttachPackToUser for application/json ContentType.
-type AttachPackToUserJSONRequestBody = PackUserParams
+type AttachPackToUserJSONRequestBody AttachPackToUserJSONBody
 
 // PermitPackUserJSONRequestBody defines body for PermitPackUser for application/json ContentType.
-type PermitPackUserJSONRequestBody = PackUserParams
+type PermitPackUserJSONRequestBody PermitPackUserJSONBody
 
 // UpdateProfileJSONRequestBody defines body for UpdateProfile for application/json ContentType.
-type UpdateProfileJSONRequestBody = Profile
+type UpdateProfileJSONRequestBody UpdateProfileJSONBody
 
 // DeleteQuiltFromBuildJSONRequestBody defines body for DeleteQuiltFromBuild for application/json ContentType.
-type DeleteQuiltFromBuildJSONRequestBody = QuiltBuildParams
+type DeleteQuiltFromBuildJSONRequestBody DeleteQuiltFromBuildJSONBody
 
 // AttachQuiltToBuildJSONRequestBody defines body for AttachQuiltToBuild for application/json ContentType.
-type AttachQuiltToBuildJSONRequestBody = QuiltBuildParams
-
-// CreateTeamJSONRequestBody defines body for CreateTeam for application/json ContentType.
-type CreateTeamJSONRequestBody = Team
-
-// UpdateTeamJSONRequestBody defines body for UpdateTeam for application/json ContentType.
-type UpdateTeamJSONRequestBody = Team
-
-// DeleteTeamFromModJSONRequestBody defines body for DeleteTeamFromMod for application/json ContentType.
-type DeleteTeamFromModJSONRequestBody = TeamModParams
-
-// AttachTeamToModJSONRequestBody defines body for AttachTeamToMod for application/json ContentType.
-type AttachTeamToModJSONRequestBody = TeamModParams
-
-// PermitTeamModJSONRequestBody defines body for PermitTeamMod for application/json ContentType.
-type PermitTeamModJSONRequestBody = TeamModParams
-
-// DeleteTeamFromPackJSONRequestBody defines body for DeleteTeamFromPack for application/json ContentType.
-type DeleteTeamFromPackJSONRequestBody = TeamPackParams
-
-// AttachTeamToPackJSONRequestBody defines body for AttachTeamToPack for application/json ContentType.
-type AttachTeamToPackJSONRequestBody = TeamPackParams
-
-// PermitTeamPackJSONRequestBody defines body for PermitTeamPack for application/json ContentType.
-type PermitTeamPackJSONRequestBody = TeamPackParams
-
-// DeleteTeamFromUserJSONRequestBody defines body for DeleteTeamFromUser for application/json ContentType.
-type DeleteTeamFromUserJSONRequestBody = TeamUserParams
-
-// AttachTeamToUserJSONRequestBody defines body for AttachTeamToUser for application/json ContentType.
-type AttachTeamToUserJSONRequestBody = TeamUserParams
-
-// PermitTeamUserJSONRequestBody defines body for PermitTeamUser for application/json ContentType.
-type PermitTeamUserJSONRequestBody = TeamUserParams
+type AttachQuiltToBuildJSONRequestBody AttachQuiltToBuildJSONBody
 
 // CreateUserJSONRequestBody defines body for CreateUser for application/json ContentType.
-type CreateUserJSONRequestBody = User
+type CreateUserJSONRequestBody CreateUserJSONBody
 
 // UpdateUserJSONRequestBody defines body for UpdateUser for application/json ContentType.
-type UpdateUserJSONRequestBody = User
+type UpdateUserJSONRequestBody UpdateUserJSONBody
+
+// DeleteUserFromGroupJSONRequestBody defines body for DeleteUserFromGroup for application/json ContentType.
+type DeleteUserFromGroupJSONRequestBody DeleteUserFromGroupJSONBody
+
+// AttachUserToGroupJSONRequestBody defines body for AttachUserToGroup for application/json ContentType.
+type AttachUserToGroupJSONRequestBody AttachUserToGroupJSONBody
+
+// PermitUserGroupJSONRequestBody defines body for PermitUserGroup for application/json ContentType.
+type PermitUserGroupJSONRequestBody PermitUserGroupJSONBody
 
 // DeleteUserFromModJSONRequestBody defines body for DeleteUserFromMod for application/json ContentType.
-type DeleteUserFromModJSONRequestBody = UserModParams
+type DeleteUserFromModJSONRequestBody DeleteUserFromModJSONBody
 
 // AttachUserToModJSONRequestBody defines body for AttachUserToMod for application/json ContentType.
-type AttachUserToModJSONRequestBody = UserModParams
+type AttachUserToModJSONRequestBody AttachUserToModJSONBody
 
 // PermitUserModJSONRequestBody defines body for PermitUserMod for application/json ContentType.
-type PermitUserModJSONRequestBody = UserModParams
+type PermitUserModJSONRequestBody PermitUserModJSONBody
 
 // DeleteUserFromPackJSONRequestBody defines body for DeleteUserFromPack for application/json ContentType.
-type DeleteUserFromPackJSONRequestBody = UserPackParams
+type DeleteUserFromPackJSONRequestBody DeleteUserFromPackJSONBody
 
 // AttachUserToPackJSONRequestBody defines body for AttachUserToPack for application/json ContentType.
-type AttachUserToPackJSONRequestBody = UserPackParams
+type AttachUserToPackJSONRequestBody AttachUserToPackJSONBody
 
 // PermitUserPackJSONRequestBody defines body for PermitUserPack for application/json ContentType.
-type PermitUserPackJSONRequestBody = UserPackParams
-
-// DeleteUserFromTeamJSONRequestBody defines body for DeleteUserFromTeam for application/json ContentType.
-type DeleteUserFromTeamJSONRequestBody = UserTeamParams
-
-// AttachUserToTeamJSONRequestBody defines body for AttachUserToTeam for application/json ContentType.
-type AttachUserToTeamJSONRequestBody = UserTeamParams
-
-// PermitUserTeamJSONRequestBody defines body for PermitUserTeam for application/json ContentType.
-type PermitUserTeamJSONRequestBody = UserTeamParams
+type PermitUserPackJSONRequestBody PermitUserPackJSONBody
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -3219,8 +2986,13 @@ type ClientInterface interface {
 
 	LoginAuth(ctx context.Context, body LoginAuthJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ExternalProviders request
-	ExternalProviders(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListProviders request
+	ListProviders(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RedirectAuthWithBody request with any body
+	RedirectAuthWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	RedirectAuth(ctx context.Context, body RedirectAuthJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RefreshAuth request
 	RefreshAuth(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3228,11 +3000,11 @@ type ClientInterface interface {
 	// VerifyAuth request
 	VerifyAuth(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ExternalCallback request
-	ExternalCallback(ctx context.Context, provider string, params *ExternalCallbackParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CallbackProvider request
+	CallbackProvider(ctx context.Context, provider AuthProviderParam, params *CallbackProviderParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ExternalInitialize request
-	ExternalInitialize(ctx context.Context, provider string, params *ExternalInitializeParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// RequestProvider request
+	RequestProvider(ctx context.Context, provider AuthProviderParam, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListFabrics request
 	ListFabrics(ctx context.Context, params *ListFabricsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3241,17 +3013,17 @@ type ClientInterface interface {
 	UpdateFabric(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteFabricFromBuildWithBody request with any body
-	DeleteFabricFromBuildWithBody(ctx context.Context, fabricId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteFabricFromBuildWithBody(ctx context.Context, fabricID FabricID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeleteFabricFromBuild(ctx context.Context, fabricId string, body DeleteFabricFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteFabricFromBuild(ctx context.Context, fabricID FabricID, body DeleteFabricFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListFabricBuilds request
-	ListFabricBuilds(ctx context.Context, fabricId string, params *ListFabricBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListFabricBuilds(ctx context.Context, fabricID FabricID, params *ListFabricBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AttachFabricToBuildWithBody request with any body
-	AttachFabricToBuildWithBody(ctx context.Context, fabricId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachFabricToBuildWithBody(ctx context.Context, fabricID FabricID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachFabricToBuild(ctx context.Context, fabricId string, body AttachFabricToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachFabricToBuild(ctx context.Context, fabricID FabricID, body AttachFabricToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListForges request
 	ListForges(ctx context.Context, params *ListForgesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3260,17 +3032,90 @@ type ClientInterface interface {
 	UpdateForge(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteForgeFromBuildWithBody request with any body
-	DeleteForgeFromBuildWithBody(ctx context.Context, forgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteForgeFromBuildWithBody(ctx context.Context, forgeID ForgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeleteForgeFromBuild(ctx context.Context, forgeId string, body DeleteForgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteForgeFromBuild(ctx context.Context, forgeID ForgeID, body DeleteForgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListForgeBuilds request
-	ListForgeBuilds(ctx context.Context, forgeId string, params *ListForgeBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListForgeBuilds(ctx context.Context, forgeID ForgeID, params *ListForgeBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AttachForgeToBuildWithBody request with any body
-	AttachForgeToBuildWithBody(ctx context.Context, forgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachForgeToBuildWithBody(ctx context.Context, forgeID ForgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachForgeToBuild(ctx context.Context, forgeId string, body AttachForgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachForgeToBuild(ctx context.Context, forgeID ForgeID, body AttachForgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ListGroups request
+	ListGroups(ctx context.Context, params *ListGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateGroupWithBody request with any body
+	CreateGroupWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CreateGroup(ctx context.Context, body CreateGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteGroup request
+	DeleteGroup(ctx context.Context, groupID GroupID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ShowGroup request
+	ShowGroup(ctx context.Context, groupID GroupID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UpdateGroupWithBody request with any body
+	UpdateGroupWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UpdateGroup(ctx context.Context, groupID GroupID, body UpdateGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteGroupFromModWithBody request with any body
+	DeleteGroupFromModWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DeleteGroupFromMod(ctx context.Context, groupID GroupID, body DeleteGroupFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ListGroupMods request
+	ListGroupMods(ctx context.Context, groupID GroupID, params *ListGroupModsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AttachGroupToModWithBody request with any body
+	AttachGroupToModWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AttachGroupToMod(ctx context.Context, groupID GroupID, body AttachGroupToModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PermitGroupModWithBody request with any body
+	PermitGroupModWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PermitGroupMod(ctx context.Context, groupID GroupID, body PermitGroupModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteGroupFromPackWithBody request with any body
+	DeleteGroupFromPackWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DeleteGroupFromPack(ctx context.Context, groupID GroupID, body DeleteGroupFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ListGroupPacks request
+	ListGroupPacks(ctx context.Context, groupID GroupID, params *ListGroupPacksParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AttachGroupToPackWithBody request with any body
+	AttachGroupToPackWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AttachGroupToPack(ctx context.Context, groupID GroupID, body AttachGroupToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PermitGroupPackWithBody request with any body
+	PermitGroupPackWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PermitGroupPack(ctx context.Context, groupID GroupID, body PermitGroupPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteGroupFromUserWithBody request with any body
+	DeleteGroupFromUserWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DeleteGroupFromUser(ctx context.Context, groupID GroupID, body DeleteGroupFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ListGroupUsers request
+	ListGroupUsers(ctx context.Context, groupID GroupID, params *ListGroupUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AttachGroupToUserWithBody request with any body
+	AttachGroupToUserWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AttachGroupToUser(ctx context.Context, groupID GroupID, body AttachGroupToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PermitGroupUserWithBody request with any body
+	PermitGroupUserWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PermitGroupUser(ctx context.Context, groupID GroupID, body PermitGroupUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListMinecrafts request
 	ListMinecrafts(ctx context.Context, params *ListMinecraftsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3279,17 +3124,17 @@ type ClientInterface interface {
 	UpdateMinecraft(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteMinecraftFromBuildWithBody request with any body
-	DeleteMinecraftFromBuildWithBody(ctx context.Context, minecraftId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteMinecraftFromBuildWithBody(ctx context.Context, minecraftID MinecraftID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeleteMinecraftFromBuild(ctx context.Context, minecraftId string, body DeleteMinecraftFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteMinecraftFromBuild(ctx context.Context, minecraftID MinecraftID, body DeleteMinecraftFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListMinecraftBuilds request
-	ListMinecraftBuilds(ctx context.Context, minecraftId string, params *ListMinecraftBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListMinecraftBuilds(ctx context.Context, minecraftID MinecraftID, params *ListMinecraftBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AttachMinecraftToBuildWithBody request with any body
-	AttachMinecraftToBuildWithBody(ctx context.Context, minecraftId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachMinecraftToBuildWithBody(ctx context.Context, minecraftID MinecraftID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachMinecraftToBuild(ctx context.Context, minecraftId string, body AttachMinecraftToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachMinecraftToBuild(ctx context.Context, minecraftID MinecraftID, body AttachMinecraftToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListMods request
 	ListMods(ctx context.Context, params *ListModsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3300,83 +3145,89 @@ type ClientInterface interface {
 	CreateMod(ctx context.Context, body CreateModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteMod request
-	DeleteMod(ctx context.Context, modId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteMod(ctx context.Context, modID ModID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ShowMod request
-	ShowMod(ctx context.Context, modId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ShowMod(ctx context.Context, modID ModID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateModWithBody request with any body
-	UpdateModWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateModWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateMod(ctx context.Context, modId string, body UpdateModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateMod(ctx context.Context, modID ModID, body UpdateModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// DeleteModFromTeamWithBody request with any body
-	DeleteModFromTeamWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeleteModAvatar request
+	DeleteModAvatar(ctx context.Context, modID ModID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeleteModFromTeam(ctx context.Context, modId string, body DeleteModFromTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateModAvatarWithBody request with any body
+	CreateModAvatarWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ListModTeams request
-	ListModTeams(ctx context.Context, modId string, params *ListModTeamsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeleteModFromGroupWithBody request with any body
+	DeleteModFromGroupWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// AttachModToTeamWithBody request with any body
-	AttachModToTeamWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteModFromGroup(ctx context.Context, modID ModID, body DeleteModFromGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachModToTeam(ctx context.Context, modId string, body AttachModToTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListModGroups request
+	ListModGroups(ctx context.Context, modID ModID, params *ListModGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// PermitModTeamWithBody request with any body
-	PermitModTeamWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// AttachModToGroupWithBody request with any body
+	AttachModToGroupWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PermitModTeam(ctx context.Context, modId string, body PermitModTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachModToGroup(ctx context.Context, modID ModID, body AttachModToGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PermitModGroupWithBody request with any body
+	PermitModGroupWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PermitModGroup(ctx context.Context, modID ModID, body PermitModGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteModFromUserWithBody request with any body
-	DeleteModFromUserWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteModFromUserWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeleteModFromUser(ctx context.Context, modId string, body DeleteModFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteModFromUser(ctx context.Context, modID ModID, body DeleteModFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListModUsers request
-	ListModUsers(ctx context.Context, modId string, params *ListModUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListModUsers(ctx context.Context, modID ModID, params *ListModUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AttachModToUserWithBody request with any body
-	AttachModToUserWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachModToUserWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachModToUser(ctx context.Context, modId string, body AttachModToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachModToUser(ctx context.Context, modID ModID, body AttachModToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PermitModUserWithBody request with any body
-	PermitModUserWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PermitModUserWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PermitModUser(ctx context.Context, modId string, body PermitModUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PermitModUser(ctx context.Context, modID ModID, body PermitModUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListVersions request
-	ListVersions(ctx context.Context, modId string, params *ListVersionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListVersions(ctx context.Context, modID ModID, params *ListVersionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateVersionWithBody request with any body
-	CreateVersionWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateVersionWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateVersion(ctx context.Context, modId string, body CreateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateVersion(ctx context.Context, modID ModID, body CreateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteVersion request
-	DeleteVersion(ctx context.Context, modId string, versionId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteVersion(ctx context.Context, modID ModID, versionID VersionID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ShowVersion request
-	ShowVersion(ctx context.Context, modId string, versionId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ShowVersion(ctx context.Context, modID ModID, versionID VersionID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateVersionWithBody request with any body
-	UpdateVersionWithBody(ctx context.Context, modId string, versionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateVersionWithBody(ctx context.Context, modID ModID, versionID VersionID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateVersion(ctx context.Context, modId string, versionId string, body UpdateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateVersion(ctx context.Context, modID ModID, versionID VersionID, body UpdateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteVersionFromBuildWithBody request with any body
-	DeleteVersionFromBuildWithBody(ctx context.Context, modId string, versionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteVersionFromBuildWithBody(ctx context.Context, modID ModID, versionID VersionID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeleteVersionFromBuild(ctx context.Context, modId string, versionId string, body DeleteVersionFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteVersionFromBuild(ctx context.Context, modID ModID, versionID VersionID, body DeleteVersionFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListVersionBuilds request
-	ListVersionBuilds(ctx context.Context, modId string, versionId string, params *ListVersionBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListVersionBuilds(ctx context.Context, modID ModID, versionID VersionID, params *ListVersionBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AttachVersionToBuildWithBody request with any body
-	AttachVersionToBuildWithBody(ctx context.Context, modId string, versionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachVersionToBuildWithBody(ctx context.Context, modID ModID, versionID VersionID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachVersionToBuild(ctx context.Context, modId string, versionId string, body AttachVersionToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachVersionToBuild(ctx context.Context, modID ModID, versionID VersionID, body AttachVersionToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListNeoforges request
 	ListNeoforges(ctx context.Context, params *ListNeoforgesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3385,17 +3236,17 @@ type ClientInterface interface {
 	UpdateNeoforge(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteNeoforgeFromBuildWithBody request with any body
-	DeleteNeoforgeFromBuildWithBody(ctx context.Context, neoforgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteNeoforgeFromBuildWithBody(ctx context.Context, neoforgeID NeoforgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeleteNeoforgeFromBuild(ctx context.Context, neoforgeId string, body DeleteNeoforgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteNeoforgeFromBuild(ctx context.Context, neoforgeID NeoforgeID, body DeleteNeoforgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListNeoforgeBuilds request
-	ListNeoforgeBuilds(ctx context.Context, neoforgeId string, params *ListNeoforgeBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListNeoforgeBuilds(ctx context.Context, neoforgeID NeoforgeID, params *ListNeoforgeBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AttachNeoforgeToBuildWithBody request with any body
-	AttachNeoforgeToBuildWithBody(ctx context.Context, neoforgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachNeoforgeToBuildWithBody(ctx context.Context, neoforgeID NeoforgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachNeoforgeToBuild(ctx context.Context, neoforgeId string, body AttachNeoforgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachNeoforgeToBuild(ctx context.Context, neoforgeID NeoforgeID, body AttachNeoforgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListPacks request
 	ListPacks(ctx context.Context, params *ListPacksParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3406,83 +3257,89 @@ type ClientInterface interface {
 	CreatePack(ctx context.Context, body CreatePackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeletePack request
-	DeletePack(ctx context.Context, packId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeletePack(ctx context.Context, packID PackID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ShowPack request
-	ShowPack(ctx context.Context, packId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ShowPack(ctx context.Context, packID PackID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdatePackWithBody request with any body
-	UpdatePackWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePackWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdatePack(ctx context.Context, packId string, body UpdatePackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePack(ctx context.Context, packID PackID, body UpdatePackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeletePackAvatar request
+	DeletePackAvatar(ctx context.Context, packID PackID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreatePackAvatarWithBody request with any body
+	CreatePackAvatarWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListBuilds request
-	ListBuilds(ctx context.Context, packId string, params *ListBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListBuilds(ctx context.Context, packID PackID, params *ListBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateBuildWithBody request with any body
-	CreateBuildWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateBuildWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateBuild(ctx context.Context, packId string, body CreateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateBuild(ctx context.Context, packID PackID, body CreateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteBuild request
-	DeleteBuild(ctx context.Context, packId string, buildId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteBuild(ctx context.Context, packID PackID, buildID BuildID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ShowBuild request
-	ShowBuild(ctx context.Context, packId string, buildId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ShowBuild(ctx context.Context, packID PackID, buildID BuildID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateBuildWithBody request with any body
-	UpdateBuildWithBody(ctx context.Context, packId string, buildId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateBuildWithBody(ctx context.Context, packID PackID, buildID BuildID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateBuild(ctx context.Context, packId string, buildId string, body UpdateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateBuild(ctx context.Context, packID PackID, buildID BuildID, body UpdateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteBuildFromVersionWithBody request with any body
-	DeleteBuildFromVersionWithBody(ctx context.Context, packId string, buildId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteBuildFromVersionWithBody(ctx context.Context, packID PackID, buildID BuildID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeleteBuildFromVersion(ctx context.Context, packId string, buildId string, body DeleteBuildFromVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteBuildFromVersion(ctx context.Context, packID PackID, buildID BuildID, body DeleteBuildFromVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListBuildVersions request
-	ListBuildVersions(ctx context.Context, packId string, buildId string, params *ListBuildVersionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListBuildVersions(ctx context.Context, packID PackID, buildID BuildID, params *ListBuildVersionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AttachBuildToVersionWithBody request with any body
-	AttachBuildToVersionWithBody(ctx context.Context, packId string, buildId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachBuildToVersionWithBody(ctx context.Context, packID PackID, buildID BuildID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachBuildToVersion(ctx context.Context, packId string, buildId string, body AttachBuildToVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachBuildToVersion(ctx context.Context, packID PackID, buildID BuildID, body AttachBuildToVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// DeletePackFromTeamWithBody request with any body
-	DeletePackFromTeamWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeletePackFromGroupWithBody request with any body
+	DeletePackFromGroupWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeletePackFromTeam(ctx context.Context, packId string, body DeletePackFromTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeletePackFromGroup(ctx context.Context, packID PackID, body DeletePackFromGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ListPackTeams request
-	ListPackTeams(ctx context.Context, packId string, params *ListPackTeamsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListPackGroups request
+	ListPackGroups(ctx context.Context, packID PackID, params *ListPackGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// AttachPackToTeamWithBody request with any body
-	AttachPackToTeamWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// AttachPackToGroupWithBody request with any body
+	AttachPackToGroupWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachPackToTeam(ctx context.Context, packId string, body AttachPackToTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachPackToGroup(ctx context.Context, packID PackID, body AttachPackToGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// PermitPackTeamWithBody request with any body
-	PermitPackTeamWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// PermitPackGroupWithBody request with any body
+	PermitPackGroupWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PermitPackTeam(ctx context.Context, packId string, body PermitPackTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PermitPackGroup(ctx context.Context, packID PackID, body PermitPackGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeletePackFromUserWithBody request with any body
-	DeletePackFromUserWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeletePackFromUserWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeletePackFromUser(ctx context.Context, packId string, body DeletePackFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeletePackFromUser(ctx context.Context, packID PackID, body DeletePackFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListPackUsers request
-	ListPackUsers(ctx context.Context, packId string, params *ListPackUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListPackUsers(ctx context.Context, packID PackID, params *ListPackUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AttachPackToUserWithBody request with any body
-	AttachPackToUserWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachPackToUserWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachPackToUser(ctx context.Context, packId string, body AttachPackToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachPackToUser(ctx context.Context, packID PackID, body AttachPackToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PermitPackUserWithBody request with any body
-	PermitPackUserWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PermitPackUserWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PermitPackUser(ctx context.Context, packId string, body PermitPackUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PermitPackUser(ctx context.Context, packID PackID, body PermitPackUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ShowProfile request
 	ShowProfile(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3502,90 +3359,17 @@ type ClientInterface interface {
 	UpdateQuilt(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteQuiltFromBuildWithBody request with any body
-	DeleteQuiltFromBuildWithBody(ctx context.Context, quiltId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteQuiltFromBuildWithBody(ctx context.Context, quiltID QuiltID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeleteQuiltFromBuild(ctx context.Context, quiltId string, body DeleteQuiltFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteQuiltFromBuild(ctx context.Context, quiltID QuiltID, body DeleteQuiltFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListQuiltBuilds request
-	ListQuiltBuilds(ctx context.Context, quiltId string, params *ListQuiltBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListQuiltBuilds(ctx context.Context, quiltID QuiltID, params *ListQuiltBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AttachQuiltToBuildWithBody request with any body
-	AttachQuiltToBuildWithBody(ctx context.Context, quiltId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachQuiltToBuildWithBody(ctx context.Context, quiltID QuiltID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachQuiltToBuild(ctx context.Context, quiltId string, body AttachQuiltToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ListTeams request
-	ListTeams(ctx context.Context, params *ListTeamsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// CreateTeamWithBody request with any body
-	CreateTeamWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	CreateTeam(ctx context.Context, body CreateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// DeleteTeam request
-	DeleteTeam(ctx context.Context, teamId string, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ShowTeam request
-	ShowTeam(ctx context.Context, teamId string, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// UpdateTeamWithBody request with any body
-	UpdateTeamWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	UpdateTeam(ctx context.Context, teamId string, body UpdateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// DeleteTeamFromModWithBody request with any body
-	DeleteTeamFromModWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	DeleteTeamFromMod(ctx context.Context, teamId string, body DeleteTeamFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ListTeamMods request
-	ListTeamMods(ctx context.Context, teamId string, params *ListTeamModsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// AttachTeamToModWithBody request with any body
-	AttachTeamToModWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	AttachTeamToMod(ctx context.Context, teamId string, body AttachTeamToModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// PermitTeamModWithBody request with any body
-	PermitTeamModWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PermitTeamMod(ctx context.Context, teamId string, body PermitTeamModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// DeleteTeamFromPackWithBody request with any body
-	DeleteTeamFromPackWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	DeleteTeamFromPack(ctx context.Context, teamId string, body DeleteTeamFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ListTeamPacks request
-	ListTeamPacks(ctx context.Context, teamId string, params *ListTeamPacksParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// AttachTeamToPackWithBody request with any body
-	AttachTeamToPackWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	AttachTeamToPack(ctx context.Context, teamId string, body AttachTeamToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// PermitTeamPackWithBody request with any body
-	PermitTeamPackWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PermitTeamPack(ctx context.Context, teamId string, body PermitTeamPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// DeleteTeamFromUserWithBody request with any body
-	DeleteTeamFromUserWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	DeleteTeamFromUser(ctx context.Context, teamId string, body DeleteTeamFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ListTeamUsers request
-	ListTeamUsers(ctx context.Context, teamId string, params *ListTeamUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// AttachTeamToUserWithBody request with any body
-	AttachTeamToUserWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	AttachTeamToUser(ctx context.Context, teamId string, body AttachTeamToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// PermitTeamUserWithBody request with any body
-	PermitTeamUserWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PermitTeamUser(ctx context.Context, teamId string, body PermitTeamUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachQuiltToBuild(ctx context.Context, quiltID QuiltID, body AttachQuiltToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListUsers request
 	ListUsers(ctx context.Context, params *ListUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3596,69 +3380,69 @@ type ClientInterface interface {
 	CreateUser(ctx context.Context, body CreateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteUser request
-	DeleteUser(ctx context.Context, userId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteUser(ctx context.Context, userID UserID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ShowUser request
-	ShowUser(ctx context.Context, userId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ShowUser(ctx context.Context, userID UserID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateUserWithBody request with any body
-	UpdateUserWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateUserWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateUser(ctx context.Context, userId string, body UpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateUser(ctx context.Context, userID UserID, body UpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteUserFromGroupWithBody request with any body
+	DeleteUserFromGroupWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DeleteUserFromGroup(ctx context.Context, userID UserID, body DeleteUserFromGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ListUserGroups request
+	ListUserGroups(ctx context.Context, userID UserID, params *ListUserGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AttachUserToGroupWithBody request with any body
+	AttachUserToGroupWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AttachUserToGroup(ctx context.Context, userID UserID, body AttachUserToGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PermitUserGroupWithBody request with any body
+	PermitUserGroupWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PermitUserGroup(ctx context.Context, userID UserID, body PermitUserGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteUserFromModWithBody request with any body
-	DeleteUserFromModWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteUserFromModWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeleteUserFromMod(ctx context.Context, userId string, body DeleteUserFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteUserFromMod(ctx context.Context, userID UserID, body DeleteUserFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListUserMods request
-	ListUserMods(ctx context.Context, userId string, params *ListUserModsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListUserMods(ctx context.Context, userID UserID, params *ListUserModsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AttachUserToModWithBody request with any body
-	AttachUserToModWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachUserToModWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachUserToMod(ctx context.Context, userId string, body AttachUserToModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachUserToMod(ctx context.Context, userID UserID, body AttachUserToModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PermitUserModWithBody request with any body
-	PermitUserModWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PermitUserModWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PermitUserMod(ctx context.Context, userId string, body PermitUserModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PermitUserMod(ctx context.Context, userID UserID, body PermitUserModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteUserFromPackWithBody request with any body
-	DeleteUserFromPackWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteUserFromPackWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	DeleteUserFromPack(ctx context.Context, userId string, body DeleteUserFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteUserFromPack(ctx context.Context, userID UserID, body DeleteUserFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListUserPacks request
-	ListUserPacks(ctx context.Context, userId string, params *ListUserPacksParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListUserPacks(ctx context.Context, userID UserID, params *ListUserPacksParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AttachUserToPackWithBody request with any body
-	AttachUserToPackWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachUserToPackWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachUserToPack(ctx context.Context, userId string, body AttachUserToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachUserToPack(ctx context.Context, userID UserID, body AttachUserToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PermitUserPackWithBody request with any body
-	PermitUserPackWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PermitUserPackWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PermitUserPack(ctx context.Context, userId string, body PermitUserPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// DeleteUserFromTeamWithBody request with any body
-	DeleteUserFromTeamWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	DeleteUserFromTeam(ctx context.Context, userId string, body DeleteUserFromTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ListUserTeams request
-	ListUserTeams(ctx context.Context, userId string, params *ListUserTeamsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// AttachUserToTeamWithBody request with any body
-	AttachUserToTeamWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	AttachUserToTeam(ctx context.Context, userId string, body AttachUserToTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// PermitUserTeamWithBody request with any body
-	PermitUserTeamWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PermitUserTeam(ctx context.Context, userId string, body PermitUserTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PermitUserPack(ctx context.Context, userID UserID, body PermitUserPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) LoginAuthWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -3685,8 +3469,32 @@ func (c *Client) LoginAuth(ctx context.Context, body LoginAuthJSONRequestBody, r
 	return c.Client.Do(req)
 }
 
-func (c *Client) ExternalProviders(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewExternalProvidersRequest(c.Server)
+func (c *Client) ListProviders(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListProvidersRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RedirectAuthWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRedirectAuthRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RedirectAuth(ctx context.Context, body RedirectAuthJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRedirectAuthRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3721,8 +3529,8 @@ func (c *Client) VerifyAuth(ctx context.Context, reqEditors ...RequestEditorFn) 
 	return c.Client.Do(req)
 }
 
-func (c *Client) ExternalCallback(ctx context.Context, provider string, params *ExternalCallbackParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewExternalCallbackRequest(c.Server, provider, params)
+func (c *Client) CallbackProvider(ctx context.Context, provider AuthProviderParam, params *CallbackProviderParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallbackProviderRequest(c.Server, provider, params)
 	if err != nil {
 		return nil, err
 	}
@@ -3733,8 +3541,8 @@ func (c *Client) ExternalCallback(ctx context.Context, provider string, params *
 	return c.Client.Do(req)
 }
 
-func (c *Client) ExternalInitialize(ctx context.Context, provider string, params *ExternalInitializeParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewExternalInitializeRequest(c.Server, provider, params)
+func (c *Client) RequestProvider(ctx context.Context, provider AuthProviderParam, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRequestProviderRequest(c.Server, provider)
 	if err != nil {
 		return nil, err
 	}
@@ -3769,8 +3577,8 @@ func (c *Client) UpdateFabric(ctx context.Context, reqEditors ...RequestEditorFn
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteFabricFromBuildWithBody(ctx context.Context, fabricId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteFabricFromBuildRequestWithBody(c.Server, fabricId, contentType, body)
+func (c *Client) DeleteFabricFromBuildWithBody(ctx context.Context, fabricID FabricID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteFabricFromBuildRequestWithBody(c.Server, fabricID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3781,8 +3589,8 @@ func (c *Client) DeleteFabricFromBuildWithBody(ctx context.Context, fabricId str
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteFabricFromBuild(ctx context.Context, fabricId string, body DeleteFabricFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteFabricFromBuildRequest(c.Server, fabricId, body)
+func (c *Client) DeleteFabricFromBuild(ctx context.Context, fabricID FabricID, body DeleteFabricFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteFabricFromBuildRequest(c.Server, fabricID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3793,8 +3601,8 @@ func (c *Client) DeleteFabricFromBuild(ctx context.Context, fabricId string, bod
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListFabricBuilds(ctx context.Context, fabricId string, params *ListFabricBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListFabricBuildsRequest(c.Server, fabricId, params)
+func (c *Client) ListFabricBuilds(ctx context.Context, fabricID FabricID, params *ListFabricBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListFabricBuildsRequest(c.Server, fabricID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -3805,8 +3613,8 @@ func (c *Client) ListFabricBuilds(ctx context.Context, fabricId string, params *
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachFabricToBuildWithBody(ctx context.Context, fabricId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachFabricToBuildRequestWithBody(c.Server, fabricId, contentType, body)
+func (c *Client) AttachFabricToBuildWithBody(ctx context.Context, fabricID FabricID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachFabricToBuildRequestWithBody(c.Server, fabricID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3817,8 +3625,8 @@ func (c *Client) AttachFabricToBuildWithBody(ctx context.Context, fabricId strin
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachFabricToBuild(ctx context.Context, fabricId string, body AttachFabricToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachFabricToBuildRequest(c.Server, fabricId, body)
+func (c *Client) AttachFabricToBuild(ctx context.Context, fabricID FabricID, body AttachFabricToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachFabricToBuildRequest(c.Server, fabricID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3853,8 +3661,8 @@ func (c *Client) UpdateForge(ctx context.Context, reqEditors ...RequestEditorFn)
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteForgeFromBuildWithBody(ctx context.Context, forgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteForgeFromBuildRequestWithBody(c.Server, forgeId, contentType, body)
+func (c *Client) DeleteForgeFromBuildWithBody(ctx context.Context, forgeID ForgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteForgeFromBuildRequestWithBody(c.Server, forgeID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3865,8 +3673,8 @@ func (c *Client) DeleteForgeFromBuildWithBody(ctx context.Context, forgeId strin
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteForgeFromBuild(ctx context.Context, forgeId string, body DeleteForgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteForgeFromBuildRequest(c.Server, forgeId, body)
+func (c *Client) DeleteForgeFromBuild(ctx context.Context, forgeID ForgeID, body DeleteForgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteForgeFromBuildRequest(c.Server, forgeID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3877,8 +3685,8 @@ func (c *Client) DeleteForgeFromBuild(ctx context.Context, forgeId string, body 
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListForgeBuilds(ctx context.Context, forgeId string, params *ListForgeBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListForgeBuildsRequest(c.Server, forgeId, params)
+func (c *Client) ListForgeBuilds(ctx context.Context, forgeID ForgeID, params *ListForgeBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListForgeBuildsRequest(c.Server, forgeID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -3889,8 +3697,8 @@ func (c *Client) ListForgeBuilds(ctx context.Context, forgeId string, params *Li
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachForgeToBuildWithBody(ctx context.Context, forgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachForgeToBuildRequestWithBody(c.Server, forgeId, contentType, body)
+func (c *Client) AttachForgeToBuildWithBody(ctx context.Context, forgeID ForgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachForgeToBuildRequestWithBody(c.Server, forgeID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3901,8 +3709,344 @@ func (c *Client) AttachForgeToBuildWithBody(ctx context.Context, forgeId string,
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachForgeToBuild(ctx context.Context, forgeId string, body AttachForgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachForgeToBuildRequest(c.Server, forgeId, body)
+func (c *Client) AttachForgeToBuild(ctx context.Context, forgeID ForgeID, body AttachForgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachForgeToBuildRequest(c.Server, forgeID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ListGroups(ctx context.Context, params *ListGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListGroupsRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateGroupWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateGroupRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateGroup(ctx context.Context, body CreateGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateGroupRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteGroup(ctx context.Context, groupID GroupID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteGroupRequest(c.Server, groupID)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ShowGroup(ctx context.Context, groupID GroupID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewShowGroupRequest(c.Server, groupID)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UpdateGroupWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateGroupRequestWithBody(c.Server, groupID, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UpdateGroup(ctx context.Context, groupID GroupID, body UpdateGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateGroupRequest(c.Server, groupID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteGroupFromModWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteGroupFromModRequestWithBody(c.Server, groupID, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteGroupFromMod(ctx context.Context, groupID GroupID, body DeleteGroupFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteGroupFromModRequest(c.Server, groupID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ListGroupMods(ctx context.Context, groupID GroupID, params *ListGroupModsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListGroupModsRequest(c.Server, groupID, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AttachGroupToModWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachGroupToModRequestWithBody(c.Server, groupID, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AttachGroupToMod(ctx context.Context, groupID GroupID, body AttachGroupToModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachGroupToModRequest(c.Server, groupID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PermitGroupModWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitGroupModRequestWithBody(c.Server, groupID, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PermitGroupMod(ctx context.Context, groupID GroupID, body PermitGroupModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitGroupModRequest(c.Server, groupID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteGroupFromPackWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteGroupFromPackRequestWithBody(c.Server, groupID, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteGroupFromPack(ctx context.Context, groupID GroupID, body DeleteGroupFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteGroupFromPackRequest(c.Server, groupID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ListGroupPacks(ctx context.Context, groupID GroupID, params *ListGroupPacksParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListGroupPacksRequest(c.Server, groupID, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AttachGroupToPackWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachGroupToPackRequestWithBody(c.Server, groupID, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AttachGroupToPack(ctx context.Context, groupID GroupID, body AttachGroupToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachGroupToPackRequest(c.Server, groupID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PermitGroupPackWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitGroupPackRequestWithBody(c.Server, groupID, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PermitGroupPack(ctx context.Context, groupID GroupID, body PermitGroupPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitGroupPackRequest(c.Server, groupID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteGroupFromUserWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteGroupFromUserRequestWithBody(c.Server, groupID, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteGroupFromUser(ctx context.Context, groupID GroupID, body DeleteGroupFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteGroupFromUserRequest(c.Server, groupID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ListGroupUsers(ctx context.Context, groupID GroupID, params *ListGroupUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListGroupUsersRequest(c.Server, groupID, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AttachGroupToUserWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachGroupToUserRequestWithBody(c.Server, groupID, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AttachGroupToUser(ctx context.Context, groupID GroupID, body AttachGroupToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachGroupToUserRequest(c.Server, groupID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PermitGroupUserWithBody(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitGroupUserRequestWithBody(c.Server, groupID, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PermitGroupUser(ctx context.Context, groupID GroupID, body PermitGroupUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitGroupUserRequest(c.Server, groupID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3937,8 +4081,8 @@ func (c *Client) UpdateMinecraft(ctx context.Context, reqEditors ...RequestEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteMinecraftFromBuildWithBody(ctx context.Context, minecraftId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteMinecraftFromBuildRequestWithBody(c.Server, minecraftId, contentType, body)
+func (c *Client) DeleteMinecraftFromBuildWithBody(ctx context.Context, minecraftID MinecraftID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteMinecraftFromBuildRequestWithBody(c.Server, minecraftID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3949,8 +4093,8 @@ func (c *Client) DeleteMinecraftFromBuildWithBody(ctx context.Context, minecraft
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteMinecraftFromBuild(ctx context.Context, minecraftId string, body DeleteMinecraftFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteMinecraftFromBuildRequest(c.Server, minecraftId, body)
+func (c *Client) DeleteMinecraftFromBuild(ctx context.Context, minecraftID MinecraftID, body DeleteMinecraftFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteMinecraftFromBuildRequest(c.Server, minecraftID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3961,8 +4105,8 @@ func (c *Client) DeleteMinecraftFromBuild(ctx context.Context, minecraftId strin
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListMinecraftBuilds(ctx context.Context, minecraftId string, params *ListMinecraftBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListMinecraftBuildsRequest(c.Server, minecraftId, params)
+func (c *Client) ListMinecraftBuilds(ctx context.Context, minecraftID MinecraftID, params *ListMinecraftBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListMinecraftBuildsRequest(c.Server, minecraftID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -3973,8 +4117,8 @@ func (c *Client) ListMinecraftBuilds(ctx context.Context, minecraftId string, pa
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachMinecraftToBuildWithBody(ctx context.Context, minecraftId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachMinecraftToBuildRequestWithBody(c.Server, minecraftId, contentType, body)
+func (c *Client) AttachMinecraftToBuildWithBody(ctx context.Context, minecraftID MinecraftID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachMinecraftToBuildRequestWithBody(c.Server, minecraftID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3985,8 +4129,8 @@ func (c *Client) AttachMinecraftToBuildWithBody(ctx context.Context, minecraftId
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachMinecraftToBuild(ctx context.Context, minecraftId string, body AttachMinecraftToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachMinecraftToBuildRequest(c.Server, minecraftId, body)
+func (c *Client) AttachMinecraftToBuild(ctx context.Context, minecraftID MinecraftID, body AttachMinecraftToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachMinecraftToBuildRequest(c.Server, minecraftID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4033,8 +4177,8 @@ func (c *Client) CreateMod(ctx context.Context, body CreateModJSONRequestBody, r
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteMod(ctx context.Context, modId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteModRequest(c.Server, modId)
+func (c *Client) DeleteMod(ctx context.Context, modID ModID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteModRequest(c.Server, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -4045,8 +4189,8 @@ func (c *Client) DeleteMod(ctx context.Context, modId string, reqEditors ...Requ
 	return c.Client.Do(req)
 }
 
-func (c *Client) ShowMod(ctx context.Context, modId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewShowModRequest(c.Server, modId)
+func (c *Client) ShowMod(ctx context.Context, modID ModID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewShowModRequest(c.Server, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -4057,8 +4201,8 @@ func (c *Client) ShowMod(ctx context.Context, modId string, reqEditors ...Reques
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateModWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateModRequestWithBody(c.Server, modId, contentType, body)
+func (c *Client) UpdateModWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateModRequestWithBody(c.Server, modID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4069,8 +4213,8 @@ func (c *Client) UpdateModWithBody(ctx context.Context, modId string, contentTyp
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateMod(ctx context.Context, modId string, body UpdateModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateModRequest(c.Server, modId, body)
+func (c *Client) UpdateMod(ctx context.Context, modID ModID, body UpdateModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateModRequest(c.Server, modID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4081,8 +4225,8 @@ func (c *Client) UpdateMod(ctx context.Context, modId string, body UpdateModJSON
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteModFromTeamWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteModFromTeamRequestWithBody(c.Server, modId, contentType, body)
+func (c *Client) DeleteModAvatar(ctx context.Context, modID ModID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteModAvatarRequest(c.Server, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -4093,8 +4237,8 @@ func (c *Client) DeleteModFromTeamWithBody(ctx context.Context, modId string, co
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteModFromTeam(ctx context.Context, modId string, body DeleteModFromTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteModFromTeamRequest(c.Server, modId, body)
+func (c *Client) CreateModAvatarWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateModAvatarRequestWithBody(c.Server, modID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4105,8 +4249,8 @@ func (c *Client) DeleteModFromTeam(ctx context.Context, modId string, body Delet
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListModTeams(ctx context.Context, modId string, params *ListModTeamsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListModTeamsRequest(c.Server, modId, params)
+func (c *Client) DeleteModFromGroupWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteModFromGroupRequestWithBody(c.Server, modID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4117,8 +4261,8 @@ func (c *Client) ListModTeams(ctx context.Context, modId string, params *ListMod
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachModToTeamWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachModToTeamRequestWithBody(c.Server, modId, contentType, body)
+func (c *Client) DeleteModFromGroup(ctx context.Context, modID ModID, body DeleteModFromGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteModFromGroupRequest(c.Server, modID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4129,8 +4273,8 @@ func (c *Client) AttachModToTeamWithBody(ctx context.Context, modId string, cont
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachModToTeam(ctx context.Context, modId string, body AttachModToTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachModToTeamRequest(c.Server, modId, body)
+func (c *Client) ListModGroups(ctx context.Context, modID ModID, params *ListModGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListModGroupsRequest(c.Server, modID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4141,8 +4285,8 @@ func (c *Client) AttachModToTeam(ctx context.Context, modId string, body AttachM
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitModTeamWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitModTeamRequestWithBody(c.Server, modId, contentType, body)
+func (c *Client) AttachModToGroupWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachModToGroupRequestWithBody(c.Server, modID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4153,8 +4297,8 @@ func (c *Client) PermitModTeamWithBody(ctx context.Context, modId string, conten
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitModTeam(ctx context.Context, modId string, body PermitModTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitModTeamRequest(c.Server, modId, body)
+func (c *Client) AttachModToGroup(ctx context.Context, modID ModID, body AttachModToGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachModToGroupRequest(c.Server, modID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4165,8 +4309,8 @@ func (c *Client) PermitModTeam(ctx context.Context, modId string, body PermitMod
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteModFromUserWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteModFromUserRequestWithBody(c.Server, modId, contentType, body)
+func (c *Client) PermitModGroupWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitModGroupRequestWithBody(c.Server, modID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4177,8 +4321,8 @@ func (c *Client) DeleteModFromUserWithBody(ctx context.Context, modId string, co
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteModFromUser(ctx context.Context, modId string, body DeleteModFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteModFromUserRequest(c.Server, modId, body)
+func (c *Client) PermitModGroup(ctx context.Context, modID ModID, body PermitModGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitModGroupRequest(c.Server, modID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4189,8 +4333,8 @@ func (c *Client) DeleteModFromUser(ctx context.Context, modId string, body Delet
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListModUsers(ctx context.Context, modId string, params *ListModUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListModUsersRequest(c.Server, modId, params)
+func (c *Client) DeleteModFromUserWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteModFromUserRequestWithBody(c.Server, modID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4201,8 +4345,8 @@ func (c *Client) ListModUsers(ctx context.Context, modId string, params *ListMod
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachModToUserWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachModToUserRequestWithBody(c.Server, modId, contentType, body)
+func (c *Client) DeleteModFromUser(ctx context.Context, modID ModID, body DeleteModFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteModFromUserRequest(c.Server, modID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4213,8 +4357,8 @@ func (c *Client) AttachModToUserWithBody(ctx context.Context, modId string, cont
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachModToUser(ctx context.Context, modId string, body AttachModToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachModToUserRequest(c.Server, modId, body)
+func (c *Client) ListModUsers(ctx context.Context, modID ModID, params *ListModUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListModUsersRequest(c.Server, modID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4225,8 +4369,8 @@ func (c *Client) AttachModToUser(ctx context.Context, modId string, body AttachM
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitModUserWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitModUserRequestWithBody(c.Server, modId, contentType, body)
+func (c *Client) AttachModToUserWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachModToUserRequestWithBody(c.Server, modID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4237,8 +4381,8 @@ func (c *Client) PermitModUserWithBody(ctx context.Context, modId string, conten
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitModUser(ctx context.Context, modId string, body PermitModUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitModUserRequest(c.Server, modId, body)
+func (c *Client) AttachModToUser(ctx context.Context, modID ModID, body AttachModToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachModToUserRequest(c.Server, modID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4249,8 +4393,8 @@ func (c *Client) PermitModUser(ctx context.Context, modId string, body PermitMod
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListVersions(ctx context.Context, modId string, params *ListVersionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListVersionsRequest(c.Server, modId, params)
+func (c *Client) PermitModUserWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitModUserRequestWithBody(c.Server, modID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4261,8 +4405,8 @@ func (c *Client) ListVersions(ctx context.Context, modId string, params *ListVer
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateVersionWithBody(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateVersionRequestWithBody(c.Server, modId, contentType, body)
+func (c *Client) PermitModUser(ctx context.Context, modID ModID, body PermitModUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitModUserRequest(c.Server, modID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4273,8 +4417,8 @@ func (c *Client) CreateVersionWithBody(ctx context.Context, modId string, conten
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateVersion(ctx context.Context, modId string, body CreateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateVersionRequest(c.Server, modId, body)
+func (c *Client) ListVersions(ctx context.Context, modID ModID, params *ListVersionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListVersionsRequest(c.Server, modID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4285,8 +4429,8 @@ func (c *Client) CreateVersion(ctx context.Context, modId string, body CreateVer
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteVersion(ctx context.Context, modId string, versionId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteVersionRequest(c.Server, modId, versionId)
+func (c *Client) CreateVersionWithBody(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateVersionRequestWithBody(c.Server, modID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4297,8 +4441,8 @@ func (c *Client) DeleteVersion(ctx context.Context, modId string, versionId stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) ShowVersion(ctx context.Context, modId string, versionId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewShowVersionRequest(c.Server, modId, versionId)
+func (c *Client) CreateVersion(ctx context.Context, modID ModID, body CreateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateVersionRequest(c.Server, modID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4309,8 +4453,8 @@ func (c *Client) ShowVersion(ctx context.Context, modId string, versionId string
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateVersionWithBody(ctx context.Context, modId string, versionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateVersionRequestWithBody(c.Server, modId, versionId, contentType, body)
+func (c *Client) DeleteVersion(ctx context.Context, modID ModID, versionID VersionID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteVersionRequest(c.Server, modID, versionID)
 	if err != nil {
 		return nil, err
 	}
@@ -4321,8 +4465,8 @@ func (c *Client) UpdateVersionWithBody(ctx context.Context, modId string, versio
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateVersion(ctx context.Context, modId string, versionId string, body UpdateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateVersionRequest(c.Server, modId, versionId, body)
+func (c *Client) ShowVersion(ctx context.Context, modID ModID, versionID VersionID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewShowVersionRequest(c.Server, modID, versionID)
 	if err != nil {
 		return nil, err
 	}
@@ -4333,8 +4477,8 @@ func (c *Client) UpdateVersion(ctx context.Context, modId string, versionId stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteVersionFromBuildWithBody(ctx context.Context, modId string, versionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteVersionFromBuildRequestWithBody(c.Server, modId, versionId, contentType, body)
+func (c *Client) UpdateVersionWithBody(ctx context.Context, modID ModID, versionID VersionID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateVersionRequestWithBody(c.Server, modID, versionID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4345,8 +4489,8 @@ func (c *Client) DeleteVersionFromBuildWithBody(ctx context.Context, modId strin
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteVersionFromBuild(ctx context.Context, modId string, versionId string, body DeleteVersionFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteVersionFromBuildRequest(c.Server, modId, versionId, body)
+func (c *Client) UpdateVersion(ctx context.Context, modID ModID, versionID VersionID, body UpdateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateVersionRequest(c.Server, modID, versionID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4357,8 +4501,8 @@ func (c *Client) DeleteVersionFromBuild(ctx context.Context, modId string, versi
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListVersionBuilds(ctx context.Context, modId string, versionId string, params *ListVersionBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListVersionBuildsRequest(c.Server, modId, versionId, params)
+func (c *Client) DeleteVersionFromBuildWithBody(ctx context.Context, modID ModID, versionID VersionID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteVersionFromBuildRequestWithBody(c.Server, modID, versionID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4369,8 +4513,8 @@ func (c *Client) ListVersionBuilds(ctx context.Context, modId string, versionId 
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachVersionToBuildWithBody(ctx context.Context, modId string, versionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachVersionToBuildRequestWithBody(c.Server, modId, versionId, contentType, body)
+func (c *Client) DeleteVersionFromBuild(ctx context.Context, modID ModID, versionID VersionID, body DeleteVersionFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteVersionFromBuildRequest(c.Server, modID, versionID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4381,8 +4525,32 @@ func (c *Client) AttachVersionToBuildWithBody(ctx context.Context, modId string,
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachVersionToBuild(ctx context.Context, modId string, versionId string, body AttachVersionToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachVersionToBuildRequest(c.Server, modId, versionId, body)
+func (c *Client) ListVersionBuilds(ctx context.Context, modID ModID, versionID VersionID, params *ListVersionBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListVersionBuildsRequest(c.Server, modID, versionID, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AttachVersionToBuildWithBody(ctx context.Context, modID ModID, versionID VersionID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachVersionToBuildRequestWithBody(c.Server, modID, versionID, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AttachVersionToBuild(ctx context.Context, modID ModID, versionID VersionID, body AttachVersionToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachVersionToBuildRequest(c.Server, modID, versionID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4417,8 +4585,8 @@ func (c *Client) UpdateNeoforge(ctx context.Context, reqEditors ...RequestEditor
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteNeoforgeFromBuildWithBody(ctx context.Context, neoforgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteNeoforgeFromBuildRequestWithBody(c.Server, neoforgeId, contentType, body)
+func (c *Client) DeleteNeoforgeFromBuildWithBody(ctx context.Context, neoforgeID NeoforgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteNeoforgeFromBuildRequestWithBody(c.Server, neoforgeID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4429,8 +4597,8 @@ func (c *Client) DeleteNeoforgeFromBuildWithBody(ctx context.Context, neoforgeId
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteNeoforgeFromBuild(ctx context.Context, neoforgeId string, body DeleteNeoforgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteNeoforgeFromBuildRequest(c.Server, neoforgeId, body)
+func (c *Client) DeleteNeoforgeFromBuild(ctx context.Context, neoforgeID NeoforgeID, body DeleteNeoforgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteNeoforgeFromBuildRequest(c.Server, neoforgeID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4441,8 +4609,8 @@ func (c *Client) DeleteNeoforgeFromBuild(ctx context.Context, neoforgeId string,
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListNeoforgeBuilds(ctx context.Context, neoforgeId string, params *ListNeoforgeBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListNeoforgeBuildsRequest(c.Server, neoforgeId, params)
+func (c *Client) ListNeoforgeBuilds(ctx context.Context, neoforgeID NeoforgeID, params *ListNeoforgeBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListNeoforgeBuildsRequest(c.Server, neoforgeID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4453,8 +4621,8 @@ func (c *Client) ListNeoforgeBuilds(ctx context.Context, neoforgeId string, para
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachNeoforgeToBuildWithBody(ctx context.Context, neoforgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachNeoforgeToBuildRequestWithBody(c.Server, neoforgeId, contentType, body)
+func (c *Client) AttachNeoforgeToBuildWithBody(ctx context.Context, neoforgeID NeoforgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachNeoforgeToBuildRequestWithBody(c.Server, neoforgeID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4465,8 +4633,8 @@ func (c *Client) AttachNeoforgeToBuildWithBody(ctx context.Context, neoforgeId s
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachNeoforgeToBuild(ctx context.Context, neoforgeId string, body AttachNeoforgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachNeoforgeToBuildRequest(c.Server, neoforgeId, body)
+func (c *Client) AttachNeoforgeToBuild(ctx context.Context, neoforgeID NeoforgeID, body AttachNeoforgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachNeoforgeToBuildRequest(c.Server, neoforgeID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4513,8 +4681,8 @@ func (c *Client) CreatePack(ctx context.Context, body CreatePackJSONRequestBody,
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeletePack(ctx context.Context, packId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeletePackRequest(c.Server, packId)
+func (c *Client) DeletePack(ctx context.Context, packID PackID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeletePackRequest(c.Server, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -4525,8 +4693,8 @@ func (c *Client) DeletePack(ctx context.Context, packId string, reqEditors ...Re
 	return c.Client.Do(req)
 }
 
-func (c *Client) ShowPack(ctx context.Context, packId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewShowPackRequest(c.Server, packId)
+func (c *Client) ShowPack(ctx context.Context, packID PackID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewShowPackRequest(c.Server, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -4537,8 +4705,8 @@ func (c *Client) ShowPack(ctx context.Context, packId string, reqEditors ...Requ
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatePackWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdatePackRequestWithBody(c.Server, packId, contentType, body)
+func (c *Client) UpdatePackWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePackRequestWithBody(c.Server, packID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4549,8 +4717,8 @@ func (c *Client) UpdatePackWithBody(ctx context.Context, packId string, contentT
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatePack(ctx context.Context, packId string, body UpdatePackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdatePackRequest(c.Server, packId, body)
+func (c *Client) UpdatePack(ctx context.Context, packID PackID, body UpdatePackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePackRequest(c.Server, packID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4561,8 +4729,8 @@ func (c *Client) UpdatePack(ctx context.Context, packId string, body UpdatePackJ
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListBuilds(ctx context.Context, packId string, params *ListBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListBuildsRequest(c.Server, packId, params)
+func (c *Client) DeletePackAvatar(ctx context.Context, packID PackID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeletePackAvatarRequest(c.Server, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -4573,8 +4741,8 @@ func (c *Client) ListBuilds(ctx context.Context, packId string, params *ListBuil
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateBuildWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateBuildRequestWithBody(c.Server, packId, contentType, body)
+func (c *Client) CreatePackAvatarWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreatePackAvatarRequestWithBody(c.Server, packID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4585,8 +4753,8 @@ func (c *Client) CreateBuildWithBody(ctx context.Context, packId string, content
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateBuild(ctx context.Context, packId string, body CreateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateBuildRequest(c.Server, packId, body)
+func (c *Client) ListBuilds(ctx context.Context, packID PackID, params *ListBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListBuildsRequest(c.Server, packID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4597,8 +4765,8 @@ func (c *Client) CreateBuild(ctx context.Context, packId string, body CreateBuil
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteBuild(ctx context.Context, packId string, buildId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteBuildRequest(c.Server, packId, buildId)
+func (c *Client) CreateBuildWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateBuildRequestWithBody(c.Server, packID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4609,8 +4777,8 @@ func (c *Client) DeleteBuild(ctx context.Context, packId string, buildId string,
 	return c.Client.Do(req)
 }
 
-func (c *Client) ShowBuild(ctx context.Context, packId string, buildId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewShowBuildRequest(c.Server, packId, buildId)
+func (c *Client) CreateBuild(ctx context.Context, packID PackID, body CreateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateBuildRequest(c.Server, packID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4621,8 +4789,8 @@ func (c *Client) ShowBuild(ctx context.Context, packId string, buildId string, r
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateBuildWithBody(ctx context.Context, packId string, buildId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateBuildRequestWithBody(c.Server, packId, buildId, contentType, body)
+func (c *Client) DeleteBuild(ctx context.Context, packID PackID, buildID BuildID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteBuildRequest(c.Server, packID, buildID)
 	if err != nil {
 		return nil, err
 	}
@@ -4633,8 +4801,8 @@ func (c *Client) UpdateBuildWithBody(ctx context.Context, packId string, buildId
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateBuild(ctx context.Context, packId string, buildId string, body UpdateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateBuildRequest(c.Server, packId, buildId, body)
+func (c *Client) ShowBuild(ctx context.Context, packID PackID, buildID BuildID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewShowBuildRequest(c.Server, packID, buildID)
 	if err != nil {
 		return nil, err
 	}
@@ -4645,8 +4813,8 @@ func (c *Client) UpdateBuild(ctx context.Context, packId string, buildId string,
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteBuildFromVersionWithBody(ctx context.Context, packId string, buildId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteBuildFromVersionRequestWithBody(c.Server, packId, buildId, contentType, body)
+func (c *Client) UpdateBuildWithBody(ctx context.Context, packID PackID, buildID BuildID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateBuildRequestWithBody(c.Server, packID, buildID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4657,8 +4825,8 @@ func (c *Client) DeleteBuildFromVersionWithBody(ctx context.Context, packId stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteBuildFromVersion(ctx context.Context, packId string, buildId string, body DeleteBuildFromVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteBuildFromVersionRequest(c.Server, packId, buildId, body)
+func (c *Client) UpdateBuild(ctx context.Context, packID PackID, buildID BuildID, body UpdateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateBuildRequest(c.Server, packID, buildID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4669,8 +4837,8 @@ func (c *Client) DeleteBuildFromVersion(ctx context.Context, packId string, buil
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListBuildVersions(ctx context.Context, packId string, buildId string, params *ListBuildVersionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListBuildVersionsRequest(c.Server, packId, buildId, params)
+func (c *Client) DeleteBuildFromVersionWithBody(ctx context.Context, packID PackID, buildID BuildID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteBuildFromVersionRequestWithBody(c.Server, packID, buildID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4681,8 +4849,8 @@ func (c *Client) ListBuildVersions(ctx context.Context, packId string, buildId s
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachBuildToVersionWithBody(ctx context.Context, packId string, buildId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachBuildToVersionRequestWithBody(c.Server, packId, buildId, contentType, body)
+func (c *Client) DeleteBuildFromVersion(ctx context.Context, packID PackID, buildID BuildID, body DeleteBuildFromVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteBuildFromVersionRequest(c.Server, packID, buildID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4693,8 +4861,8 @@ func (c *Client) AttachBuildToVersionWithBody(ctx context.Context, packId string
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachBuildToVersion(ctx context.Context, packId string, buildId string, body AttachBuildToVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachBuildToVersionRequest(c.Server, packId, buildId, body)
+func (c *Client) ListBuildVersions(ctx context.Context, packID PackID, buildID BuildID, params *ListBuildVersionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListBuildVersionsRequest(c.Server, packID, buildID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4705,8 +4873,8 @@ func (c *Client) AttachBuildToVersion(ctx context.Context, packId string, buildI
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeletePackFromTeamWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeletePackFromTeamRequestWithBody(c.Server, packId, contentType, body)
+func (c *Client) AttachBuildToVersionWithBody(ctx context.Context, packID PackID, buildID BuildID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachBuildToVersionRequestWithBody(c.Server, packID, buildID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4717,8 +4885,8 @@ func (c *Client) DeletePackFromTeamWithBody(ctx context.Context, packId string, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeletePackFromTeam(ctx context.Context, packId string, body DeletePackFromTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeletePackFromTeamRequest(c.Server, packId, body)
+func (c *Client) AttachBuildToVersion(ctx context.Context, packID PackID, buildID BuildID, body AttachBuildToVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachBuildToVersionRequest(c.Server, packID, buildID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4729,8 +4897,8 @@ func (c *Client) DeletePackFromTeam(ctx context.Context, packId string, body Del
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListPackTeams(ctx context.Context, packId string, params *ListPackTeamsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListPackTeamsRequest(c.Server, packId, params)
+func (c *Client) DeletePackFromGroupWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeletePackFromGroupRequestWithBody(c.Server, packID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4741,8 +4909,8 @@ func (c *Client) ListPackTeams(ctx context.Context, packId string, params *ListP
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachPackToTeamWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachPackToTeamRequestWithBody(c.Server, packId, contentType, body)
+func (c *Client) DeletePackFromGroup(ctx context.Context, packID PackID, body DeletePackFromGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeletePackFromGroupRequest(c.Server, packID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4753,8 +4921,8 @@ func (c *Client) AttachPackToTeamWithBody(ctx context.Context, packId string, co
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachPackToTeam(ctx context.Context, packId string, body AttachPackToTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachPackToTeamRequest(c.Server, packId, body)
+func (c *Client) ListPackGroups(ctx context.Context, packID PackID, params *ListPackGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListPackGroupsRequest(c.Server, packID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4765,8 +4933,8 @@ func (c *Client) AttachPackToTeam(ctx context.Context, packId string, body Attac
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitPackTeamWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitPackTeamRequestWithBody(c.Server, packId, contentType, body)
+func (c *Client) AttachPackToGroupWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachPackToGroupRequestWithBody(c.Server, packID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4777,8 +4945,8 @@ func (c *Client) PermitPackTeamWithBody(ctx context.Context, packId string, cont
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitPackTeam(ctx context.Context, packId string, body PermitPackTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitPackTeamRequest(c.Server, packId, body)
+func (c *Client) AttachPackToGroup(ctx context.Context, packID PackID, body AttachPackToGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachPackToGroupRequest(c.Server, packID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4789,8 +4957,8 @@ func (c *Client) PermitPackTeam(ctx context.Context, packId string, body PermitP
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeletePackFromUserWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeletePackFromUserRequestWithBody(c.Server, packId, contentType, body)
+func (c *Client) PermitPackGroupWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitPackGroupRequestWithBody(c.Server, packID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4801,8 +4969,8 @@ func (c *Client) DeletePackFromUserWithBody(ctx context.Context, packId string, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeletePackFromUser(ctx context.Context, packId string, body DeletePackFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeletePackFromUserRequest(c.Server, packId, body)
+func (c *Client) PermitPackGroup(ctx context.Context, packID PackID, body PermitPackGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitPackGroupRequest(c.Server, packID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4813,8 +4981,8 @@ func (c *Client) DeletePackFromUser(ctx context.Context, packId string, body Del
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListPackUsers(ctx context.Context, packId string, params *ListPackUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListPackUsersRequest(c.Server, packId, params)
+func (c *Client) DeletePackFromUserWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeletePackFromUserRequestWithBody(c.Server, packID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4825,8 +4993,8 @@ func (c *Client) ListPackUsers(ctx context.Context, packId string, params *ListP
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachPackToUserWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachPackToUserRequestWithBody(c.Server, packId, contentType, body)
+func (c *Client) DeletePackFromUser(ctx context.Context, packID PackID, body DeletePackFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeletePackFromUserRequest(c.Server, packID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4837,8 +5005,8 @@ func (c *Client) AttachPackToUserWithBody(ctx context.Context, packId string, co
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachPackToUser(ctx context.Context, packId string, body AttachPackToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachPackToUserRequest(c.Server, packId, body)
+func (c *Client) ListPackUsers(ctx context.Context, packID PackID, params *ListPackUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListPackUsersRequest(c.Server, packID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4849,8 +5017,8 @@ func (c *Client) AttachPackToUser(ctx context.Context, packId string, body Attac
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitPackUserWithBody(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitPackUserRequestWithBody(c.Server, packId, contentType, body)
+func (c *Client) AttachPackToUserWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachPackToUserRequestWithBody(c.Server, packID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4861,8 +5029,32 @@ func (c *Client) PermitPackUserWithBody(ctx context.Context, packId string, cont
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitPackUser(ctx context.Context, packId string, body PermitPackUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitPackUserRequest(c.Server, packId, body)
+func (c *Client) AttachPackToUser(ctx context.Context, packID PackID, body AttachPackToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachPackToUserRequest(c.Server, packID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PermitPackUserWithBody(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitPackUserRequestWithBody(c.Server, packID, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PermitPackUser(ctx context.Context, packID PackID, body PermitPackUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitPackUserRequest(c.Server, packID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4945,8 +5137,8 @@ func (c *Client) UpdateQuilt(ctx context.Context, reqEditors ...RequestEditorFn)
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteQuiltFromBuildWithBody(ctx context.Context, quiltId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteQuiltFromBuildRequestWithBody(c.Server, quiltId, contentType, body)
+func (c *Client) DeleteQuiltFromBuildWithBody(ctx context.Context, quiltID QuiltID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteQuiltFromBuildRequestWithBody(c.Server, quiltID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4957,8 +5149,8 @@ func (c *Client) DeleteQuiltFromBuildWithBody(ctx context.Context, quiltId strin
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteQuiltFromBuild(ctx context.Context, quiltId string, body DeleteQuiltFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteQuiltFromBuildRequest(c.Server, quiltId, body)
+func (c *Client) DeleteQuiltFromBuild(ctx context.Context, quiltID QuiltID, body DeleteQuiltFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteQuiltFromBuildRequest(c.Server, quiltID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4969,8 +5161,8 @@ func (c *Client) DeleteQuiltFromBuild(ctx context.Context, quiltId string, body 
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListQuiltBuilds(ctx context.Context, quiltId string, params *ListQuiltBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListQuiltBuildsRequest(c.Server, quiltId, params)
+func (c *Client) ListQuiltBuilds(ctx context.Context, quiltID QuiltID, params *ListQuiltBuildsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListQuiltBuildsRequest(c.Server, quiltID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4981,8 +5173,8 @@ func (c *Client) ListQuiltBuilds(ctx context.Context, quiltId string, params *Li
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachQuiltToBuildWithBody(ctx context.Context, quiltId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachQuiltToBuildRequestWithBody(c.Server, quiltId, contentType, body)
+func (c *Client) AttachQuiltToBuildWithBody(ctx context.Context, quiltID QuiltID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachQuiltToBuildRequestWithBody(c.Server, quiltID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4993,344 +5185,8 @@ func (c *Client) AttachQuiltToBuildWithBody(ctx context.Context, quiltId string,
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachQuiltToBuild(ctx context.Context, quiltId string, body AttachQuiltToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachQuiltToBuildRequest(c.Server, quiltId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ListTeams(ctx context.Context, params *ListTeamsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListTeamsRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) CreateTeamWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateTeamRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) CreateTeam(ctx context.Context, body CreateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateTeamRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) DeleteTeam(ctx context.Context, teamId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteTeamRequest(c.Server, teamId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ShowTeam(ctx context.Context, teamId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewShowTeamRequest(c.Server, teamId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) UpdateTeamWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateTeamRequestWithBody(c.Server, teamId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) UpdateTeam(ctx context.Context, teamId string, body UpdateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateTeamRequest(c.Server, teamId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) DeleteTeamFromModWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteTeamFromModRequestWithBody(c.Server, teamId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) DeleteTeamFromMod(ctx context.Context, teamId string, body DeleteTeamFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteTeamFromModRequest(c.Server, teamId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ListTeamMods(ctx context.Context, teamId string, params *ListTeamModsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListTeamModsRequest(c.Server, teamId, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) AttachTeamToModWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachTeamToModRequestWithBody(c.Server, teamId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) AttachTeamToMod(ctx context.Context, teamId string, body AttachTeamToModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachTeamToModRequest(c.Server, teamId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PermitTeamModWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitTeamModRequestWithBody(c.Server, teamId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PermitTeamMod(ctx context.Context, teamId string, body PermitTeamModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitTeamModRequest(c.Server, teamId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) DeleteTeamFromPackWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteTeamFromPackRequestWithBody(c.Server, teamId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) DeleteTeamFromPack(ctx context.Context, teamId string, body DeleteTeamFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteTeamFromPackRequest(c.Server, teamId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ListTeamPacks(ctx context.Context, teamId string, params *ListTeamPacksParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListTeamPacksRequest(c.Server, teamId, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) AttachTeamToPackWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachTeamToPackRequestWithBody(c.Server, teamId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) AttachTeamToPack(ctx context.Context, teamId string, body AttachTeamToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachTeamToPackRequest(c.Server, teamId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PermitTeamPackWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitTeamPackRequestWithBody(c.Server, teamId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PermitTeamPack(ctx context.Context, teamId string, body PermitTeamPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitTeamPackRequest(c.Server, teamId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) DeleteTeamFromUserWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteTeamFromUserRequestWithBody(c.Server, teamId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) DeleteTeamFromUser(ctx context.Context, teamId string, body DeleteTeamFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteTeamFromUserRequest(c.Server, teamId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ListTeamUsers(ctx context.Context, teamId string, params *ListTeamUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListTeamUsersRequest(c.Server, teamId, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) AttachTeamToUserWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachTeamToUserRequestWithBody(c.Server, teamId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) AttachTeamToUser(ctx context.Context, teamId string, body AttachTeamToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachTeamToUserRequest(c.Server, teamId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PermitTeamUserWithBody(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitTeamUserRequestWithBody(c.Server, teamId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PermitTeamUser(ctx context.Context, teamId string, body PermitTeamUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitTeamUserRequest(c.Server, teamId, body)
+func (c *Client) AttachQuiltToBuild(ctx context.Context, quiltID QuiltID, body AttachQuiltToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachQuiltToBuildRequest(c.Server, quiltID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5377,8 +5233,8 @@ func (c *Client) CreateUser(ctx context.Context, body CreateUserJSONRequestBody,
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteUser(ctx context.Context, userId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteUserRequest(c.Server, userId)
+func (c *Client) DeleteUser(ctx context.Context, userID UserID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteUserRequest(c.Server, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -5389,8 +5245,8 @@ func (c *Client) DeleteUser(ctx context.Context, userId string, reqEditors ...Re
 	return c.Client.Do(req)
 }
 
-func (c *Client) ShowUser(ctx context.Context, userId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewShowUserRequest(c.Server, userId)
+func (c *Client) ShowUser(ctx context.Context, userID UserID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewShowUserRequest(c.Server, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -5401,8 +5257,8 @@ func (c *Client) ShowUser(ctx context.Context, userId string, reqEditors ...Requ
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateUserWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateUserRequestWithBody(c.Server, userId, contentType, body)
+func (c *Client) UpdateUserWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateUserRequestWithBody(c.Server, userID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5413,8 +5269,8 @@ func (c *Client) UpdateUserWithBody(ctx context.Context, userId string, contentT
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateUser(ctx context.Context, userId string, body UpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateUserRequest(c.Server, userId, body)
+func (c *Client) UpdateUser(ctx context.Context, userID UserID, body UpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateUserRequest(c.Server, userID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5425,8 +5281,8 @@ func (c *Client) UpdateUser(ctx context.Context, userId string, body UpdateUserJ
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteUserFromModWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteUserFromModRequestWithBody(c.Server, userId, contentType, body)
+func (c *Client) DeleteUserFromGroupWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteUserFromGroupRequestWithBody(c.Server, userID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5437,8 +5293,8 @@ func (c *Client) DeleteUserFromModWithBody(ctx context.Context, userId string, c
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteUserFromMod(ctx context.Context, userId string, body DeleteUserFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteUserFromModRequest(c.Server, userId, body)
+func (c *Client) DeleteUserFromGroup(ctx context.Context, userID UserID, body DeleteUserFromGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteUserFromGroupRequest(c.Server, userID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5449,8 +5305,8 @@ func (c *Client) DeleteUserFromMod(ctx context.Context, userId string, body Dele
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListUserMods(ctx context.Context, userId string, params *ListUserModsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListUserModsRequest(c.Server, userId, params)
+func (c *Client) ListUserGroups(ctx context.Context, userID UserID, params *ListUserGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListUserGroupsRequest(c.Server, userID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -5461,8 +5317,8 @@ func (c *Client) ListUserMods(ctx context.Context, userId string, params *ListUs
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachUserToModWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachUserToModRequestWithBody(c.Server, userId, contentType, body)
+func (c *Client) AttachUserToGroupWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachUserToGroupRequestWithBody(c.Server, userID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5473,8 +5329,8 @@ func (c *Client) AttachUserToModWithBody(ctx context.Context, userId string, con
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachUserToMod(ctx context.Context, userId string, body AttachUserToModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachUserToModRequest(c.Server, userId, body)
+func (c *Client) AttachUserToGroup(ctx context.Context, userID UserID, body AttachUserToGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachUserToGroupRequest(c.Server, userID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5485,8 +5341,8 @@ func (c *Client) AttachUserToMod(ctx context.Context, userId string, body Attach
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitUserModWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitUserModRequestWithBody(c.Server, userId, contentType, body)
+func (c *Client) PermitUserGroupWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitUserGroupRequestWithBody(c.Server, userID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5497,8 +5353,8 @@ func (c *Client) PermitUserModWithBody(ctx context.Context, userId string, conte
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitUserMod(ctx context.Context, userId string, body PermitUserModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitUserModRequest(c.Server, userId, body)
+func (c *Client) PermitUserGroup(ctx context.Context, userID UserID, body PermitUserGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitUserGroupRequest(c.Server, userID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5509,8 +5365,8 @@ func (c *Client) PermitUserMod(ctx context.Context, userId string, body PermitUs
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteUserFromPackWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteUserFromPackRequestWithBody(c.Server, userId, contentType, body)
+func (c *Client) DeleteUserFromModWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteUserFromModRequestWithBody(c.Server, userID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5521,8 +5377,8 @@ func (c *Client) DeleteUserFromPackWithBody(ctx context.Context, userId string, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteUserFromPack(ctx context.Context, userId string, body DeleteUserFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteUserFromPackRequest(c.Server, userId, body)
+func (c *Client) DeleteUserFromMod(ctx context.Context, userID UserID, body DeleteUserFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteUserFromModRequest(c.Server, userID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5533,8 +5389,8 @@ func (c *Client) DeleteUserFromPack(ctx context.Context, userId string, body Del
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListUserPacks(ctx context.Context, userId string, params *ListUserPacksParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListUserPacksRequest(c.Server, userId, params)
+func (c *Client) ListUserMods(ctx context.Context, userID UserID, params *ListUserModsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListUserModsRequest(c.Server, userID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -5545,8 +5401,8 @@ func (c *Client) ListUserPacks(ctx context.Context, userId string, params *ListU
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachUserToPackWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachUserToPackRequestWithBody(c.Server, userId, contentType, body)
+func (c *Client) AttachUserToModWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachUserToModRequestWithBody(c.Server, userID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5557,8 +5413,8 @@ func (c *Client) AttachUserToPackWithBody(ctx context.Context, userId string, co
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachUserToPack(ctx context.Context, userId string, body AttachUserToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachUserToPackRequest(c.Server, userId, body)
+func (c *Client) AttachUserToMod(ctx context.Context, userID UserID, body AttachUserToModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachUserToModRequest(c.Server, userID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5569,8 +5425,8 @@ func (c *Client) AttachUserToPack(ctx context.Context, userId string, body Attac
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitUserPackWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitUserPackRequestWithBody(c.Server, userId, contentType, body)
+func (c *Client) PermitUserModWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitUserModRequestWithBody(c.Server, userID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5581,8 +5437,8 @@ func (c *Client) PermitUserPackWithBody(ctx context.Context, userId string, cont
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitUserPack(ctx context.Context, userId string, body PermitUserPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitUserPackRequest(c.Server, userId, body)
+func (c *Client) PermitUserMod(ctx context.Context, userID UserID, body PermitUserModJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitUserModRequest(c.Server, userID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5593,8 +5449,8 @@ func (c *Client) PermitUserPack(ctx context.Context, userId string, body PermitU
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteUserFromTeamWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteUserFromTeamRequestWithBody(c.Server, userId, contentType, body)
+func (c *Client) DeleteUserFromPackWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteUserFromPackRequestWithBody(c.Server, userID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5605,8 +5461,8 @@ func (c *Client) DeleteUserFromTeamWithBody(ctx context.Context, userId string, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteUserFromTeam(ctx context.Context, userId string, body DeleteUserFromTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteUserFromTeamRequest(c.Server, userId, body)
+func (c *Client) DeleteUserFromPack(ctx context.Context, userID UserID, body DeleteUserFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteUserFromPackRequest(c.Server, userID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5617,8 +5473,8 @@ func (c *Client) DeleteUserFromTeam(ctx context.Context, userId string, body Del
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListUserTeams(ctx context.Context, userId string, params *ListUserTeamsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListUserTeamsRequest(c.Server, userId, params)
+func (c *Client) ListUserPacks(ctx context.Context, userID UserID, params *ListUserPacksParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListUserPacksRequest(c.Server, userID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -5629,8 +5485,8 @@ func (c *Client) ListUserTeams(ctx context.Context, userId string, params *ListU
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachUserToTeamWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachUserToTeamRequestWithBody(c.Server, userId, contentType, body)
+func (c *Client) AttachUserToPackWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachUserToPackRequestWithBody(c.Server, userID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5641,8 +5497,8 @@ func (c *Client) AttachUserToTeamWithBody(ctx context.Context, userId string, co
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachUserToTeam(ctx context.Context, userId string, body AttachUserToTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachUserToTeamRequest(c.Server, userId, body)
+func (c *Client) AttachUserToPack(ctx context.Context, userID UserID, body AttachUserToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachUserToPackRequest(c.Server, userID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5653,8 +5509,8 @@ func (c *Client) AttachUserToTeam(ctx context.Context, userId string, body Attac
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitUserTeamWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitUserTeamRequestWithBody(c.Server, userId, contentType, body)
+func (c *Client) PermitUserPackWithBody(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitUserPackRequestWithBody(c.Server, userID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5665,8 +5521,8 @@ func (c *Client) PermitUserTeamWithBody(ctx context.Context, userId string, cont
 	return c.Client.Do(req)
 }
 
-func (c *Client) PermitUserTeam(ctx context.Context, userId string, body PermitUserTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPermitUserTeamRequest(c.Server, userId, body)
+func (c *Client) PermitUserPack(ctx context.Context, userID UserID, body PermitUserPackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPermitUserPackRequest(c.Server, userID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5717,8 +5573,8 @@ func NewLoginAuthRequestWithBody(server string, contentType string, body io.Read
 	return req, nil
 }
 
-// NewExternalProvidersRequest generates requests for ExternalProviders
-func NewExternalProvidersRequest(server string) (*http.Request, error) {
+// NewListProvidersRequest generates requests for ListProviders
+func NewListProvidersRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5740,6 +5596,46 @@ func NewExternalProvidersRequest(server string) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewRedirectAuthRequest calls the generic RedirectAuth builder with application/json body
+func NewRedirectAuthRequest(server string, body RedirectAuthJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewRedirectAuthRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewRedirectAuthRequestWithBody generates requests for RedirectAuth with any type of body
+func NewRedirectAuthRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/auth/redirect")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -5798,8 +5694,8 @@ func NewVerifyAuthRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewExternalCallbackRequest generates requests for ExternalCallback
-func NewExternalCallbackRequest(server string, provider string, params *ExternalCallbackParams) (*http.Request, error) {
+// NewCallbackProviderRequest generates requests for CallbackProvider
+func NewCallbackProviderRequest(server string, provider AuthProviderParam, params *CallbackProviderParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5870,8 +5766,8 @@ func NewExternalCallbackRequest(server string, provider string, params *External
 	return req, nil
 }
 
-// NewExternalInitializeRequest generates requests for ExternalInitialize
-func NewExternalInitializeRequest(server string, provider string, params *ExternalInitializeParams) (*http.Request, error) {
+// NewRequestProviderRequest generates requests for RequestProvider
+func NewRequestProviderRequest(server string, provider AuthProviderParam) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5886,7 +5782,7 @@ func NewExternalInitializeRequest(server string, provider string, params *Extern
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/auth/%s/initialize", pathParam0)
+	operationPath := fmt.Sprintf("/auth/%s/request", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -5894,28 +5790,6 @@ func NewExternalInitializeRequest(server string, provider string, params *Extern
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.State != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -6003,23 +5877,23 @@ func NewUpdateFabricRequest(server string) (*http.Request, error) {
 }
 
 // NewDeleteFabricFromBuildRequest calls the generic DeleteFabricFromBuild builder with application/json body
-func NewDeleteFabricFromBuildRequest(server string, fabricId string, body DeleteFabricFromBuildJSONRequestBody) (*http.Request, error) {
+func NewDeleteFabricFromBuildRequest(server string, fabricID FabricID, body DeleteFabricFromBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewDeleteFabricFromBuildRequestWithBody(server, fabricId, "application/json", bodyReader)
+	return NewDeleteFabricFromBuildRequestWithBody(server, fabricID, "application/json", bodyReader)
 }
 
 // NewDeleteFabricFromBuildRequestWithBody generates requests for DeleteFabricFromBuild with any type of body
-func NewDeleteFabricFromBuildRequestWithBody(server string, fabricId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewDeleteFabricFromBuildRequestWithBody(server string, fabricID FabricID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "fabric_id", runtime.ParamLocationPath, fabricId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "fabric_id", runtime.ParamLocationPath, fabricID)
 	if err != nil {
 		return nil, err
 	}
@@ -6050,12 +5924,12 @@ func NewDeleteFabricFromBuildRequestWithBody(server string, fabricId string, con
 }
 
 // NewListFabricBuildsRequest generates requests for ListFabricBuilds
-func NewListFabricBuildsRequest(server string, fabricId string, params *ListFabricBuildsParams) (*http.Request, error) {
+func NewListFabricBuildsRequest(server string, fabricID FabricID, params *ListFabricBuildsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "fabric_id", runtime.ParamLocationPath, fabricId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "fabric_id", runtime.ParamLocationPath, fabricID)
 	if err != nil {
 		return nil, err
 	}
@@ -6170,23 +6044,23 @@ func NewListFabricBuildsRequest(server string, fabricId string, params *ListFabr
 }
 
 // NewAttachFabricToBuildRequest calls the generic AttachFabricToBuild builder with application/json body
-func NewAttachFabricToBuildRequest(server string, fabricId string, body AttachFabricToBuildJSONRequestBody) (*http.Request, error) {
+func NewAttachFabricToBuildRequest(server string, fabricID FabricID, body AttachFabricToBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachFabricToBuildRequestWithBody(server, fabricId, "application/json", bodyReader)
+	return NewAttachFabricToBuildRequestWithBody(server, fabricID, "application/json", bodyReader)
 }
 
 // NewAttachFabricToBuildRequestWithBody generates requests for AttachFabricToBuild with any type of body
-func NewAttachFabricToBuildRequestWithBody(server string, fabricId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewAttachFabricToBuildRequestWithBody(server string, fabricID FabricID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "fabric_id", runtime.ParamLocationPath, fabricId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "fabric_id", runtime.ParamLocationPath, fabricID)
 	if err != nil {
 		return nil, err
 	}
@@ -6293,23 +6167,23 @@ func NewUpdateForgeRequest(server string) (*http.Request, error) {
 }
 
 // NewDeleteForgeFromBuildRequest calls the generic DeleteForgeFromBuild builder with application/json body
-func NewDeleteForgeFromBuildRequest(server string, forgeId string, body DeleteForgeFromBuildJSONRequestBody) (*http.Request, error) {
+func NewDeleteForgeFromBuildRequest(server string, forgeID ForgeID, body DeleteForgeFromBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewDeleteForgeFromBuildRequestWithBody(server, forgeId, "application/json", bodyReader)
+	return NewDeleteForgeFromBuildRequestWithBody(server, forgeID, "application/json", bodyReader)
 }
 
 // NewDeleteForgeFromBuildRequestWithBody generates requests for DeleteForgeFromBuild with any type of body
-func NewDeleteForgeFromBuildRequestWithBody(server string, forgeId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewDeleteForgeFromBuildRequestWithBody(server string, forgeID ForgeID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "forge_id", runtime.ParamLocationPath, forgeId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "forge_id", runtime.ParamLocationPath, forgeID)
 	if err != nil {
 		return nil, err
 	}
@@ -6340,12 +6214,12 @@ func NewDeleteForgeFromBuildRequestWithBody(server string, forgeId string, conte
 }
 
 // NewListForgeBuildsRequest generates requests for ListForgeBuilds
-func NewListForgeBuildsRequest(server string, forgeId string, params *ListForgeBuildsParams) (*http.Request, error) {
+func NewListForgeBuildsRequest(server string, forgeID ForgeID, params *ListForgeBuildsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "forge_id", runtime.ParamLocationPath, forgeId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "forge_id", runtime.ParamLocationPath, forgeID)
 	if err != nil {
 		return nil, err
 	}
@@ -6460,23 +6334,23 @@ func NewListForgeBuildsRequest(server string, forgeId string, params *ListForgeB
 }
 
 // NewAttachForgeToBuildRequest calls the generic AttachForgeToBuild builder with application/json body
-func NewAttachForgeToBuildRequest(server string, forgeId string, body AttachForgeToBuildJSONRequestBody) (*http.Request, error) {
+func NewAttachForgeToBuildRequest(server string, forgeID ForgeID, body AttachForgeToBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachForgeToBuildRequestWithBody(server, forgeId, "application/json", bodyReader)
+	return NewAttachForgeToBuildRequestWithBody(server, forgeID, "application/json", bodyReader)
 }
 
 // NewAttachForgeToBuildRequestWithBody generates requests for AttachForgeToBuild with any type of body
-func NewAttachForgeToBuildRequestWithBody(server string, forgeId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewAttachForgeToBuildRequestWithBody(server string, forgeID ForgeID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "forge_id", runtime.ParamLocationPath, forgeId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "forge_id", runtime.ParamLocationPath, forgeID)
 	if err != nil {
 		return nil, err
 	}
@@ -6497,6 +6371,1057 @@ func NewAttachForgeToBuildRequestWithBody(server string, forgeId string, content
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewListGroupsRequest generates requests for ListGroups
+func NewListGroupsRequest(server string, params *ListGroupsParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Search != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search", runtime.ParamLocationQuery, *params.Search); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Sort != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort", runtime.ParamLocationQuery, *params.Sort); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Order != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order", runtime.ParamLocationQuery, *params.Order); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offset", runtime.ParamLocationQuery, *params.Offset); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCreateGroupRequest calls the generic CreateGroup builder with application/json body
+func NewCreateGroupRequest(server string, body CreateGroupJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCreateGroupRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewCreateGroupRequestWithBody generates requests for CreateGroup with any type of body
+func NewCreateGroupRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteGroupRequest generates requests for DeleteGroup
+func NewDeleteGroupRequest(server string, groupID GroupID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewShowGroupRequest generates requests for ShowGroup
+func NewShowGroupRequest(server string, groupID GroupID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUpdateGroupRequest calls the generic UpdateGroup builder with application/json body
+func NewUpdateGroupRequest(server string, groupID GroupID, body UpdateGroupJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUpdateGroupRequestWithBody(server, groupID, "application/json", bodyReader)
+}
+
+// NewUpdateGroupRequestWithBody generates requests for UpdateGroup with any type of body
+func NewUpdateGroupRequestWithBody(server string, groupID GroupID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteGroupFromModRequest calls the generic DeleteGroupFromMod builder with application/json body
+func NewDeleteGroupFromModRequest(server string, groupID GroupID, body DeleteGroupFromModJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDeleteGroupFromModRequestWithBody(server, groupID, "application/json", bodyReader)
+}
+
+// NewDeleteGroupFromModRequestWithBody generates requests for DeleteGroupFromMod with any type of body
+func NewDeleteGroupFromModRequestWithBody(server string, groupID GroupID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s/mods", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewListGroupModsRequest generates requests for ListGroupMods
+func NewListGroupModsRequest(server string, groupID GroupID, params *ListGroupModsParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s/mods", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Search != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search", runtime.ParamLocationQuery, *params.Search); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Sort != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort", runtime.ParamLocationQuery, *params.Sort); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Order != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order", runtime.ParamLocationQuery, *params.Order); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offset", runtime.ParamLocationQuery, *params.Offset); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAttachGroupToModRequest calls the generic AttachGroupToMod builder with application/json body
+func NewAttachGroupToModRequest(server string, groupID GroupID, body AttachGroupToModJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAttachGroupToModRequestWithBody(server, groupID, "application/json", bodyReader)
+}
+
+// NewAttachGroupToModRequestWithBody generates requests for AttachGroupToMod with any type of body
+func NewAttachGroupToModRequestWithBody(server string, groupID GroupID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s/mods", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPermitGroupModRequest calls the generic PermitGroupMod builder with application/json body
+func NewPermitGroupModRequest(server string, groupID GroupID, body PermitGroupModJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPermitGroupModRequestWithBody(server, groupID, "application/json", bodyReader)
+}
+
+// NewPermitGroupModRequestWithBody generates requests for PermitGroupMod with any type of body
+func NewPermitGroupModRequestWithBody(server string, groupID GroupID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s/mods", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteGroupFromPackRequest calls the generic DeleteGroupFromPack builder with application/json body
+func NewDeleteGroupFromPackRequest(server string, groupID GroupID, body DeleteGroupFromPackJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDeleteGroupFromPackRequestWithBody(server, groupID, "application/json", bodyReader)
+}
+
+// NewDeleteGroupFromPackRequestWithBody generates requests for DeleteGroupFromPack with any type of body
+func NewDeleteGroupFromPackRequestWithBody(server string, groupID GroupID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s/packs", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewListGroupPacksRequest generates requests for ListGroupPacks
+func NewListGroupPacksRequest(server string, groupID GroupID, params *ListGroupPacksParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s/packs", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Search != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search", runtime.ParamLocationQuery, *params.Search); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Sort != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort", runtime.ParamLocationQuery, *params.Sort); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Order != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order", runtime.ParamLocationQuery, *params.Order); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offset", runtime.ParamLocationQuery, *params.Offset); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAttachGroupToPackRequest calls the generic AttachGroupToPack builder with application/json body
+func NewAttachGroupToPackRequest(server string, groupID GroupID, body AttachGroupToPackJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAttachGroupToPackRequestWithBody(server, groupID, "application/json", bodyReader)
+}
+
+// NewAttachGroupToPackRequestWithBody generates requests for AttachGroupToPack with any type of body
+func NewAttachGroupToPackRequestWithBody(server string, groupID GroupID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s/packs", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPermitGroupPackRequest calls the generic PermitGroupPack builder with application/json body
+func NewPermitGroupPackRequest(server string, groupID GroupID, body PermitGroupPackJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPermitGroupPackRequestWithBody(server, groupID, "application/json", bodyReader)
+}
+
+// NewPermitGroupPackRequestWithBody generates requests for PermitGroupPack with any type of body
+func NewPermitGroupPackRequestWithBody(server string, groupID GroupID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s/packs", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteGroupFromUserRequest calls the generic DeleteGroupFromUser builder with application/json body
+func NewDeleteGroupFromUserRequest(server string, groupID GroupID, body DeleteGroupFromUserJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDeleteGroupFromUserRequestWithBody(server, groupID, "application/json", bodyReader)
+}
+
+// NewDeleteGroupFromUserRequestWithBody generates requests for DeleteGroupFromUser with any type of body
+func NewDeleteGroupFromUserRequestWithBody(server string, groupID GroupID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s/users", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewListGroupUsersRequest generates requests for ListGroupUsers
+func NewListGroupUsersRequest(server string, groupID GroupID, params *ListGroupUsersParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s/users", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Search != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search", runtime.ParamLocationQuery, *params.Search); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Sort != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort", runtime.ParamLocationQuery, *params.Sort); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Order != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order", runtime.ParamLocationQuery, *params.Order); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offset", runtime.ParamLocationQuery, *params.Offset); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAttachGroupToUserRequest calls the generic AttachGroupToUser builder with application/json body
+func NewAttachGroupToUserRequest(server string, groupID GroupID, body AttachGroupToUserJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAttachGroupToUserRequestWithBody(server, groupID, "application/json", bodyReader)
+}
+
+// NewAttachGroupToUserRequestWithBody generates requests for AttachGroupToUser with any type of body
+func NewAttachGroupToUserRequestWithBody(server string, groupID GroupID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s/users", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPermitGroupUserRequest calls the generic PermitGroupUser builder with application/json body
+func NewPermitGroupUserRequest(server string, groupID GroupID, body PermitGroupUserJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPermitGroupUserRequestWithBody(server, groupID, "application/json", bodyReader)
+}
+
+// NewPermitGroupUserRequestWithBody generates requests for PermitGroupUser with any type of body
+func NewPermitGroupUserRequestWithBody(server string, groupID GroupID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "group_id", runtime.ParamLocationPath, groupID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/groups/%s/users", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -6583,23 +7508,23 @@ func NewUpdateMinecraftRequest(server string) (*http.Request, error) {
 }
 
 // NewDeleteMinecraftFromBuildRequest calls the generic DeleteMinecraftFromBuild builder with application/json body
-func NewDeleteMinecraftFromBuildRequest(server string, minecraftId string, body DeleteMinecraftFromBuildJSONRequestBody) (*http.Request, error) {
+func NewDeleteMinecraftFromBuildRequest(server string, minecraftID MinecraftID, body DeleteMinecraftFromBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewDeleteMinecraftFromBuildRequestWithBody(server, minecraftId, "application/json", bodyReader)
+	return NewDeleteMinecraftFromBuildRequestWithBody(server, minecraftID, "application/json", bodyReader)
 }
 
 // NewDeleteMinecraftFromBuildRequestWithBody generates requests for DeleteMinecraftFromBuild with any type of body
-func NewDeleteMinecraftFromBuildRequestWithBody(server string, minecraftId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewDeleteMinecraftFromBuildRequestWithBody(server string, minecraftID MinecraftID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "minecraft_id", runtime.ParamLocationPath, minecraftId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "minecraft_id", runtime.ParamLocationPath, minecraftID)
 	if err != nil {
 		return nil, err
 	}
@@ -6630,12 +7555,12 @@ func NewDeleteMinecraftFromBuildRequestWithBody(server string, minecraftId strin
 }
 
 // NewListMinecraftBuildsRequest generates requests for ListMinecraftBuilds
-func NewListMinecraftBuildsRequest(server string, minecraftId string, params *ListMinecraftBuildsParams) (*http.Request, error) {
+func NewListMinecraftBuildsRequest(server string, minecraftID MinecraftID, params *ListMinecraftBuildsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "minecraft_id", runtime.ParamLocationPath, minecraftId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "minecraft_id", runtime.ParamLocationPath, minecraftID)
 	if err != nil {
 		return nil, err
 	}
@@ -6750,23 +7675,23 @@ func NewListMinecraftBuildsRequest(server string, minecraftId string, params *Li
 }
 
 // NewAttachMinecraftToBuildRequest calls the generic AttachMinecraftToBuild builder with application/json body
-func NewAttachMinecraftToBuildRequest(server string, minecraftId string, body AttachMinecraftToBuildJSONRequestBody) (*http.Request, error) {
+func NewAttachMinecraftToBuildRequest(server string, minecraftID MinecraftID, body AttachMinecraftToBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachMinecraftToBuildRequestWithBody(server, minecraftId, "application/json", bodyReader)
+	return NewAttachMinecraftToBuildRequestWithBody(server, minecraftID, "application/json", bodyReader)
 }
 
 // NewAttachMinecraftToBuildRequestWithBody generates requests for AttachMinecraftToBuild with any type of body
-func NewAttachMinecraftToBuildRequestWithBody(server string, minecraftId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewAttachMinecraftToBuildRequestWithBody(server string, minecraftID MinecraftID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "minecraft_id", runtime.ParamLocationPath, minecraftId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "minecraft_id", runtime.ParamLocationPath, minecraftID)
 	if err != nil {
 		return nil, err
 	}
@@ -6950,12 +7875,12 @@ func NewCreateModRequestWithBody(server string, contentType string, body io.Read
 }
 
 // NewDeleteModRequest generates requests for DeleteMod
-func NewDeleteModRequest(server string, modId string) (*http.Request, error) {
+func NewDeleteModRequest(server string, modID ModID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -6984,12 +7909,12 @@ func NewDeleteModRequest(server string, modId string) (*http.Request, error) {
 }
 
 // NewShowModRequest generates requests for ShowMod
-func NewShowModRequest(server string, modId string) (*http.Request, error) {
+func NewShowModRequest(server string, modID ModID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -7018,23 +7943,23 @@ func NewShowModRequest(server string, modId string) (*http.Request, error) {
 }
 
 // NewUpdateModRequest calls the generic UpdateMod builder with application/json body
-func NewUpdateModRequest(server string, modId string, body UpdateModJSONRequestBody) (*http.Request, error) {
+func NewUpdateModRequest(server string, modID ModID, body UpdateModJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateModRequestWithBody(server, modId, "application/json", bodyReader)
+	return NewUpdateModRequestWithBody(server, modID, "application/json", bodyReader)
 }
 
 // NewUpdateModRequestWithBody generates requests for UpdateMod with any type of body
-func NewUpdateModRequestWithBody(server string, modId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateModRequestWithBody(server string, modID ModID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -7064,24 +7989,13 @@ func NewUpdateModRequestWithBody(server string, modId string, contentType string
 	return req, nil
 }
 
-// NewDeleteModFromTeamRequest calls the generic DeleteModFromTeam builder with application/json body
-func NewDeleteModFromTeamRequest(server string, modId string, body DeleteModFromTeamJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewDeleteModFromTeamRequestWithBody(server, modId, "application/json", bodyReader)
-}
-
-// NewDeleteModFromTeamRequestWithBody generates requests for DeleteModFromTeam with any type of body
-func NewDeleteModFromTeamRequestWithBody(server string, modId string, contentType string, body io.Reader) (*http.Request, error) {
+// NewDeleteModAvatarRequest generates requests for DeleteModAvatar
+func NewDeleteModAvatarRequest(server string, modID ModID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -7091,7 +8005,88 @@ func NewDeleteModFromTeamRequestWithBody(server string, modId string, contentTyp
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/mods/%s/teams", pathParam0)
+	operationPath := fmt.Sprintf("/mods/%s/avatar", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCreateModAvatarRequestWithBody generates requests for CreateModAvatar with any type of body
+func NewCreateModAvatarRequestWithBody(server string, modID ModID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/mods/%s/avatar", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteModFromGroupRequest calls the generic DeleteModFromGroup builder with application/json body
+func NewDeleteModFromGroupRequest(server string, modID ModID, body DeleteModFromGroupJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDeleteModFromGroupRequestWithBody(server, modID, "application/json", bodyReader)
+}
+
+// NewDeleteModFromGroupRequestWithBody generates requests for DeleteModFromGroup with any type of body
+func NewDeleteModFromGroupRequestWithBody(server string, modID ModID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/mods/%s/groups", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -7111,13 +8106,13 @@ func NewDeleteModFromTeamRequestWithBody(server string, modId string, contentTyp
 	return req, nil
 }
 
-// NewListModTeamsRequest generates requests for ListModTeams
-func NewListModTeamsRequest(server string, modId string, params *ListModTeamsParams) (*http.Request, error) {
+// NewListModGroupsRequest generates requests for ListModGroups
+func NewListModGroupsRequest(server string, modID ModID, params *ListModGroupsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -7127,7 +8122,7 @@ func NewListModTeamsRequest(server string, modId string, params *ListModTeamsPar
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/mods/%s/teams", pathParam0)
+	operationPath := fmt.Sprintf("/mods/%s/groups", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -7231,24 +8226,24 @@ func NewListModTeamsRequest(server string, modId string, params *ListModTeamsPar
 	return req, nil
 }
 
-// NewAttachModToTeamRequest calls the generic AttachModToTeam builder with application/json body
-func NewAttachModToTeamRequest(server string, modId string, body AttachModToTeamJSONRequestBody) (*http.Request, error) {
+// NewAttachModToGroupRequest calls the generic AttachModToGroup builder with application/json body
+func NewAttachModToGroupRequest(server string, modID ModID, body AttachModToGroupJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachModToTeamRequestWithBody(server, modId, "application/json", bodyReader)
+	return NewAttachModToGroupRequestWithBody(server, modID, "application/json", bodyReader)
 }
 
-// NewAttachModToTeamRequestWithBody generates requests for AttachModToTeam with any type of body
-func NewAttachModToTeamRequestWithBody(server string, modId string, contentType string, body io.Reader) (*http.Request, error) {
+// NewAttachModToGroupRequestWithBody generates requests for AttachModToGroup with any type of body
+func NewAttachModToGroupRequestWithBody(server string, modID ModID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -7258,7 +8253,7 @@ func NewAttachModToTeamRequestWithBody(server string, modId string, contentType 
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/mods/%s/teams", pathParam0)
+	operationPath := fmt.Sprintf("/mods/%s/groups", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -7278,24 +8273,24 @@ func NewAttachModToTeamRequestWithBody(server string, modId string, contentType 
 	return req, nil
 }
 
-// NewPermitModTeamRequest calls the generic PermitModTeam builder with application/json body
-func NewPermitModTeamRequest(server string, modId string, body PermitModTeamJSONRequestBody) (*http.Request, error) {
+// NewPermitModGroupRequest calls the generic PermitModGroup builder with application/json body
+func NewPermitModGroupRequest(server string, modID ModID, body PermitModGroupJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPermitModTeamRequestWithBody(server, modId, "application/json", bodyReader)
+	return NewPermitModGroupRequestWithBody(server, modID, "application/json", bodyReader)
 }
 
-// NewPermitModTeamRequestWithBody generates requests for PermitModTeam with any type of body
-func NewPermitModTeamRequestWithBody(server string, modId string, contentType string, body io.Reader) (*http.Request, error) {
+// NewPermitModGroupRequestWithBody generates requests for PermitModGroup with any type of body
+func NewPermitModGroupRequestWithBody(server string, modID ModID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -7305,7 +8300,7 @@ func NewPermitModTeamRequestWithBody(server string, modId string, contentType st
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/mods/%s/teams", pathParam0)
+	operationPath := fmt.Sprintf("/mods/%s/groups", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -7326,23 +8321,23 @@ func NewPermitModTeamRequestWithBody(server string, modId string, contentType st
 }
 
 // NewDeleteModFromUserRequest calls the generic DeleteModFromUser builder with application/json body
-func NewDeleteModFromUserRequest(server string, modId string, body DeleteModFromUserJSONRequestBody) (*http.Request, error) {
+func NewDeleteModFromUserRequest(server string, modID ModID, body DeleteModFromUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewDeleteModFromUserRequestWithBody(server, modId, "application/json", bodyReader)
+	return NewDeleteModFromUserRequestWithBody(server, modID, "application/json", bodyReader)
 }
 
 // NewDeleteModFromUserRequestWithBody generates requests for DeleteModFromUser with any type of body
-func NewDeleteModFromUserRequestWithBody(server string, modId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewDeleteModFromUserRequestWithBody(server string, modID ModID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -7373,12 +8368,12 @@ func NewDeleteModFromUserRequestWithBody(server string, modId string, contentTyp
 }
 
 // NewListModUsersRequest generates requests for ListModUsers
-func NewListModUsersRequest(server string, modId string, params *ListModUsersParams) (*http.Request, error) {
+func NewListModUsersRequest(server string, modID ModID, params *ListModUsersParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -7493,23 +8488,23 @@ func NewListModUsersRequest(server string, modId string, params *ListModUsersPar
 }
 
 // NewAttachModToUserRequest calls the generic AttachModToUser builder with application/json body
-func NewAttachModToUserRequest(server string, modId string, body AttachModToUserJSONRequestBody) (*http.Request, error) {
+func NewAttachModToUserRequest(server string, modID ModID, body AttachModToUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachModToUserRequestWithBody(server, modId, "application/json", bodyReader)
+	return NewAttachModToUserRequestWithBody(server, modID, "application/json", bodyReader)
 }
 
 // NewAttachModToUserRequestWithBody generates requests for AttachModToUser with any type of body
-func NewAttachModToUserRequestWithBody(server string, modId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewAttachModToUserRequestWithBody(server string, modID ModID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -7540,23 +8535,23 @@ func NewAttachModToUserRequestWithBody(server string, modId string, contentType 
 }
 
 // NewPermitModUserRequest calls the generic PermitModUser builder with application/json body
-func NewPermitModUserRequest(server string, modId string, body PermitModUserJSONRequestBody) (*http.Request, error) {
+func NewPermitModUserRequest(server string, modID ModID, body PermitModUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPermitModUserRequestWithBody(server, modId, "application/json", bodyReader)
+	return NewPermitModUserRequestWithBody(server, modID, "application/json", bodyReader)
 }
 
 // NewPermitModUserRequestWithBody generates requests for PermitModUser with any type of body
-func NewPermitModUserRequestWithBody(server string, modId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewPermitModUserRequestWithBody(server string, modID ModID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -7587,12 +8582,12 @@ func NewPermitModUserRequestWithBody(server string, modId string, contentType st
 }
 
 // NewListVersionsRequest generates requests for ListVersions
-func NewListVersionsRequest(server string, modId string, params *ListVersionsParams) (*http.Request, error) {
+func NewListVersionsRequest(server string, modID ModID, params *ListVersionsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -7707,23 +8702,23 @@ func NewListVersionsRequest(server string, modId string, params *ListVersionsPar
 }
 
 // NewCreateVersionRequest calls the generic CreateVersion builder with application/json body
-func NewCreateVersionRequest(server string, modId string, body CreateVersionJSONRequestBody) (*http.Request, error) {
+func NewCreateVersionRequest(server string, modID ModID, body CreateVersionJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCreateVersionRequestWithBody(server, modId, "application/json", bodyReader)
+	return NewCreateVersionRequestWithBody(server, modID, "application/json", bodyReader)
 }
 
 // NewCreateVersionRequestWithBody generates requests for CreateVersion with any type of body
-func NewCreateVersionRequestWithBody(server string, modId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateVersionRequestWithBody(server string, modID ModID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
@@ -7754,19 +8749,19 @@ func NewCreateVersionRequestWithBody(server string, modId string, contentType st
 }
 
 // NewDeleteVersionRequest generates requests for DeleteVersion
-func NewDeleteVersionRequest(server string, modId string, versionId string) (*http.Request, error) {
+func NewDeleteVersionRequest(server string, modID ModID, versionID VersionID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
 
 	var pathParam1 string
 
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "version_id", runtime.ParamLocationPath, versionId)
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "version_id", runtime.ParamLocationPath, versionID)
 	if err != nil {
 		return nil, err
 	}
@@ -7795,19 +8790,19 @@ func NewDeleteVersionRequest(server string, modId string, versionId string) (*ht
 }
 
 // NewShowVersionRequest generates requests for ShowVersion
-func NewShowVersionRequest(server string, modId string, versionId string) (*http.Request, error) {
+func NewShowVersionRequest(server string, modID ModID, versionID VersionID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
 
 	var pathParam1 string
 
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "version_id", runtime.ParamLocationPath, versionId)
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "version_id", runtime.ParamLocationPath, versionID)
 	if err != nil {
 		return nil, err
 	}
@@ -7836,30 +8831,30 @@ func NewShowVersionRequest(server string, modId string, versionId string) (*http
 }
 
 // NewUpdateVersionRequest calls the generic UpdateVersion builder with application/json body
-func NewUpdateVersionRequest(server string, modId string, versionId string, body UpdateVersionJSONRequestBody) (*http.Request, error) {
+func NewUpdateVersionRequest(server string, modID ModID, versionID VersionID, body UpdateVersionJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateVersionRequestWithBody(server, modId, versionId, "application/json", bodyReader)
+	return NewUpdateVersionRequestWithBody(server, modID, versionID, "application/json", bodyReader)
 }
 
 // NewUpdateVersionRequestWithBody generates requests for UpdateVersion with any type of body
-func NewUpdateVersionRequestWithBody(server string, modId string, versionId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateVersionRequestWithBody(server string, modID ModID, versionID VersionID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
 
 	var pathParam1 string
 
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "version_id", runtime.ParamLocationPath, versionId)
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "version_id", runtime.ParamLocationPath, versionID)
 	if err != nil {
 		return nil, err
 	}
@@ -7890,30 +8885,30 @@ func NewUpdateVersionRequestWithBody(server string, modId string, versionId stri
 }
 
 // NewDeleteVersionFromBuildRequest calls the generic DeleteVersionFromBuild builder with application/json body
-func NewDeleteVersionFromBuildRequest(server string, modId string, versionId string, body DeleteVersionFromBuildJSONRequestBody) (*http.Request, error) {
+func NewDeleteVersionFromBuildRequest(server string, modID ModID, versionID VersionID, body DeleteVersionFromBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewDeleteVersionFromBuildRequestWithBody(server, modId, versionId, "application/json", bodyReader)
+	return NewDeleteVersionFromBuildRequestWithBody(server, modID, versionID, "application/json", bodyReader)
 }
 
 // NewDeleteVersionFromBuildRequestWithBody generates requests for DeleteVersionFromBuild with any type of body
-func NewDeleteVersionFromBuildRequestWithBody(server string, modId string, versionId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewDeleteVersionFromBuildRequestWithBody(server string, modID ModID, versionID VersionID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
 
 	var pathParam1 string
 
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "version_id", runtime.ParamLocationPath, versionId)
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "version_id", runtime.ParamLocationPath, versionID)
 	if err != nil {
 		return nil, err
 	}
@@ -7944,19 +8939,19 @@ func NewDeleteVersionFromBuildRequestWithBody(server string, modId string, versi
 }
 
 // NewListVersionBuildsRequest generates requests for ListVersionBuilds
-func NewListVersionBuildsRequest(server string, modId string, versionId string, params *ListVersionBuildsParams) (*http.Request, error) {
+func NewListVersionBuildsRequest(server string, modID ModID, versionID VersionID, params *ListVersionBuildsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
 
 	var pathParam1 string
 
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "version_id", runtime.ParamLocationPath, versionId)
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "version_id", runtime.ParamLocationPath, versionID)
 	if err != nil {
 		return nil, err
 	}
@@ -8071,30 +9066,30 @@ func NewListVersionBuildsRequest(server string, modId string, versionId string, 
 }
 
 // NewAttachVersionToBuildRequest calls the generic AttachVersionToBuild builder with application/json body
-func NewAttachVersionToBuildRequest(server string, modId string, versionId string, body AttachVersionToBuildJSONRequestBody) (*http.Request, error) {
+func NewAttachVersionToBuildRequest(server string, modID ModID, versionID VersionID, body AttachVersionToBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachVersionToBuildRequestWithBody(server, modId, versionId, "application/json", bodyReader)
+	return NewAttachVersionToBuildRequestWithBody(server, modID, versionID, "application/json", bodyReader)
 }
 
 // NewAttachVersionToBuildRequestWithBody generates requests for AttachVersionToBuild with any type of body
-func NewAttachVersionToBuildRequestWithBody(server string, modId string, versionId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewAttachVersionToBuildRequestWithBody(server string, modID ModID, versionID VersionID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "mod_id", runtime.ParamLocationPath, modID)
 	if err != nil {
 		return nil, err
 	}
 
 	var pathParam1 string
 
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "version_id", runtime.ParamLocationPath, versionId)
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "version_id", runtime.ParamLocationPath, versionID)
 	if err != nil {
 		return nil, err
 	}
@@ -8201,23 +9196,23 @@ func NewUpdateNeoforgeRequest(server string) (*http.Request, error) {
 }
 
 // NewDeleteNeoforgeFromBuildRequest calls the generic DeleteNeoforgeFromBuild builder with application/json body
-func NewDeleteNeoforgeFromBuildRequest(server string, neoforgeId string, body DeleteNeoforgeFromBuildJSONRequestBody) (*http.Request, error) {
+func NewDeleteNeoforgeFromBuildRequest(server string, neoforgeID NeoforgeID, body DeleteNeoforgeFromBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewDeleteNeoforgeFromBuildRequestWithBody(server, neoforgeId, "application/json", bodyReader)
+	return NewDeleteNeoforgeFromBuildRequestWithBody(server, neoforgeID, "application/json", bodyReader)
 }
 
 // NewDeleteNeoforgeFromBuildRequestWithBody generates requests for DeleteNeoforgeFromBuild with any type of body
-func NewDeleteNeoforgeFromBuildRequestWithBody(server string, neoforgeId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewDeleteNeoforgeFromBuildRequestWithBody(server string, neoforgeID NeoforgeID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "neoforge_id", runtime.ParamLocationPath, neoforgeId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "neoforge_id", runtime.ParamLocationPath, neoforgeID)
 	if err != nil {
 		return nil, err
 	}
@@ -8248,12 +9243,12 @@ func NewDeleteNeoforgeFromBuildRequestWithBody(server string, neoforgeId string,
 }
 
 // NewListNeoforgeBuildsRequest generates requests for ListNeoforgeBuilds
-func NewListNeoforgeBuildsRequest(server string, neoforgeId string, params *ListNeoforgeBuildsParams) (*http.Request, error) {
+func NewListNeoforgeBuildsRequest(server string, neoforgeID NeoforgeID, params *ListNeoforgeBuildsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "neoforge_id", runtime.ParamLocationPath, neoforgeId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "neoforge_id", runtime.ParamLocationPath, neoforgeID)
 	if err != nil {
 		return nil, err
 	}
@@ -8368,23 +9363,23 @@ func NewListNeoforgeBuildsRequest(server string, neoforgeId string, params *List
 }
 
 // NewAttachNeoforgeToBuildRequest calls the generic AttachNeoforgeToBuild builder with application/json body
-func NewAttachNeoforgeToBuildRequest(server string, neoforgeId string, body AttachNeoforgeToBuildJSONRequestBody) (*http.Request, error) {
+func NewAttachNeoforgeToBuildRequest(server string, neoforgeID NeoforgeID, body AttachNeoforgeToBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachNeoforgeToBuildRequestWithBody(server, neoforgeId, "application/json", bodyReader)
+	return NewAttachNeoforgeToBuildRequestWithBody(server, neoforgeID, "application/json", bodyReader)
 }
 
 // NewAttachNeoforgeToBuildRequestWithBody generates requests for AttachNeoforgeToBuild with any type of body
-func NewAttachNeoforgeToBuildRequestWithBody(server string, neoforgeId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewAttachNeoforgeToBuildRequestWithBody(server string, neoforgeID NeoforgeID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "neoforge_id", runtime.ParamLocationPath, neoforgeId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "neoforge_id", runtime.ParamLocationPath, neoforgeID)
 	if err != nil {
 		return nil, err
 	}
@@ -8568,12 +9563,12 @@ func NewCreatePackRequestWithBody(server string, contentType string, body io.Rea
 }
 
 // NewDeletePackRequest generates requests for DeletePack
-func NewDeletePackRequest(server string, packId string) (*http.Request, error) {
+func NewDeletePackRequest(server string, packID PackID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -8602,12 +9597,12 @@ func NewDeletePackRequest(server string, packId string) (*http.Request, error) {
 }
 
 // NewShowPackRequest generates requests for ShowPack
-func NewShowPackRequest(server string, packId string) (*http.Request, error) {
+func NewShowPackRequest(server string, packID PackID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -8636,23 +9631,23 @@ func NewShowPackRequest(server string, packId string) (*http.Request, error) {
 }
 
 // NewUpdatePackRequest calls the generic UpdatePack builder with application/json body
-func NewUpdatePackRequest(server string, packId string, body UpdatePackJSONRequestBody) (*http.Request, error) {
+func NewUpdatePackRequest(server string, packID PackID, body UpdatePackJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdatePackRequestWithBody(server, packId, "application/json", bodyReader)
+	return NewUpdatePackRequestWithBody(server, packID, "application/json", bodyReader)
 }
 
 // NewUpdatePackRequestWithBody generates requests for UpdatePack with any type of body
-func NewUpdatePackRequestWithBody(server string, packId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdatePackRequestWithBody(server string, packID PackID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -8682,13 +9677,83 @@ func NewUpdatePackRequestWithBody(server string, packId string, contentType stri
 	return req, nil
 }
 
-// NewListBuildsRequest generates requests for ListBuilds
-func NewListBuildsRequest(server string, packId string, params *ListBuildsParams) (*http.Request, error) {
+// NewDeletePackAvatarRequest generates requests for DeletePackAvatar
+func NewDeletePackAvatarRequest(server string, packID PackID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/packs/%s/avatar", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCreatePackAvatarRequestWithBody generates requests for CreatePackAvatar with any type of body
+func NewCreatePackAvatarRequestWithBody(server string, packID PackID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/packs/%s/avatar", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewListBuildsRequest generates requests for ListBuilds
+func NewListBuildsRequest(server string, packID PackID, params *ListBuildsParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -8803,23 +9868,23 @@ func NewListBuildsRequest(server string, packId string, params *ListBuildsParams
 }
 
 // NewCreateBuildRequest calls the generic CreateBuild builder with application/json body
-func NewCreateBuildRequest(server string, packId string, body CreateBuildJSONRequestBody) (*http.Request, error) {
+func NewCreateBuildRequest(server string, packID PackID, body CreateBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCreateBuildRequestWithBody(server, packId, "application/json", bodyReader)
+	return NewCreateBuildRequestWithBody(server, packID, "application/json", bodyReader)
 }
 
 // NewCreateBuildRequestWithBody generates requests for CreateBuild with any type of body
-func NewCreateBuildRequestWithBody(server string, packId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateBuildRequestWithBody(server string, packID PackID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -8850,19 +9915,19 @@ func NewCreateBuildRequestWithBody(server string, packId string, contentType str
 }
 
 // NewDeleteBuildRequest generates requests for DeleteBuild
-func NewDeleteBuildRequest(server string, packId string, buildId string) (*http.Request, error) {
+func NewDeleteBuildRequest(server string, packID PackID, buildID BuildID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
 
 	var pathParam1 string
 
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "build_id", runtime.ParamLocationPath, buildId)
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "build_id", runtime.ParamLocationPath, buildID)
 	if err != nil {
 		return nil, err
 	}
@@ -8891,19 +9956,19 @@ func NewDeleteBuildRequest(server string, packId string, buildId string) (*http.
 }
 
 // NewShowBuildRequest generates requests for ShowBuild
-func NewShowBuildRequest(server string, packId string, buildId string) (*http.Request, error) {
+func NewShowBuildRequest(server string, packID PackID, buildID BuildID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
 
 	var pathParam1 string
 
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "build_id", runtime.ParamLocationPath, buildId)
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "build_id", runtime.ParamLocationPath, buildID)
 	if err != nil {
 		return nil, err
 	}
@@ -8932,30 +9997,30 @@ func NewShowBuildRequest(server string, packId string, buildId string) (*http.Re
 }
 
 // NewUpdateBuildRequest calls the generic UpdateBuild builder with application/json body
-func NewUpdateBuildRequest(server string, packId string, buildId string, body UpdateBuildJSONRequestBody) (*http.Request, error) {
+func NewUpdateBuildRequest(server string, packID PackID, buildID BuildID, body UpdateBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateBuildRequestWithBody(server, packId, buildId, "application/json", bodyReader)
+	return NewUpdateBuildRequestWithBody(server, packID, buildID, "application/json", bodyReader)
 }
 
 // NewUpdateBuildRequestWithBody generates requests for UpdateBuild with any type of body
-func NewUpdateBuildRequestWithBody(server string, packId string, buildId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateBuildRequestWithBody(server string, packID PackID, buildID BuildID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
 
 	var pathParam1 string
 
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "build_id", runtime.ParamLocationPath, buildId)
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "build_id", runtime.ParamLocationPath, buildID)
 	if err != nil {
 		return nil, err
 	}
@@ -8986,30 +10051,30 @@ func NewUpdateBuildRequestWithBody(server string, packId string, buildId string,
 }
 
 // NewDeleteBuildFromVersionRequest calls the generic DeleteBuildFromVersion builder with application/json body
-func NewDeleteBuildFromVersionRequest(server string, packId string, buildId string, body DeleteBuildFromVersionJSONRequestBody) (*http.Request, error) {
+func NewDeleteBuildFromVersionRequest(server string, packID PackID, buildID BuildID, body DeleteBuildFromVersionJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewDeleteBuildFromVersionRequestWithBody(server, packId, buildId, "application/json", bodyReader)
+	return NewDeleteBuildFromVersionRequestWithBody(server, packID, buildID, "application/json", bodyReader)
 }
 
 // NewDeleteBuildFromVersionRequestWithBody generates requests for DeleteBuildFromVersion with any type of body
-func NewDeleteBuildFromVersionRequestWithBody(server string, packId string, buildId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewDeleteBuildFromVersionRequestWithBody(server string, packID PackID, buildID BuildID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
 
 	var pathParam1 string
 
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "build_id", runtime.ParamLocationPath, buildId)
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "build_id", runtime.ParamLocationPath, buildID)
 	if err != nil {
 		return nil, err
 	}
@@ -9040,19 +10105,19 @@ func NewDeleteBuildFromVersionRequestWithBody(server string, packId string, buil
 }
 
 // NewListBuildVersionsRequest generates requests for ListBuildVersions
-func NewListBuildVersionsRequest(server string, packId string, buildId string, params *ListBuildVersionsParams) (*http.Request, error) {
+func NewListBuildVersionsRequest(server string, packID PackID, buildID BuildID, params *ListBuildVersionsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
 
 	var pathParam1 string
 
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "build_id", runtime.ParamLocationPath, buildId)
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "build_id", runtime.ParamLocationPath, buildID)
 	if err != nil {
 		return nil, err
 	}
@@ -9167,30 +10232,30 @@ func NewListBuildVersionsRequest(server string, packId string, buildId string, p
 }
 
 // NewAttachBuildToVersionRequest calls the generic AttachBuildToVersion builder with application/json body
-func NewAttachBuildToVersionRequest(server string, packId string, buildId string, body AttachBuildToVersionJSONRequestBody) (*http.Request, error) {
+func NewAttachBuildToVersionRequest(server string, packID PackID, buildID BuildID, body AttachBuildToVersionJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachBuildToVersionRequestWithBody(server, packId, buildId, "application/json", bodyReader)
+	return NewAttachBuildToVersionRequestWithBody(server, packID, buildID, "application/json", bodyReader)
 }
 
 // NewAttachBuildToVersionRequestWithBody generates requests for AttachBuildToVersion with any type of body
-func NewAttachBuildToVersionRequestWithBody(server string, packId string, buildId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewAttachBuildToVersionRequestWithBody(server string, packID PackID, buildID BuildID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
 
 	var pathParam1 string
 
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "build_id", runtime.ParamLocationPath, buildId)
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "build_id", runtime.ParamLocationPath, buildID)
 	if err != nil {
 		return nil, err
 	}
@@ -9220,24 +10285,24 @@ func NewAttachBuildToVersionRequestWithBody(server string, packId string, buildI
 	return req, nil
 }
 
-// NewDeletePackFromTeamRequest calls the generic DeletePackFromTeam builder with application/json body
-func NewDeletePackFromTeamRequest(server string, packId string, body DeletePackFromTeamJSONRequestBody) (*http.Request, error) {
+// NewDeletePackFromGroupRequest calls the generic DeletePackFromGroup builder with application/json body
+func NewDeletePackFromGroupRequest(server string, packID PackID, body DeletePackFromGroupJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewDeletePackFromTeamRequestWithBody(server, packId, "application/json", bodyReader)
+	return NewDeletePackFromGroupRequestWithBody(server, packID, "application/json", bodyReader)
 }
 
-// NewDeletePackFromTeamRequestWithBody generates requests for DeletePackFromTeam with any type of body
-func NewDeletePackFromTeamRequestWithBody(server string, packId string, contentType string, body io.Reader) (*http.Request, error) {
+// NewDeletePackFromGroupRequestWithBody generates requests for DeletePackFromGroup with any type of body
+func NewDeletePackFromGroupRequestWithBody(server string, packID PackID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -9247,7 +10312,7 @@ func NewDeletePackFromTeamRequestWithBody(server string, packId string, contentT
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/packs/%s/teams", pathParam0)
+	operationPath := fmt.Sprintf("/packs/%s/groups", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -9267,13 +10332,13 @@ func NewDeletePackFromTeamRequestWithBody(server string, packId string, contentT
 	return req, nil
 }
 
-// NewListPackTeamsRequest generates requests for ListPackTeams
-func NewListPackTeamsRequest(server string, packId string, params *ListPackTeamsParams) (*http.Request, error) {
+// NewListPackGroupsRequest generates requests for ListPackGroups
+func NewListPackGroupsRequest(server string, packID PackID, params *ListPackGroupsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -9283,7 +10348,7 @@ func NewListPackTeamsRequest(server string, packId string, params *ListPackTeams
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/packs/%s/teams", pathParam0)
+	operationPath := fmt.Sprintf("/packs/%s/groups", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -9387,24 +10452,24 @@ func NewListPackTeamsRequest(server string, packId string, params *ListPackTeams
 	return req, nil
 }
 
-// NewAttachPackToTeamRequest calls the generic AttachPackToTeam builder with application/json body
-func NewAttachPackToTeamRequest(server string, packId string, body AttachPackToTeamJSONRequestBody) (*http.Request, error) {
+// NewAttachPackToGroupRequest calls the generic AttachPackToGroup builder with application/json body
+func NewAttachPackToGroupRequest(server string, packID PackID, body AttachPackToGroupJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachPackToTeamRequestWithBody(server, packId, "application/json", bodyReader)
+	return NewAttachPackToGroupRequestWithBody(server, packID, "application/json", bodyReader)
 }
 
-// NewAttachPackToTeamRequestWithBody generates requests for AttachPackToTeam with any type of body
-func NewAttachPackToTeamRequestWithBody(server string, packId string, contentType string, body io.Reader) (*http.Request, error) {
+// NewAttachPackToGroupRequestWithBody generates requests for AttachPackToGroup with any type of body
+func NewAttachPackToGroupRequestWithBody(server string, packID PackID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -9414,7 +10479,7 @@ func NewAttachPackToTeamRequestWithBody(server string, packId string, contentTyp
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/packs/%s/teams", pathParam0)
+	operationPath := fmt.Sprintf("/packs/%s/groups", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -9434,24 +10499,24 @@ func NewAttachPackToTeamRequestWithBody(server string, packId string, contentTyp
 	return req, nil
 }
 
-// NewPermitPackTeamRequest calls the generic PermitPackTeam builder with application/json body
-func NewPermitPackTeamRequest(server string, packId string, body PermitPackTeamJSONRequestBody) (*http.Request, error) {
+// NewPermitPackGroupRequest calls the generic PermitPackGroup builder with application/json body
+func NewPermitPackGroupRequest(server string, packID PackID, body PermitPackGroupJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPermitPackTeamRequestWithBody(server, packId, "application/json", bodyReader)
+	return NewPermitPackGroupRequestWithBody(server, packID, "application/json", bodyReader)
 }
 
-// NewPermitPackTeamRequestWithBody generates requests for PermitPackTeam with any type of body
-func NewPermitPackTeamRequestWithBody(server string, packId string, contentType string, body io.Reader) (*http.Request, error) {
+// NewPermitPackGroupRequestWithBody generates requests for PermitPackGroup with any type of body
+func NewPermitPackGroupRequestWithBody(server string, packID PackID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -9461,7 +10526,7 @@ func NewPermitPackTeamRequestWithBody(server string, packId string, contentType 
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/packs/%s/teams", pathParam0)
+	operationPath := fmt.Sprintf("/packs/%s/groups", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -9482,23 +10547,23 @@ func NewPermitPackTeamRequestWithBody(server string, packId string, contentType 
 }
 
 // NewDeletePackFromUserRequest calls the generic DeletePackFromUser builder with application/json body
-func NewDeletePackFromUserRequest(server string, packId string, body DeletePackFromUserJSONRequestBody) (*http.Request, error) {
+func NewDeletePackFromUserRequest(server string, packID PackID, body DeletePackFromUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewDeletePackFromUserRequestWithBody(server, packId, "application/json", bodyReader)
+	return NewDeletePackFromUserRequestWithBody(server, packID, "application/json", bodyReader)
 }
 
 // NewDeletePackFromUserRequestWithBody generates requests for DeletePackFromUser with any type of body
-func NewDeletePackFromUserRequestWithBody(server string, packId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewDeletePackFromUserRequestWithBody(server string, packID PackID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -9529,12 +10594,12 @@ func NewDeletePackFromUserRequestWithBody(server string, packId string, contentT
 }
 
 // NewListPackUsersRequest generates requests for ListPackUsers
-func NewListPackUsersRequest(server string, packId string, params *ListPackUsersParams) (*http.Request, error) {
+func NewListPackUsersRequest(server string, packID PackID, params *ListPackUsersParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -9649,23 +10714,23 @@ func NewListPackUsersRequest(server string, packId string, params *ListPackUsers
 }
 
 // NewAttachPackToUserRequest calls the generic AttachPackToUser builder with application/json body
-func NewAttachPackToUserRequest(server string, packId string, body AttachPackToUserJSONRequestBody) (*http.Request, error) {
+func NewAttachPackToUserRequest(server string, packID PackID, body AttachPackToUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachPackToUserRequestWithBody(server, packId, "application/json", bodyReader)
+	return NewAttachPackToUserRequestWithBody(server, packID, "application/json", bodyReader)
 }
 
 // NewAttachPackToUserRequestWithBody generates requests for AttachPackToUser with any type of body
-func NewAttachPackToUserRequestWithBody(server string, packId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewAttachPackToUserRequestWithBody(server string, packID PackID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -9696,23 +10761,23 @@ func NewAttachPackToUserRequestWithBody(server string, packId string, contentTyp
 }
 
 // NewPermitPackUserRequest calls the generic PermitPackUser builder with application/json body
-func NewPermitPackUserRequest(server string, packId string, body PermitPackUserJSONRequestBody) (*http.Request, error) {
+func NewPermitPackUserRequest(server string, packID PackID, body PermitPackUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPermitPackUserRequestWithBody(server, packId, "application/json", bodyReader)
+	return NewPermitPackUserRequestWithBody(server, packID, "application/json", bodyReader)
 }
 
 // NewPermitPackUserRequestWithBody generates requests for PermitPackUser with any type of body
-func NewPermitPackUserRequestWithBody(server string, packId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewPermitPackUserRequestWithBody(server string, packID PackID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "pack_id", runtime.ParamLocationPath, packID)
 	if err != nil {
 		return nil, err
 	}
@@ -9913,23 +10978,23 @@ func NewUpdateQuiltRequest(server string) (*http.Request, error) {
 }
 
 // NewDeleteQuiltFromBuildRequest calls the generic DeleteQuiltFromBuild builder with application/json body
-func NewDeleteQuiltFromBuildRequest(server string, quiltId string, body DeleteQuiltFromBuildJSONRequestBody) (*http.Request, error) {
+func NewDeleteQuiltFromBuildRequest(server string, quiltID QuiltID, body DeleteQuiltFromBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewDeleteQuiltFromBuildRequestWithBody(server, quiltId, "application/json", bodyReader)
+	return NewDeleteQuiltFromBuildRequestWithBody(server, quiltID, "application/json", bodyReader)
 }
 
 // NewDeleteQuiltFromBuildRequestWithBody generates requests for DeleteQuiltFromBuild with any type of body
-func NewDeleteQuiltFromBuildRequestWithBody(server string, quiltId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewDeleteQuiltFromBuildRequestWithBody(server string, quiltID QuiltID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "quilt_id", runtime.ParamLocationPath, quiltId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "quilt_id", runtime.ParamLocationPath, quiltID)
 	if err != nil {
 		return nil, err
 	}
@@ -9960,12 +11025,12 @@ func NewDeleteQuiltFromBuildRequestWithBody(server string, quiltId string, conte
 }
 
 // NewListQuiltBuildsRequest generates requests for ListQuiltBuilds
-func NewListQuiltBuildsRequest(server string, quiltId string, params *ListQuiltBuildsParams) (*http.Request, error) {
+func NewListQuiltBuildsRequest(server string, quiltID QuiltID, params *ListQuiltBuildsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "quilt_id", runtime.ParamLocationPath, quiltId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "quilt_id", runtime.ParamLocationPath, quiltID)
 	if err != nil {
 		return nil, err
 	}
@@ -10080,23 +11145,23 @@ func NewListQuiltBuildsRequest(server string, quiltId string, params *ListQuiltB
 }
 
 // NewAttachQuiltToBuildRequest calls the generic AttachQuiltToBuild builder with application/json body
-func NewAttachQuiltToBuildRequest(server string, quiltId string, body AttachQuiltToBuildJSONRequestBody) (*http.Request, error) {
+func NewAttachQuiltToBuildRequest(server string, quiltID QuiltID, body AttachQuiltToBuildJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachQuiltToBuildRequestWithBody(server, quiltId, "application/json", bodyReader)
+	return NewAttachQuiltToBuildRequestWithBody(server, quiltID, "application/json", bodyReader)
 }
 
 // NewAttachQuiltToBuildRequestWithBody generates requests for AttachQuiltToBuild with any type of body
-func NewAttachQuiltToBuildRequestWithBody(server string, quiltId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewAttachQuiltToBuildRequestWithBody(server string, quiltID QuiltID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "quilt_id", runtime.ParamLocationPath, quiltId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "quilt_id", runtime.ParamLocationPath, quiltID)
 	if err != nil {
 		return nil, err
 	}
@@ -10117,1057 +11182,6 @@ func NewAttachQuiltToBuildRequestWithBody(server string, quiltId string, content
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewListTeamsRequest generates requests for ListTeams
-func NewListTeamsRequest(server string, params *ListTeamsParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Search != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search", runtime.ParamLocationQuery, *params.Search); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Sort != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort", runtime.ParamLocationQuery, *params.Sort); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Order != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order", runtime.ParamLocationQuery, *params.Order); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Limit != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Offset != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offset", runtime.ParamLocationQuery, *params.Offset); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewCreateTeamRequest calls the generic CreateTeam builder with application/json body
-func NewCreateTeamRequest(server string, body CreateTeamJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewCreateTeamRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewCreateTeamRequestWithBody generates requests for CreateTeam with any type of body
-func NewCreateTeamRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewDeleteTeamRequest generates requests for DeleteTeam
-func NewDeleteTeamRequest(server string, teamId string) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewShowTeamRequest generates requests for ShowTeam
-func NewShowTeamRequest(server string, teamId string) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewUpdateTeamRequest calls the generic UpdateTeam builder with application/json body
-func NewUpdateTeamRequest(server string, teamId string, body UpdateTeamJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewUpdateTeamRequestWithBody(server, teamId, "application/json", bodyReader)
-}
-
-// NewUpdateTeamRequestWithBody generates requests for UpdateTeam with any type of body
-func NewUpdateTeamRequestWithBody(server string, teamId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewDeleteTeamFromModRequest calls the generic DeleteTeamFromMod builder with application/json body
-func NewDeleteTeamFromModRequest(server string, teamId string, body DeleteTeamFromModJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewDeleteTeamFromModRequestWithBody(server, teamId, "application/json", bodyReader)
-}
-
-// NewDeleteTeamFromModRequestWithBody generates requests for DeleteTeamFromMod with any type of body
-func NewDeleteTeamFromModRequestWithBody(server string, teamId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s/mods", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewListTeamModsRequest generates requests for ListTeamMods
-func NewListTeamModsRequest(server string, teamId string, params *ListTeamModsParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s/mods", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Search != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search", runtime.ParamLocationQuery, *params.Search); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Sort != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort", runtime.ParamLocationQuery, *params.Sort); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Order != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order", runtime.ParamLocationQuery, *params.Order); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Limit != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Offset != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offset", runtime.ParamLocationQuery, *params.Offset); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewAttachTeamToModRequest calls the generic AttachTeamToMod builder with application/json body
-func NewAttachTeamToModRequest(server string, teamId string, body AttachTeamToModJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewAttachTeamToModRequestWithBody(server, teamId, "application/json", bodyReader)
-}
-
-// NewAttachTeamToModRequestWithBody generates requests for AttachTeamToMod with any type of body
-func NewAttachTeamToModRequestWithBody(server string, teamId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s/mods", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewPermitTeamModRequest calls the generic PermitTeamMod builder with application/json body
-func NewPermitTeamModRequest(server string, teamId string, body PermitTeamModJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewPermitTeamModRequestWithBody(server, teamId, "application/json", bodyReader)
-}
-
-// NewPermitTeamModRequestWithBody generates requests for PermitTeamMod with any type of body
-func NewPermitTeamModRequestWithBody(server string, teamId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s/mods", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewDeleteTeamFromPackRequest calls the generic DeleteTeamFromPack builder with application/json body
-func NewDeleteTeamFromPackRequest(server string, teamId string, body DeleteTeamFromPackJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewDeleteTeamFromPackRequestWithBody(server, teamId, "application/json", bodyReader)
-}
-
-// NewDeleteTeamFromPackRequestWithBody generates requests for DeleteTeamFromPack with any type of body
-func NewDeleteTeamFromPackRequestWithBody(server string, teamId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s/packs", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewListTeamPacksRequest generates requests for ListTeamPacks
-func NewListTeamPacksRequest(server string, teamId string, params *ListTeamPacksParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s/packs", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Search != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search", runtime.ParamLocationQuery, *params.Search); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Sort != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort", runtime.ParamLocationQuery, *params.Sort); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Order != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order", runtime.ParamLocationQuery, *params.Order); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Limit != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Offset != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offset", runtime.ParamLocationQuery, *params.Offset); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewAttachTeamToPackRequest calls the generic AttachTeamToPack builder with application/json body
-func NewAttachTeamToPackRequest(server string, teamId string, body AttachTeamToPackJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewAttachTeamToPackRequestWithBody(server, teamId, "application/json", bodyReader)
-}
-
-// NewAttachTeamToPackRequestWithBody generates requests for AttachTeamToPack with any type of body
-func NewAttachTeamToPackRequestWithBody(server string, teamId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s/packs", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewPermitTeamPackRequest calls the generic PermitTeamPack builder with application/json body
-func NewPermitTeamPackRequest(server string, teamId string, body PermitTeamPackJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewPermitTeamPackRequestWithBody(server, teamId, "application/json", bodyReader)
-}
-
-// NewPermitTeamPackRequestWithBody generates requests for PermitTeamPack with any type of body
-func NewPermitTeamPackRequestWithBody(server string, teamId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s/packs", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewDeleteTeamFromUserRequest calls the generic DeleteTeamFromUser builder with application/json body
-func NewDeleteTeamFromUserRequest(server string, teamId string, body DeleteTeamFromUserJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewDeleteTeamFromUserRequestWithBody(server, teamId, "application/json", bodyReader)
-}
-
-// NewDeleteTeamFromUserRequestWithBody generates requests for DeleteTeamFromUser with any type of body
-func NewDeleteTeamFromUserRequestWithBody(server string, teamId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s/users", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewListTeamUsersRequest generates requests for ListTeamUsers
-func NewListTeamUsersRequest(server string, teamId string, params *ListTeamUsersParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s/users", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Search != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search", runtime.ParamLocationQuery, *params.Search); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Sort != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort", runtime.ParamLocationQuery, *params.Sort); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Order != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order", runtime.ParamLocationQuery, *params.Order); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Limit != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Offset != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offset", runtime.ParamLocationQuery, *params.Offset); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewAttachTeamToUserRequest calls the generic AttachTeamToUser builder with application/json body
-func NewAttachTeamToUserRequest(server string, teamId string, body AttachTeamToUserJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewAttachTeamToUserRequestWithBody(server, teamId, "application/json", bodyReader)
-}
-
-// NewAttachTeamToUserRequestWithBody generates requests for AttachTeamToUser with any type of body
-func NewAttachTeamToUserRequestWithBody(server string, teamId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s/users", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewPermitTeamUserRequest calls the generic PermitTeamUser builder with application/json body
-func NewPermitTeamUserRequest(server string, teamId string, body PermitTeamUserJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewPermitTeamUserRequestWithBody(server, teamId, "application/json", bodyReader)
-}
-
-// NewPermitTeamUserRequestWithBody generates requests for PermitTeamUser with any type of body
-func NewPermitTeamUserRequestWithBody(server string, teamId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "team_id", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/teams/%s/users", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -11331,12 +11345,12 @@ func NewCreateUserRequestWithBody(server string, contentType string, body io.Rea
 }
 
 // NewDeleteUserRequest generates requests for DeleteUser
-func NewDeleteUserRequest(server string, userId string) (*http.Request, error) {
+func NewDeleteUserRequest(server string, userID UserID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -11365,12 +11379,12 @@ func NewDeleteUserRequest(server string, userId string) (*http.Request, error) {
 }
 
 // NewShowUserRequest generates requests for ShowUser
-func NewShowUserRequest(server string, userId string) (*http.Request, error) {
+func NewShowUserRequest(server string, userID UserID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -11399,23 +11413,23 @@ func NewShowUserRequest(server string, userId string) (*http.Request, error) {
 }
 
 // NewUpdateUserRequest calls the generic UpdateUser builder with application/json body
-func NewUpdateUserRequest(server string, userId string, body UpdateUserJSONRequestBody) (*http.Request, error) {
+func NewUpdateUserRequest(server string, userID UserID, body UpdateUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateUserRequestWithBody(server, userId, "application/json", bodyReader)
+	return NewUpdateUserRequestWithBody(server, userID, "application/json", bodyReader)
 }
 
 // NewUpdateUserRequestWithBody generates requests for UpdateUser with any type of body
-func NewUpdateUserRequestWithBody(server string, userId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateUserRequestWithBody(server string, userID UserID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -11445,24 +11459,285 @@ func NewUpdateUserRequestWithBody(server string, userId string, contentType stri
 	return req, nil
 }
 
-// NewDeleteUserFromModRequest calls the generic DeleteUserFromMod builder with application/json body
-func NewDeleteUserFromModRequest(server string, userId string, body DeleteUserFromModJSONRequestBody) (*http.Request, error) {
+// NewDeleteUserFromGroupRequest calls the generic DeleteUserFromGroup builder with application/json body
+func NewDeleteUserFromGroupRequest(server string, userID UserID, body DeleteUserFromGroupJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewDeleteUserFromModRequestWithBody(server, userId, "application/json", bodyReader)
+	return NewDeleteUserFromGroupRequestWithBody(server, userID, "application/json", bodyReader)
 }
 
-// NewDeleteUserFromModRequestWithBody generates requests for DeleteUserFromMod with any type of body
-func NewDeleteUserFromModRequestWithBody(server string, userId string, contentType string, body io.Reader) (*http.Request, error) {
+// NewDeleteUserFromGroupRequestWithBody generates requests for DeleteUserFromGroup with any type of body
+func NewDeleteUserFromGroupRequestWithBody(server string, userID UserID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/users/%s/groups", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewListUserGroupsRequest generates requests for ListUserGroups
+func NewListUserGroupsRequest(server string, userID UserID, params *ListUserGroupsParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/users/%s/groups", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Search != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search", runtime.ParamLocationQuery, *params.Search); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Sort != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort", runtime.ParamLocationQuery, *params.Sort); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Order != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order", runtime.ParamLocationQuery, *params.Order); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offset", runtime.ParamLocationQuery, *params.Offset); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAttachUserToGroupRequest calls the generic AttachUserToGroup builder with application/json body
+func NewAttachUserToGroupRequest(server string, userID UserID, body AttachUserToGroupJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAttachUserToGroupRequestWithBody(server, userID, "application/json", bodyReader)
+}
+
+// NewAttachUserToGroupRequestWithBody generates requests for AttachUserToGroup with any type of body
+func NewAttachUserToGroupRequestWithBody(server string, userID UserID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/users/%s/groups", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPermitUserGroupRequest calls the generic PermitUserGroup builder with application/json body
+func NewPermitUserGroupRequest(server string, userID UserID, body PermitUserGroupJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPermitUserGroupRequestWithBody(server, userID, "application/json", bodyReader)
+}
+
+// NewPermitUserGroupRequestWithBody generates requests for PermitUserGroup with any type of body
+func NewPermitUserGroupRequestWithBody(server string, userID UserID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/users/%s/groups", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteUserFromModRequest calls the generic DeleteUserFromMod builder with application/json body
+func NewDeleteUserFromModRequest(server string, userID UserID, body DeleteUserFromModJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDeleteUserFromModRequestWithBody(server, userID, "application/json", bodyReader)
+}
+
+// NewDeleteUserFromModRequestWithBody generates requests for DeleteUserFromMod with any type of body
+func NewDeleteUserFromModRequestWithBody(server string, userID UserID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -11493,12 +11768,12 @@ func NewDeleteUserFromModRequestWithBody(server string, userId string, contentTy
 }
 
 // NewListUserModsRequest generates requests for ListUserMods
-func NewListUserModsRequest(server string, userId string, params *ListUserModsParams) (*http.Request, error) {
+func NewListUserModsRequest(server string, userID UserID, params *ListUserModsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -11613,23 +11888,23 @@ func NewListUserModsRequest(server string, userId string, params *ListUserModsPa
 }
 
 // NewAttachUserToModRequest calls the generic AttachUserToMod builder with application/json body
-func NewAttachUserToModRequest(server string, userId string, body AttachUserToModJSONRequestBody) (*http.Request, error) {
+func NewAttachUserToModRequest(server string, userID UserID, body AttachUserToModJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachUserToModRequestWithBody(server, userId, "application/json", bodyReader)
+	return NewAttachUserToModRequestWithBody(server, userID, "application/json", bodyReader)
 }
 
 // NewAttachUserToModRequestWithBody generates requests for AttachUserToMod with any type of body
-func NewAttachUserToModRequestWithBody(server string, userId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewAttachUserToModRequestWithBody(server string, userID UserID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -11660,23 +11935,23 @@ func NewAttachUserToModRequestWithBody(server string, userId string, contentType
 }
 
 // NewPermitUserModRequest calls the generic PermitUserMod builder with application/json body
-func NewPermitUserModRequest(server string, userId string, body PermitUserModJSONRequestBody) (*http.Request, error) {
+func NewPermitUserModRequest(server string, userID UserID, body PermitUserModJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPermitUserModRequestWithBody(server, userId, "application/json", bodyReader)
+	return NewPermitUserModRequestWithBody(server, userID, "application/json", bodyReader)
 }
 
 // NewPermitUserModRequestWithBody generates requests for PermitUserMod with any type of body
-func NewPermitUserModRequestWithBody(server string, userId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewPermitUserModRequestWithBody(server string, userID UserID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -11707,23 +11982,23 @@ func NewPermitUserModRequestWithBody(server string, userId string, contentType s
 }
 
 // NewDeleteUserFromPackRequest calls the generic DeleteUserFromPack builder with application/json body
-func NewDeleteUserFromPackRequest(server string, userId string, body DeleteUserFromPackJSONRequestBody) (*http.Request, error) {
+func NewDeleteUserFromPackRequest(server string, userID UserID, body DeleteUserFromPackJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewDeleteUserFromPackRequestWithBody(server, userId, "application/json", bodyReader)
+	return NewDeleteUserFromPackRequestWithBody(server, userID, "application/json", bodyReader)
 }
 
 // NewDeleteUserFromPackRequestWithBody generates requests for DeleteUserFromPack with any type of body
-func NewDeleteUserFromPackRequestWithBody(server string, userId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewDeleteUserFromPackRequestWithBody(server string, userID UserID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -11754,12 +12029,12 @@ func NewDeleteUserFromPackRequestWithBody(server string, userId string, contentT
 }
 
 // NewListUserPacksRequest generates requests for ListUserPacks
-func NewListUserPacksRequest(server string, userId string, params *ListUserPacksParams) (*http.Request, error) {
+func NewListUserPacksRequest(server string, userID UserID, params *ListUserPacksParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -11874,23 +12149,23 @@ func NewListUserPacksRequest(server string, userId string, params *ListUserPacks
 }
 
 // NewAttachUserToPackRequest calls the generic AttachUserToPack builder with application/json body
-func NewAttachUserToPackRequest(server string, userId string, body AttachUserToPackJSONRequestBody) (*http.Request, error) {
+func NewAttachUserToPackRequest(server string, userID UserID, body AttachUserToPackJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachUserToPackRequestWithBody(server, userId, "application/json", bodyReader)
+	return NewAttachUserToPackRequestWithBody(server, userID, "application/json", bodyReader)
 }
 
 // NewAttachUserToPackRequestWithBody generates requests for AttachUserToPack with any type of body
-func NewAttachUserToPackRequestWithBody(server string, userId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewAttachUserToPackRequestWithBody(server string, userID UserID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -11921,23 +12196,23 @@ func NewAttachUserToPackRequestWithBody(server string, userId string, contentTyp
 }
 
 // NewPermitUserPackRequest calls the generic PermitUserPack builder with application/json body
-func NewPermitUserPackRequest(server string, userId string, body PermitUserPackJSONRequestBody) (*http.Request, error) {
+func NewPermitUserPackRequest(server string, userID UserID, body PermitUserPackJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPermitUserPackRequestWithBody(server, userId, "application/json", bodyReader)
+	return NewPermitUserPackRequestWithBody(server, userID, "application/json", bodyReader)
 }
 
 // NewPermitUserPackRequestWithBody generates requests for PermitUserPack with any type of body
-func NewPermitUserPackRequestWithBody(server string, userId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewPermitUserPackRequestWithBody(server string, userID UserID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -11948,267 +12223,6 @@ func NewPermitUserPackRequestWithBody(server string, userId string, contentType 
 	}
 
 	operationPath := fmt.Sprintf("/users/%s/packs", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewDeleteUserFromTeamRequest calls the generic DeleteUserFromTeam builder with application/json body
-func NewDeleteUserFromTeamRequest(server string, userId string, body DeleteUserFromTeamJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewDeleteUserFromTeamRequestWithBody(server, userId, "application/json", bodyReader)
-}
-
-// NewDeleteUserFromTeamRequestWithBody generates requests for DeleteUserFromTeam with any type of body
-func NewDeleteUserFromTeamRequestWithBody(server string, userId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/users/%s/teams", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewListUserTeamsRequest generates requests for ListUserTeams
-func NewListUserTeamsRequest(server string, userId string, params *ListUserTeamsParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/users/%s/teams", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Search != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search", runtime.ParamLocationQuery, *params.Search); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Sort != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort", runtime.ParamLocationQuery, *params.Sort); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Order != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order", runtime.ParamLocationQuery, *params.Order); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Limit != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Offset != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offset", runtime.ParamLocationQuery, *params.Offset); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewAttachUserToTeamRequest calls the generic AttachUserToTeam builder with application/json body
-func NewAttachUserToTeamRequest(server string, userId string, body AttachUserToTeamJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewAttachUserToTeamRequestWithBody(server, userId, "application/json", bodyReader)
-}
-
-// NewAttachUserToTeamRequestWithBody generates requests for AttachUserToTeam with any type of body
-func NewAttachUserToTeamRequestWithBody(server string, userId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/users/%s/teams", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewPermitUserTeamRequest calls the generic PermitUserTeam builder with application/json body
-func NewPermitUserTeamRequest(server string, userId string, body PermitUserTeamJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewPermitUserTeamRequestWithBody(server, userId, "application/json", bodyReader)
-}
-
-// NewPermitUserTeamRequestWithBody generates requests for PermitUserTeam with any type of body
-func NewPermitUserTeamRequestWithBody(server string, userId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_id", runtime.ParamLocationPath, userId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/users/%s/teams", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -12276,8 +12290,13 @@ type ClientWithResponsesInterface interface {
 
 	LoginAuthWithResponse(ctx context.Context, body LoginAuthJSONRequestBody, reqEditors ...RequestEditorFn) (*LoginAuthResponse, error)
 
-	// ExternalProvidersWithResponse request
-	ExternalProvidersWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ExternalProvidersResponse, error)
+	// ListProvidersWithResponse request
+	ListProvidersWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListProvidersResponse, error)
+
+	// RedirectAuthWithBodyWithResponse request with any body
+	RedirectAuthWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RedirectAuthResponse, error)
+
+	RedirectAuthWithResponse(ctx context.Context, body RedirectAuthJSONRequestBody, reqEditors ...RequestEditorFn) (*RedirectAuthResponse, error)
 
 	// RefreshAuthWithResponse request
 	RefreshAuthWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*RefreshAuthResponse, error)
@@ -12285,11 +12304,11 @@ type ClientWithResponsesInterface interface {
 	// VerifyAuthWithResponse request
 	VerifyAuthWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*VerifyAuthResponse, error)
 
-	// ExternalCallbackWithResponse request
-	ExternalCallbackWithResponse(ctx context.Context, provider string, params *ExternalCallbackParams, reqEditors ...RequestEditorFn) (*ExternalCallbackResponse, error)
+	// CallbackProviderWithResponse request
+	CallbackProviderWithResponse(ctx context.Context, provider AuthProviderParam, params *CallbackProviderParams, reqEditors ...RequestEditorFn) (*CallbackProviderResponse, error)
 
-	// ExternalInitializeWithResponse request
-	ExternalInitializeWithResponse(ctx context.Context, provider string, params *ExternalInitializeParams, reqEditors ...RequestEditorFn) (*ExternalInitializeResponse, error)
+	// RequestProviderWithResponse request
+	RequestProviderWithResponse(ctx context.Context, provider AuthProviderParam, reqEditors ...RequestEditorFn) (*RequestProviderResponse, error)
 
 	// ListFabricsWithResponse request
 	ListFabricsWithResponse(ctx context.Context, params *ListFabricsParams, reqEditors ...RequestEditorFn) (*ListFabricsResponse, error)
@@ -12298,17 +12317,17 @@ type ClientWithResponsesInterface interface {
 	UpdateFabricWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UpdateFabricResponse, error)
 
 	// DeleteFabricFromBuildWithBodyWithResponse request with any body
-	DeleteFabricFromBuildWithBodyWithResponse(ctx context.Context, fabricId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteFabricFromBuildResponse, error)
+	DeleteFabricFromBuildWithBodyWithResponse(ctx context.Context, fabricID FabricID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteFabricFromBuildResponse, error)
 
-	DeleteFabricFromBuildWithResponse(ctx context.Context, fabricId string, body DeleteFabricFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteFabricFromBuildResponse, error)
+	DeleteFabricFromBuildWithResponse(ctx context.Context, fabricID FabricID, body DeleteFabricFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteFabricFromBuildResponse, error)
 
 	// ListFabricBuildsWithResponse request
-	ListFabricBuildsWithResponse(ctx context.Context, fabricId string, params *ListFabricBuildsParams, reqEditors ...RequestEditorFn) (*ListFabricBuildsResponse, error)
+	ListFabricBuildsWithResponse(ctx context.Context, fabricID FabricID, params *ListFabricBuildsParams, reqEditors ...RequestEditorFn) (*ListFabricBuildsResponse, error)
 
 	// AttachFabricToBuildWithBodyWithResponse request with any body
-	AttachFabricToBuildWithBodyWithResponse(ctx context.Context, fabricId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachFabricToBuildResponse, error)
+	AttachFabricToBuildWithBodyWithResponse(ctx context.Context, fabricID FabricID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachFabricToBuildResponse, error)
 
-	AttachFabricToBuildWithResponse(ctx context.Context, fabricId string, body AttachFabricToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachFabricToBuildResponse, error)
+	AttachFabricToBuildWithResponse(ctx context.Context, fabricID FabricID, body AttachFabricToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachFabricToBuildResponse, error)
 
 	// ListForgesWithResponse request
 	ListForgesWithResponse(ctx context.Context, params *ListForgesParams, reqEditors ...RequestEditorFn) (*ListForgesResponse, error)
@@ -12317,17 +12336,90 @@ type ClientWithResponsesInterface interface {
 	UpdateForgeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UpdateForgeResponse, error)
 
 	// DeleteForgeFromBuildWithBodyWithResponse request with any body
-	DeleteForgeFromBuildWithBodyWithResponse(ctx context.Context, forgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteForgeFromBuildResponse, error)
+	DeleteForgeFromBuildWithBodyWithResponse(ctx context.Context, forgeID ForgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteForgeFromBuildResponse, error)
 
-	DeleteForgeFromBuildWithResponse(ctx context.Context, forgeId string, body DeleteForgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteForgeFromBuildResponse, error)
+	DeleteForgeFromBuildWithResponse(ctx context.Context, forgeID ForgeID, body DeleteForgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteForgeFromBuildResponse, error)
 
 	// ListForgeBuildsWithResponse request
-	ListForgeBuildsWithResponse(ctx context.Context, forgeId string, params *ListForgeBuildsParams, reqEditors ...RequestEditorFn) (*ListForgeBuildsResponse, error)
+	ListForgeBuildsWithResponse(ctx context.Context, forgeID ForgeID, params *ListForgeBuildsParams, reqEditors ...RequestEditorFn) (*ListForgeBuildsResponse, error)
 
 	// AttachForgeToBuildWithBodyWithResponse request with any body
-	AttachForgeToBuildWithBodyWithResponse(ctx context.Context, forgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachForgeToBuildResponse, error)
+	AttachForgeToBuildWithBodyWithResponse(ctx context.Context, forgeID ForgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachForgeToBuildResponse, error)
 
-	AttachForgeToBuildWithResponse(ctx context.Context, forgeId string, body AttachForgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachForgeToBuildResponse, error)
+	AttachForgeToBuildWithResponse(ctx context.Context, forgeID ForgeID, body AttachForgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachForgeToBuildResponse, error)
+
+	// ListGroupsWithResponse request
+	ListGroupsWithResponse(ctx context.Context, params *ListGroupsParams, reqEditors ...RequestEditorFn) (*ListGroupsResponse, error)
+
+	// CreateGroupWithBodyWithResponse request with any body
+	CreateGroupWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateGroupResponse, error)
+
+	CreateGroupWithResponse(ctx context.Context, body CreateGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateGroupResponse, error)
+
+	// DeleteGroupWithResponse request
+	DeleteGroupWithResponse(ctx context.Context, groupID GroupID, reqEditors ...RequestEditorFn) (*DeleteGroupResponse, error)
+
+	// ShowGroupWithResponse request
+	ShowGroupWithResponse(ctx context.Context, groupID GroupID, reqEditors ...RequestEditorFn) (*ShowGroupResponse, error)
+
+	// UpdateGroupWithBodyWithResponse request with any body
+	UpdateGroupWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateGroupResponse, error)
+
+	UpdateGroupWithResponse(ctx context.Context, groupID GroupID, body UpdateGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateGroupResponse, error)
+
+	// DeleteGroupFromModWithBodyWithResponse request with any body
+	DeleteGroupFromModWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteGroupFromModResponse, error)
+
+	DeleteGroupFromModWithResponse(ctx context.Context, groupID GroupID, body DeleteGroupFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteGroupFromModResponse, error)
+
+	// ListGroupModsWithResponse request
+	ListGroupModsWithResponse(ctx context.Context, groupID GroupID, params *ListGroupModsParams, reqEditors ...RequestEditorFn) (*ListGroupModsResponse, error)
+
+	// AttachGroupToModWithBodyWithResponse request with any body
+	AttachGroupToModWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachGroupToModResponse, error)
+
+	AttachGroupToModWithResponse(ctx context.Context, groupID GroupID, body AttachGroupToModJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachGroupToModResponse, error)
+
+	// PermitGroupModWithBodyWithResponse request with any body
+	PermitGroupModWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitGroupModResponse, error)
+
+	PermitGroupModWithResponse(ctx context.Context, groupID GroupID, body PermitGroupModJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitGroupModResponse, error)
+
+	// DeleteGroupFromPackWithBodyWithResponse request with any body
+	DeleteGroupFromPackWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteGroupFromPackResponse, error)
+
+	DeleteGroupFromPackWithResponse(ctx context.Context, groupID GroupID, body DeleteGroupFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteGroupFromPackResponse, error)
+
+	// ListGroupPacksWithResponse request
+	ListGroupPacksWithResponse(ctx context.Context, groupID GroupID, params *ListGroupPacksParams, reqEditors ...RequestEditorFn) (*ListGroupPacksResponse, error)
+
+	// AttachGroupToPackWithBodyWithResponse request with any body
+	AttachGroupToPackWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachGroupToPackResponse, error)
+
+	AttachGroupToPackWithResponse(ctx context.Context, groupID GroupID, body AttachGroupToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachGroupToPackResponse, error)
+
+	// PermitGroupPackWithBodyWithResponse request with any body
+	PermitGroupPackWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitGroupPackResponse, error)
+
+	PermitGroupPackWithResponse(ctx context.Context, groupID GroupID, body PermitGroupPackJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitGroupPackResponse, error)
+
+	// DeleteGroupFromUserWithBodyWithResponse request with any body
+	DeleteGroupFromUserWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteGroupFromUserResponse, error)
+
+	DeleteGroupFromUserWithResponse(ctx context.Context, groupID GroupID, body DeleteGroupFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteGroupFromUserResponse, error)
+
+	// ListGroupUsersWithResponse request
+	ListGroupUsersWithResponse(ctx context.Context, groupID GroupID, params *ListGroupUsersParams, reqEditors ...RequestEditorFn) (*ListGroupUsersResponse, error)
+
+	// AttachGroupToUserWithBodyWithResponse request with any body
+	AttachGroupToUserWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachGroupToUserResponse, error)
+
+	AttachGroupToUserWithResponse(ctx context.Context, groupID GroupID, body AttachGroupToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachGroupToUserResponse, error)
+
+	// PermitGroupUserWithBodyWithResponse request with any body
+	PermitGroupUserWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitGroupUserResponse, error)
+
+	PermitGroupUserWithResponse(ctx context.Context, groupID GroupID, body PermitGroupUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitGroupUserResponse, error)
 
 	// ListMinecraftsWithResponse request
 	ListMinecraftsWithResponse(ctx context.Context, params *ListMinecraftsParams, reqEditors ...RequestEditorFn) (*ListMinecraftsResponse, error)
@@ -12336,17 +12428,17 @@ type ClientWithResponsesInterface interface {
 	UpdateMinecraftWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UpdateMinecraftResponse, error)
 
 	// DeleteMinecraftFromBuildWithBodyWithResponse request with any body
-	DeleteMinecraftFromBuildWithBodyWithResponse(ctx context.Context, minecraftId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteMinecraftFromBuildResponse, error)
+	DeleteMinecraftFromBuildWithBodyWithResponse(ctx context.Context, minecraftID MinecraftID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteMinecraftFromBuildResponse, error)
 
-	DeleteMinecraftFromBuildWithResponse(ctx context.Context, minecraftId string, body DeleteMinecraftFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteMinecraftFromBuildResponse, error)
+	DeleteMinecraftFromBuildWithResponse(ctx context.Context, minecraftID MinecraftID, body DeleteMinecraftFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteMinecraftFromBuildResponse, error)
 
 	// ListMinecraftBuildsWithResponse request
-	ListMinecraftBuildsWithResponse(ctx context.Context, minecraftId string, params *ListMinecraftBuildsParams, reqEditors ...RequestEditorFn) (*ListMinecraftBuildsResponse, error)
+	ListMinecraftBuildsWithResponse(ctx context.Context, minecraftID MinecraftID, params *ListMinecraftBuildsParams, reqEditors ...RequestEditorFn) (*ListMinecraftBuildsResponse, error)
 
 	// AttachMinecraftToBuildWithBodyWithResponse request with any body
-	AttachMinecraftToBuildWithBodyWithResponse(ctx context.Context, minecraftId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachMinecraftToBuildResponse, error)
+	AttachMinecraftToBuildWithBodyWithResponse(ctx context.Context, minecraftID MinecraftID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachMinecraftToBuildResponse, error)
 
-	AttachMinecraftToBuildWithResponse(ctx context.Context, minecraftId string, body AttachMinecraftToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachMinecraftToBuildResponse, error)
+	AttachMinecraftToBuildWithResponse(ctx context.Context, minecraftID MinecraftID, body AttachMinecraftToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachMinecraftToBuildResponse, error)
 
 	// ListModsWithResponse request
 	ListModsWithResponse(ctx context.Context, params *ListModsParams, reqEditors ...RequestEditorFn) (*ListModsResponse, error)
@@ -12357,83 +12449,89 @@ type ClientWithResponsesInterface interface {
 	CreateModWithResponse(ctx context.Context, body CreateModJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateModResponse, error)
 
 	// DeleteModWithResponse request
-	DeleteModWithResponse(ctx context.Context, modId string, reqEditors ...RequestEditorFn) (*DeleteModResponse, error)
+	DeleteModWithResponse(ctx context.Context, modID ModID, reqEditors ...RequestEditorFn) (*DeleteModResponse, error)
 
 	// ShowModWithResponse request
-	ShowModWithResponse(ctx context.Context, modId string, reqEditors ...RequestEditorFn) (*ShowModResponse, error)
+	ShowModWithResponse(ctx context.Context, modID ModID, reqEditors ...RequestEditorFn) (*ShowModResponse, error)
 
 	// UpdateModWithBodyWithResponse request with any body
-	UpdateModWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateModResponse, error)
+	UpdateModWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateModResponse, error)
 
-	UpdateModWithResponse(ctx context.Context, modId string, body UpdateModJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateModResponse, error)
+	UpdateModWithResponse(ctx context.Context, modID ModID, body UpdateModJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateModResponse, error)
 
-	// DeleteModFromTeamWithBodyWithResponse request with any body
-	DeleteModFromTeamWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteModFromTeamResponse, error)
+	// DeleteModAvatarWithResponse request
+	DeleteModAvatarWithResponse(ctx context.Context, modID ModID, reqEditors ...RequestEditorFn) (*DeleteModAvatarResponse, error)
 
-	DeleteModFromTeamWithResponse(ctx context.Context, modId string, body DeleteModFromTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteModFromTeamResponse, error)
+	// CreateModAvatarWithBodyWithResponse request with any body
+	CreateModAvatarWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateModAvatarResponse, error)
 
-	// ListModTeamsWithResponse request
-	ListModTeamsWithResponse(ctx context.Context, modId string, params *ListModTeamsParams, reqEditors ...RequestEditorFn) (*ListModTeamsResponse, error)
+	// DeleteModFromGroupWithBodyWithResponse request with any body
+	DeleteModFromGroupWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteModFromGroupResponse, error)
 
-	// AttachModToTeamWithBodyWithResponse request with any body
-	AttachModToTeamWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachModToTeamResponse, error)
+	DeleteModFromGroupWithResponse(ctx context.Context, modID ModID, body DeleteModFromGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteModFromGroupResponse, error)
 
-	AttachModToTeamWithResponse(ctx context.Context, modId string, body AttachModToTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachModToTeamResponse, error)
+	// ListModGroupsWithResponse request
+	ListModGroupsWithResponse(ctx context.Context, modID ModID, params *ListModGroupsParams, reqEditors ...RequestEditorFn) (*ListModGroupsResponse, error)
 
-	// PermitModTeamWithBodyWithResponse request with any body
-	PermitModTeamWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitModTeamResponse, error)
+	// AttachModToGroupWithBodyWithResponse request with any body
+	AttachModToGroupWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachModToGroupResponse, error)
 
-	PermitModTeamWithResponse(ctx context.Context, modId string, body PermitModTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitModTeamResponse, error)
+	AttachModToGroupWithResponse(ctx context.Context, modID ModID, body AttachModToGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachModToGroupResponse, error)
+
+	// PermitModGroupWithBodyWithResponse request with any body
+	PermitModGroupWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitModGroupResponse, error)
+
+	PermitModGroupWithResponse(ctx context.Context, modID ModID, body PermitModGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitModGroupResponse, error)
 
 	// DeleteModFromUserWithBodyWithResponse request with any body
-	DeleteModFromUserWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteModFromUserResponse, error)
+	DeleteModFromUserWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteModFromUserResponse, error)
 
-	DeleteModFromUserWithResponse(ctx context.Context, modId string, body DeleteModFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteModFromUserResponse, error)
+	DeleteModFromUserWithResponse(ctx context.Context, modID ModID, body DeleteModFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteModFromUserResponse, error)
 
 	// ListModUsersWithResponse request
-	ListModUsersWithResponse(ctx context.Context, modId string, params *ListModUsersParams, reqEditors ...RequestEditorFn) (*ListModUsersResponse, error)
+	ListModUsersWithResponse(ctx context.Context, modID ModID, params *ListModUsersParams, reqEditors ...RequestEditorFn) (*ListModUsersResponse, error)
 
 	// AttachModToUserWithBodyWithResponse request with any body
-	AttachModToUserWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachModToUserResponse, error)
+	AttachModToUserWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachModToUserResponse, error)
 
-	AttachModToUserWithResponse(ctx context.Context, modId string, body AttachModToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachModToUserResponse, error)
+	AttachModToUserWithResponse(ctx context.Context, modID ModID, body AttachModToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachModToUserResponse, error)
 
 	// PermitModUserWithBodyWithResponse request with any body
-	PermitModUserWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitModUserResponse, error)
+	PermitModUserWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitModUserResponse, error)
 
-	PermitModUserWithResponse(ctx context.Context, modId string, body PermitModUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitModUserResponse, error)
+	PermitModUserWithResponse(ctx context.Context, modID ModID, body PermitModUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitModUserResponse, error)
 
 	// ListVersionsWithResponse request
-	ListVersionsWithResponse(ctx context.Context, modId string, params *ListVersionsParams, reqEditors ...RequestEditorFn) (*ListVersionsResponse, error)
+	ListVersionsWithResponse(ctx context.Context, modID ModID, params *ListVersionsParams, reqEditors ...RequestEditorFn) (*ListVersionsResponse, error)
 
 	// CreateVersionWithBodyWithResponse request with any body
-	CreateVersionWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateVersionResponse, error)
+	CreateVersionWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateVersionResponse, error)
 
-	CreateVersionWithResponse(ctx context.Context, modId string, body CreateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateVersionResponse, error)
+	CreateVersionWithResponse(ctx context.Context, modID ModID, body CreateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateVersionResponse, error)
 
 	// DeleteVersionWithResponse request
-	DeleteVersionWithResponse(ctx context.Context, modId string, versionId string, reqEditors ...RequestEditorFn) (*DeleteVersionResponse, error)
+	DeleteVersionWithResponse(ctx context.Context, modID ModID, versionID VersionID, reqEditors ...RequestEditorFn) (*DeleteVersionResponse, error)
 
 	// ShowVersionWithResponse request
-	ShowVersionWithResponse(ctx context.Context, modId string, versionId string, reqEditors ...RequestEditorFn) (*ShowVersionResponse, error)
+	ShowVersionWithResponse(ctx context.Context, modID ModID, versionID VersionID, reqEditors ...RequestEditorFn) (*ShowVersionResponse, error)
 
 	// UpdateVersionWithBodyWithResponse request with any body
-	UpdateVersionWithBodyWithResponse(ctx context.Context, modId string, versionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateVersionResponse, error)
+	UpdateVersionWithBodyWithResponse(ctx context.Context, modID ModID, versionID VersionID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateVersionResponse, error)
 
-	UpdateVersionWithResponse(ctx context.Context, modId string, versionId string, body UpdateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateVersionResponse, error)
+	UpdateVersionWithResponse(ctx context.Context, modID ModID, versionID VersionID, body UpdateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateVersionResponse, error)
 
 	// DeleteVersionFromBuildWithBodyWithResponse request with any body
-	DeleteVersionFromBuildWithBodyWithResponse(ctx context.Context, modId string, versionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteVersionFromBuildResponse, error)
+	DeleteVersionFromBuildWithBodyWithResponse(ctx context.Context, modID ModID, versionID VersionID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteVersionFromBuildResponse, error)
 
-	DeleteVersionFromBuildWithResponse(ctx context.Context, modId string, versionId string, body DeleteVersionFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteVersionFromBuildResponse, error)
+	DeleteVersionFromBuildWithResponse(ctx context.Context, modID ModID, versionID VersionID, body DeleteVersionFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteVersionFromBuildResponse, error)
 
 	// ListVersionBuildsWithResponse request
-	ListVersionBuildsWithResponse(ctx context.Context, modId string, versionId string, params *ListVersionBuildsParams, reqEditors ...RequestEditorFn) (*ListVersionBuildsResponse, error)
+	ListVersionBuildsWithResponse(ctx context.Context, modID ModID, versionID VersionID, params *ListVersionBuildsParams, reqEditors ...RequestEditorFn) (*ListVersionBuildsResponse, error)
 
 	// AttachVersionToBuildWithBodyWithResponse request with any body
-	AttachVersionToBuildWithBodyWithResponse(ctx context.Context, modId string, versionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachVersionToBuildResponse, error)
+	AttachVersionToBuildWithBodyWithResponse(ctx context.Context, modID ModID, versionID VersionID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachVersionToBuildResponse, error)
 
-	AttachVersionToBuildWithResponse(ctx context.Context, modId string, versionId string, body AttachVersionToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachVersionToBuildResponse, error)
+	AttachVersionToBuildWithResponse(ctx context.Context, modID ModID, versionID VersionID, body AttachVersionToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachVersionToBuildResponse, error)
 
 	// ListNeoforgesWithResponse request
 	ListNeoforgesWithResponse(ctx context.Context, params *ListNeoforgesParams, reqEditors ...RequestEditorFn) (*ListNeoforgesResponse, error)
@@ -12442,17 +12540,17 @@ type ClientWithResponsesInterface interface {
 	UpdateNeoforgeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UpdateNeoforgeResponse, error)
 
 	// DeleteNeoforgeFromBuildWithBodyWithResponse request with any body
-	DeleteNeoforgeFromBuildWithBodyWithResponse(ctx context.Context, neoforgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteNeoforgeFromBuildResponse, error)
+	DeleteNeoforgeFromBuildWithBodyWithResponse(ctx context.Context, neoforgeID NeoforgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteNeoforgeFromBuildResponse, error)
 
-	DeleteNeoforgeFromBuildWithResponse(ctx context.Context, neoforgeId string, body DeleteNeoforgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteNeoforgeFromBuildResponse, error)
+	DeleteNeoforgeFromBuildWithResponse(ctx context.Context, neoforgeID NeoforgeID, body DeleteNeoforgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteNeoforgeFromBuildResponse, error)
 
 	// ListNeoforgeBuildsWithResponse request
-	ListNeoforgeBuildsWithResponse(ctx context.Context, neoforgeId string, params *ListNeoforgeBuildsParams, reqEditors ...RequestEditorFn) (*ListNeoforgeBuildsResponse, error)
+	ListNeoforgeBuildsWithResponse(ctx context.Context, neoforgeID NeoforgeID, params *ListNeoforgeBuildsParams, reqEditors ...RequestEditorFn) (*ListNeoforgeBuildsResponse, error)
 
 	// AttachNeoforgeToBuildWithBodyWithResponse request with any body
-	AttachNeoforgeToBuildWithBodyWithResponse(ctx context.Context, neoforgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachNeoforgeToBuildResponse, error)
+	AttachNeoforgeToBuildWithBodyWithResponse(ctx context.Context, neoforgeID NeoforgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachNeoforgeToBuildResponse, error)
 
-	AttachNeoforgeToBuildWithResponse(ctx context.Context, neoforgeId string, body AttachNeoforgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachNeoforgeToBuildResponse, error)
+	AttachNeoforgeToBuildWithResponse(ctx context.Context, neoforgeID NeoforgeID, body AttachNeoforgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachNeoforgeToBuildResponse, error)
 
 	// ListPacksWithResponse request
 	ListPacksWithResponse(ctx context.Context, params *ListPacksParams, reqEditors ...RequestEditorFn) (*ListPacksResponse, error)
@@ -12463,83 +12561,89 @@ type ClientWithResponsesInterface interface {
 	CreatePackWithResponse(ctx context.Context, body CreatePackJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePackResponse, error)
 
 	// DeletePackWithResponse request
-	DeletePackWithResponse(ctx context.Context, packId string, reqEditors ...RequestEditorFn) (*DeletePackResponse, error)
+	DeletePackWithResponse(ctx context.Context, packID PackID, reqEditors ...RequestEditorFn) (*DeletePackResponse, error)
 
 	// ShowPackWithResponse request
-	ShowPackWithResponse(ctx context.Context, packId string, reqEditors ...RequestEditorFn) (*ShowPackResponse, error)
+	ShowPackWithResponse(ctx context.Context, packID PackID, reqEditors ...RequestEditorFn) (*ShowPackResponse, error)
 
 	// UpdatePackWithBodyWithResponse request with any body
-	UpdatePackWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePackResponse, error)
+	UpdatePackWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePackResponse, error)
 
-	UpdatePackWithResponse(ctx context.Context, packId string, body UpdatePackJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePackResponse, error)
+	UpdatePackWithResponse(ctx context.Context, packID PackID, body UpdatePackJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePackResponse, error)
+
+	// DeletePackAvatarWithResponse request
+	DeletePackAvatarWithResponse(ctx context.Context, packID PackID, reqEditors ...RequestEditorFn) (*DeletePackAvatarResponse, error)
+
+	// CreatePackAvatarWithBodyWithResponse request with any body
+	CreatePackAvatarWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePackAvatarResponse, error)
 
 	// ListBuildsWithResponse request
-	ListBuildsWithResponse(ctx context.Context, packId string, params *ListBuildsParams, reqEditors ...RequestEditorFn) (*ListBuildsResponse, error)
+	ListBuildsWithResponse(ctx context.Context, packID PackID, params *ListBuildsParams, reqEditors ...RequestEditorFn) (*ListBuildsResponse, error)
 
 	// CreateBuildWithBodyWithResponse request with any body
-	CreateBuildWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateBuildResponse, error)
+	CreateBuildWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateBuildResponse, error)
 
-	CreateBuildWithResponse(ctx context.Context, packId string, body CreateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateBuildResponse, error)
+	CreateBuildWithResponse(ctx context.Context, packID PackID, body CreateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateBuildResponse, error)
 
 	// DeleteBuildWithResponse request
-	DeleteBuildWithResponse(ctx context.Context, packId string, buildId string, reqEditors ...RequestEditorFn) (*DeleteBuildResponse, error)
+	DeleteBuildWithResponse(ctx context.Context, packID PackID, buildID BuildID, reqEditors ...RequestEditorFn) (*DeleteBuildResponse, error)
 
 	// ShowBuildWithResponse request
-	ShowBuildWithResponse(ctx context.Context, packId string, buildId string, reqEditors ...RequestEditorFn) (*ShowBuildResponse, error)
+	ShowBuildWithResponse(ctx context.Context, packID PackID, buildID BuildID, reqEditors ...RequestEditorFn) (*ShowBuildResponse, error)
 
 	// UpdateBuildWithBodyWithResponse request with any body
-	UpdateBuildWithBodyWithResponse(ctx context.Context, packId string, buildId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateBuildResponse, error)
+	UpdateBuildWithBodyWithResponse(ctx context.Context, packID PackID, buildID BuildID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateBuildResponse, error)
 
-	UpdateBuildWithResponse(ctx context.Context, packId string, buildId string, body UpdateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateBuildResponse, error)
+	UpdateBuildWithResponse(ctx context.Context, packID PackID, buildID BuildID, body UpdateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateBuildResponse, error)
 
 	// DeleteBuildFromVersionWithBodyWithResponse request with any body
-	DeleteBuildFromVersionWithBodyWithResponse(ctx context.Context, packId string, buildId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteBuildFromVersionResponse, error)
+	DeleteBuildFromVersionWithBodyWithResponse(ctx context.Context, packID PackID, buildID BuildID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteBuildFromVersionResponse, error)
 
-	DeleteBuildFromVersionWithResponse(ctx context.Context, packId string, buildId string, body DeleteBuildFromVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteBuildFromVersionResponse, error)
+	DeleteBuildFromVersionWithResponse(ctx context.Context, packID PackID, buildID BuildID, body DeleteBuildFromVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteBuildFromVersionResponse, error)
 
 	// ListBuildVersionsWithResponse request
-	ListBuildVersionsWithResponse(ctx context.Context, packId string, buildId string, params *ListBuildVersionsParams, reqEditors ...RequestEditorFn) (*ListBuildVersionsResponse, error)
+	ListBuildVersionsWithResponse(ctx context.Context, packID PackID, buildID BuildID, params *ListBuildVersionsParams, reqEditors ...RequestEditorFn) (*ListBuildVersionsResponse, error)
 
 	// AttachBuildToVersionWithBodyWithResponse request with any body
-	AttachBuildToVersionWithBodyWithResponse(ctx context.Context, packId string, buildId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachBuildToVersionResponse, error)
+	AttachBuildToVersionWithBodyWithResponse(ctx context.Context, packID PackID, buildID BuildID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachBuildToVersionResponse, error)
 
-	AttachBuildToVersionWithResponse(ctx context.Context, packId string, buildId string, body AttachBuildToVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachBuildToVersionResponse, error)
+	AttachBuildToVersionWithResponse(ctx context.Context, packID PackID, buildID BuildID, body AttachBuildToVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachBuildToVersionResponse, error)
 
-	// DeletePackFromTeamWithBodyWithResponse request with any body
-	DeletePackFromTeamWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeletePackFromTeamResponse, error)
+	// DeletePackFromGroupWithBodyWithResponse request with any body
+	DeletePackFromGroupWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeletePackFromGroupResponse, error)
 
-	DeletePackFromTeamWithResponse(ctx context.Context, packId string, body DeletePackFromTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*DeletePackFromTeamResponse, error)
+	DeletePackFromGroupWithResponse(ctx context.Context, packID PackID, body DeletePackFromGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*DeletePackFromGroupResponse, error)
 
-	// ListPackTeamsWithResponse request
-	ListPackTeamsWithResponse(ctx context.Context, packId string, params *ListPackTeamsParams, reqEditors ...RequestEditorFn) (*ListPackTeamsResponse, error)
+	// ListPackGroupsWithResponse request
+	ListPackGroupsWithResponse(ctx context.Context, packID PackID, params *ListPackGroupsParams, reqEditors ...RequestEditorFn) (*ListPackGroupsResponse, error)
 
-	// AttachPackToTeamWithBodyWithResponse request with any body
-	AttachPackToTeamWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachPackToTeamResponse, error)
+	// AttachPackToGroupWithBodyWithResponse request with any body
+	AttachPackToGroupWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachPackToGroupResponse, error)
 
-	AttachPackToTeamWithResponse(ctx context.Context, packId string, body AttachPackToTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachPackToTeamResponse, error)
+	AttachPackToGroupWithResponse(ctx context.Context, packID PackID, body AttachPackToGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachPackToGroupResponse, error)
 
-	// PermitPackTeamWithBodyWithResponse request with any body
-	PermitPackTeamWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitPackTeamResponse, error)
+	// PermitPackGroupWithBodyWithResponse request with any body
+	PermitPackGroupWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitPackGroupResponse, error)
 
-	PermitPackTeamWithResponse(ctx context.Context, packId string, body PermitPackTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitPackTeamResponse, error)
+	PermitPackGroupWithResponse(ctx context.Context, packID PackID, body PermitPackGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitPackGroupResponse, error)
 
 	// DeletePackFromUserWithBodyWithResponse request with any body
-	DeletePackFromUserWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeletePackFromUserResponse, error)
+	DeletePackFromUserWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeletePackFromUserResponse, error)
 
-	DeletePackFromUserWithResponse(ctx context.Context, packId string, body DeletePackFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DeletePackFromUserResponse, error)
+	DeletePackFromUserWithResponse(ctx context.Context, packID PackID, body DeletePackFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DeletePackFromUserResponse, error)
 
 	// ListPackUsersWithResponse request
-	ListPackUsersWithResponse(ctx context.Context, packId string, params *ListPackUsersParams, reqEditors ...RequestEditorFn) (*ListPackUsersResponse, error)
+	ListPackUsersWithResponse(ctx context.Context, packID PackID, params *ListPackUsersParams, reqEditors ...RequestEditorFn) (*ListPackUsersResponse, error)
 
 	// AttachPackToUserWithBodyWithResponse request with any body
-	AttachPackToUserWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachPackToUserResponse, error)
+	AttachPackToUserWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachPackToUserResponse, error)
 
-	AttachPackToUserWithResponse(ctx context.Context, packId string, body AttachPackToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachPackToUserResponse, error)
+	AttachPackToUserWithResponse(ctx context.Context, packID PackID, body AttachPackToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachPackToUserResponse, error)
 
 	// PermitPackUserWithBodyWithResponse request with any body
-	PermitPackUserWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitPackUserResponse, error)
+	PermitPackUserWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitPackUserResponse, error)
 
-	PermitPackUserWithResponse(ctx context.Context, packId string, body PermitPackUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitPackUserResponse, error)
+	PermitPackUserWithResponse(ctx context.Context, packID PackID, body PermitPackUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitPackUserResponse, error)
 
 	// ShowProfileWithResponse request
 	ShowProfileWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ShowProfileResponse, error)
@@ -12559,90 +12663,17 @@ type ClientWithResponsesInterface interface {
 	UpdateQuiltWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UpdateQuiltResponse, error)
 
 	// DeleteQuiltFromBuildWithBodyWithResponse request with any body
-	DeleteQuiltFromBuildWithBodyWithResponse(ctx context.Context, quiltId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteQuiltFromBuildResponse, error)
+	DeleteQuiltFromBuildWithBodyWithResponse(ctx context.Context, quiltID QuiltID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteQuiltFromBuildResponse, error)
 
-	DeleteQuiltFromBuildWithResponse(ctx context.Context, quiltId string, body DeleteQuiltFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteQuiltFromBuildResponse, error)
+	DeleteQuiltFromBuildWithResponse(ctx context.Context, quiltID QuiltID, body DeleteQuiltFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteQuiltFromBuildResponse, error)
 
 	// ListQuiltBuildsWithResponse request
-	ListQuiltBuildsWithResponse(ctx context.Context, quiltId string, params *ListQuiltBuildsParams, reqEditors ...RequestEditorFn) (*ListQuiltBuildsResponse, error)
+	ListQuiltBuildsWithResponse(ctx context.Context, quiltID QuiltID, params *ListQuiltBuildsParams, reqEditors ...RequestEditorFn) (*ListQuiltBuildsResponse, error)
 
 	// AttachQuiltToBuildWithBodyWithResponse request with any body
-	AttachQuiltToBuildWithBodyWithResponse(ctx context.Context, quiltId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachQuiltToBuildResponse, error)
+	AttachQuiltToBuildWithBodyWithResponse(ctx context.Context, quiltID QuiltID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachQuiltToBuildResponse, error)
 
-	AttachQuiltToBuildWithResponse(ctx context.Context, quiltId string, body AttachQuiltToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachQuiltToBuildResponse, error)
-
-	// ListTeamsWithResponse request
-	ListTeamsWithResponse(ctx context.Context, params *ListTeamsParams, reqEditors ...RequestEditorFn) (*ListTeamsResponse, error)
-
-	// CreateTeamWithBodyWithResponse request with any body
-	CreateTeamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateTeamResponse, error)
-
-	CreateTeamWithResponse(ctx context.Context, body CreateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateTeamResponse, error)
-
-	// DeleteTeamWithResponse request
-	DeleteTeamWithResponse(ctx context.Context, teamId string, reqEditors ...RequestEditorFn) (*DeleteTeamResponse, error)
-
-	// ShowTeamWithResponse request
-	ShowTeamWithResponse(ctx context.Context, teamId string, reqEditors ...RequestEditorFn) (*ShowTeamResponse, error)
-
-	// UpdateTeamWithBodyWithResponse request with any body
-	UpdateTeamWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateTeamResponse, error)
-
-	UpdateTeamWithResponse(ctx context.Context, teamId string, body UpdateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateTeamResponse, error)
-
-	// DeleteTeamFromModWithBodyWithResponse request with any body
-	DeleteTeamFromModWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteTeamFromModResponse, error)
-
-	DeleteTeamFromModWithResponse(ctx context.Context, teamId string, body DeleteTeamFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteTeamFromModResponse, error)
-
-	// ListTeamModsWithResponse request
-	ListTeamModsWithResponse(ctx context.Context, teamId string, params *ListTeamModsParams, reqEditors ...RequestEditorFn) (*ListTeamModsResponse, error)
-
-	// AttachTeamToModWithBodyWithResponse request with any body
-	AttachTeamToModWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachTeamToModResponse, error)
-
-	AttachTeamToModWithResponse(ctx context.Context, teamId string, body AttachTeamToModJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachTeamToModResponse, error)
-
-	// PermitTeamModWithBodyWithResponse request with any body
-	PermitTeamModWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitTeamModResponse, error)
-
-	PermitTeamModWithResponse(ctx context.Context, teamId string, body PermitTeamModJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitTeamModResponse, error)
-
-	// DeleteTeamFromPackWithBodyWithResponse request with any body
-	DeleteTeamFromPackWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteTeamFromPackResponse, error)
-
-	DeleteTeamFromPackWithResponse(ctx context.Context, teamId string, body DeleteTeamFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteTeamFromPackResponse, error)
-
-	// ListTeamPacksWithResponse request
-	ListTeamPacksWithResponse(ctx context.Context, teamId string, params *ListTeamPacksParams, reqEditors ...RequestEditorFn) (*ListTeamPacksResponse, error)
-
-	// AttachTeamToPackWithBodyWithResponse request with any body
-	AttachTeamToPackWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachTeamToPackResponse, error)
-
-	AttachTeamToPackWithResponse(ctx context.Context, teamId string, body AttachTeamToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachTeamToPackResponse, error)
-
-	// PermitTeamPackWithBodyWithResponse request with any body
-	PermitTeamPackWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitTeamPackResponse, error)
-
-	PermitTeamPackWithResponse(ctx context.Context, teamId string, body PermitTeamPackJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitTeamPackResponse, error)
-
-	// DeleteTeamFromUserWithBodyWithResponse request with any body
-	DeleteTeamFromUserWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteTeamFromUserResponse, error)
-
-	DeleteTeamFromUserWithResponse(ctx context.Context, teamId string, body DeleteTeamFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteTeamFromUserResponse, error)
-
-	// ListTeamUsersWithResponse request
-	ListTeamUsersWithResponse(ctx context.Context, teamId string, params *ListTeamUsersParams, reqEditors ...RequestEditorFn) (*ListTeamUsersResponse, error)
-
-	// AttachTeamToUserWithBodyWithResponse request with any body
-	AttachTeamToUserWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachTeamToUserResponse, error)
-
-	AttachTeamToUserWithResponse(ctx context.Context, teamId string, body AttachTeamToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachTeamToUserResponse, error)
-
-	// PermitTeamUserWithBodyWithResponse request with any body
-	PermitTeamUserWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitTeamUserResponse, error)
-
-	PermitTeamUserWithResponse(ctx context.Context, teamId string, body PermitTeamUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitTeamUserResponse, error)
+	AttachQuiltToBuildWithResponse(ctx context.Context, quiltID QuiltID, body AttachQuiltToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachQuiltToBuildResponse, error)
 
 	// ListUsersWithResponse request
 	ListUsersWithResponse(ctx context.Context, params *ListUsersParams, reqEditors ...RequestEditorFn) (*ListUsersResponse, error)
@@ -12653,78 +12684,78 @@ type ClientWithResponsesInterface interface {
 	CreateUserWithResponse(ctx context.Context, body CreateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateUserResponse, error)
 
 	// DeleteUserWithResponse request
-	DeleteUserWithResponse(ctx context.Context, userId string, reqEditors ...RequestEditorFn) (*DeleteUserResponse, error)
+	DeleteUserWithResponse(ctx context.Context, userID UserID, reqEditors ...RequestEditorFn) (*DeleteUserResponse, error)
 
 	// ShowUserWithResponse request
-	ShowUserWithResponse(ctx context.Context, userId string, reqEditors ...RequestEditorFn) (*ShowUserResponse, error)
+	ShowUserWithResponse(ctx context.Context, userID UserID, reqEditors ...RequestEditorFn) (*ShowUserResponse, error)
 
 	// UpdateUserWithBodyWithResponse request with any body
-	UpdateUserWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateUserResponse, error)
+	UpdateUserWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateUserResponse, error)
 
-	UpdateUserWithResponse(ctx context.Context, userId string, body UpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateUserResponse, error)
+	UpdateUserWithResponse(ctx context.Context, userID UserID, body UpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateUserResponse, error)
+
+	// DeleteUserFromGroupWithBodyWithResponse request with any body
+	DeleteUserFromGroupWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteUserFromGroupResponse, error)
+
+	DeleteUserFromGroupWithResponse(ctx context.Context, userID UserID, body DeleteUserFromGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteUserFromGroupResponse, error)
+
+	// ListUserGroupsWithResponse request
+	ListUserGroupsWithResponse(ctx context.Context, userID UserID, params *ListUserGroupsParams, reqEditors ...RequestEditorFn) (*ListUserGroupsResponse, error)
+
+	// AttachUserToGroupWithBodyWithResponse request with any body
+	AttachUserToGroupWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachUserToGroupResponse, error)
+
+	AttachUserToGroupWithResponse(ctx context.Context, userID UserID, body AttachUserToGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachUserToGroupResponse, error)
+
+	// PermitUserGroupWithBodyWithResponse request with any body
+	PermitUserGroupWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitUserGroupResponse, error)
+
+	PermitUserGroupWithResponse(ctx context.Context, userID UserID, body PermitUserGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitUserGroupResponse, error)
 
 	// DeleteUserFromModWithBodyWithResponse request with any body
-	DeleteUserFromModWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteUserFromModResponse, error)
+	DeleteUserFromModWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteUserFromModResponse, error)
 
-	DeleteUserFromModWithResponse(ctx context.Context, userId string, body DeleteUserFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteUserFromModResponse, error)
+	DeleteUserFromModWithResponse(ctx context.Context, userID UserID, body DeleteUserFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteUserFromModResponse, error)
 
 	// ListUserModsWithResponse request
-	ListUserModsWithResponse(ctx context.Context, userId string, params *ListUserModsParams, reqEditors ...RequestEditorFn) (*ListUserModsResponse, error)
+	ListUserModsWithResponse(ctx context.Context, userID UserID, params *ListUserModsParams, reqEditors ...RequestEditorFn) (*ListUserModsResponse, error)
 
 	// AttachUserToModWithBodyWithResponse request with any body
-	AttachUserToModWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachUserToModResponse, error)
+	AttachUserToModWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachUserToModResponse, error)
 
-	AttachUserToModWithResponse(ctx context.Context, userId string, body AttachUserToModJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachUserToModResponse, error)
+	AttachUserToModWithResponse(ctx context.Context, userID UserID, body AttachUserToModJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachUserToModResponse, error)
 
 	// PermitUserModWithBodyWithResponse request with any body
-	PermitUserModWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitUserModResponse, error)
+	PermitUserModWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitUserModResponse, error)
 
-	PermitUserModWithResponse(ctx context.Context, userId string, body PermitUserModJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitUserModResponse, error)
+	PermitUserModWithResponse(ctx context.Context, userID UserID, body PermitUserModJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitUserModResponse, error)
 
 	// DeleteUserFromPackWithBodyWithResponse request with any body
-	DeleteUserFromPackWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteUserFromPackResponse, error)
+	DeleteUserFromPackWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteUserFromPackResponse, error)
 
-	DeleteUserFromPackWithResponse(ctx context.Context, userId string, body DeleteUserFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteUserFromPackResponse, error)
+	DeleteUserFromPackWithResponse(ctx context.Context, userID UserID, body DeleteUserFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteUserFromPackResponse, error)
 
 	// ListUserPacksWithResponse request
-	ListUserPacksWithResponse(ctx context.Context, userId string, params *ListUserPacksParams, reqEditors ...RequestEditorFn) (*ListUserPacksResponse, error)
+	ListUserPacksWithResponse(ctx context.Context, userID UserID, params *ListUserPacksParams, reqEditors ...RequestEditorFn) (*ListUserPacksResponse, error)
 
 	// AttachUserToPackWithBodyWithResponse request with any body
-	AttachUserToPackWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachUserToPackResponse, error)
+	AttachUserToPackWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachUserToPackResponse, error)
 
-	AttachUserToPackWithResponse(ctx context.Context, userId string, body AttachUserToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachUserToPackResponse, error)
+	AttachUserToPackWithResponse(ctx context.Context, userID UserID, body AttachUserToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachUserToPackResponse, error)
 
 	// PermitUserPackWithBodyWithResponse request with any body
-	PermitUserPackWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitUserPackResponse, error)
+	PermitUserPackWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitUserPackResponse, error)
 
-	PermitUserPackWithResponse(ctx context.Context, userId string, body PermitUserPackJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitUserPackResponse, error)
-
-	// DeleteUserFromTeamWithBodyWithResponse request with any body
-	DeleteUserFromTeamWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteUserFromTeamResponse, error)
-
-	DeleteUserFromTeamWithResponse(ctx context.Context, userId string, body DeleteUserFromTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteUserFromTeamResponse, error)
-
-	// ListUserTeamsWithResponse request
-	ListUserTeamsWithResponse(ctx context.Context, userId string, params *ListUserTeamsParams, reqEditors ...RequestEditorFn) (*ListUserTeamsResponse, error)
-
-	// AttachUserToTeamWithBodyWithResponse request with any body
-	AttachUserToTeamWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachUserToTeamResponse, error)
-
-	AttachUserToTeamWithResponse(ctx context.Context, userId string, body AttachUserToTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachUserToTeamResponse, error)
-
-	// PermitUserTeamWithBodyWithResponse request with any body
-	PermitUserTeamWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitUserTeamResponse, error)
-
-	PermitUserTeamWithResponse(ctx context.Context, userId string, body PermitUserTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitUserTeamResponse, error)
+	PermitUserPackWithResponse(ctx context.Context, userID UserID, body PermitUserPackJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitUserPackResponse, error)
 }
 
 type LoginAuthResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *AuthToken
-	JSON401      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *LoginResponse
+	JSON400      *BadRequestError
+	JSON401      *BadCredentialsError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -12743,16 +12774,14 @@ func (r LoginAuthResponse) StatusCode() int {
 	return 0
 }
 
-type ExternalProvidersResponse struct {
+type ListProvidersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Providers
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ProvidersResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r ExternalProvidersResponse) Status() string {
+func (r ListProvidersResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -12760,7 +12789,32 @@ func (r ExternalProvidersResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ExternalProvidersResponse) StatusCode() int {
+func (r ListProvidersResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RedirectAuthResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *TokenResponse
+	JSON400      *BadRequestError
+	JSON401      *InvalidTokenError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r RedirectAuthResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RedirectAuthResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -12770,10 +12824,9 @@ func (r ExternalProvidersResponse) StatusCode() int {
 type RefreshAuthResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *AuthToken
-	JSON401      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *RefreshResponse
+	JSON401      *InvalidTokenError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -12795,10 +12848,9 @@ func (r RefreshAuthResponse) StatusCode() int {
 type VerifyAuthResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *AuthVerify
-	JSON401      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *VerifyResponse
+	JSON401      *InvalidTokenError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -12817,16 +12869,13 @@ func (r VerifyAuthResponse) StatusCode() int {
 	return 0
 }
 
-type ExternalCallbackResponse struct {
+type CallbackProviderResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON404      *Notification
-	JSON412      *Notification
-	JSONDefault  *Notification
 }
 
 // Status returns HTTPResponse.Status
-func (r ExternalCallbackResponse) Status() string {
+func (r CallbackProviderResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -12834,23 +12883,20 @@ func (r ExternalCallbackResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ExternalCallbackResponse) StatusCode() int {
+func (r CallbackProviderResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type ExternalInitializeResponse struct {
+type RequestProviderResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON404      *Notification
-	JSON412      *Notification
-	JSONDefault  *Notification
 }
 
 // Status returns HTTPResponse.Status
-func (r ExternalInitializeResponse) Status() string {
+func (r RequestProviderResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -12858,7 +12904,7 @@ func (r ExternalInitializeResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ExternalInitializeResponse) StatusCode() int {
+func (r RequestProviderResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -12868,10 +12914,9 @@ func (r ExternalInitializeResponse) StatusCode() int {
 type ListFabricsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Fabrics
-	JSON403      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *FabricsResponse
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -12893,11 +12938,10 @@ func (r ListFabricsResponse) StatusCode() int {
 type UpdateFabricResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON500      *Notification
-	JSON503      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
+	JSON503      *RemoteUnavailableError
 }
 
 // Status returns HTTPResponse.Status
@@ -12919,12 +12963,12 @@ func (r UpdateFabricResponse) StatusCode() int {
 type DeleteFabricFromBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -12946,11 +12990,10 @@ func (r DeleteFabricFromBuildResponse) StatusCode() int {
 type ListFabricBuildsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *FabricBuilds
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *FabricBuildsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -12972,13 +13015,13 @@ func (r ListFabricBuildsResponse) StatusCode() int {
 type AttachFabricToBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13000,10 +13043,9 @@ func (r AttachFabricToBuildResponse) StatusCode() int {
 type ListForgesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Forges
-	JSON403      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ForgesResponse
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13025,11 +13067,10 @@ func (r ListForgesResponse) StatusCode() int {
 type UpdateForgeResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON500      *Notification
-	JSON503      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
+	JSON503      *RemoteUnavailableError
 }
 
 // Status returns HTTPResponse.Status
@@ -13051,12 +13092,12 @@ func (r UpdateForgeResponse) StatusCode() int {
 type DeleteForgeFromBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13078,11 +13119,10 @@ func (r DeleteForgeFromBuildResponse) StatusCode() int {
 type ListForgeBuildsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ForgeBuilds
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ForgeBuildsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13104,13 +13144,13 @@ func (r ListForgeBuildsResponse) StatusCode() int {
 type AttachForgeToBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13129,13 +13169,464 @@ func (r AttachForgeToBuildResponse) StatusCode() int {
 	return 0
 }
 
+type ListGroupsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GroupsResponse
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r ListGroupsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ListGroupsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CreateGroupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GroupResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r CreateGroupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreateGroupResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DeleteGroupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *ActionFailedError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteGroupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteGroupResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ShowGroupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GroupResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r ShowGroupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ShowGroupResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UpdateGroupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GroupResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r UpdateGroupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UpdateGroupResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DeleteGroupFromModResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteGroupFromModResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteGroupFromModResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ListGroupModsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GroupModsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r ListGroupModsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ListGroupModsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AttachGroupToModResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r AttachGroupToModResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AttachGroupToModResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PermitGroupModResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r PermitGroupModResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PermitGroupModResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DeleteGroupFromPackResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteGroupFromPackResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteGroupFromPackResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ListGroupPacksResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GroupPacksResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r ListGroupPacksResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ListGroupPacksResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AttachGroupToPackResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r AttachGroupToPackResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AttachGroupToPackResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PermitGroupPackResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r PermitGroupPackResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PermitGroupPackResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DeleteGroupFromUserResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteGroupFromUserResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteGroupFromUserResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ListGroupUsersResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GroupUsersResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r ListGroupUsersResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ListGroupUsersResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AttachGroupToUserResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r AttachGroupToUserResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AttachGroupToUserResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PermitGroupUserResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r PermitGroupUserResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PermitGroupUserResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ListMinecraftsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Minecrafts
-	JSON403      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *MinecraftsResponse
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13157,11 +13648,10 @@ func (r ListMinecraftsResponse) StatusCode() int {
 type UpdateMinecraftResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON500      *Notification
-	JSON503      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
+	JSON503      *RemoteUnavailableError
 }
 
 // Status returns HTTPResponse.Status
@@ -13183,12 +13673,12 @@ func (r UpdateMinecraftResponse) StatusCode() int {
 type DeleteMinecraftFromBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13210,11 +13700,10 @@ func (r DeleteMinecraftFromBuildResponse) StatusCode() int {
 type ListMinecraftBuildsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *MinecraftBuilds
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *MinecraftBuildsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13236,13 +13725,13 @@ func (r ListMinecraftBuildsResponse) StatusCode() int {
 type AttachMinecraftToBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13264,10 +13753,9 @@ func (r AttachMinecraftToBuildResponse) StatusCode() int {
 type ListModsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Mods
-	JSON403      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ModsResponse
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13289,11 +13777,11 @@ func (r ListModsResponse) StatusCode() int {
 type CreateModResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Mod
-	JSON403      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ModResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13315,12 +13803,11 @@ func (r CreateModResponse) StatusCode() int {
 type DeleteModResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON400      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *ActionFailedError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13342,11 +13829,10 @@ func (r DeleteModResponse) StatusCode() int {
 type ShowModResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Mod
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ModResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13368,12 +13854,12 @@ func (r ShowModResponse) StatusCode() int {
 type UpdateModResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Mod
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ModResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13392,19 +13878,18 @@ func (r UpdateModResponse) StatusCode() int {
 	return 0
 }
 
-type DeleteModFromTeamResponse struct {
+type DeleteModAvatarResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ModAvatarResponse
+	JSON400      *ActionFailedError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
-func (r DeleteModFromTeamResponse) Status() string {
+func (r DeleteModAvatarResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -13412,25 +13897,26 @@ func (r DeleteModFromTeamResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r DeleteModFromTeamResponse) StatusCode() int {
+func (r DeleteModAvatarResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type ListModTeamsResponse struct {
+type CreateModAvatarResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ModTeams
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ModAvatarResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
-func (r ListModTeamsResponse) Status() string {
+func (r CreateModAvatarResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -13438,27 +13924,26 @@ func (r ListModTeamsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ListModTeamsResponse) StatusCode() int {
+func (r CreateModAvatarResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type AttachModToTeamResponse struct {
+type DeleteModFromGroupResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
-func (r AttachModToTeamResponse) Status() string {
+func (r DeleteModFromGroupResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -13466,27 +13951,24 @@ func (r AttachModToTeamResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r AttachModToTeamResponse) StatusCode() int {
+func (r DeleteModFromGroupResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type PermitModTeamResponse struct {
+type ListModGroupsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ModGroupsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
-func (r PermitModTeamResponse) Status() string {
+func (r ListModGroupsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -13494,7 +13976,63 @@ func (r PermitModTeamResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r PermitModTeamResponse) StatusCode() int {
+func (r ListModGroupsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AttachModToGroupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r AttachModToGroupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AttachModToGroupResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PermitModGroupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r PermitModGroupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PermitModGroupResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -13504,12 +14042,12 @@ func (r PermitModTeamResponse) StatusCode() int {
 type DeleteModFromUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13531,11 +14069,10 @@ func (r DeleteModFromUserResponse) StatusCode() int {
 type ListModUsersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ModUsers
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ModUsersResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13557,13 +14094,13 @@ func (r ListModUsersResponse) StatusCode() int {
 type AttachModToUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13585,13 +14122,13 @@ func (r AttachModToUserResponse) StatusCode() int {
 type PermitModUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13613,11 +14150,10 @@ func (r PermitModUserResponse) StatusCode() int {
 type ListVersionsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Versions
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *VersionsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13639,12 +14175,12 @@ func (r ListVersionsResponse) StatusCode() int {
 type CreateVersionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Version
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *VersionResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13666,12 +14202,11 @@ func (r CreateVersionResponse) StatusCode() int {
 type DeleteVersionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON400      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *ActionFailedError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13693,11 +14228,10 @@ func (r DeleteVersionResponse) StatusCode() int {
 type ShowVersionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Version
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *VersionResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13719,12 +14253,12 @@ func (r ShowVersionResponse) StatusCode() int {
 type UpdateVersionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Version
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *VersionResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13746,12 +14280,12 @@ func (r UpdateVersionResponse) StatusCode() int {
 type DeleteVersionFromBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13773,11 +14307,10 @@ func (r DeleteVersionFromBuildResponse) StatusCode() int {
 type ListVersionBuildsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *VersionBuilds
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *VersionBuildsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13799,13 +14332,13 @@ func (r ListVersionBuildsResponse) StatusCode() int {
 type AttachVersionToBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13827,10 +14360,9 @@ func (r AttachVersionToBuildResponse) StatusCode() int {
 type ListNeoforgesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Neoforges
-	JSON403      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *NeoforgesResponse
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13852,11 +14384,10 @@ func (r ListNeoforgesResponse) StatusCode() int {
 type UpdateNeoforgeResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON500      *Notification
-	JSON503      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
+	JSON503      *RemoteUnavailableError
 }
 
 // Status returns HTTPResponse.Status
@@ -13878,12 +14409,12 @@ func (r UpdateNeoforgeResponse) StatusCode() int {
 type DeleteNeoforgeFromBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13905,11 +14436,10 @@ func (r DeleteNeoforgeFromBuildResponse) StatusCode() int {
 type ListNeoforgeBuildsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *NeoforgeBuilds
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *NeoforgeBuildsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13931,13 +14461,13 @@ func (r ListNeoforgeBuildsResponse) StatusCode() int {
 type AttachNeoforgeToBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13959,10 +14489,9 @@ func (r AttachNeoforgeToBuildResponse) StatusCode() int {
 type ListPacksResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Packs
-	JSON403      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *PacksResponse
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -13984,11 +14513,11 @@ func (r ListPacksResponse) StatusCode() int {
 type CreatePackResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Pack
-	JSON403      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *PackResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14010,12 +14539,11 @@ func (r CreatePackResponse) StatusCode() int {
 type DeletePackResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON400      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *ActionFailedError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14037,11 +14565,10 @@ func (r DeletePackResponse) StatusCode() int {
 type ShowPackResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Pack
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *PackResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14063,12 +14590,12 @@ func (r ShowPackResponse) StatusCode() int {
 type UpdatePackResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Pack
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *PackResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14087,14 +14614,66 @@ func (r UpdatePackResponse) StatusCode() int {
 	return 0
 }
 
+type DeletePackAvatarResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PackAvatarResponse
+	JSON400      *ActionFailedError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r DeletePackAvatarResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeletePackAvatarResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CreatePackAvatarResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PackAvatarResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r CreatePackAvatarResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreatePackAvatarResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ListBuildsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Builds
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *BuildsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14116,12 +14695,12 @@ func (r ListBuildsResponse) StatusCode() int {
 type CreateBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Build
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *BuildResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14143,12 +14722,11 @@ func (r CreateBuildResponse) StatusCode() int {
 type DeleteBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON400      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *ActionFailedError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14170,11 +14748,10 @@ func (r DeleteBuildResponse) StatusCode() int {
 type ShowBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Build
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *BuildResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14196,12 +14773,12 @@ func (r ShowBuildResponse) StatusCode() int {
 type UpdateBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Build
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *BuildResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14223,12 +14800,12 @@ func (r UpdateBuildResponse) StatusCode() int {
 type DeleteBuildFromVersionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14250,11 +14827,10 @@ func (r DeleteBuildFromVersionResponse) StatusCode() int {
 type ListBuildVersionsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *BuildVersions
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *BuildVersionsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14276,13 +14852,13 @@ func (r ListBuildVersionsResponse) StatusCode() int {
 type AttachBuildToVersionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14301,19 +14877,19 @@ func (r AttachBuildToVersionResponse) StatusCode() int {
 	return 0
 }
 
-type DeletePackFromTeamResponse struct {
+type DeletePackFromGroupResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
-func (r DeletePackFromTeamResponse) Status() string {
+func (r DeletePackFromGroupResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -14321,25 +14897,24 @@ func (r DeletePackFromTeamResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r DeletePackFromTeamResponse) StatusCode() int {
+func (r DeletePackFromGroupResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type ListPackTeamsResponse struct {
+type ListPackGroupsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *PackTeams
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *PackGroupsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
-func (r ListPackTeamsResponse) Status() string {
+func (r ListPackGroupsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -14347,27 +14922,27 @@ func (r ListPackTeamsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ListPackTeamsResponse) StatusCode() int {
+func (r ListPackGroupsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type AttachPackToTeamResponse struct {
+type AttachPackToGroupResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
-func (r AttachPackToTeamResponse) Status() string {
+func (r AttachPackToGroupResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -14375,27 +14950,27 @@ func (r AttachPackToTeamResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r AttachPackToTeamResponse) StatusCode() int {
+func (r AttachPackToGroupResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type PermitPackTeamResponse struct {
+type PermitPackGroupResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
-func (r PermitPackTeamResponse) Status() string {
+func (r PermitPackGroupResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -14403,7 +14978,7 @@ func (r PermitPackTeamResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r PermitPackTeamResponse) StatusCode() int {
+func (r PermitPackGroupResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -14413,12 +14988,12 @@ func (r PermitPackTeamResponse) StatusCode() int {
 type DeletePackFromUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14440,11 +15015,10 @@ func (r DeletePackFromUserResponse) StatusCode() int {
 type ListPackUsersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *PackUsers
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *PackUsersResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14466,13 +15040,13 @@ func (r ListPackUsersResponse) StatusCode() int {
 type AttachPackToUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14494,13 +15068,13 @@ func (r AttachPackToUserResponse) StatusCode() int {
 type PermitPackUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14522,10 +15096,9 @@ func (r PermitPackUserResponse) StatusCode() int {
 type ShowProfileResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Profile
-	JSON403      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ProfileResponse
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14547,11 +15120,11 @@ func (r ShowProfileResponse) StatusCode() int {
 type UpdateProfileResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Profile
-	JSON403      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *ProfileResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14573,10 +15146,9 @@ func (r UpdateProfileResponse) StatusCode() int {
 type TokenProfileResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *AuthToken
-	JSON403      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *TokenResponse
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14598,10 +15170,9 @@ func (r TokenProfileResponse) StatusCode() int {
 type ListQuiltsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Quilts
-	JSON403      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *QuiltsResponse
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14623,11 +15194,10 @@ func (r ListQuiltsResponse) StatusCode() int {
 type UpdateQuiltResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON500      *Notification
-	JSON503      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
+	JSON503      *RemoteUnavailableError
 }
 
 // Status returns HTTPResponse.Status
@@ -14649,12 +15219,12 @@ func (r UpdateQuiltResponse) StatusCode() int {
 type DeleteQuiltFromBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14676,11 +15246,10 @@ func (r DeleteQuiltFromBuildResponse) StatusCode() int {
 type ListQuiltBuildsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *QuiltBuilds
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *QuiltBuildsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14702,13 +15271,13 @@ func (r ListQuiltBuildsResponse) StatusCode() int {
 type AttachQuiltToBuildResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -14727,471 +15296,12 @@ func (r AttachQuiltToBuildResponse) StatusCode() int {
 	return 0
 }
 
-type ListTeamsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Teams
-	JSON403      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r ListTeamsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ListTeamsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type CreateTeamResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Team
-	JSON403      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r CreateTeamResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r CreateTeamResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type DeleteTeamResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON400      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r DeleteTeamResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r DeleteTeamResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ShowTeamResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Team
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r ShowTeamResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ShowTeamResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type UpdateTeamResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Team
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r UpdateTeamResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r UpdateTeamResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type DeleteTeamFromModResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r DeleteTeamFromModResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r DeleteTeamFromModResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ListTeamModsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *TeamMods
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r ListTeamModsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ListTeamModsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type AttachTeamToModResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r AttachTeamToModResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r AttachTeamToModResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type PermitTeamModResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r PermitTeamModResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PermitTeamModResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type DeleteTeamFromPackResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r DeleteTeamFromPackResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r DeleteTeamFromPackResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ListTeamPacksResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *TeamPacks
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r ListTeamPacksResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ListTeamPacksResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type AttachTeamToPackResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r AttachTeamToPackResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r AttachTeamToPackResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type PermitTeamPackResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r PermitTeamPackResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PermitTeamPackResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type DeleteTeamFromUserResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r DeleteTeamFromUserResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r DeleteTeamFromUserResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ListTeamUsersResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *TeamUsers
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r ListTeamUsersResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ListTeamUsersResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type AttachTeamToUserResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r AttachTeamToUserResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r AttachTeamToUserResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type PermitTeamUserResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r PermitTeamUserResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PermitTeamUserResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type ListUsersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Users
-	JSON403      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *UsersResponse
+	JSON403      *NotAuthorizedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15213,11 +15323,11 @@ func (r ListUsersResponse) StatusCode() int {
 type CreateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *User
-	JSON403      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *UserResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15239,12 +15349,11 @@ func (r CreateUserResponse) StatusCode() int {
 type DeleteUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON400      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *ActionFailedError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15266,11 +15375,10 @@ func (r DeleteUserResponse) StatusCode() int {
 type ShowUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *User
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *UserResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15292,12 +15400,12 @@ func (r ShowUserResponse) StatusCode() int {
 type UpdateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *User
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *UserResponse
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15316,15 +15424,123 @@ func (r UpdateUserResponse) StatusCode() int {
 	return 0
 }
 
+type DeleteUserFromGroupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteUserFromGroupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteUserFromGroupResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ListUserGroupsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserGroupsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r ListUserGroupsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ListUserGroupsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AttachUserToGroupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r AttachUserToGroupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AttachUserToGroupResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PermitUserGroupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
+}
+
+// Status returns HTTPResponse.Status
+func (r PermitUserGroupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PermitUserGroupResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type DeleteUserFromModResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15346,11 +15562,10 @@ func (r DeleteUserFromModResponse) StatusCode() int {
 type ListUserModsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *UserMods
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *UserModsResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15372,13 +15587,13 @@ func (r ListUserModsResponse) StatusCode() int {
 type AttachUserToModResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15400,13 +15615,13 @@ func (r AttachUserToModResponse) StatusCode() int {
 type PermitUserModResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15428,12 +15643,12 @@ func (r PermitUserModResponse) StatusCode() int {
 type DeleteUserFromPackResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15455,11 +15670,10 @@ func (r DeleteUserFromPackResponse) StatusCode() int {
 type ListUserPacksResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *UserPacks
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *UserPacksResponse
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15481,13 +15695,13 @@ func (r ListUserPacksResponse) StatusCode() int {
 type AttachUserToPackResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *AlreadyAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15509,13 +15723,13 @@ func (r AttachUserToPackResponse) StatusCode() int {
 type PermitUserPackResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
+	JSON200      *SuccessMessage
+	JSON400      *BadRequestError
+	JSON403      *NotAuthorizedError
+	JSON404      *NotFoundError
+	JSON412      *NotAttachedError
+	JSON422      *ValidationError
+	JSON500      *InternalServerError
 }
 
 // Status returns HTTPResponse.Status
@@ -15528,115 +15742,6 @@ func (r PermitUserPackResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r PermitUserPackResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type DeleteUserFromTeamResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r DeleteUserFromTeamResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r DeleteUserFromTeamResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ListUserTeamsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *UserTeams
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r ListUserTeamsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ListUserTeamsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type AttachUserToTeamResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r AttachUserToTeamResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r AttachUserToTeamResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type PermitUserTeamResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Notification
-	JSON403      *Notification
-	JSON404      *Notification
-	JSON412      *Notification
-	JSON422      *Notification
-	JSON500      *Notification
-	JSONDefault  *Notification
-}
-
-// Status returns HTTPResponse.Status
-func (r PermitUserTeamResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PermitUserTeamResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -15660,13 +15765,30 @@ func (c *ClientWithResponses) LoginAuthWithResponse(ctx context.Context, body Lo
 	return ParseLoginAuthResponse(rsp)
 }
 
-// ExternalProvidersWithResponse request returning *ExternalProvidersResponse
-func (c *ClientWithResponses) ExternalProvidersWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ExternalProvidersResponse, error) {
-	rsp, err := c.ExternalProviders(ctx, reqEditors...)
+// ListProvidersWithResponse request returning *ListProvidersResponse
+func (c *ClientWithResponses) ListProvidersWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListProvidersResponse, error) {
+	rsp, err := c.ListProviders(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseExternalProvidersResponse(rsp)
+	return ParseListProvidersResponse(rsp)
+}
+
+// RedirectAuthWithBodyWithResponse request with arbitrary body returning *RedirectAuthResponse
+func (c *ClientWithResponses) RedirectAuthWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RedirectAuthResponse, error) {
+	rsp, err := c.RedirectAuthWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRedirectAuthResponse(rsp)
+}
+
+func (c *ClientWithResponses) RedirectAuthWithResponse(ctx context.Context, body RedirectAuthJSONRequestBody, reqEditors ...RequestEditorFn) (*RedirectAuthResponse, error) {
+	rsp, err := c.RedirectAuth(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRedirectAuthResponse(rsp)
 }
 
 // RefreshAuthWithResponse request returning *RefreshAuthResponse
@@ -15687,22 +15809,22 @@ func (c *ClientWithResponses) VerifyAuthWithResponse(ctx context.Context, reqEdi
 	return ParseVerifyAuthResponse(rsp)
 }
 
-// ExternalCallbackWithResponse request returning *ExternalCallbackResponse
-func (c *ClientWithResponses) ExternalCallbackWithResponse(ctx context.Context, provider string, params *ExternalCallbackParams, reqEditors ...RequestEditorFn) (*ExternalCallbackResponse, error) {
-	rsp, err := c.ExternalCallback(ctx, provider, params, reqEditors...)
+// CallbackProviderWithResponse request returning *CallbackProviderResponse
+func (c *ClientWithResponses) CallbackProviderWithResponse(ctx context.Context, provider AuthProviderParam, params *CallbackProviderParams, reqEditors ...RequestEditorFn) (*CallbackProviderResponse, error) {
+	rsp, err := c.CallbackProvider(ctx, provider, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseExternalCallbackResponse(rsp)
+	return ParseCallbackProviderResponse(rsp)
 }
 
-// ExternalInitializeWithResponse request returning *ExternalInitializeResponse
-func (c *ClientWithResponses) ExternalInitializeWithResponse(ctx context.Context, provider string, params *ExternalInitializeParams, reqEditors ...RequestEditorFn) (*ExternalInitializeResponse, error) {
-	rsp, err := c.ExternalInitialize(ctx, provider, params, reqEditors...)
+// RequestProviderWithResponse request returning *RequestProviderResponse
+func (c *ClientWithResponses) RequestProviderWithResponse(ctx context.Context, provider AuthProviderParam, reqEditors ...RequestEditorFn) (*RequestProviderResponse, error) {
+	rsp, err := c.RequestProvider(ctx, provider, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseExternalInitializeResponse(rsp)
+	return ParseRequestProviderResponse(rsp)
 }
 
 // ListFabricsWithResponse request returning *ListFabricsResponse
@@ -15724,16 +15846,16 @@ func (c *ClientWithResponses) UpdateFabricWithResponse(ctx context.Context, reqE
 }
 
 // DeleteFabricFromBuildWithBodyWithResponse request with arbitrary body returning *DeleteFabricFromBuildResponse
-func (c *ClientWithResponses) DeleteFabricFromBuildWithBodyWithResponse(ctx context.Context, fabricId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteFabricFromBuildResponse, error) {
-	rsp, err := c.DeleteFabricFromBuildWithBody(ctx, fabricId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) DeleteFabricFromBuildWithBodyWithResponse(ctx context.Context, fabricID FabricID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteFabricFromBuildResponse, error) {
+	rsp, err := c.DeleteFabricFromBuildWithBody(ctx, fabricID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseDeleteFabricFromBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeleteFabricFromBuildWithResponse(ctx context.Context, fabricId string, body DeleteFabricFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteFabricFromBuildResponse, error) {
-	rsp, err := c.DeleteFabricFromBuild(ctx, fabricId, body, reqEditors...)
+func (c *ClientWithResponses) DeleteFabricFromBuildWithResponse(ctx context.Context, fabricID FabricID, body DeleteFabricFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteFabricFromBuildResponse, error) {
+	rsp, err := c.DeleteFabricFromBuild(ctx, fabricID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -15741,8 +15863,8 @@ func (c *ClientWithResponses) DeleteFabricFromBuildWithResponse(ctx context.Cont
 }
 
 // ListFabricBuildsWithResponse request returning *ListFabricBuildsResponse
-func (c *ClientWithResponses) ListFabricBuildsWithResponse(ctx context.Context, fabricId string, params *ListFabricBuildsParams, reqEditors ...RequestEditorFn) (*ListFabricBuildsResponse, error) {
-	rsp, err := c.ListFabricBuilds(ctx, fabricId, params, reqEditors...)
+func (c *ClientWithResponses) ListFabricBuildsWithResponse(ctx context.Context, fabricID FabricID, params *ListFabricBuildsParams, reqEditors ...RequestEditorFn) (*ListFabricBuildsResponse, error) {
+	rsp, err := c.ListFabricBuilds(ctx, fabricID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -15750,16 +15872,16 @@ func (c *ClientWithResponses) ListFabricBuildsWithResponse(ctx context.Context, 
 }
 
 // AttachFabricToBuildWithBodyWithResponse request with arbitrary body returning *AttachFabricToBuildResponse
-func (c *ClientWithResponses) AttachFabricToBuildWithBodyWithResponse(ctx context.Context, fabricId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachFabricToBuildResponse, error) {
-	rsp, err := c.AttachFabricToBuildWithBody(ctx, fabricId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) AttachFabricToBuildWithBodyWithResponse(ctx context.Context, fabricID FabricID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachFabricToBuildResponse, error) {
+	rsp, err := c.AttachFabricToBuildWithBody(ctx, fabricID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachFabricToBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachFabricToBuildWithResponse(ctx context.Context, fabricId string, body AttachFabricToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachFabricToBuildResponse, error) {
-	rsp, err := c.AttachFabricToBuild(ctx, fabricId, body, reqEditors...)
+func (c *ClientWithResponses) AttachFabricToBuildWithResponse(ctx context.Context, fabricID FabricID, body AttachFabricToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachFabricToBuildResponse, error) {
+	rsp, err := c.AttachFabricToBuild(ctx, fabricID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -15785,16 +15907,16 @@ func (c *ClientWithResponses) UpdateForgeWithResponse(ctx context.Context, reqEd
 }
 
 // DeleteForgeFromBuildWithBodyWithResponse request with arbitrary body returning *DeleteForgeFromBuildResponse
-func (c *ClientWithResponses) DeleteForgeFromBuildWithBodyWithResponse(ctx context.Context, forgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteForgeFromBuildResponse, error) {
-	rsp, err := c.DeleteForgeFromBuildWithBody(ctx, forgeId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) DeleteForgeFromBuildWithBodyWithResponse(ctx context.Context, forgeID ForgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteForgeFromBuildResponse, error) {
+	rsp, err := c.DeleteForgeFromBuildWithBody(ctx, forgeID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseDeleteForgeFromBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeleteForgeFromBuildWithResponse(ctx context.Context, forgeId string, body DeleteForgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteForgeFromBuildResponse, error) {
-	rsp, err := c.DeleteForgeFromBuild(ctx, forgeId, body, reqEditors...)
+func (c *ClientWithResponses) DeleteForgeFromBuildWithResponse(ctx context.Context, forgeID ForgeID, body DeleteForgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteForgeFromBuildResponse, error) {
+	rsp, err := c.DeleteForgeFromBuild(ctx, forgeID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -15802,8 +15924,8 @@ func (c *ClientWithResponses) DeleteForgeFromBuildWithResponse(ctx context.Conte
 }
 
 // ListForgeBuildsWithResponse request returning *ListForgeBuildsResponse
-func (c *ClientWithResponses) ListForgeBuildsWithResponse(ctx context.Context, forgeId string, params *ListForgeBuildsParams, reqEditors ...RequestEditorFn) (*ListForgeBuildsResponse, error) {
-	rsp, err := c.ListForgeBuilds(ctx, forgeId, params, reqEditors...)
+func (c *ClientWithResponses) ListForgeBuildsWithResponse(ctx context.Context, forgeID ForgeID, params *ListForgeBuildsParams, reqEditors ...RequestEditorFn) (*ListForgeBuildsResponse, error) {
+	rsp, err := c.ListForgeBuilds(ctx, forgeID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -15811,20 +15933,261 @@ func (c *ClientWithResponses) ListForgeBuildsWithResponse(ctx context.Context, f
 }
 
 // AttachForgeToBuildWithBodyWithResponse request with arbitrary body returning *AttachForgeToBuildResponse
-func (c *ClientWithResponses) AttachForgeToBuildWithBodyWithResponse(ctx context.Context, forgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachForgeToBuildResponse, error) {
-	rsp, err := c.AttachForgeToBuildWithBody(ctx, forgeId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) AttachForgeToBuildWithBodyWithResponse(ctx context.Context, forgeID ForgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachForgeToBuildResponse, error) {
+	rsp, err := c.AttachForgeToBuildWithBody(ctx, forgeID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachForgeToBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachForgeToBuildWithResponse(ctx context.Context, forgeId string, body AttachForgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachForgeToBuildResponse, error) {
-	rsp, err := c.AttachForgeToBuild(ctx, forgeId, body, reqEditors...)
+func (c *ClientWithResponses) AttachForgeToBuildWithResponse(ctx context.Context, forgeID ForgeID, body AttachForgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachForgeToBuildResponse, error) {
+	rsp, err := c.AttachForgeToBuild(ctx, forgeID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachForgeToBuildResponse(rsp)
+}
+
+// ListGroupsWithResponse request returning *ListGroupsResponse
+func (c *ClientWithResponses) ListGroupsWithResponse(ctx context.Context, params *ListGroupsParams, reqEditors ...RequestEditorFn) (*ListGroupsResponse, error) {
+	rsp, err := c.ListGroups(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseListGroupsResponse(rsp)
+}
+
+// CreateGroupWithBodyWithResponse request with arbitrary body returning *CreateGroupResponse
+func (c *ClientWithResponses) CreateGroupWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateGroupResponse, error) {
+	rsp, err := c.CreateGroupWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateGroupResponse(rsp)
+}
+
+func (c *ClientWithResponses) CreateGroupWithResponse(ctx context.Context, body CreateGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateGroupResponse, error) {
+	rsp, err := c.CreateGroup(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateGroupResponse(rsp)
+}
+
+// DeleteGroupWithResponse request returning *DeleteGroupResponse
+func (c *ClientWithResponses) DeleteGroupWithResponse(ctx context.Context, groupID GroupID, reqEditors ...RequestEditorFn) (*DeleteGroupResponse, error) {
+	rsp, err := c.DeleteGroup(ctx, groupID, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteGroupResponse(rsp)
+}
+
+// ShowGroupWithResponse request returning *ShowGroupResponse
+func (c *ClientWithResponses) ShowGroupWithResponse(ctx context.Context, groupID GroupID, reqEditors ...RequestEditorFn) (*ShowGroupResponse, error) {
+	rsp, err := c.ShowGroup(ctx, groupID, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseShowGroupResponse(rsp)
+}
+
+// UpdateGroupWithBodyWithResponse request with arbitrary body returning *UpdateGroupResponse
+func (c *ClientWithResponses) UpdateGroupWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateGroupResponse, error) {
+	rsp, err := c.UpdateGroupWithBody(ctx, groupID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateGroupResponse(rsp)
+}
+
+func (c *ClientWithResponses) UpdateGroupWithResponse(ctx context.Context, groupID GroupID, body UpdateGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateGroupResponse, error) {
+	rsp, err := c.UpdateGroup(ctx, groupID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateGroupResponse(rsp)
+}
+
+// DeleteGroupFromModWithBodyWithResponse request with arbitrary body returning *DeleteGroupFromModResponse
+func (c *ClientWithResponses) DeleteGroupFromModWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteGroupFromModResponse, error) {
+	rsp, err := c.DeleteGroupFromModWithBody(ctx, groupID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteGroupFromModResponse(rsp)
+}
+
+func (c *ClientWithResponses) DeleteGroupFromModWithResponse(ctx context.Context, groupID GroupID, body DeleteGroupFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteGroupFromModResponse, error) {
+	rsp, err := c.DeleteGroupFromMod(ctx, groupID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteGroupFromModResponse(rsp)
+}
+
+// ListGroupModsWithResponse request returning *ListGroupModsResponse
+func (c *ClientWithResponses) ListGroupModsWithResponse(ctx context.Context, groupID GroupID, params *ListGroupModsParams, reqEditors ...RequestEditorFn) (*ListGroupModsResponse, error) {
+	rsp, err := c.ListGroupMods(ctx, groupID, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseListGroupModsResponse(rsp)
+}
+
+// AttachGroupToModWithBodyWithResponse request with arbitrary body returning *AttachGroupToModResponse
+func (c *ClientWithResponses) AttachGroupToModWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachGroupToModResponse, error) {
+	rsp, err := c.AttachGroupToModWithBody(ctx, groupID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAttachGroupToModResponse(rsp)
+}
+
+func (c *ClientWithResponses) AttachGroupToModWithResponse(ctx context.Context, groupID GroupID, body AttachGroupToModJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachGroupToModResponse, error) {
+	rsp, err := c.AttachGroupToMod(ctx, groupID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAttachGroupToModResponse(rsp)
+}
+
+// PermitGroupModWithBodyWithResponse request with arbitrary body returning *PermitGroupModResponse
+func (c *ClientWithResponses) PermitGroupModWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitGroupModResponse, error) {
+	rsp, err := c.PermitGroupModWithBody(ctx, groupID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePermitGroupModResponse(rsp)
+}
+
+func (c *ClientWithResponses) PermitGroupModWithResponse(ctx context.Context, groupID GroupID, body PermitGroupModJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitGroupModResponse, error) {
+	rsp, err := c.PermitGroupMod(ctx, groupID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePermitGroupModResponse(rsp)
+}
+
+// DeleteGroupFromPackWithBodyWithResponse request with arbitrary body returning *DeleteGroupFromPackResponse
+func (c *ClientWithResponses) DeleteGroupFromPackWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteGroupFromPackResponse, error) {
+	rsp, err := c.DeleteGroupFromPackWithBody(ctx, groupID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteGroupFromPackResponse(rsp)
+}
+
+func (c *ClientWithResponses) DeleteGroupFromPackWithResponse(ctx context.Context, groupID GroupID, body DeleteGroupFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteGroupFromPackResponse, error) {
+	rsp, err := c.DeleteGroupFromPack(ctx, groupID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteGroupFromPackResponse(rsp)
+}
+
+// ListGroupPacksWithResponse request returning *ListGroupPacksResponse
+func (c *ClientWithResponses) ListGroupPacksWithResponse(ctx context.Context, groupID GroupID, params *ListGroupPacksParams, reqEditors ...RequestEditorFn) (*ListGroupPacksResponse, error) {
+	rsp, err := c.ListGroupPacks(ctx, groupID, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseListGroupPacksResponse(rsp)
+}
+
+// AttachGroupToPackWithBodyWithResponse request with arbitrary body returning *AttachGroupToPackResponse
+func (c *ClientWithResponses) AttachGroupToPackWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachGroupToPackResponse, error) {
+	rsp, err := c.AttachGroupToPackWithBody(ctx, groupID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAttachGroupToPackResponse(rsp)
+}
+
+func (c *ClientWithResponses) AttachGroupToPackWithResponse(ctx context.Context, groupID GroupID, body AttachGroupToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachGroupToPackResponse, error) {
+	rsp, err := c.AttachGroupToPack(ctx, groupID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAttachGroupToPackResponse(rsp)
+}
+
+// PermitGroupPackWithBodyWithResponse request with arbitrary body returning *PermitGroupPackResponse
+func (c *ClientWithResponses) PermitGroupPackWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitGroupPackResponse, error) {
+	rsp, err := c.PermitGroupPackWithBody(ctx, groupID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePermitGroupPackResponse(rsp)
+}
+
+func (c *ClientWithResponses) PermitGroupPackWithResponse(ctx context.Context, groupID GroupID, body PermitGroupPackJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitGroupPackResponse, error) {
+	rsp, err := c.PermitGroupPack(ctx, groupID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePermitGroupPackResponse(rsp)
+}
+
+// DeleteGroupFromUserWithBodyWithResponse request with arbitrary body returning *DeleteGroupFromUserResponse
+func (c *ClientWithResponses) DeleteGroupFromUserWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteGroupFromUserResponse, error) {
+	rsp, err := c.DeleteGroupFromUserWithBody(ctx, groupID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteGroupFromUserResponse(rsp)
+}
+
+func (c *ClientWithResponses) DeleteGroupFromUserWithResponse(ctx context.Context, groupID GroupID, body DeleteGroupFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteGroupFromUserResponse, error) {
+	rsp, err := c.DeleteGroupFromUser(ctx, groupID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteGroupFromUserResponse(rsp)
+}
+
+// ListGroupUsersWithResponse request returning *ListGroupUsersResponse
+func (c *ClientWithResponses) ListGroupUsersWithResponse(ctx context.Context, groupID GroupID, params *ListGroupUsersParams, reqEditors ...RequestEditorFn) (*ListGroupUsersResponse, error) {
+	rsp, err := c.ListGroupUsers(ctx, groupID, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseListGroupUsersResponse(rsp)
+}
+
+// AttachGroupToUserWithBodyWithResponse request with arbitrary body returning *AttachGroupToUserResponse
+func (c *ClientWithResponses) AttachGroupToUserWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachGroupToUserResponse, error) {
+	rsp, err := c.AttachGroupToUserWithBody(ctx, groupID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAttachGroupToUserResponse(rsp)
+}
+
+func (c *ClientWithResponses) AttachGroupToUserWithResponse(ctx context.Context, groupID GroupID, body AttachGroupToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachGroupToUserResponse, error) {
+	rsp, err := c.AttachGroupToUser(ctx, groupID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAttachGroupToUserResponse(rsp)
+}
+
+// PermitGroupUserWithBodyWithResponse request with arbitrary body returning *PermitGroupUserResponse
+func (c *ClientWithResponses) PermitGroupUserWithBodyWithResponse(ctx context.Context, groupID GroupID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitGroupUserResponse, error) {
+	rsp, err := c.PermitGroupUserWithBody(ctx, groupID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePermitGroupUserResponse(rsp)
+}
+
+func (c *ClientWithResponses) PermitGroupUserWithResponse(ctx context.Context, groupID GroupID, body PermitGroupUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitGroupUserResponse, error) {
+	rsp, err := c.PermitGroupUser(ctx, groupID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePermitGroupUserResponse(rsp)
 }
 
 // ListMinecraftsWithResponse request returning *ListMinecraftsResponse
@@ -15846,16 +16209,16 @@ func (c *ClientWithResponses) UpdateMinecraftWithResponse(ctx context.Context, r
 }
 
 // DeleteMinecraftFromBuildWithBodyWithResponse request with arbitrary body returning *DeleteMinecraftFromBuildResponse
-func (c *ClientWithResponses) DeleteMinecraftFromBuildWithBodyWithResponse(ctx context.Context, minecraftId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteMinecraftFromBuildResponse, error) {
-	rsp, err := c.DeleteMinecraftFromBuildWithBody(ctx, minecraftId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) DeleteMinecraftFromBuildWithBodyWithResponse(ctx context.Context, minecraftID MinecraftID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteMinecraftFromBuildResponse, error) {
+	rsp, err := c.DeleteMinecraftFromBuildWithBody(ctx, minecraftID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseDeleteMinecraftFromBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeleteMinecraftFromBuildWithResponse(ctx context.Context, minecraftId string, body DeleteMinecraftFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteMinecraftFromBuildResponse, error) {
-	rsp, err := c.DeleteMinecraftFromBuild(ctx, minecraftId, body, reqEditors...)
+func (c *ClientWithResponses) DeleteMinecraftFromBuildWithResponse(ctx context.Context, minecraftID MinecraftID, body DeleteMinecraftFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteMinecraftFromBuildResponse, error) {
+	rsp, err := c.DeleteMinecraftFromBuild(ctx, minecraftID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -15863,8 +16226,8 @@ func (c *ClientWithResponses) DeleteMinecraftFromBuildWithResponse(ctx context.C
 }
 
 // ListMinecraftBuildsWithResponse request returning *ListMinecraftBuildsResponse
-func (c *ClientWithResponses) ListMinecraftBuildsWithResponse(ctx context.Context, minecraftId string, params *ListMinecraftBuildsParams, reqEditors ...RequestEditorFn) (*ListMinecraftBuildsResponse, error) {
-	rsp, err := c.ListMinecraftBuilds(ctx, minecraftId, params, reqEditors...)
+func (c *ClientWithResponses) ListMinecraftBuildsWithResponse(ctx context.Context, minecraftID MinecraftID, params *ListMinecraftBuildsParams, reqEditors ...RequestEditorFn) (*ListMinecraftBuildsResponse, error) {
+	rsp, err := c.ListMinecraftBuilds(ctx, minecraftID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -15872,16 +16235,16 @@ func (c *ClientWithResponses) ListMinecraftBuildsWithResponse(ctx context.Contex
 }
 
 // AttachMinecraftToBuildWithBodyWithResponse request with arbitrary body returning *AttachMinecraftToBuildResponse
-func (c *ClientWithResponses) AttachMinecraftToBuildWithBodyWithResponse(ctx context.Context, minecraftId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachMinecraftToBuildResponse, error) {
-	rsp, err := c.AttachMinecraftToBuildWithBody(ctx, minecraftId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) AttachMinecraftToBuildWithBodyWithResponse(ctx context.Context, minecraftID MinecraftID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachMinecraftToBuildResponse, error) {
+	rsp, err := c.AttachMinecraftToBuildWithBody(ctx, minecraftID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachMinecraftToBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachMinecraftToBuildWithResponse(ctx context.Context, minecraftId string, body AttachMinecraftToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachMinecraftToBuildResponse, error) {
-	rsp, err := c.AttachMinecraftToBuild(ctx, minecraftId, body, reqEditors...)
+func (c *ClientWithResponses) AttachMinecraftToBuildWithResponse(ctx context.Context, minecraftID MinecraftID, body AttachMinecraftToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachMinecraftToBuildResponse, error) {
+	rsp, err := c.AttachMinecraftToBuild(ctx, minecraftID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -15915,8 +16278,8 @@ func (c *ClientWithResponses) CreateModWithResponse(ctx context.Context, body Cr
 }
 
 // DeleteModWithResponse request returning *DeleteModResponse
-func (c *ClientWithResponses) DeleteModWithResponse(ctx context.Context, modId string, reqEditors ...RequestEditorFn) (*DeleteModResponse, error) {
-	rsp, err := c.DeleteMod(ctx, modId, reqEditors...)
+func (c *ClientWithResponses) DeleteModWithResponse(ctx context.Context, modID ModID, reqEditors ...RequestEditorFn) (*DeleteModResponse, error) {
+	rsp, err := c.DeleteMod(ctx, modID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -15924,8 +16287,8 @@ func (c *ClientWithResponses) DeleteModWithResponse(ctx context.Context, modId s
 }
 
 // ShowModWithResponse request returning *ShowModResponse
-func (c *ClientWithResponses) ShowModWithResponse(ctx context.Context, modId string, reqEditors ...RequestEditorFn) (*ShowModResponse, error) {
-	rsp, err := c.ShowMod(ctx, modId, reqEditors...)
+func (c *ClientWithResponses) ShowModWithResponse(ctx context.Context, modID ModID, reqEditors ...RequestEditorFn) (*ShowModResponse, error) {
+	rsp, err := c.ShowMod(ctx, modID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -15933,93 +16296,111 @@ func (c *ClientWithResponses) ShowModWithResponse(ctx context.Context, modId str
 }
 
 // UpdateModWithBodyWithResponse request with arbitrary body returning *UpdateModResponse
-func (c *ClientWithResponses) UpdateModWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateModResponse, error) {
-	rsp, err := c.UpdateModWithBody(ctx, modId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdateModWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateModResponse, error) {
+	rsp, err := c.UpdateModWithBody(ctx, modID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateModResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateModWithResponse(ctx context.Context, modId string, body UpdateModJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateModResponse, error) {
-	rsp, err := c.UpdateMod(ctx, modId, body, reqEditors...)
+func (c *ClientWithResponses) UpdateModWithResponse(ctx context.Context, modID ModID, body UpdateModJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateModResponse, error) {
+	rsp, err := c.UpdateMod(ctx, modID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateModResponse(rsp)
 }
 
-// DeleteModFromTeamWithBodyWithResponse request with arbitrary body returning *DeleteModFromTeamResponse
-func (c *ClientWithResponses) DeleteModFromTeamWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteModFromTeamResponse, error) {
-	rsp, err := c.DeleteModFromTeamWithBody(ctx, modId, contentType, body, reqEditors...)
+// DeleteModAvatarWithResponse request returning *DeleteModAvatarResponse
+func (c *ClientWithResponses) DeleteModAvatarWithResponse(ctx context.Context, modID ModID, reqEditors ...RequestEditorFn) (*DeleteModAvatarResponse, error) {
+	rsp, err := c.DeleteModAvatar(ctx, modID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseDeleteModFromTeamResponse(rsp)
+	return ParseDeleteModAvatarResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeleteModFromTeamWithResponse(ctx context.Context, modId string, body DeleteModFromTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteModFromTeamResponse, error) {
-	rsp, err := c.DeleteModFromTeam(ctx, modId, body, reqEditors...)
+// CreateModAvatarWithBodyWithResponse request with arbitrary body returning *CreateModAvatarResponse
+func (c *ClientWithResponses) CreateModAvatarWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateModAvatarResponse, error) {
+	rsp, err := c.CreateModAvatarWithBody(ctx, modID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseDeleteModFromTeamResponse(rsp)
+	return ParseCreateModAvatarResponse(rsp)
 }
 
-// ListModTeamsWithResponse request returning *ListModTeamsResponse
-func (c *ClientWithResponses) ListModTeamsWithResponse(ctx context.Context, modId string, params *ListModTeamsParams, reqEditors ...RequestEditorFn) (*ListModTeamsResponse, error) {
-	rsp, err := c.ListModTeams(ctx, modId, params, reqEditors...)
+// DeleteModFromGroupWithBodyWithResponse request with arbitrary body returning *DeleteModFromGroupResponse
+func (c *ClientWithResponses) DeleteModFromGroupWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteModFromGroupResponse, error) {
+	rsp, err := c.DeleteModFromGroupWithBody(ctx, modID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseListModTeamsResponse(rsp)
+	return ParseDeleteModFromGroupResponse(rsp)
 }
 
-// AttachModToTeamWithBodyWithResponse request with arbitrary body returning *AttachModToTeamResponse
-func (c *ClientWithResponses) AttachModToTeamWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachModToTeamResponse, error) {
-	rsp, err := c.AttachModToTeamWithBody(ctx, modId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) DeleteModFromGroupWithResponse(ctx context.Context, modID ModID, body DeleteModFromGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteModFromGroupResponse, error) {
+	rsp, err := c.DeleteModFromGroup(ctx, modID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseAttachModToTeamResponse(rsp)
+	return ParseDeleteModFromGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachModToTeamWithResponse(ctx context.Context, modId string, body AttachModToTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachModToTeamResponse, error) {
-	rsp, err := c.AttachModToTeam(ctx, modId, body, reqEditors...)
+// ListModGroupsWithResponse request returning *ListModGroupsResponse
+func (c *ClientWithResponses) ListModGroupsWithResponse(ctx context.Context, modID ModID, params *ListModGroupsParams, reqEditors ...RequestEditorFn) (*ListModGroupsResponse, error) {
+	rsp, err := c.ListModGroups(ctx, modID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseAttachModToTeamResponse(rsp)
+	return ParseListModGroupsResponse(rsp)
 }
 
-// PermitModTeamWithBodyWithResponse request with arbitrary body returning *PermitModTeamResponse
-func (c *ClientWithResponses) PermitModTeamWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitModTeamResponse, error) {
-	rsp, err := c.PermitModTeamWithBody(ctx, modId, contentType, body, reqEditors...)
+// AttachModToGroupWithBodyWithResponse request with arbitrary body returning *AttachModToGroupResponse
+func (c *ClientWithResponses) AttachModToGroupWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachModToGroupResponse, error) {
+	rsp, err := c.AttachModToGroupWithBody(ctx, modID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePermitModTeamResponse(rsp)
+	return ParseAttachModToGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) PermitModTeamWithResponse(ctx context.Context, modId string, body PermitModTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitModTeamResponse, error) {
-	rsp, err := c.PermitModTeam(ctx, modId, body, reqEditors...)
+func (c *ClientWithResponses) AttachModToGroupWithResponse(ctx context.Context, modID ModID, body AttachModToGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachModToGroupResponse, error) {
+	rsp, err := c.AttachModToGroup(ctx, modID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePermitModTeamResponse(rsp)
+	return ParseAttachModToGroupResponse(rsp)
+}
+
+// PermitModGroupWithBodyWithResponse request with arbitrary body returning *PermitModGroupResponse
+func (c *ClientWithResponses) PermitModGroupWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitModGroupResponse, error) {
+	rsp, err := c.PermitModGroupWithBody(ctx, modID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePermitModGroupResponse(rsp)
+}
+
+func (c *ClientWithResponses) PermitModGroupWithResponse(ctx context.Context, modID ModID, body PermitModGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitModGroupResponse, error) {
+	rsp, err := c.PermitModGroup(ctx, modID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePermitModGroupResponse(rsp)
 }
 
 // DeleteModFromUserWithBodyWithResponse request with arbitrary body returning *DeleteModFromUserResponse
-func (c *ClientWithResponses) DeleteModFromUserWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteModFromUserResponse, error) {
-	rsp, err := c.DeleteModFromUserWithBody(ctx, modId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) DeleteModFromUserWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteModFromUserResponse, error) {
+	rsp, err := c.DeleteModFromUserWithBody(ctx, modID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseDeleteModFromUserResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeleteModFromUserWithResponse(ctx context.Context, modId string, body DeleteModFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteModFromUserResponse, error) {
-	rsp, err := c.DeleteModFromUser(ctx, modId, body, reqEditors...)
+func (c *ClientWithResponses) DeleteModFromUserWithResponse(ctx context.Context, modID ModID, body DeleteModFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteModFromUserResponse, error) {
+	rsp, err := c.DeleteModFromUser(ctx, modID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16027,8 +16408,8 @@ func (c *ClientWithResponses) DeleteModFromUserWithResponse(ctx context.Context,
 }
 
 // ListModUsersWithResponse request returning *ListModUsersResponse
-func (c *ClientWithResponses) ListModUsersWithResponse(ctx context.Context, modId string, params *ListModUsersParams, reqEditors ...RequestEditorFn) (*ListModUsersResponse, error) {
-	rsp, err := c.ListModUsers(ctx, modId, params, reqEditors...)
+func (c *ClientWithResponses) ListModUsersWithResponse(ctx context.Context, modID ModID, params *ListModUsersParams, reqEditors ...RequestEditorFn) (*ListModUsersResponse, error) {
+	rsp, err := c.ListModUsers(ctx, modID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16036,16 +16417,16 @@ func (c *ClientWithResponses) ListModUsersWithResponse(ctx context.Context, modI
 }
 
 // AttachModToUserWithBodyWithResponse request with arbitrary body returning *AttachModToUserResponse
-func (c *ClientWithResponses) AttachModToUserWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachModToUserResponse, error) {
-	rsp, err := c.AttachModToUserWithBody(ctx, modId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) AttachModToUserWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachModToUserResponse, error) {
+	rsp, err := c.AttachModToUserWithBody(ctx, modID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachModToUserResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachModToUserWithResponse(ctx context.Context, modId string, body AttachModToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachModToUserResponse, error) {
-	rsp, err := c.AttachModToUser(ctx, modId, body, reqEditors...)
+func (c *ClientWithResponses) AttachModToUserWithResponse(ctx context.Context, modID ModID, body AttachModToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachModToUserResponse, error) {
+	rsp, err := c.AttachModToUser(ctx, modID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16053,16 +16434,16 @@ func (c *ClientWithResponses) AttachModToUserWithResponse(ctx context.Context, m
 }
 
 // PermitModUserWithBodyWithResponse request with arbitrary body returning *PermitModUserResponse
-func (c *ClientWithResponses) PermitModUserWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitModUserResponse, error) {
-	rsp, err := c.PermitModUserWithBody(ctx, modId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PermitModUserWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitModUserResponse, error) {
+	rsp, err := c.PermitModUserWithBody(ctx, modID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePermitModUserResponse(rsp)
 }
 
-func (c *ClientWithResponses) PermitModUserWithResponse(ctx context.Context, modId string, body PermitModUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitModUserResponse, error) {
-	rsp, err := c.PermitModUser(ctx, modId, body, reqEditors...)
+func (c *ClientWithResponses) PermitModUserWithResponse(ctx context.Context, modID ModID, body PermitModUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitModUserResponse, error) {
+	rsp, err := c.PermitModUser(ctx, modID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16070,8 +16451,8 @@ func (c *ClientWithResponses) PermitModUserWithResponse(ctx context.Context, mod
 }
 
 // ListVersionsWithResponse request returning *ListVersionsResponse
-func (c *ClientWithResponses) ListVersionsWithResponse(ctx context.Context, modId string, params *ListVersionsParams, reqEditors ...RequestEditorFn) (*ListVersionsResponse, error) {
-	rsp, err := c.ListVersions(ctx, modId, params, reqEditors...)
+func (c *ClientWithResponses) ListVersionsWithResponse(ctx context.Context, modID ModID, params *ListVersionsParams, reqEditors ...RequestEditorFn) (*ListVersionsResponse, error) {
+	rsp, err := c.ListVersions(ctx, modID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16079,16 +16460,16 @@ func (c *ClientWithResponses) ListVersionsWithResponse(ctx context.Context, modI
 }
 
 // CreateVersionWithBodyWithResponse request with arbitrary body returning *CreateVersionResponse
-func (c *ClientWithResponses) CreateVersionWithBodyWithResponse(ctx context.Context, modId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateVersionResponse, error) {
-	rsp, err := c.CreateVersionWithBody(ctx, modId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) CreateVersionWithBodyWithResponse(ctx context.Context, modID ModID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateVersionResponse, error) {
+	rsp, err := c.CreateVersionWithBody(ctx, modID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseCreateVersionResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateVersionWithResponse(ctx context.Context, modId string, body CreateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateVersionResponse, error) {
-	rsp, err := c.CreateVersion(ctx, modId, body, reqEditors...)
+func (c *ClientWithResponses) CreateVersionWithResponse(ctx context.Context, modID ModID, body CreateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateVersionResponse, error) {
+	rsp, err := c.CreateVersion(ctx, modID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16096,8 +16477,8 @@ func (c *ClientWithResponses) CreateVersionWithResponse(ctx context.Context, mod
 }
 
 // DeleteVersionWithResponse request returning *DeleteVersionResponse
-func (c *ClientWithResponses) DeleteVersionWithResponse(ctx context.Context, modId string, versionId string, reqEditors ...RequestEditorFn) (*DeleteVersionResponse, error) {
-	rsp, err := c.DeleteVersion(ctx, modId, versionId, reqEditors...)
+func (c *ClientWithResponses) DeleteVersionWithResponse(ctx context.Context, modID ModID, versionID VersionID, reqEditors ...RequestEditorFn) (*DeleteVersionResponse, error) {
+	rsp, err := c.DeleteVersion(ctx, modID, versionID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16105,8 +16486,8 @@ func (c *ClientWithResponses) DeleteVersionWithResponse(ctx context.Context, mod
 }
 
 // ShowVersionWithResponse request returning *ShowVersionResponse
-func (c *ClientWithResponses) ShowVersionWithResponse(ctx context.Context, modId string, versionId string, reqEditors ...RequestEditorFn) (*ShowVersionResponse, error) {
-	rsp, err := c.ShowVersion(ctx, modId, versionId, reqEditors...)
+func (c *ClientWithResponses) ShowVersionWithResponse(ctx context.Context, modID ModID, versionID VersionID, reqEditors ...RequestEditorFn) (*ShowVersionResponse, error) {
+	rsp, err := c.ShowVersion(ctx, modID, versionID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16114,16 +16495,16 @@ func (c *ClientWithResponses) ShowVersionWithResponse(ctx context.Context, modId
 }
 
 // UpdateVersionWithBodyWithResponse request with arbitrary body returning *UpdateVersionResponse
-func (c *ClientWithResponses) UpdateVersionWithBodyWithResponse(ctx context.Context, modId string, versionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateVersionResponse, error) {
-	rsp, err := c.UpdateVersionWithBody(ctx, modId, versionId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdateVersionWithBodyWithResponse(ctx context.Context, modID ModID, versionID VersionID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateVersionResponse, error) {
+	rsp, err := c.UpdateVersionWithBody(ctx, modID, versionID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateVersionResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateVersionWithResponse(ctx context.Context, modId string, versionId string, body UpdateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateVersionResponse, error) {
-	rsp, err := c.UpdateVersion(ctx, modId, versionId, body, reqEditors...)
+func (c *ClientWithResponses) UpdateVersionWithResponse(ctx context.Context, modID ModID, versionID VersionID, body UpdateVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateVersionResponse, error) {
+	rsp, err := c.UpdateVersion(ctx, modID, versionID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16131,16 +16512,16 @@ func (c *ClientWithResponses) UpdateVersionWithResponse(ctx context.Context, mod
 }
 
 // DeleteVersionFromBuildWithBodyWithResponse request with arbitrary body returning *DeleteVersionFromBuildResponse
-func (c *ClientWithResponses) DeleteVersionFromBuildWithBodyWithResponse(ctx context.Context, modId string, versionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteVersionFromBuildResponse, error) {
-	rsp, err := c.DeleteVersionFromBuildWithBody(ctx, modId, versionId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) DeleteVersionFromBuildWithBodyWithResponse(ctx context.Context, modID ModID, versionID VersionID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteVersionFromBuildResponse, error) {
+	rsp, err := c.DeleteVersionFromBuildWithBody(ctx, modID, versionID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseDeleteVersionFromBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeleteVersionFromBuildWithResponse(ctx context.Context, modId string, versionId string, body DeleteVersionFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteVersionFromBuildResponse, error) {
-	rsp, err := c.DeleteVersionFromBuild(ctx, modId, versionId, body, reqEditors...)
+func (c *ClientWithResponses) DeleteVersionFromBuildWithResponse(ctx context.Context, modID ModID, versionID VersionID, body DeleteVersionFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteVersionFromBuildResponse, error) {
+	rsp, err := c.DeleteVersionFromBuild(ctx, modID, versionID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16148,8 +16529,8 @@ func (c *ClientWithResponses) DeleteVersionFromBuildWithResponse(ctx context.Con
 }
 
 // ListVersionBuildsWithResponse request returning *ListVersionBuildsResponse
-func (c *ClientWithResponses) ListVersionBuildsWithResponse(ctx context.Context, modId string, versionId string, params *ListVersionBuildsParams, reqEditors ...RequestEditorFn) (*ListVersionBuildsResponse, error) {
-	rsp, err := c.ListVersionBuilds(ctx, modId, versionId, params, reqEditors...)
+func (c *ClientWithResponses) ListVersionBuildsWithResponse(ctx context.Context, modID ModID, versionID VersionID, params *ListVersionBuildsParams, reqEditors ...RequestEditorFn) (*ListVersionBuildsResponse, error) {
+	rsp, err := c.ListVersionBuilds(ctx, modID, versionID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16157,16 +16538,16 @@ func (c *ClientWithResponses) ListVersionBuildsWithResponse(ctx context.Context,
 }
 
 // AttachVersionToBuildWithBodyWithResponse request with arbitrary body returning *AttachVersionToBuildResponse
-func (c *ClientWithResponses) AttachVersionToBuildWithBodyWithResponse(ctx context.Context, modId string, versionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachVersionToBuildResponse, error) {
-	rsp, err := c.AttachVersionToBuildWithBody(ctx, modId, versionId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) AttachVersionToBuildWithBodyWithResponse(ctx context.Context, modID ModID, versionID VersionID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachVersionToBuildResponse, error) {
+	rsp, err := c.AttachVersionToBuildWithBody(ctx, modID, versionID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachVersionToBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachVersionToBuildWithResponse(ctx context.Context, modId string, versionId string, body AttachVersionToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachVersionToBuildResponse, error) {
-	rsp, err := c.AttachVersionToBuild(ctx, modId, versionId, body, reqEditors...)
+func (c *ClientWithResponses) AttachVersionToBuildWithResponse(ctx context.Context, modID ModID, versionID VersionID, body AttachVersionToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachVersionToBuildResponse, error) {
+	rsp, err := c.AttachVersionToBuild(ctx, modID, versionID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16192,16 +16573,16 @@ func (c *ClientWithResponses) UpdateNeoforgeWithResponse(ctx context.Context, re
 }
 
 // DeleteNeoforgeFromBuildWithBodyWithResponse request with arbitrary body returning *DeleteNeoforgeFromBuildResponse
-func (c *ClientWithResponses) DeleteNeoforgeFromBuildWithBodyWithResponse(ctx context.Context, neoforgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteNeoforgeFromBuildResponse, error) {
-	rsp, err := c.DeleteNeoforgeFromBuildWithBody(ctx, neoforgeId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) DeleteNeoforgeFromBuildWithBodyWithResponse(ctx context.Context, neoforgeID NeoforgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteNeoforgeFromBuildResponse, error) {
+	rsp, err := c.DeleteNeoforgeFromBuildWithBody(ctx, neoforgeID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseDeleteNeoforgeFromBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeleteNeoforgeFromBuildWithResponse(ctx context.Context, neoforgeId string, body DeleteNeoforgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteNeoforgeFromBuildResponse, error) {
-	rsp, err := c.DeleteNeoforgeFromBuild(ctx, neoforgeId, body, reqEditors...)
+func (c *ClientWithResponses) DeleteNeoforgeFromBuildWithResponse(ctx context.Context, neoforgeID NeoforgeID, body DeleteNeoforgeFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteNeoforgeFromBuildResponse, error) {
+	rsp, err := c.DeleteNeoforgeFromBuild(ctx, neoforgeID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16209,8 +16590,8 @@ func (c *ClientWithResponses) DeleteNeoforgeFromBuildWithResponse(ctx context.Co
 }
 
 // ListNeoforgeBuildsWithResponse request returning *ListNeoforgeBuildsResponse
-func (c *ClientWithResponses) ListNeoforgeBuildsWithResponse(ctx context.Context, neoforgeId string, params *ListNeoforgeBuildsParams, reqEditors ...RequestEditorFn) (*ListNeoforgeBuildsResponse, error) {
-	rsp, err := c.ListNeoforgeBuilds(ctx, neoforgeId, params, reqEditors...)
+func (c *ClientWithResponses) ListNeoforgeBuildsWithResponse(ctx context.Context, neoforgeID NeoforgeID, params *ListNeoforgeBuildsParams, reqEditors ...RequestEditorFn) (*ListNeoforgeBuildsResponse, error) {
+	rsp, err := c.ListNeoforgeBuilds(ctx, neoforgeID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16218,16 +16599,16 @@ func (c *ClientWithResponses) ListNeoforgeBuildsWithResponse(ctx context.Context
 }
 
 // AttachNeoforgeToBuildWithBodyWithResponse request with arbitrary body returning *AttachNeoforgeToBuildResponse
-func (c *ClientWithResponses) AttachNeoforgeToBuildWithBodyWithResponse(ctx context.Context, neoforgeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachNeoforgeToBuildResponse, error) {
-	rsp, err := c.AttachNeoforgeToBuildWithBody(ctx, neoforgeId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) AttachNeoforgeToBuildWithBodyWithResponse(ctx context.Context, neoforgeID NeoforgeID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachNeoforgeToBuildResponse, error) {
+	rsp, err := c.AttachNeoforgeToBuildWithBody(ctx, neoforgeID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachNeoforgeToBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachNeoforgeToBuildWithResponse(ctx context.Context, neoforgeId string, body AttachNeoforgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachNeoforgeToBuildResponse, error) {
-	rsp, err := c.AttachNeoforgeToBuild(ctx, neoforgeId, body, reqEditors...)
+func (c *ClientWithResponses) AttachNeoforgeToBuildWithResponse(ctx context.Context, neoforgeID NeoforgeID, body AttachNeoforgeToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachNeoforgeToBuildResponse, error) {
+	rsp, err := c.AttachNeoforgeToBuild(ctx, neoforgeID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16261,8 +16642,8 @@ func (c *ClientWithResponses) CreatePackWithResponse(ctx context.Context, body C
 }
 
 // DeletePackWithResponse request returning *DeletePackResponse
-func (c *ClientWithResponses) DeletePackWithResponse(ctx context.Context, packId string, reqEditors ...RequestEditorFn) (*DeletePackResponse, error) {
-	rsp, err := c.DeletePack(ctx, packId, reqEditors...)
+func (c *ClientWithResponses) DeletePackWithResponse(ctx context.Context, packID PackID, reqEditors ...RequestEditorFn) (*DeletePackResponse, error) {
+	rsp, err := c.DeletePack(ctx, packID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16270,8 +16651,8 @@ func (c *ClientWithResponses) DeletePackWithResponse(ctx context.Context, packId
 }
 
 // ShowPackWithResponse request returning *ShowPackResponse
-func (c *ClientWithResponses) ShowPackWithResponse(ctx context.Context, packId string, reqEditors ...RequestEditorFn) (*ShowPackResponse, error) {
-	rsp, err := c.ShowPack(ctx, packId, reqEditors...)
+func (c *ClientWithResponses) ShowPackWithResponse(ctx context.Context, packID PackID, reqEditors ...RequestEditorFn) (*ShowPackResponse, error) {
+	rsp, err := c.ShowPack(ctx, packID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16279,25 +16660,43 @@ func (c *ClientWithResponses) ShowPackWithResponse(ctx context.Context, packId s
 }
 
 // UpdatePackWithBodyWithResponse request with arbitrary body returning *UpdatePackResponse
-func (c *ClientWithResponses) UpdatePackWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePackResponse, error) {
-	rsp, err := c.UpdatePackWithBody(ctx, packId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePackWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePackResponse, error) {
+	rsp, err := c.UpdatePackWithBody(ctx, packID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdatePackResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdatePackWithResponse(ctx context.Context, packId string, body UpdatePackJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePackResponse, error) {
-	rsp, err := c.UpdatePack(ctx, packId, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePackWithResponse(ctx context.Context, packID PackID, body UpdatePackJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePackResponse, error) {
+	rsp, err := c.UpdatePack(ctx, packID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdatePackResponse(rsp)
+}
+
+// DeletePackAvatarWithResponse request returning *DeletePackAvatarResponse
+func (c *ClientWithResponses) DeletePackAvatarWithResponse(ctx context.Context, packID PackID, reqEditors ...RequestEditorFn) (*DeletePackAvatarResponse, error) {
+	rsp, err := c.DeletePackAvatar(ctx, packID, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeletePackAvatarResponse(rsp)
+}
+
+// CreatePackAvatarWithBodyWithResponse request with arbitrary body returning *CreatePackAvatarResponse
+func (c *ClientWithResponses) CreatePackAvatarWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePackAvatarResponse, error) {
+	rsp, err := c.CreatePackAvatarWithBody(ctx, packID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreatePackAvatarResponse(rsp)
 }
 
 // ListBuildsWithResponse request returning *ListBuildsResponse
-func (c *ClientWithResponses) ListBuildsWithResponse(ctx context.Context, packId string, params *ListBuildsParams, reqEditors ...RequestEditorFn) (*ListBuildsResponse, error) {
-	rsp, err := c.ListBuilds(ctx, packId, params, reqEditors...)
+func (c *ClientWithResponses) ListBuildsWithResponse(ctx context.Context, packID PackID, params *ListBuildsParams, reqEditors ...RequestEditorFn) (*ListBuildsResponse, error) {
+	rsp, err := c.ListBuilds(ctx, packID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16305,16 +16704,16 @@ func (c *ClientWithResponses) ListBuildsWithResponse(ctx context.Context, packId
 }
 
 // CreateBuildWithBodyWithResponse request with arbitrary body returning *CreateBuildResponse
-func (c *ClientWithResponses) CreateBuildWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateBuildResponse, error) {
-	rsp, err := c.CreateBuildWithBody(ctx, packId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) CreateBuildWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateBuildResponse, error) {
+	rsp, err := c.CreateBuildWithBody(ctx, packID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseCreateBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateBuildWithResponse(ctx context.Context, packId string, body CreateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateBuildResponse, error) {
-	rsp, err := c.CreateBuild(ctx, packId, body, reqEditors...)
+func (c *ClientWithResponses) CreateBuildWithResponse(ctx context.Context, packID PackID, body CreateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateBuildResponse, error) {
+	rsp, err := c.CreateBuild(ctx, packID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16322,8 +16721,8 @@ func (c *ClientWithResponses) CreateBuildWithResponse(ctx context.Context, packI
 }
 
 // DeleteBuildWithResponse request returning *DeleteBuildResponse
-func (c *ClientWithResponses) DeleteBuildWithResponse(ctx context.Context, packId string, buildId string, reqEditors ...RequestEditorFn) (*DeleteBuildResponse, error) {
-	rsp, err := c.DeleteBuild(ctx, packId, buildId, reqEditors...)
+func (c *ClientWithResponses) DeleteBuildWithResponse(ctx context.Context, packID PackID, buildID BuildID, reqEditors ...RequestEditorFn) (*DeleteBuildResponse, error) {
+	rsp, err := c.DeleteBuild(ctx, packID, buildID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16331,8 +16730,8 @@ func (c *ClientWithResponses) DeleteBuildWithResponse(ctx context.Context, packI
 }
 
 // ShowBuildWithResponse request returning *ShowBuildResponse
-func (c *ClientWithResponses) ShowBuildWithResponse(ctx context.Context, packId string, buildId string, reqEditors ...RequestEditorFn) (*ShowBuildResponse, error) {
-	rsp, err := c.ShowBuild(ctx, packId, buildId, reqEditors...)
+func (c *ClientWithResponses) ShowBuildWithResponse(ctx context.Context, packID PackID, buildID BuildID, reqEditors ...RequestEditorFn) (*ShowBuildResponse, error) {
+	rsp, err := c.ShowBuild(ctx, packID, buildID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16340,16 +16739,16 @@ func (c *ClientWithResponses) ShowBuildWithResponse(ctx context.Context, packId 
 }
 
 // UpdateBuildWithBodyWithResponse request with arbitrary body returning *UpdateBuildResponse
-func (c *ClientWithResponses) UpdateBuildWithBodyWithResponse(ctx context.Context, packId string, buildId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateBuildResponse, error) {
-	rsp, err := c.UpdateBuildWithBody(ctx, packId, buildId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdateBuildWithBodyWithResponse(ctx context.Context, packID PackID, buildID BuildID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateBuildResponse, error) {
+	rsp, err := c.UpdateBuildWithBody(ctx, packID, buildID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateBuildWithResponse(ctx context.Context, packId string, buildId string, body UpdateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateBuildResponse, error) {
-	rsp, err := c.UpdateBuild(ctx, packId, buildId, body, reqEditors...)
+func (c *ClientWithResponses) UpdateBuildWithResponse(ctx context.Context, packID PackID, buildID BuildID, body UpdateBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateBuildResponse, error) {
+	rsp, err := c.UpdateBuild(ctx, packID, buildID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16357,16 +16756,16 @@ func (c *ClientWithResponses) UpdateBuildWithResponse(ctx context.Context, packI
 }
 
 // DeleteBuildFromVersionWithBodyWithResponse request with arbitrary body returning *DeleteBuildFromVersionResponse
-func (c *ClientWithResponses) DeleteBuildFromVersionWithBodyWithResponse(ctx context.Context, packId string, buildId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteBuildFromVersionResponse, error) {
-	rsp, err := c.DeleteBuildFromVersionWithBody(ctx, packId, buildId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) DeleteBuildFromVersionWithBodyWithResponse(ctx context.Context, packID PackID, buildID BuildID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteBuildFromVersionResponse, error) {
+	rsp, err := c.DeleteBuildFromVersionWithBody(ctx, packID, buildID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseDeleteBuildFromVersionResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeleteBuildFromVersionWithResponse(ctx context.Context, packId string, buildId string, body DeleteBuildFromVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteBuildFromVersionResponse, error) {
-	rsp, err := c.DeleteBuildFromVersion(ctx, packId, buildId, body, reqEditors...)
+func (c *ClientWithResponses) DeleteBuildFromVersionWithResponse(ctx context.Context, packID PackID, buildID BuildID, body DeleteBuildFromVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteBuildFromVersionResponse, error) {
+	rsp, err := c.DeleteBuildFromVersion(ctx, packID, buildID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16374,8 +16773,8 @@ func (c *ClientWithResponses) DeleteBuildFromVersionWithResponse(ctx context.Con
 }
 
 // ListBuildVersionsWithResponse request returning *ListBuildVersionsResponse
-func (c *ClientWithResponses) ListBuildVersionsWithResponse(ctx context.Context, packId string, buildId string, params *ListBuildVersionsParams, reqEditors ...RequestEditorFn) (*ListBuildVersionsResponse, error) {
-	rsp, err := c.ListBuildVersions(ctx, packId, buildId, params, reqEditors...)
+func (c *ClientWithResponses) ListBuildVersionsWithResponse(ctx context.Context, packID PackID, buildID BuildID, params *ListBuildVersionsParams, reqEditors ...RequestEditorFn) (*ListBuildVersionsResponse, error) {
+	rsp, err := c.ListBuildVersions(ctx, packID, buildID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16383,93 +16782,93 @@ func (c *ClientWithResponses) ListBuildVersionsWithResponse(ctx context.Context,
 }
 
 // AttachBuildToVersionWithBodyWithResponse request with arbitrary body returning *AttachBuildToVersionResponse
-func (c *ClientWithResponses) AttachBuildToVersionWithBodyWithResponse(ctx context.Context, packId string, buildId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachBuildToVersionResponse, error) {
-	rsp, err := c.AttachBuildToVersionWithBody(ctx, packId, buildId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) AttachBuildToVersionWithBodyWithResponse(ctx context.Context, packID PackID, buildID BuildID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachBuildToVersionResponse, error) {
+	rsp, err := c.AttachBuildToVersionWithBody(ctx, packID, buildID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachBuildToVersionResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachBuildToVersionWithResponse(ctx context.Context, packId string, buildId string, body AttachBuildToVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachBuildToVersionResponse, error) {
-	rsp, err := c.AttachBuildToVersion(ctx, packId, buildId, body, reqEditors...)
+func (c *ClientWithResponses) AttachBuildToVersionWithResponse(ctx context.Context, packID PackID, buildID BuildID, body AttachBuildToVersionJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachBuildToVersionResponse, error) {
+	rsp, err := c.AttachBuildToVersion(ctx, packID, buildID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachBuildToVersionResponse(rsp)
 }
 
-// DeletePackFromTeamWithBodyWithResponse request with arbitrary body returning *DeletePackFromTeamResponse
-func (c *ClientWithResponses) DeletePackFromTeamWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeletePackFromTeamResponse, error) {
-	rsp, err := c.DeletePackFromTeamWithBody(ctx, packId, contentType, body, reqEditors...)
+// DeletePackFromGroupWithBodyWithResponse request with arbitrary body returning *DeletePackFromGroupResponse
+func (c *ClientWithResponses) DeletePackFromGroupWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeletePackFromGroupResponse, error) {
+	rsp, err := c.DeletePackFromGroupWithBody(ctx, packID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseDeletePackFromTeamResponse(rsp)
+	return ParseDeletePackFromGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeletePackFromTeamWithResponse(ctx context.Context, packId string, body DeletePackFromTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*DeletePackFromTeamResponse, error) {
-	rsp, err := c.DeletePackFromTeam(ctx, packId, body, reqEditors...)
+func (c *ClientWithResponses) DeletePackFromGroupWithResponse(ctx context.Context, packID PackID, body DeletePackFromGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*DeletePackFromGroupResponse, error) {
+	rsp, err := c.DeletePackFromGroup(ctx, packID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseDeletePackFromTeamResponse(rsp)
+	return ParseDeletePackFromGroupResponse(rsp)
 }
 
-// ListPackTeamsWithResponse request returning *ListPackTeamsResponse
-func (c *ClientWithResponses) ListPackTeamsWithResponse(ctx context.Context, packId string, params *ListPackTeamsParams, reqEditors ...RequestEditorFn) (*ListPackTeamsResponse, error) {
-	rsp, err := c.ListPackTeams(ctx, packId, params, reqEditors...)
+// ListPackGroupsWithResponse request returning *ListPackGroupsResponse
+func (c *ClientWithResponses) ListPackGroupsWithResponse(ctx context.Context, packID PackID, params *ListPackGroupsParams, reqEditors ...RequestEditorFn) (*ListPackGroupsResponse, error) {
+	rsp, err := c.ListPackGroups(ctx, packID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseListPackTeamsResponse(rsp)
+	return ParseListPackGroupsResponse(rsp)
 }
 
-// AttachPackToTeamWithBodyWithResponse request with arbitrary body returning *AttachPackToTeamResponse
-func (c *ClientWithResponses) AttachPackToTeamWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachPackToTeamResponse, error) {
-	rsp, err := c.AttachPackToTeamWithBody(ctx, packId, contentType, body, reqEditors...)
+// AttachPackToGroupWithBodyWithResponse request with arbitrary body returning *AttachPackToGroupResponse
+func (c *ClientWithResponses) AttachPackToGroupWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachPackToGroupResponse, error) {
+	rsp, err := c.AttachPackToGroupWithBody(ctx, packID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseAttachPackToTeamResponse(rsp)
+	return ParseAttachPackToGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachPackToTeamWithResponse(ctx context.Context, packId string, body AttachPackToTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachPackToTeamResponse, error) {
-	rsp, err := c.AttachPackToTeam(ctx, packId, body, reqEditors...)
+func (c *ClientWithResponses) AttachPackToGroupWithResponse(ctx context.Context, packID PackID, body AttachPackToGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachPackToGroupResponse, error) {
+	rsp, err := c.AttachPackToGroup(ctx, packID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseAttachPackToTeamResponse(rsp)
+	return ParseAttachPackToGroupResponse(rsp)
 }
 
-// PermitPackTeamWithBodyWithResponse request with arbitrary body returning *PermitPackTeamResponse
-func (c *ClientWithResponses) PermitPackTeamWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitPackTeamResponse, error) {
-	rsp, err := c.PermitPackTeamWithBody(ctx, packId, contentType, body, reqEditors...)
+// PermitPackGroupWithBodyWithResponse request with arbitrary body returning *PermitPackGroupResponse
+func (c *ClientWithResponses) PermitPackGroupWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitPackGroupResponse, error) {
+	rsp, err := c.PermitPackGroupWithBody(ctx, packID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePermitPackTeamResponse(rsp)
+	return ParsePermitPackGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) PermitPackTeamWithResponse(ctx context.Context, packId string, body PermitPackTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitPackTeamResponse, error) {
-	rsp, err := c.PermitPackTeam(ctx, packId, body, reqEditors...)
+func (c *ClientWithResponses) PermitPackGroupWithResponse(ctx context.Context, packID PackID, body PermitPackGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitPackGroupResponse, error) {
+	rsp, err := c.PermitPackGroup(ctx, packID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePermitPackTeamResponse(rsp)
+	return ParsePermitPackGroupResponse(rsp)
 }
 
 // DeletePackFromUserWithBodyWithResponse request with arbitrary body returning *DeletePackFromUserResponse
-func (c *ClientWithResponses) DeletePackFromUserWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeletePackFromUserResponse, error) {
-	rsp, err := c.DeletePackFromUserWithBody(ctx, packId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) DeletePackFromUserWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeletePackFromUserResponse, error) {
+	rsp, err := c.DeletePackFromUserWithBody(ctx, packID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseDeletePackFromUserResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeletePackFromUserWithResponse(ctx context.Context, packId string, body DeletePackFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DeletePackFromUserResponse, error) {
-	rsp, err := c.DeletePackFromUser(ctx, packId, body, reqEditors...)
+func (c *ClientWithResponses) DeletePackFromUserWithResponse(ctx context.Context, packID PackID, body DeletePackFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DeletePackFromUserResponse, error) {
+	rsp, err := c.DeletePackFromUser(ctx, packID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16477,8 +16876,8 @@ func (c *ClientWithResponses) DeletePackFromUserWithResponse(ctx context.Context
 }
 
 // ListPackUsersWithResponse request returning *ListPackUsersResponse
-func (c *ClientWithResponses) ListPackUsersWithResponse(ctx context.Context, packId string, params *ListPackUsersParams, reqEditors ...RequestEditorFn) (*ListPackUsersResponse, error) {
-	rsp, err := c.ListPackUsers(ctx, packId, params, reqEditors...)
+func (c *ClientWithResponses) ListPackUsersWithResponse(ctx context.Context, packID PackID, params *ListPackUsersParams, reqEditors ...RequestEditorFn) (*ListPackUsersResponse, error) {
+	rsp, err := c.ListPackUsers(ctx, packID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16486,16 +16885,16 @@ func (c *ClientWithResponses) ListPackUsersWithResponse(ctx context.Context, pac
 }
 
 // AttachPackToUserWithBodyWithResponse request with arbitrary body returning *AttachPackToUserResponse
-func (c *ClientWithResponses) AttachPackToUserWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachPackToUserResponse, error) {
-	rsp, err := c.AttachPackToUserWithBody(ctx, packId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) AttachPackToUserWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachPackToUserResponse, error) {
+	rsp, err := c.AttachPackToUserWithBody(ctx, packID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachPackToUserResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachPackToUserWithResponse(ctx context.Context, packId string, body AttachPackToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachPackToUserResponse, error) {
-	rsp, err := c.AttachPackToUser(ctx, packId, body, reqEditors...)
+func (c *ClientWithResponses) AttachPackToUserWithResponse(ctx context.Context, packID PackID, body AttachPackToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachPackToUserResponse, error) {
+	rsp, err := c.AttachPackToUser(ctx, packID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16503,16 +16902,16 @@ func (c *ClientWithResponses) AttachPackToUserWithResponse(ctx context.Context, 
 }
 
 // PermitPackUserWithBodyWithResponse request with arbitrary body returning *PermitPackUserResponse
-func (c *ClientWithResponses) PermitPackUserWithBodyWithResponse(ctx context.Context, packId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitPackUserResponse, error) {
-	rsp, err := c.PermitPackUserWithBody(ctx, packId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PermitPackUserWithBodyWithResponse(ctx context.Context, packID PackID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitPackUserResponse, error) {
+	rsp, err := c.PermitPackUserWithBody(ctx, packID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePermitPackUserResponse(rsp)
 }
 
-func (c *ClientWithResponses) PermitPackUserWithResponse(ctx context.Context, packId string, body PermitPackUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitPackUserResponse, error) {
-	rsp, err := c.PermitPackUser(ctx, packId, body, reqEditors...)
+func (c *ClientWithResponses) PermitPackUserWithResponse(ctx context.Context, packID PackID, body PermitPackUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitPackUserResponse, error) {
+	rsp, err := c.PermitPackUser(ctx, packID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16573,16 +16972,16 @@ func (c *ClientWithResponses) UpdateQuiltWithResponse(ctx context.Context, reqEd
 }
 
 // DeleteQuiltFromBuildWithBodyWithResponse request with arbitrary body returning *DeleteQuiltFromBuildResponse
-func (c *ClientWithResponses) DeleteQuiltFromBuildWithBodyWithResponse(ctx context.Context, quiltId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteQuiltFromBuildResponse, error) {
-	rsp, err := c.DeleteQuiltFromBuildWithBody(ctx, quiltId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) DeleteQuiltFromBuildWithBodyWithResponse(ctx context.Context, quiltID QuiltID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteQuiltFromBuildResponse, error) {
+	rsp, err := c.DeleteQuiltFromBuildWithBody(ctx, quiltID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseDeleteQuiltFromBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeleteQuiltFromBuildWithResponse(ctx context.Context, quiltId string, body DeleteQuiltFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteQuiltFromBuildResponse, error) {
-	rsp, err := c.DeleteQuiltFromBuild(ctx, quiltId, body, reqEditors...)
+func (c *ClientWithResponses) DeleteQuiltFromBuildWithResponse(ctx context.Context, quiltID QuiltID, body DeleteQuiltFromBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteQuiltFromBuildResponse, error) {
+	rsp, err := c.DeleteQuiltFromBuild(ctx, quiltID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16590,8 +16989,8 @@ func (c *ClientWithResponses) DeleteQuiltFromBuildWithResponse(ctx context.Conte
 }
 
 // ListQuiltBuildsWithResponse request returning *ListQuiltBuildsResponse
-func (c *ClientWithResponses) ListQuiltBuildsWithResponse(ctx context.Context, quiltId string, params *ListQuiltBuildsParams, reqEditors ...RequestEditorFn) (*ListQuiltBuildsResponse, error) {
-	rsp, err := c.ListQuiltBuilds(ctx, quiltId, params, reqEditors...)
+func (c *ClientWithResponses) ListQuiltBuildsWithResponse(ctx context.Context, quiltID QuiltID, params *ListQuiltBuildsParams, reqEditors ...RequestEditorFn) (*ListQuiltBuildsResponse, error) {
+	rsp, err := c.ListQuiltBuilds(ctx, quiltID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16599,261 +16998,20 @@ func (c *ClientWithResponses) ListQuiltBuildsWithResponse(ctx context.Context, q
 }
 
 // AttachQuiltToBuildWithBodyWithResponse request with arbitrary body returning *AttachQuiltToBuildResponse
-func (c *ClientWithResponses) AttachQuiltToBuildWithBodyWithResponse(ctx context.Context, quiltId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachQuiltToBuildResponse, error) {
-	rsp, err := c.AttachQuiltToBuildWithBody(ctx, quiltId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) AttachQuiltToBuildWithBodyWithResponse(ctx context.Context, quiltID QuiltID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachQuiltToBuildResponse, error) {
+	rsp, err := c.AttachQuiltToBuildWithBody(ctx, quiltID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachQuiltToBuildResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachQuiltToBuildWithResponse(ctx context.Context, quiltId string, body AttachQuiltToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachQuiltToBuildResponse, error) {
-	rsp, err := c.AttachQuiltToBuild(ctx, quiltId, body, reqEditors...)
+func (c *ClientWithResponses) AttachQuiltToBuildWithResponse(ctx context.Context, quiltID QuiltID, body AttachQuiltToBuildJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachQuiltToBuildResponse, error) {
+	rsp, err := c.AttachQuiltToBuild(ctx, quiltID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachQuiltToBuildResponse(rsp)
-}
-
-// ListTeamsWithResponse request returning *ListTeamsResponse
-func (c *ClientWithResponses) ListTeamsWithResponse(ctx context.Context, params *ListTeamsParams, reqEditors ...RequestEditorFn) (*ListTeamsResponse, error) {
-	rsp, err := c.ListTeams(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseListTeamsResponse(rsp)
-}
-
-// CreateTeamWithBodyWithResponse request with arbitrary body returning *CreateTeamResponse
-func (c *ClientWithResponses) CreateTeamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateTeamResponse, error) {
-	rsp, err := c.CreateTeamWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseCreateTeamResponse(rsp)
-}
-
-func (c *ClientWithResponses) CreateTeamWithResponse(ctx context.Context, body CreateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateTeamResponse, error) {
-	rsp, err := c.CreateTeam(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseCreateTeamResponse(rsp)
-}
-
-// DeleteTeamWithResponse request returning *DeleteTeamResponse
-func (c *ClientWithResponses) DeleteTeamWithResponse(ctx context.Context, teamId string, reqEditors ...RequestEditorFn) (*DeleteTeamResponse, error) {
-	rsp, err := c.DeleteTeam(ctx, teamId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseDeleteTeamResponse(rsp)
-}
-
-// ShowTeamWithResponse request returning *ShowTeamResponse
-func (c *ClientWithResponses) ShowTeamWithResponse(ctx context.Context, teamId string, reqEditors ...RequestEditorFn) (*ShowTeamResponse, error) {
-	rsp, err := c.ShowTeam(ctx, teamId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseShowTeamResponse(rsp)
-}
-
-// UpdateTeamWithBodyWithResponse request with arbitrary body returning *UpdateTeamResponse
-func (c *ClientWithResponses) UpdateTeamWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateTeamResponse, error) {
-	rsp, err := c.UpdateTeamWithBody(ctx, teamId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseUpdateTeamResponse(rsp)
-}
-
-func (c *ClientWithResponses) UpdateTeamWithResponse(ctx context.Context, teamId string, body UpdateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateTeamResponse, error) {
-	rsp, err := c.UpdateTeam(ctx, teamId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseUpdateTeamResponse(rsp)
-}
-
-// DeleteTeamFromModWithBodyWithResponse request with arbitrary body returning *DeleteTeamFromModResponse
-func (c *ClientWithResponses) DeleteTeamFromModWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteTeamFromModResponse, error) {
-	rsp, err := c.DeleteTeamFromModWithBody(ctx, teamId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseDeleteTeamFromModResponse(rsp)
-}
-
-func (c *ClientWithResponses) DeleteTeamFromModWithResponse(ctx context.Context, teamId string, body DeleteTeamFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteTeamFromModResponse, error) {
-	rsp, err := c.DeleteTeamFromMod(ctx, teamId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseDeleteTeamFromModResponse(rsp)
-}
-
-// ListTeamModsWithResponse request returning *ListTeamModsResponse
-func (c *ClientWithResponses) ListTeamModsWithResponse(ctx context.Context, teamId string, params *ListTeamModsParams, reqEditors ...RequestEditorFn) (*ListTeamModsResponse, error) {
-	rsp, err := c.ListTeamMods(ctx, teamId, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseListTeamModsResponse(rsp)
-}
-
-// AttachTeamToModWithBodyWithResponse request with arbitrary body returning *AttachTeamToModResponse
-func (c *ClientWithResponses) AttachTeamToModWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachTeamToModResponse, error) {
-	rsp, err := c.AttachTeamToModWithBody(ctx, teamId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseAttachTeamToModResponse(rsp)
-}
-
-func (c *ClientWithResponses) AttachTeamToModWithResponse(ctx context.Context, teamId string, body AttachTeamToModJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachTeamToModResponse, error) {
-	rsp, err := c.AttachTeamToMod(ctx, teamId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseAttachTeamToModResponse(rsp)
-}
-
-// PermitTeamModWithBodyWithResponse request with arbitrary body returning *PermitTeamModResponse
-func (c *ClientWithResponses) PermitTeamModWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitTeamModResponse, error) {
-	rsp, err := c.PermitTeamModWithBody(ctx, teamId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePermitTeamModResponse(rsp)
-}
-
-func (c *ClientWithResponses) PermitTeamModWithResponse(ctx context.Context, teamId string, body PermitTeamModJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitTeamModResponse, error) {
-	rsp, err := c.PermitTeamMod(ctx, teamId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePermitTeamModResponse(rsp)
-}
-
-// DeleteTeamFromPackWithBodyWithResponse request with arbitrary body returning *DeleteTeamFromPackResponse
-func (c *ClientWithResponses) DeleteTeamFromPackWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteTeamFromPackResponse, error) {
-	rsp, err := c.DeleteTeamFromPackWithBody(ctx, teamId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseDeleteTeamFromPackResponse(rsp)
-}
-
-func (c *ClientWithResponses) DeleteTeamFromPackWithResponse(ctx context.Context, teamId string, body DeleteTeamFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteTeamFromPackResponse, error) {
-	rsp, err := c.DeleteTeamFromPack(ctx, teamId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseDeleteTeamFromPackResponse(rsp)
-}
-
-// ListTeamPacksWithResponse request returning *ListTeamPacksResponse
-func (c *ClientWithResponses) ListTeamPacksWithResponse(ctx context.Context, teamId string, params *ListTeamPacksParams, reqEditors ...RequestEditorFn) (*ListTeamPacksResponse, error) {
-	rsp, err := c.ListTeamPacks(ctx, teamId, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseListTeamPacksResponse(rsp)
-}
-
-// AttachTeamToPackWithBodyWithResponse request with arbitrary body returning *AttachTeamToPackResponse
-func (c *ClientWithResponses) AttachTeamToPackWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachTeamToPackResponse, error) {
-	rsp, err := c.AttachTeamToPackWithBody(ctx, teamId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseAttachTeamToPackResponse(rsp)
-}
-
-func (c *ClientWithResponses) AttachTeamToPackWithResponse(ctx context.Context, teamId string, body AttachTeamToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachTeamToPackResponse, error) {
-	rsp, err := c.AttachTeamToPack(ctx, teamId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseAttachTeamToPackResponse(rsp)
-}
-
-// PermitTeamPackWithBodyWithResponse request with arbitrary body returning *PermitTeamPackResponse
-func (c *ClientWithResponses) PermitTeamPackWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitTeamPackResponse, error) {
-	rsp, err := c.PermitTeamPackWithBody(ctx, teamId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePermitTeamPackResponse(rsp)
-}
-
-func (c *ClientWithResponses) PermitTeamPackWithResponse(ctx context.Context, teamId string, body PermitTeamPackJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitTeamPackResponse, error) {
-	rsp, err := c.PermitTeamPack(ctx, teamId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePermitTeamPackResponse(rsp)
-}
-
-// DeleteTeamFromUserWithBodyWithResponse request with arbitrary body returning *DeleteTeamFromUserResponse
-func (c *ClientWithResponses) DeleteTeamFromUserWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteTeamFromUserResponse, error) {
-	rsp, err := c.DeleteTeamFromUserWithBody(ctx, teamId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseDeleteTeamFromUserResponse(rsp)
-}
-
-func (c *ClientWithResponses) DeleteTeamFromUserWithResponse(ctx context.Context, teamId string, body DeleteTeamFromUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteTeamFromUserResponse, error) {
-	rsp, err := c.DeleteTeamFromUser(ctx, teamId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseDeleteTeamFromUserResponse(rsp)
-}
-
-// ListTeamUsersWithResponse request returning *ListTeamUsersResponse
-func (c *ClientWithResponses) ListTeamUsersWithResponse(ctx context.Context, teamId string, params *ListTeamUsersParams, reqEditors ...RequestEditorFn) (*ListTeamUsersResponse, error) {
-	rsp, err := c.ListTeamUsers(ctx, teamId, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseListTeamUsersResponse(rsp)
-}
-
-// AttachTeamToUserWithBodyWithResponse request with arbitrary body returning *AttachTeamToUserResponse
-func (c *ClientWithResponses) AttachTeamToUserWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachTeamToUserResponse, error) {
-	rsp, err := c.AttachTeamToUserWithBody(ctx, teamId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseAttachTeamToUserResponse(rsp)
-}
-
-func (c *ClientWithResponses) AttachTeamToUserWithResponse(ctx context.Context, teamId string, body AttachTeamToUserJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachTeamToUserResponse, error) {
-	rsp, err := c.AttachTeamToUser(ctx, teamId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseAttachTeamToUserResponse(rsp)
-}
-
-// PermitTeamUserWithBodyWithResponse request with arbitrary body returning *PermitTeamUserResponse
-func (c *ClientWithResponses) PermitTeamUserWithBodyWithResponse(ctx context.Context, teamId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitTeamUserResponse, error) {
-	rsp, err := c.PermitTeamUserWithBody(ctx, teamId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePermitTeamUserResponse(rsp)
-}
-
-func (c *ClientWithResponses) PermitTeamUserWithResponse(ctx context.Context, teamId string, body PermitTeamUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitTeamUserResponse, error) {
-	rsp, err := c.PermitTeamUser(ctx, teamId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePermitTeamUserResponse(rsp)
 }
 
 // ListUsersWithResponse request returning *ListUsersResponse
@@ -16883,8 +17041,8 @@ func (c *ClientWithResponses) CreateUserWithResponse(ctx context.Context, body C
 }
 
 // DeleteUserWithResponse request returning *DeleteUserResponse
-func (c *ClientWithResponses) DeleteUserWithResponse(ctx context.Context, userId string, reqEditors ...RequestEditorFn) (*DeleteUserResponse, error) {
-	rsp, err := c.DeleteUser(ctx, userId, reqEditors...)
+func (c *ClientWithResponses) DeleteUserWithResponse(ctx context.Context, userID UserID, reqEditors ...RequestEditorFn) (*DeleteUserResponse, error) {
+	rsp, err := c.DeleteUser(ctx, userID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16892,8 +17050,8 @@ func (c *ClientWithResponses) DeleteUserWithResponse(ctx context.Context, userId
 }
 
 // ShowUserWithResponse request returning *ShowUserResponse
-func (c *ClientWithResponses) ShowUserWithResponse(ctx context.Context, userId string, reqEditors ...RequestEditorFn) (*ShowUserResponse, error) {
-	rsp, err := c.ShowUser(ctx, userId, reqEditors...)
+func (c *ClientWithResponses) ShowUserWithResponse(ctx context.Context, userID UserID, reqEditors ...RequestEditorFn) (*ShowUserResponse, error) {
+	rsp, err := c.ShowUser(ctx, userID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16901,33 +17059,93 @@ func (c *ClientWithResponses) ShowUserWithResponse(ctx context.Context, userId s
 }
 
 // UpdateUserWithBodyWithResponse request with arbitrary body returning *UpdateUserResponse
-func (c *ClientWithResponses) UpdateUserWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateUserResponse, error) {
-	rsp, err := c.UpdateUserWithBody(ctx, userId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdateUserWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateUserResponse, error) {
+	rsp, err := c.UpdateUserWithBody(ctx, userID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateUserResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateUserWithResponse(ctx context.Context, userId string, body UpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateUserResponse, error) {
-	rsp, err := c.UpdateUser(ctx, userId, body, reqEditors...)
+func (c *ClientWithResponses) UpdateUserWithResponse(ctx context.Context, userID UserID, body UpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateUserResponse, error) {
+	rsp, err := c.UpdateUser(ctx, userID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateUserResponse(rsp)
+}
+
+// DeleteUserFromGroupWithBodyWithResponse request with arbitrary body returning *DeleteUserFromGroupResponse
+func (c *ClientWithResponses) DeleteUserFromGroupWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteUserFromGroupResponse, error) {
+	rsp, err := c.DeleteUserFromGroupWithBody(ctx, userID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteUserFromGroupResponse(rsp)
+}
+
+func (c *ClientWithResponses) DeleteUserFromGroupWithResponse(ctx context.Context, userID UserID, body DeleteUserFromGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteUserFromGroupResponse, error) {
+	rsp, err := c.DeleteUserFromGroup(ctx, userID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteUserFromGroupResponse(rsp)
+}
+
+// ListUserGroupsWithResponse request returning *ListUserGroupsResponse
+func (c *ClientWithResponses) ListUserGroupsWithResponse(ctx context.Context, userID UserID, params *ListUserGroupsParams, reqEditors ...RequestEditorFn) (*ListUserGroupsResponse, error) {
+	rsp, err := c.ListUserGroups(ctx, userID, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseListUserGroupsResponse(rsp)
+}
+
+// AttachUserToGroupWithBodyWithResponse request with arbitrary body returning *AttachUserToGroupResponse
+func (c *ClientWithResponses) AttachUserToGroupWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachUserToGroupResponse, error) {
+	rsp, err := c.AttachUserToGroupWithBody(ctx, userID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAttachUserToGroupResponse(rsp)
+}
+
+func (c *ClientWithResponses) AttachUserToGroupWithResponse(ctx context.Context, userID UserID, body AttachUserToGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachUserToGroupResponse, error) {
+	rsp, err := c.AttachUserToGroup(ctx, userID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAttachUserToGroupResponse(rsp)
+}
+
+// PermitUserGroupWithBodyWithResponse request with arbitrary body returning *PermitUserGroupResponse
+func (c *ClientWithResponses) PermitUserGroupWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitUserGroupResponse, error) {
+	rsp, err := c.PermitUserGroupWithBody(ctx, userID, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePermitUserGroupResponse(rsp)
+}
+
+func (c *ClientWithResponses) PermitUserGroupWithResponse(ctx context.Context, userID UserID, body PermitUserGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitUserGroupResponse, error) {
+	rsp, err := c.PermitUserGroup(ctx, userID, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePermitUserGroupResponse(rsp)
 }
 
 // DeleteUserFromModWithBodyWithResponse request with arbitrary body returning *DeleteUserFromModResponse
-func (c *ClientWithResponses) DeleteUserFromModWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteUserFromModResponse, error) {
-	rsp, err := c.DeleteUserFromModWithBody(ctx, userId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) DeleteUserFromModWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteUserFromModResponse, error) {
+	rsp, err := c.DeleteUserFromModWithBody(ctx, userID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseDeleteUserFromModResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeleteUserFromModWithResponse(ctx context.Context, userId string, body DeleteUserFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteUserFromModResponse, error) {
-	rsp, err := c.DeleteUserFromMod(ctx, userId, body, reqEditors...)
+func (c *ClientWithResponses) DeleteUserFromModWithResponse(ctx context.Context, userID UserID, body DeleteUserFromModJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteUserFromModResponse, error) {
+	rsp, err := c.DeleteUserFromMod(ctx, userID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16935,8 +17153,8 @@ func (c *ClientWithResponses) DeleteUserFromModWithResponse(ctx context.Context,
 }
 
 // ListUserModsWithResponse request returning *ListUserModsResponse
-func (c *ClientWithResponses) ListUserModsWithResponse(ctx context.Context, userId string, params *ListUserModsParams, reqEditors ...RequestEditorFn) (*ListUserModsResponse, error) {
-	rsp, err := c.ListUserMods(ctx, userId, params, reqEditors...)
+func (c *ClientWithResponses) ListUserModsWithResponse(ctx context.Context, userID UserID, params *ListUserModsParams, reqEditors ...RequestEditorFn) (*ListUserModsResponse, error) {
+	rsp, err := c.ListUserMods(ctx, userID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16944,16 +17162,16 @@ func (c *ClientWithResponses) ListUserModsWithResponse(ctx context.Context, user
 }
 
 // AttachUserToModWithBodyWithResponse request with arbitrary body returning *AttachUserToModResponse
-func (c *ClientWithResponses) AttachUserToModWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachUserToModResponse, error) {
-	rsp, err := c.AttachUserToModWithBody(ctx, userId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) AttachUserToModWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachUserToModResponse, error) {
+	rsp, err := c.AttachUserToModWithBody(ctx, userID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachUserToModResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachUserToModWithResponse(ctx context.Context, userId string, body AttachUserToModJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachUserToModResponse, error) {
-	rsp, err := c.AttachUserToMod(ctx, userId, body, reqEditors...)
+func (c *ClientWithResponses) AttachUserToModWithResponse(ctx context.Context, userID UserID, body AttachUserToModJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachUserToModResponse, error) {
+	rsp, err := c.AttachUserToMod(ctx, userID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16961,16 +17179,16 @@ func (c *ClientWithResponses) AttachUserToModWithResponse(ctx context.Context, u
 }
 
 // PermitUserModWithBodyWithResponse request with arbitrary body returning *PermitUserModResponse
-func (c *ClientWithResponses) PermitUserModWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitUserModResponse, error) {
-	rsp, err := c.PermitUserModWithBody(ctx, userId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PermitUserModWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitUserModResponse, error) {
+	rsp, err := c.PermitUserModWithBody(ctx, userID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePermitUserModResponse(rsp)
 }
 
-func (c *ClientWithResponses) PermitUserModWithResponse(ctx context.Context, userId string, body PermitUserModJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitUserModResponse, error) {
-	rsp, err := c.PermitUserMod(ctx, userId, body, reqEditors...)
+func (c *ClientWithResponses) PermitUserModWithResponse(ctx context.Context, userID UserID, body PermitUserModJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitUserModResponse, error) {
+	rsp, err := c.PermitUserMod(ctx, userID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16978,16 +17196,16 @@ func (c *ClientWithResponses) PermitUserModWithResponse(ctx context.Context, use
 }
 
 // DeleteUserFromPackWithBodyWithResponse request with arbitrary body returning *DeleteUserFromPackResponse
-func (c *ClientWithResponses) DeleteUserFromPackWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteUserFromPackResponse, error) {
-	rsp, err := c.DeleteUserFromPackWithBody(ctx, userId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) DeleteUserFromPackWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteUserFromPackResponse, error) {
+	rsp, err := c.DeleteUserFromPackWithBody(ctx, userID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseDeleteUserFromPackResponse(rsp)
 }
 
-func (c *ClientWithResponses) DeleteUserFromPackWithResponse(ctx context.Context, userId string, body DeleteUserFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteUserFromPackResponse, error) {
-	rsp, err := c.DeleteUserFromPack(ctx, userId, body, reqEditors...)
+func (c *ClientWithResponses) DeleteUserFromPackWithResponse(ctx context.Context, userID UserID, body DeleteUserFromPackJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteUserFromPackResponse, error) {
+	rsp, err := c.DeleteUserFromPack(ctx, userID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -16995,8 +17213,8 @@ func (c *ClientWithResponses) DeleteUserFromPackWithResponse(ctx context.Context
 }
 
 // ListUserPacksWithResponse request returning *ListUserPacksResponse
-func (c *ClientWithResponses) ListUserPacksWithResponse(ctx context.Context, userId string, params *ListUserPacksParams, reqEditors ...RequestEditorFn) (*ListUserPacksResponse, error) {
-	rsp, err := c.ListUserPacks(ctx, userId, params, reqEditors...)
+func (c *ClientWithResponses) ListUserPacksWithResponse(ctx context.Context, userID UserID, params *ListUserPacksParams, reqEditors ...RequestEditorFn) (*ListUserPacksResponse, error) {
+	rsp, err := c.ListUserPacks(ctx, userID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -17004,16 +17222,16 @@ func (c *ClientWithResponses) ListUserPacksWithResponse(ctx context.Context, use
 }
 
 // AttachUserToPackWithBodyWithResponse request with arbitrary body returning *AttachUserToPackResponse
-func (c *ClientWithResponses) AttachUserToPackWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachUserToPackResponse, error) {
-	rsp, err := c.AttachUserToPackWithBody(ctx, userId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) AttachUserToPackWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachUserToPackResponse, error) {
+	rsp, err := c.AttachUserToPackWithBody(ctx, userID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachUserToPackResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachUserToPackWithResponse(ctx context.Context, userId string, body AttachUserToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachUserToPackResponse, error) {
-	rsp, err := c.AttachUserToPack(ctx, userId, body, reqEditors...)
+func (c *ClientWithResponses) AttachUserToPackWithResponse(ctx context.Context, userID UserID, body AttachUserToPackJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachUserToPackResponse, error) {
+	rsp, err := c.AttachUserToPack(ctx, userID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -17021,80 +17239,20 @@ func (c *ClientWithResponses) AttachUserToPackWithResponse(ctx context.Context, 
 }
 
 // PermitUserPackWithBodyWithResponse request with arbitrary body returning *PermitUserPackResponse
-func (c *ClientWithResponses) PermitUserPackWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitUserPackResponse, error) {
-	rsp, err := c.PermitUserPackWithBody(ctx, userId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PermitUserPackWithBodyWithResponse(ctx context.Context, userID UserID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitUserPackResponse, error) {
+	rsp, err := c.PermitUserPackWithBody(ctx, userID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePermitUserPackResponse(rsp)
 }
 
-func (c *ClientWithResponses) PermitUserPackWithResponse(ctx context.Context, userId string, body PermitUserPackJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitUserPackResponse, error) {
-	rsp, err := c.PermitUserPack(ctx, userId, body, reqEditors...)
+func (c *ClientWithResponses) PermitUserPackWithResponse(ctx context.Context, userID UserID, body PermitUserPackJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitUserPackResponse, error) {
+	rsp, err := c.PermitUserPack(ctx, userID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePermitUserPackResponse(rsp)
-}
-
-// DeleteUserFromTeamWithBodyWithResponse request with arbitrary body returning *DeleteUserFromTeamResponse
-func (c *ClientWithResponses) DeleteUserFromTeamWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DeleteUserFromTeamResponse, error) {
-	rsp, err := c.DeleteUserFromTeamWithBody(ctx, userId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseDeleteUserFromTeamResponse(rsp)
-}
-
-func (c *ClientWithResponses) DeleteUserFromTeamWithResponse(ctx context.Context, userId string, body DeleteUserFromTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteUserFromTeamResponse, error) {
-	rsp, err := c.DeleteUserFromTeam(ctx, userId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseDeleteUserFromTeamResponse(rsp)
-}
-
-// ListUserTeamsWithResponse request returning *ListUserTeamsResponse
-func (c *ClientWithResponses) ListUserTeamsWithResponse(ctx context.Context, userId string, params *ListUserTeamsParams, reqEditors ...RequestEditorFn) (*ListUserTeamsResponse, error) {
-	rsp, err := c.ListUserTeams(ctx, userId, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseListUserTeamsResponse(rsp)
-}
-
-// AttachUserToTeamWithBodyWithResponse request with arbitrary body returning *AttachUserToTeamResponse
-func (c *ClientWithResponses) AttachUserToTeamWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachUserToTeamResponse, error) {
-	rsp, err := c.AttachUserToTeamWithBody(ctx, userId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseAttachUserToTeamResponse(rsp)
-}
-
-func (c *ClientWithResponses) AttachUserToTeamWithResponse(ctx context.Context, userId string, body AttachUserToTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachUserToTeamResponse, error) {
-	rsp, err := c.AttachUserToTeam(ctx, userId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseAttachUserToTeamResponse(rsp)
-}
-
-// PermitUserTeamWithBodyWithResponse request with arbitrary body returning *PermitUserTeamResponse
-func (c *ClientWithResponses) PermitUserTeamWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PermitUserTeamResponse, error) {
-	rsp, err := c.PermitUserTeamWithBody(ctx, userId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePermitUserTeamResponse(rsp)
-}
-
-func (c *ClientWithResponses) PermitUserTeamWithResponse(ctx context.Context, userId string, body PermitUserTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*PermitUserTeamResponse, error) {
-	rsp, err := c.PermitUserTeam(ctx, userId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePermitUserTeamResponse(rsp)
 }
 
 // ParseLoginAuthResponse parses an HTTP response from a LoginAuthWithResponse call
@@ -17112,72 +17270,105 @@ func ParseLoginAuthResponse(rsp *http.Response) (*LoginAuthResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AuthToken
+		var dest LoginResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
-		var dest Notification
+		var dest BadCredentialsError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON401 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseExternalProvidersResponse parses an HTTP response from a ExternalProvidersWithResponse call
-func ParseExternalProvidersResponse(rsp *http.Response) (*ExternalProvidersResponse, error) {
+// ParseListProvidersResponse parses an HTTP response from a ListProvidersWithResponse call
+func ParseListProvidersResponse(rsp *http.Response) (*ListProvidersResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ExternalProvidersResponse{
+	response := &ListProvidersResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Providers
+		var dest ProvidersResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseRedirectAuthResponse parses an HTTP response from a RedirectAuthWithResponse call
+func ParseRedirectAuthResponse(rsp *http.Response) (*RedirectAuthResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RedirectAuthResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest TokenResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest InvalidTokenError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -17199,32 +17390,25 @@ func ParseRefreshAuthResponse(rsp *http.Response) (*RefreshAuthResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AuthToken
+		var dest RefreshResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
-		var dest Notification
+		var dest InvalidTokenError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON401 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -17246,113 +17430,58 @@ func ParseVerifyAuthResponse(rsp *http.Response) (*VerifyAuthResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AuthVerify
+		var dest VerifyResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
-		var dest Notification
+		var dest InvalidTokenError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON401 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
 
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
 	}
 
 	return response, nil
 }
 
-// ParseExternalCallbackResponse parses an HTTP response from a ExternalCallbackWithResponse call
-func ParseExternalCallbackResponse(rsp *http.Response) (*ExternalCallbackResponse, error) {
+// ParseCallbackProviderResponse parses an HTTP response from a CallbackProviderWithResponse call
+func ParseCallbackProviderResponse(rsp *http.Response) (*CallbackProviderResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ExternalCallbackResponse{
+	response := &CallbackProviderResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
 	}
 
 	return response, nil
 }
 
-// ParseExternalInitializeResponse parses an HTTP response from a ExternalInitializeWithResponse call
-func ParseExternalInitializeResponse(rsp *http.Response) (*ExternalInitializeResponse, error) {
+// ParseRequestProviderResponse parses an HTTP response from a RequestProviderWithResponse call
+func ParseRequestProviderResponse(rsp *http.Response) (*RequestProviderResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ExternalInitializeResponse{
+	response := &RequestProviderResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
 	}
 
 	return response, nil
@@ -17373,32 +17502,25 @@ func ParseListFabricsResponse(rsp *http.Response) (*ListFabricsResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Fabrics
+		var dest FabricsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -17420,39 +17542,32 @@ func ParseUpdateFabricResponse(rsp *http.Response) (*UpdateFabricResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest Notification
+		var dest RemoteUnavailableError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON503 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -17474,46 +17589,46 @@ func ParseDeleteFabricFromBuildResponse(rsp *http.Response) (*DeleteFabricFromBu
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -17535,39 +17650,32 @@ func ParseListFabricBuildsResponse(rsp *http.Response) (*ListFabricBuildsRespons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest FabricBuilds
+		var dest FabricBuildsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -17589,53 +17697,53 @@ func ParseAttachFabricToBuildResponse(rsp *http.Response) (*AttachFabricToBuildR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -17657,32 +17765,25 @@ func ParseListForgesResponse(rsp *http.Response) (*ListForgesResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Forges
+		var dest ForgesResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -17704,39 +17805,32 @@ func ParseUpdateForgeResponse(rsp *http.Response) (*UpdateForgeResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest Notification
+		var dest RemoteUnavailableError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON503 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -17758,46 +17852,46 @@ func ParseDeleteForgeFromBuildResponse(rsp *http.Response) (*DeleteForgeFromBuil
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -17819,39 +17913,32 @@ func ParseListForgeBuildsResponse(rsp *http.Response) (*ListForgeBuildsResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ForgeBuilds
+		var dest ForgeBuildsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -17873,53 +17960,1041 @@ func ParseAttachForgeToBuildResponse(rsp *http.Response) (*AttachForgeToBuildRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
 
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
+	}
+
+	return response, nil
+}
+
+// ParseListGroupsResponse parses an HTTP response from a ListGroupsWithResponse call
+func ParseListGroupsResponse(rsp *http.Response) (*ListGroupsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ListGroupsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GroupsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSONDefault = &dest
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCreateGroupResponse parses an HTTP response from a CreateGroupWithResponse call
+func ParseCreateGroupResponse(rsp *http.Response) (*CreateGroupResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreateGroupResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GroupResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ValidationError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeleteGroupResponse parses an HTTP response from a DeleteGroupWithResponse call
+func ParseDeleteGroupResponse(rsp *http.Response) (*DeleteGroupResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteGroupResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ActionFailedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseShowGroupResponse parses an HTTP response from a ShowGroupWithResponse call
+func ParseShowGroupResponse(rsp *http.Response) (*ShowGroupResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ShowGroupResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GroupResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUpdateGroupResponse parses an HTTP response from a UpdateGroupWithResponse call
+func ParseUpdateGroupResponse(rsp *http.Response) (*UpdateGroupResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UpdateGroupResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GroupResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ValidationError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeleteGroupFromModResponse parses an HTTP response from a DeleteGroupFromModWithResponse call
+func ParseDeleteGroupFromModResponse(rsp *http.Response) (*DeleteGroupFromModResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteGroupFromModResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
+		var dest NotAttachedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON412 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseListGroupModsResponse parses an HTTP response from a ListGroupModsWithResponse call
+func ParseListGroupModsResponse(rsp *http.Response) (*ListGroupModsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ListGroupModsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GroupModsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAttachGroupToModResponse parses an HTTP response from a AttachGroupToModWithResponse call
+func ParseAttachGroupToModResponse(rsp *http.Response) (*AttachGroupToModResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AttachGroupToModResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
+		var dest AlreadyAttachedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON412 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ValidationError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePermitGroupModResponse parses an HTTP response from a PermitGroupModWithResponse call
+func ParsePermitGroupModResponse(rsp *http.Response) (*PermitGroupModResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PermitGroupModResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
+		var dest NotAttachedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON412 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ValidationError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeleteGroupFromPackResponse parses an HTTP response from a DeleteGroupFromPackWithResponse call
+func ParseDeleteGroupFromPackResponse(rsp *http.Response) (*DeleteGroupFromPackResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteGroupFromPackResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
+		var dest NotAttachedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON412 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseListGroupPacksResponse parses an HTTP response from a ListGroupPacksWithResponse call
+func ParseListGroupPacksResponse(rsp *http.Response) (*ListGroupPacksResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ListGroupPacksResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GroupPacksResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAttachGroupToPackResponse parses an HTTP response from a AttachGroupToPackWithResponse call
+func ParseAttachGroupToPackResponse(rsp *http.Response) (*AttachGroupToPackResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AttachGroupToPackResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
+		var dest AlreadyAttachedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON412 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ValidationError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePermitGroupPackResponse parses an HTTP response from a PermitGroupPackWithResponse call
+func ParsePermitGroupPackResponse(rsp *http.Response) (*PermitGroupPackResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PermitGroupPackResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
+		var dest NotAttachedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON412 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ValidationError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeleteGroupFromUserResponse parses an HTTP response from a DeleteGroupFromUserWithResponse call
+func ParseDeleteGroupFromUserResponse(rsp *http.Response) (*DeleteGroupFromUserResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteGroupFromUserResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
+		var dest NotAttachedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON412 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseListGroupUsersResponse parses an HTTP response from a ListGroupUsersWithResponse call
+func ParseListGroupUsersResponse(rsp *http.Response) (*ListGroupUsersResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ListGroupUsersResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GroupUsersResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAttachGroupToUserResponse parses an HTTP response from a AttachGroupToUserWithResponse call
+func ParseAttachGroupToUserResponse(rsp *http.Response) (*AttachGroupToUserResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AttachGroupToUserResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
+		var dest AlreadyAttachedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON412 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ValidationError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePermitGroupUserResponse parses an HTTP response from a PermitGroupUserWithResponse call
+func ParsePermitGroupUserResponse(rsp *http.Response) (*PermitGroupUserResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PermitGroupUserResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
+		var dest NotAttachedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON412 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ValidationError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
 
 	}
 
@@ -17941,32 +19016,25 @@ func ParseListMinecraftsResponse(rsp *http.Response) (*ListMinecraftsResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Minecrafts
+		var dest MinecraftsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -17988,39 +19056,32 @@ func ParseUpdateMinecraftResponse(rsp *http.Response) (*UpdateMinecraftResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest Notification
+		var dest RemoteUnavailableError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON503 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -18042,46 +19103,46 @@ func ParseDeleteMinecraftFromBuildResponse(rsp *http.Response) (*DeleteMinecraft
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -18103,39 +19164,32 @@ func ParseListMinecraftBuildsResponse(rsp *http.Response) (*ListMinecraftBuildsR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MinecraftBuilds
+		var dest MinecraftBuildsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -18157,53 +19211,53 @@ func ParseAttachMinecraftToBuildResponse(rsp *http.Response) (*AttachMinecraftTo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -18225,32 +19279,25 @@ func ParseListModsResponse(rsp *http.Response) (*ListModsResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Mods
+		var dest ModsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -18272,39 +19319,39 @@ func ParseCreateModResponse(rsp *http.Response) (*CreateModResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Mod
+		var dest ModResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -18326,46 +19373,39 @@ func ParseDeleteModResponse(rsp *http.Response) (*DeleteModResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest Notification
+		var dest ActionFailedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -18387,39 +19427,32 @@ func ParseShowModResponse(rsp *http.Response) (*ShowModResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Mod
+		var dest ModResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -18441,297 +19474,405 @@ func ParseUpdateModResponse(rsp *http.Response) (*UpdateModResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Mod
+		var dest ModResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseDeleteModFromTeamResponse parses an HTTP response from a DeleteModFromTeamWithResponse call
-func ParseDeleteModFromTeamResponse(rsp *http.Response) (*DeleteModFromTeamResponse, error) {
+// ParseDeleteModAvatarResponse parses an HTTP response from a DeleteModAvatarWithResponse call
+func ParseDeleteModAvatarResponse(rsp *http.Response) (*DeleteModAvatarResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &DeleteModFromTeamResponse{
+	response := &DeleteModAvatarResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest ModAvatarResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ActionFailedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCreateModAvatarResponse parses an HTTP response from a CreateModAvatarWithResponse call
+func ParseCreateModAvatarResponse(rsp *http.Response) (*CreateModAvatarResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreateModAvatarResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ModAvatarResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ValidationError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeleteModFromGroupResponse parses an HTTP response from a DeleteModFromGroupWithResponse call
+func ParseDeleteModFromGroupResponse(rsp *http.Response) (*DeleteModFromGroupResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteModFromGroupResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseListModTeamsResponse parses an HTTP response from a ListModTeamsWithResponse call
-func ParseListModTeamsResponse(rsp *http.Response) (*ListModTeamsResponse, error) {
+// ParseListModGroupsResponse parses an HTTP response from a ListModGroupsWithResponse call
+func ParseListModGroupsResponse(rsp *http.Response) (*ListModGroupsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ListModTeamsResponse{
+	response := &ListModGroupsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ModTeams
+		var dest ModGroupsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseAttachModToTeamResponse parses an HTTP response from a AttachModToTeamWithResponse call
-func ParseAttachModToTeamResponse(rsp *http.Response) (*AttachModToTeamResponse, error) {
+// ParseAttachModToGroupResponse parses an HTTP response from a AttachModToGroupWithResponse call
+func ParseAttachModToGroupResponse(rsp *http.Response) (*AttachModToGroupResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &AttachModToTeamResponse{
+	response := &AttachModToGroupResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParsePermitModTeamResponse parses an HTTP response from a PermitModTeamWithResponse call
-func ParsePermitModTeamResponse(rsp *http.Response) (*PermitModTeamResponse, error) {
+// ParsePermitModGroupResponse parses an HTTP response from a PermitModGroupWithResponse call
+func ParsePermitModGroupResponse(rsp *http.Response) (*PermitModGroupResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &PermitModTeamResponse{
+	response := &PermitModGroupResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -18753,46 +19894,46 @@ func ParseDeleteModFromUserResponse(rsp *http.Response) (*DeleteModFromUserRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -18814,39 +19955,32 @@ func ParseListModUsersResponse(rsp *http.Response) (*ListModUsersResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ModUsers
+		var dest ModUsersResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -18868,53 +20002,53 @@ func ParseAttachModToUserResponse(rsp *http.Response) (*AttachModToUserResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -18936,53 +20070,53 @@ func ParsePermitModUserResponse(rsp *http.Response) (*PermitModUserResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19004,39 +20138,32 @@ func ParseListVersionsResponse(rsp *http.Response) (*ListVersionsResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Versions
+		var dest VersionsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19058,46 +20185,46 @@ func ParseCreateVersionResponse(rsp *http.Response) (*CreateVersionResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Version
+		var dest VersionResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19119,46 +20246,39 @@ func ParseDeleteVersionResponse(rsp *http.Response) (*DeleteVersionResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest Notification
+		var dest ActionFailedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19180,39 +20300,32 @@ func ParseShowVersionResponse(rsp *http.Response) (*ShowVersionResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Version
+		var dest VersionResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19234,46 +20347,46 @@ func ParseUpdateVersionResponse(rsp *http.Response) (*UpdateVersionResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Version
+		var dest VersionResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19295,46 +20408,46 @@ func ParseDeleteVersionFromBuildResponse(rsp *http.Response) (*DeleteVersionFrom
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19356,39 +20469,32 @@ func ParseListVersionBuildsResponse(rsp *http.Response) (*ListVersionBuildsRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest VersionBuilds
+		var dest VersionBuildsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19410,53 +20516,53 @@ func ParseAttachVersionToBuildResponse(rsp *http.Response) (*AttachVersionToBuil
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19478,32 +20584,25 @@ func ParseListNeoforgesResponse(rsp *http.Response) (*ListNeoforgesResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Neoforges
+		var dest NeoforgesResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19525,39 +20624,32 @@ func ParseUpdateNeoforgeResponse(rsp *http.Response) (*UpdateNeoforgeResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest Notification
+		var dest RemoteUnavailableError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON503 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19579,46 +20671,46 @@ func ParseDeleteNeoforgeFromBuildResponse(rsp *http.Response) (*DeleteNeoforgeFr
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19640,39 +20732,32 @@ func ParseListNeoforgeBuildsResponse(rsp *http.Response) (*ListNeoforgeBuildsRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest NeoforgeBuilds
+		var dest NeoforgeBuildsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19694,53 +20779,53 @@ func ParseAttachNeoforgeToBuildResponse(rsp *http.Response) (*AttachNeoforgeToBu
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19762,32 +20847,25 @@ func ParseListPacksResponse(rsp *http.Response) (*ListPacksResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Packs
+		var dest PacksResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19809,39 +20887,39 @@ func ParseCreatePackResponse(rsp *http.Response) (*CreatePackResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Pack
+		var dest PackResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19863,46 +20941,39 @@ func ParseDeletePackResponse(rsp *http.Response) (*DeletePackResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest Notification
+		var dest ActionFailedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19924,39 +20995,32 @@ func ParseShowPackResponse(rsp *http.Response) (*ShowPackResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Pack
+		var dest PackResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -19978,46 +21042,161 @@ func ParseUpdatePackResponse(rsp *http.Response) (*UpdatePackResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Pack
+		var dest PackResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
 
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
+	}
+
+	return response, nil
+}
+
+// ParseDeletePackAvatarResponse parses an HTTP response from a DeletePackAvatarWithResponse call
+func ParseDeletePackAvatarResponse(rsp *http.Response) (*DeletePackAvatarResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeletePackAvatarResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PackAvatarResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSONDefault = &dest
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ActionFailedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCreatePackAvatarResponse parses an HTTP response from a CreatePackAvatarWithResponse call
+func ParseCreatePackAvatarResponse(rsp *http.Response) (*CreatePackAvatarResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreatePackAvatarResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PackAvatarResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ValidationError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
 
 	}
 
@@ -20039,39 +21218,32 @@ func ParseListBuildsResponse(rsp *http.Response) (*ListBuildsResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Builds
+		var dest BuildsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -20093,46 +21265,46 @@ func ParseCreateBuildResponse(rsp *http.Response) (*CreateBuildResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Build
+		var dest BuildResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -20154,46 +21326,39 @@ func ParseDeleteBuildResponse(rsp *http.Response) (*DeleteBuildResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest Notification
+		var dest ActionFailedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -20215,39 +21380,32 @@ func ParseShowBuildResponse(rsp *http.Response) (*ShowBuildResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Build
+		var dest BuildResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -20269,46 +21427,46 @@ func ParseUpdateBuildResponse(rsp *http.Response) (*UpdateBuildResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Build
+		var dest BuildResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -20330,46 +21488,46 @@ func ParseDeleteBuildFromVersionResponse(rsp *http.Response) (*DeleteBuildFromVe
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -20391,39 +21549,32 @@ func ParseListBuildVersionsResponse(rsp *http.Response) (*ListBuildVersionsRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest BuildVersions
+		var dest BuildVersionsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -20445,304 +21596,297 @@ func ParseAttachBuildToVersionResponse(rsp *http.Response) (*AttachBuildToVersio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseDeletePackFromTeamResponse parses an HTTP response from a DeletePackFromTeamWithResponse call
-func ParseDeletePackFromTeamResponse(rsp *http.Response) (*DeletePackFromTeamResponse, error) {
+// ParseDeletePackFromGroupResponse parses an HTTP response from a DeletePackFromGroupWithResponse call
+func ParseDeletePackFromGroupResponse(rsp *http.Response) (*DeletePackFromGroupResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &DeletePackFromTeamResponse{
+	response := &DeletePackFromGroupResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseListPackTeamsResponse parses an HTTP response from a ListPackTeamsWithResponse call
-func ParseListPackTeamsResponse(rsp *http.Response) (*ListPackTeamsResponse, error) {
+// ParseListPackGroupsResponse parses an HTTP response from a ListPackGroupsWithResponse call
+func ParseListPackGroupsResponse(rsp *http.Response) (*ListPackGroupsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ListPackTeamsResponse{
+	response := &ListPackGroupsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PackTeams
+		var dest PackGroupsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseAttachPackToTeamResponse parses an HTTP response from a AttachPackToTeamWithResponse call
-func ParseAttachPackToTeamResponse(rsp *http.Response) (*AttachPackToTeamResponse, error) {
+// ParseAttachPackToGroupResponse parses an HTTP response from a AttachPackToGroupWithResponse call
+func ParseAttachPackToGroupResponse(rsp *http.Response) (*AttachPackToGroupResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &AttachPackToTeamResponse{
+	response := &AttachPackToGroupResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParsePermitPackTeamResponse parses an HTTP response from a PermitPackTeamWithResponse call
-func ParsePermitPackTeamResponse(rsp *http.Response) (*PermitPackTeamResponse, error) {
+// ParsePermitPackGroupResponse parses an HTTP response from a PermitPackGroupWithResponse call
+func ParsePermitPackGroupResponse(rsp *http.Response) (*PermitPackGroupResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &PermitPackTeamResponse{
+	response := &PermitPackGroupResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -20764,46 +21908,46 @@ func ParseDeletePackFromUserResponse(rsp *http.Response) (*DeletePackFromUserRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -20825,39 +21969,32 @@ func ParseListPackUsersResponse(rsp *http.Response) (*ListPackUsersResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PackUsers
+		var dest PackUsersResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -20879,53 +22016,53 @@ func ParseAttachPackToUserResponse(rsp *http.Response) (*AttachPackToUserRespons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -20947,53 +22084,53 @@ func ParsePermitPackUserResponse(rsp *http.Response) (*PermitPackUserResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -21015,32 +22152,25 @@ func ParseShowProfileResponse(rsp *http.Response) (*ShowProfileResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Profile
+		var dest ProfileResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -21062,39 +22192,39 @@ func ParseUpdateProfileResponse(rsp *http.Response) (*UpdateProfileResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Profile
+		var dest ProfileResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -21116,32 +22246,25 @@ func ParseTokenProfileResponse(rsp *http.Response) (*TokenProfileResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AuthToken
+		var dest TokenResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -21163,32 +22286,25 @@ func ParseListQuiltsResponse(rsp *http.Response) (*ListQuiltsResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Quilts
+		var dest QuiltsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -21210,39 +22326,32 @@ func ParseUpdateQuiltResponse(rsp *http.Response) (*UpdateQuiltResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest Notification
+		var dest RemoteUnavailableError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON503 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -21264,46 +22373,46 @@ func ParseDeleteQuiltFromBuildResponse(rsp *http.Response) (*DeleteQuiltFromBuil
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -21325,39 +22434,32 @@ func ParseListQuiltBuildsResponse(rsp *http.Response) (*ListQuiltBuildsResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest QuiltBuilds
+		var dest QuiltBuildsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -21379,1083 +22481,53 @@ func ParseAttachQuiltToBuildResponse(rsp *http.Response) (*AttachQuiltToBuildRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON422 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseListTeamsResponse parses an HTTP response from a ListTeamsWithResponse call
-func ParseListTeamsResponse(rsp *http.Response) (*ListTeamsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ListTeamsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Teams
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseCreateTeamResponse parses an HTTP response from a CreateTeamWithResponse call
-func ParseCreateTeamResponse(rsp *http.Response) (*CreateTeamResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &CreateTeamResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Team
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON422 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseDeleteTeamResponse parses an HTTP response from a DeleteTeamWithResponse call
-func ParseDeleteTeamResponse(rsp *http.Response) (*DeleteTeamResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &DeleteTeamResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest Notification
+		var dest BadRequestError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseShowTeamResponse parses an HTTP response from a ShowTeamWithResponse call
-func ParseShowTeamResponse(rsp *http.Response) (*ShowTeamResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ShowTeamResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Team
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseUpdateTeamResponse parses an HTTP response from a UpdateTeamWithResponse call
-func ParseUpdateTeamResponse(rsp *http.Response) (*UpdateTeamResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &UpdateTeamResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Team
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON422 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseDeleteTeamFromModResponse parses an HTTP response from a DeleteTeamFromModWithResponse call
-func ParseDeleteTeamFromModResponse(rsp *http.Response) (*DeleteTeamFromModResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &DeleteTeamFromModResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseListTeamModsResponse parses an HTTP response from a ListTeamModsWithResponse call
-func ParseListTeamModsResponse(rsp *http.Response) (*ListTeamModsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ListTeamModsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TeamMods
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseAttachTeamToModResponse parses an HTTP response from a AttachTeamToModWithResponse call
-func ParseAttachTeamToModResponse(rsp *http.Response) (*AttachTeamToModResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &AttachTeamToModResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParsePermitTeamModResponse parses an HTTP response from a PermitTeamModWithResponse call
-func ParsePermitTeamModResponse(rsp *http.Response) (*PermitTeamModResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PermitTeamModResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON422 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseDeleteTeamFromPackResponse parses an HTTP response from a DeleteTeamFromPackWithResponse call
-func ParseDeleteTeamFromPackResponse(rsp *http.Response) (*DeleteTeamFromPackResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &DeleteTeamFromPackResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseListTeamPacksResponse parses an HTTP response from a ListTeamPacksWithResponse call
-func ParseListTeamPacksResponse(rsp *http.Response) (*ListTeamPacksResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ListTeamPacksResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TeamPacks
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseAttachTeamToPackResponse parses an HTTP response from a AttachTeamToPackWithResponse call
-func ParseAttachTeamToPackResponse(rsp *http.Response) (*AttachTeamToPackResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &AttachTeamToPackResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON422 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParsePermitTeamPackResponse parses an HTTP response from a PermitTeamPackWithResponse call
-func ParsePermitTeamPackResponse(rsp *http.Response) (*PermitTeamPackResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PermitTeamPackResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON422 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseDeleteTeamFromUserResponse parses an HTTP response from a DeleteTeamFromUserWithResponse call
-func ParseDeleteTeamFromUserResponse(rsp *http.Response) (*DeleteTeamFromUserResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &DeleteTeamFromUserResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseListTeamUsersResponse parses an HTTP response from a ListTeamUsersWithResponse call
-func ParseListTeamUsersResponse(rsp *http.Response) (*ListTeamUsersResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ListTeamUsersResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TeamUsers
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseAttachTeamToUserResponse parses an HTTP response from a AttachTeamToUserWithResponse call
-func ParseAttachTeamToUserResponse(rsp *http.Response) (*AttachTeamToUserResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &AttachTeamToUserResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON422 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParsePermitTeamUserResponse parses an HTTP response from a PermitTeamUserWithResponse call
-func ParsePermitTeamUserResponse(rsp *http.Response) (*PermitTeamUserResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PermitTeamUserResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON422 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -22477,32 +22549,25 @@ func ParseListUsersResponse(rsp *http.Response) (*ListUsersResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Users
+		var dest UsersResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -22524,39 +22589,39 @@ func ParseCreateUserResponse(rsp *http.Response) (*CreateUserResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest User
+		var dest UserResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -22578,46 +22643,39 @@ func ParseDeleteUserResponse(rsp *http.Response) (*DeleteUserResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest Notification
+		var dest ActionFailedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -22639,39 +22697,32 @@ func ParseShowUserResponse(rsp *http.Response) (*ShowUserResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest User
+		var dest UserResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -22693,46 +22744,290 @@ func ParseUpdateUserResponse(rsp *http.Response) (*UpdateUserResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest User
+		var dest UserResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
 
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
+	}
+
+	return response, nil
+}
+
+// ParseDeleteUserFromGroupResponse parses an HTTP response from a DeleteUserFromGroupWithResponse call
+func ParseDeleteUserFromGroupResponse(rsp *http.Response) (*DeleteUserFromGroupResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteUserFromGroupResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSONDefault = &dest
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
+		var dest NotAttachedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON412 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseListUserGroupsResponse parses an HTTP response from a ListUserGroupsWithResponse call
+func ParseListUserGroupsResponse(rsp *http.Response) (*ListUserGroupsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ListUserGroupsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserGroupsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAttachUserToGroupResponse parses an HTTP response from a AttachUserToGroupWithResponse call
+func ParseAttachUserToGroupResponse(rsp *http.Response) (*AttachUserToGroupResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AttachUserToGroupResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
+		var dest AlreadyAttachedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON412 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ValidationError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePermitUserGroupResponse parses an HTTP response from a PermitUserGroupWithResponse call
+func ParsePermitUserGroupResponse(rsp *http.Response) (*PermitUserGroupResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PermitUserGroupResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SuccessMessage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest NotAuthorizedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFoundError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
+		var dest NotAttachedError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON412 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ValidationError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest InternalServerError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
 
 	}
 
@@ -22754,46 +23049,46 @@ func ParseDeleteUserFromModResponse(rsp *http.Response) (*DeleteUserFromModRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -22815,39 +23110,32 @@ func ParseListUserModsResponse(rsp *http.Response) (*ListUserModsResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserMods
+		var dest UserModsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -22869,53 +23157,53 @@ func ParseAttachUserToModResponse(rsp *http.Response) (*AttachUserToModResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -22937,53 +23225,53 @@ func ParsePermitUserModResponse(rsp *http.Response) (*PermitUserModResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -23005,46 +23293,46 @@ func ParseDeleteUserFromPackResponse(rsp *http.Response) (*DeleteUserFromPackRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -23066,39 +23354,32 @@ func ParseListUserPacksResponse(rsp *http.Response) (*ListUserPacksResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserPacks
+		var dest UserPacksResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -23120,53 +23401,53 @@ func ParseAttachUserToPackResponse(rsp *http.Response) (*AttachUserToPackRespons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest AlreadyAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
@@ -23188,304 +23469,53 @@ func ParsePermitUserPackResponse(rsp *http.Response) (*PermitUserPackResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
+		var dest SuccessMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequestError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
+		var dest NotAuthorizedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
+		var dest NotFoundError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
+		var dest NotAttachedError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON412 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
+		var dest ValidationError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON422 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
+		var dest InternalServerError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseDeleteUserFromTeamResponse parses an HTTP response from a DeleteUserFromTeamWithResponse call
-func ParseDeleteUserFromTeamResponse(rsp *http.Response) (*DeleteUserFromTeamResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &DeleteUserFromTeamResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseListUserTeamsResponse parses an HTTP response from a ListUserTeamsWithResponse call
-func ParseListUserTeamsResponse(rsp *http.Response) (*ListUserTeamsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ListUserTeamsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserTeams
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseAttachUserToTeamResponse parses an HTTP response from a AttachUserToTeamWithResponse call
-func ParseAttachUserToTeamResponse(rsp *http.Response) (*AttachUserToTeamResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &AttachUserToTeamResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON422 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParsePermitUserTeamResponse parses an HTTP response from a PermitUserTeamWithResponse call
-func ParsePermitUserTeamResponse(rsp *http.Response) (*PermitUserTeamResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PermitUserTeamResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON412 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON422 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest Notification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSONDefault = &dest
 
 	}
 
