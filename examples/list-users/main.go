@@ -25,7 +25,7 @@ func main() {
 		log.Fatalf("Failed to get users: %s", err)
 	}
 
-	for _, t := range kleister.FromPtr(resp.JSON200.Users) {
+	for _, t := range resp.JSON200.Users {
 		log.Println(kleister.FromPtr(t.Username))
 	}
 }
