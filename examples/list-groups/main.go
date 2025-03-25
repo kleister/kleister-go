@@ -16,16 +16,16 @@ func main() {
 		log.Fatalf("Failed to initialize client: %s", err)
 	}
 
-	resp, err := client.ListTeamsWithResponse(
+	resp, err := client.ListGroupsWithResponse(
 		context.Background(),
-		&kleister.ListTeamsParams{},
+		&kleister.ListGroupsParams{},
 	)
 
 	if err != nil {
 		log.Fatalf("Failed to get teams: %s", err)
 	}
 
-	for _, t := range kleister.FromPtr(resp.JSON200.Teams) {
+	for _, t := range resp.JSON200.Groups {
 		log.Println(kleister.FromPtr(t.Name))
 	}
 }
