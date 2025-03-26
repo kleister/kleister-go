@@ -1,7 +1,7 @@
 ---
 repository:
   name: kleister-go
-  description: "Kleister: SDK for Golang"
+  description: Golang SDK for Kleister
   homepage: https://kleister.eu
   topics: kleister, minecraft, sdk, openapi, go, golang
 
