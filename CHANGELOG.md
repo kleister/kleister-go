@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.7.0](https://github.com/kleister/kleister-go/compare/v1.6.0...v1.7.0) (2025-03-26)
+
+
+### Features
+
+* automated openapi client update ([50e7ae4](https://github.com/kleister/kleister-go/commit/50e7ae47804187c91d04b6ac0fe53ec98e87bfc0))
+
+
+### Bugfixes
+
+* update examples for new spec ([58a6f91](https://github.com/kleister/kleister-go/commit/58a6f9142289100f3d69152b64b8054a17a00be0))
+
 ## [1.6.0](https://github.com/kleister/kleister-go/compare/v1.5.0...v1.6.0) (2025-02-17)
 
 
