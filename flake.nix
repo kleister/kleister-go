@@ -55,8 +55,6 @@
           devenv = {
             shells = {
               default = {
-                name = "kleister-go";
-
                 git-hooks = {
                   hooks = {
                     nixfmt-rfc-style = {
