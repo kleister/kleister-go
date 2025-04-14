@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/kleister/kleister-go/compare/v1.7.0...v1.8.0) (2025-04-14)
+
+
+### Features
+
+* upgrade revive and golangci-lint ([8029896](https://github.com/kleister/kleister-go/commit/8029896b3ec366a0f61b19433c77ebe5a1b5667e))
+
 ## [1.7.0](https://github.com/kleister/kleister-go/compare/v1.6.0...v1.7.0) (2025-03-26)
 
 
