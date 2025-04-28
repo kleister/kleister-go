@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.1](https://github.com/kleister/kleister-go/compare/v1.9.0...v1.9.1) (2025-04-28)
+
+
+### Bugfixes
+
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.1.3 ([#83](https://github.com/kleister/kleister-go/issues/83)) ([c669c6d](https://github.com/kleister/kleister-go/commit/c669c6d0cfa382f298e72d9e96e90035289a39fa))
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.1.5 ([#84](https://github.com/kleister/kleister-go/issues/84)) ([8fc4fd3](https://github.com/kleister/kleister-go/commit/8fc4fd36dd46c8267d2213c044d252f0721bacf7))
+
 ## [1.9.0](https://github.com/kleister/kleister-go/compare/v1.8.0...v1.9.0) (2025-04-21)
 
 
