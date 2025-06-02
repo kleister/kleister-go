@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/kleister/kleister-go/compare/v1.9.2...v1.10.0) (2025-06-02)
+
+
+### Features
+
+* **deps:** update module github.com/mgechev/revive to v1.10.0 ([#87](https://github.com/kleister/kleister-go/issues/87)) ([2aedc59](https://github.com/kleister/kleister-go/commit/2aedc596e59e97174b51af0d2d6cee167d8412be))
+
 ## [1.9.2](https://github.com/kleister/kleister-go/compare/v1.9.1...v1.9.2) (2025-05-05)
 
 
