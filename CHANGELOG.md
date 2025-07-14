@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.12.0](https://github.com/kleister/kleister-go/compare/v1.11.0...v1.12.0) (2025-07-14)
+
+
+### Features
+
+* **deps:** update module github.com/mgechev/revive to v1.11.0 ([#92](https://github.com/kleister/kleister-go/issues/92)) ([5f36ff5](https://github.com/kleister/kleister-go/commit/5f36ff540ff5e239e869a8840f2c9b2e4777a022))
+
+
+### Bugfixes
+
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.2.2 ([#91](https://github.com/kleister/kleister-go/issues/91)) ([684a390](https://github.com/kleister/kleister-go/commit/684a390b045e540e8e17a9540064162c983222bc))
+
 ## [1.11.0](https://github.com/kleister/kleister-go/compare/v1.10.0...v1.11.0) (2025-06-30)
 
 
