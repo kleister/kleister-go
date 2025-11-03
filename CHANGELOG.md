@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.1](https://github.com/kleister/kleister-go/compare/v1.15.0...v1.15.1) (2025-11-03)
+
+
+### Bugfixes
+
+* **deps:** update module github.com/oapi-codegen/oapi-codegen/v2 to v2.5.1 ([#108](https://github.com/kleister/kleister-go/issues/108)) ([987ca11](https://github.com/kleister/kleister-go/commit/987ca11ac9c0d58d2beb840b5f29bc8ccf1b7453))
+
 ## [1.15.0](https://github.com/kleister/kleister-go/compare/v1.14.1...v1.15.0) (2025-08-18)
 
 
