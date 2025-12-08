@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.17.0](https://github.com/kleister/kleister-go/compare/v1.16.1...v1.17.0) (2025-12-08)
+
+
+### Features
+
+* **minor:** update module github.com/golangci/golangci-lint/v2 to v2.7.0 ([#121](https://github.com/kleister/kleister-go/issues/121)) ([e138660](https://github.com/kleister/kleister-go/commit/e13866093650c41abc52c5c09773bc7fb3b1c384))
+
 ## [1.16.1](https://github.com/kleister/kleister-go/compare/v1.16.0...v1.16.1) (2025-11-17)
 
 
