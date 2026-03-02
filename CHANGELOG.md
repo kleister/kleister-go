@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.18.0](https://github.com/kleister/kleister-go/compare/v1.17.0...v1.18.0) (2026-03-02)
+
+### Dependencies
+
+* **minor:** update module github.com/oapi-codegen/runtime to v1.2.0 ([#132](https://github.com/kleister/kleister-go/issues/132)) ([8013a0d](https://github.com/kleister/kleister-go/commit/8013a0d5b9915c24cc221905e413a008feba6d12))
+
+### Miscellaneous
+
+* add initial revive config ([63aeb13](https://github.com/kleister/kleister-go/commit/63aeb1357c8275dcbad9396c981f93c1eaf96d64))
+* **flake:** updated lockfile [skip ci] ([57c18bf](https://github.com/kleister/kleister-go/commit/57c18bfed50b5ed4cf148549d64bc79c3ac9dffd))
+* **flake:** updated lockfile [skip ci] ([78d67ee](https://github.com/kleister/kleister-go/commit/78d67ee20470a04d10b43268dd52546c848fcc13))
+* **flake:** updated lockfile [skip ci] ([58c99f5](https://github.com/kleister/kleister-go/commit/58c99f57a480e679e6a4bbb60c8acb77a88188a7))
+* **flake:** updated lockfile [skip ci] ([884add7](https://github.com/kleister/kleister-go/commit/884add7b583cff1fbf10faa6e5ecefd799fd896c))
+* **flake:** updated lockfile [skip ci] ([872d9c4](https://github.com/kleister/kleister-go/commit/872d9c494c9914c7ad9679df211590b3168e09e0))
+* **flake:** updated lockfile [skip ci] ([a020004](https://github.com/kleister/kleister-go/commit/a0200047848f96875f5157379aab8ee723f6c8ba))
+* **flake:** updated lockfile [skip ci] ([a09a2f7](https://github.com/kleister/kleister-go/commit/a09a2f79f44b5f83d26bc8645d955514a1cb7db3))
+* **flake:** updated lockfile [skip ci] ([e4eed68](https://github.com/kleister/kleister-go/commit/e4eed68b60fef6b3d477ad7c21405ed603031ba0))
+* **flake:** updated lockfile [skip ci] ([4e18554](https://github.com/kleister/kleister-go/commit/4e18554a8fab3499a6c8ea5660124a643aeea33e))
+* **flake:** updated lockfile [skip ci] ([1aa5f65](https://github.com/kleister/kleister-go/commit/1aa5f6552dc0920ef2754ffad3cd8da392a0177f))
+* **flake:** updated lockfile [skip ci] ([ebb1e9a](https://github.com/kleister/kleister-go/commit/ebb1e9aaaa64c2874162f7e801680c601a0eb498))
+* **flake:** updated lockfile [skip ci] ([6a09c6d](https://github.com/kleister/kleister-go/commit/6a09c6df0b147c5e11b65616d9be8eabf7ed9cda))
+* replace nixfmt package and use go 1.25 ([9cf1d93](https://github.com/kleister/kleister-go/commit/9cf1d934108b701e75e50ad346ae39b006b9b18e))
+
 ## [1.17.0](https://github.com/kleister/kleister-go/compare/v1.16.1...v1.17.0) (2025-12-08)
 
 
