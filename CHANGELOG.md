@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.19.0](https://github.com/kleister/kleister-go/compare/v1.18.0...v1.19.0) (2026-03-09)
+
+### Features
+
+* automated openapi client update ([cadcfaa](https://github.com/kleister/kleister-go/commit/cadcfaa09a3ff111d6062893b2930051b6f31a73))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([22463d7](https://github.com/kleister/kleister-go/commit/22463d706075c06b0518732b03f9d11403231478))
+
 ## [1.18.0](https://github.com/kleister/kleister-go/compare/v1.17.0...v1.18.0) (2026-03-02)
 
 ### Dependencies
