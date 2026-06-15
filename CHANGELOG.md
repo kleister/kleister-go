@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.23.0](https://github.com/kleister/kleister-go/compare/v1.22.1...v1.23.0) (2026-06-15)
+
+### Features
+
+* automated openapi client update ([0f28138](https://github.com/kleister/kleister-go/commit/0f28138bacb7cdd0786449717a8ef44015ebad1b))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([bede850](https://github.com/kleister/kleister-go/commit/bede8500dd9ee51705b6373b1038c2ea8b070324))
+* **flake:** updated lockfile [skip ci] ([75716e3](https://github.com/kleister/kleister-go/commit/75716e39f9382350126c53fb3a148c2157b99cbb))
+* **flake:** updated lockfile [skip ci] ([68e5ef7](https://github.com/kleister/kleister-go/commit/68e5ef75fb9aa1aab954e5e95d824ec07c5add29))
+
 ## [1.22.1](https://github.com/kleister/kleister-go/compare/v1.22.0...v1.22.1) (2026-05-25)
 
 ### Dependencies
