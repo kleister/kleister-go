@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.23.1](https://github.com/kleister/kleister-go/compare/v1.23.0...v1.23.1) (2026-06-22)
+
+### Dependencies
+
+* **patch:** update module github.com/oapi-codegen/runtime to v1.4.2 ([#151](https://github.com/kleister/kleister-go/issues/151)) ([b190e83](https://github.com/kleister/kleister-go/commit/b190e8387eef4f458e84d29140eadf0ea950a2d1))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([d05a2f2](https://github.com/kleister/kleister-go/commit/d05a2f2e444e07448b3231c6bbef3116abd6fa58))
+
 ## [1.23.0](https://github.com/kleister/kleister-go/compare/v1.22.1...v1.23.0) (2026-06-15)
 
 ### Features
