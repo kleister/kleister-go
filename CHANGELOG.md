@@ -1,5 +1,7 @@
 # Changelog
 
+## [1.24.0](https://github.com/kleister/kleister-go/compare/v1.23.1...v1.24.0) (2026-07-13)
+
 ## [1.23.1](https://github.com/kleister/kleister-go/compare/v1.23.0...v1.23.1) (2026-06-22)
 
 ### Dependencies
