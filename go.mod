@@ -1,6 +1,6 @@
 module github.com/kleister/kleister-go
 
-go 1.25.0
+go 1.26.5
 
 require github.com/oapi-codegen/runtime v1.6.0
 
