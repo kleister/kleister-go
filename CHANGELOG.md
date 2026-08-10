@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.26.0](https://github.com/kleister/kleister-go/compare/v1.25.0...v1.26.0) (2026-08-10)
+
+### Features
+
+* restructure repo and build processes ([f81d670](https://github.com/kleister/kleister-go/commit/f81d6709f3daa29a12d090b66064a518cf869b24))
+
 ## [1.25.0](https://github.com/kleister/kleister-go/compare/v1.24.0...v1.25.0) (2026-07-20)
 
 ## [1.24.0](https://github.com/kleister/kleister-go/compare/v1.23.1...v1.24.0) (2026-07-13)
