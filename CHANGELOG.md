@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.28.0](https://github.com/kleister/kleister-go/compare/v1.27.0...v1.28.0) (2026-08-24)
+
+### Dependencies
+
+* **minor:** update dependency golangci-lint to v2.13.0 ([#165](https://github.com/kleister/kleister-go/issues/165)) ([74b65b6](https://github.com/kleister/kleister-go/commit/74b65b6eeb81744cc33e994b1dff36bac835bd6b))
+* **minor:** update dependency task to v3.53.1 ([#163](https://github.com/kleister/kleister-go/issues/163)) ([390ad5c](https://github.com/kleister/kleister-go/commit/390ad5c33f0a5620bf2436f23ac081db20e19c9c))
+* **patch:** update dependency golangci-lint to v2.13.1 ([#166](https://github.com/kleister/kleister-go/issues/166)) ([c8d0084](https://github.com/kleister/kleister-go/commit/c8d0084a251369fbafa0de859387c5ab304346b5))
+
 ## [1.27.0](https://github.com/kleister/kleister-go/compare/v1.26.0...v1.27.0) (2026-08-17)
 
 ### Dependencies
