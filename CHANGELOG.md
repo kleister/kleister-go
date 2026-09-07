@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.29.1](https://github.com/kleister/kleister-go/compare/v1.29.0...v1.29.1) (2026-09-07)
+
+### Dependencies
+
+* **patch:** update dependency go to v1.27.1 ([#171](https://github.com/kleister/kleister-go/issues/171)) ([6150198](https://github.com/kleister/kleister-go/commit/61501984d49d68e3ee74f34b174e35b2a165d171))
+* **patch:** update dependency goreleaser to v2.18.1 ([#172](https://github.com/kleister/kleister-go/issues/172)) ([abb124d](https://github.com/kleister/kleister-go/commit/abb124d72987194602fc8cfb378c82fa79ff8f95))
+
 ## [1.29.0](https://github.com/kleister/kleister-go/compare/v1.28.0...v1.29.0) (2026-08-31)
 
 ### Dependencies
