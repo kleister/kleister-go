@@ -1,5 +1,34 @@
 # Changelog
 
+## [1.30.0](https://github.com/kleister/kleister-go/compare/v1.29.1...v1.30.0) (2026-10-26)
+
+### Features
+
+* automated openapi client update ([8a4b704](https://github.com/kleister/kleister-go/commit/8a4b7049fb072e018adf2aa2d2631472c83ad2bf))
+
+### Dependencies
+
+* **minor:** update module github.com/getkin/kin-openapi to v0.147.0 [security] ([#190](https://github.com/kleister/kleister-go/issues/190)) ([57d1338](https://github.com/kleister/kleister-go/commit/57d1338e78827a6c0d73f0a3102ec4a02ede3d6e))
+* **minor:** update module github.com/oapi-codegen/runtime to v1.8.0 ([#194](https://github.com/kleister/kleister-go/issues/194)) ([94ad69c](https://github.com/kleister/kleister-go/commit/94ad69c25a93a5d02d4707d1b88951c2f023d957))
+* **mise:** update dependency go to v1.27.2 ([#184](https://github.com/kleister/kleister-go/issues/184)) ([fdd651b](https://github.com/kleister/kleister-go/commit/fdd651bc9233ab7f63e18ff99f431a23e6e57802))
+* **mise:** update dependency go to v1.27.3 ([#191](https://github.com/kleister/kleister-go/issues/191)) ([312e9b4](https://github.com/kleister/kleister-go/commit/312e9b4d5071c4361195e4d202ed46524f1ec422))
+* **mise:** update dependency golangci-lint to v2.14.0 ([#177](https://github.com/kleister/kleister-go/issues/177)) ([a7695b8](https://github.com/kleister/kleister-go/commit/a7695b8d649bb330b9013fd6e819d651b57fef9b))
+* **mise:** update dependency golangci-lint to v2.15.0 ([#186](https://github.com/kleister/kleister-go/issues/186)) ([c4a55db](https://github.com/kleister/kleister-go/commit/c4a55dbe941ff100fbfb839d7fdf7fd26d4e766c))
+* **mise:** update dependency goreleaser to v2.18.2 ([#175](https://github.com/kleister/kleister-go/issues/175)) ([f446a56](https://github.com/kleister/kleister-go/commit/f446a56a4bfc2367abd6a612913e13c0c6516369))
+* **mise:** update dependency goreleaser to v2.18.3 ([#185](https://github.com/kleister/kleister-go/issues/185)) ([9d13a0c](https://github.com/kleister/kleister-go/commit/9d13a0c8378e6b9364716b3fc2a0aa8b930c0b5d))
+* **mise:** update dependency goreleaser to v2.19.0 ([#193](https://github.com/kleister/kleister-go/issues/193)) ([87e8b32](https://github.com/kleister/kleister-go/commit/87e8b3281a476dbf20c7172e62182ded074576c3))
+* **mise:** update dependency prek to v0.5.3 ([#173](https://github.com/kleister/kleister-go/issues/173)) ([3233ea4](https://github.com/kleister/kleister-go/commit/3233ea42001a2de2555e28012c5f0d4c6ae94467))
+* **mise:** update dependency prek to v0.5.4 ([#179](https://github.com/kleister/kleister-go/issues/179)) ([844bd92](https://github.com/kleister/kleister-go/commit/844bd928f8a593836f7d3bc1d16ad6266ad588c2))
+* **mise:** update dependency prek to v0.5.5 ([#182](https://github.com/kleister/kleister-go/issues/182)) ([f64b941](https://github.com/kleister/kleister-go/commit/f64b941465c28e9c09184de5914c3ac7b0c1d4b9))
+* **mise:** update dependency prek to v0.5.6 ([#188](https://github.com/kleister/kleister-go/issues/188)) ([cb33178](https://github.com/kleister/kleister-go/commit/cb33178350807d2c612a7f86bbf87ffd680f43e7))
+* **mise:** update dependency prek to v0.5.7 ([#192](https://github.com/kleister/kleister-go/issues/192)) ([442e1b1](https://github.com/kleister/kleister-go/commit/442e1b1372eef1ff76af24106b4100a9c9a91bed))
+* **mise:** update dependency task to v3.54.0 ([#181](https://github.com/kleister/kleister-go/issues/181)) ([55f1b0d](https://github.com/kleister/kleister-go/commit/55f1b0d83f2319409bc217ba2296f2f831cbba1d))
+* **mise:** update module go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint to v2.14.0 ([#178](https://github.com/kleister/kleister-go/issues/178)) ([27757a1](https://github.com/kleister/kleister-go/commit/27757a14d84d5df4818d3a07e85ecc27e110f5a0))
+* **mise:** update module go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint to v2.15.0 ([#187](https://github.com/kleister/kleister-go/issues/187)) ([f1c8e2f](https://github.com/kleister/kleister-go/commit/f1c8e2fff7227e20bb4b20fdec9ea6a0d166fde5))
+* **mise:** update module go:github.com/mgechev/revive to v1.17.0 ([#176](https://github.com/kleister/kleister-go/issues/176)) ([35b5e3b](https://github.com/kleister/kleister-go/commit/35b5e3b9b751b8944218d8d8f2ac554849ea5a09))
+* **mise:** update module go:github.com/mgechev/revive to v1.17.1 ([#183](https://github.com/kleister/kleister-go/issues/183)) ([d1010cc](https://github.com/kleister/kleister-go/commit/d1010ccd360598afcfc565854719e3f149cd2c65))
+* **mise:** update module go:github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen to v2.8.1 ([#195](https://github.com/kleister/kleister-go/issues/195)) ([1d72961](https://github.com/kleister/kleister-go/commit/1d72961ee6efac37c198aa94754d2e596c986022))
+
 ## [1.29.1](https://github.com/kleister/kleister-go/compare/v1.29.0...v1.29.1) (2026-09-07)
 
 ### Dependencies
