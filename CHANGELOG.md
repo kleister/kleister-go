@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.31.0](https://github.com/kleister/kleister-go/compare/v1.30.0...v1.31.0) (2026-11-02)
+
+### Features
+
+* automated openapi client update ([570b4ef](https://github.com/kleister/kleister-go/commit/570b4ef3277628a0343669edd226b2ea221d4a54))
+
+### Dependencies
+
+* **mise:** update dependency prek to v0.5.9 ([#198](https://github.com/kleister/kleister-go/issues/198)) ([457048a](https://github.com/kleister/kleister-go/commit/457048a77de4a8e954d803ddc0cc132142e0cf50))
+* **mise:** update module go:github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen to v2.8.2 ([#199](https://github.com/kleister/kleister-go/issues/199)) ([fe8bb59](https://github.com/kleister/kleister-go/commit/fe8bb59f8fd5b382b8644513b3ce942484882473))
+* **mise:** update node.js to v26 ([#197](https://github.com/kleister/kleister-go/issues/197)) ([ec0f138](https://github.com/kleister/kleister-go/commit/ec0f1386e00e0dabac4e8efef74621805ca74be9))
+
 ## [1.30.0](https://github.com/kleister/kleister-go/compare/v1.29.1...v1.30.0) (2026-10-26)
 
 ### Features
