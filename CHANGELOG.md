@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.32.0](https://github.com/kleister/kleister-go/compare/v1.31.0...v1.32.0) (2026-11-16)
+
+### Dependencies
+
+* **minor:** update module github.com/oapi-codegen/runtime to v1.9.0 ([#204](https://github.com/kleister/kleister-go/issues/204)) ([5e4792e](https://github.com/kleister/kleister-go/commit/5e4792e758d3816e63150d97c1365478d1e565dc))
+* **mise:** update dependency go to v1.27.4 ([#203](https://github.com/kleister/kleister-go/issues/203)) ([abb3f3c](https://github.com/kleister/kleister-go/commit/abb3f3cb15ab48d018623748b8753a36ebae2ca1))
+* **mise:** update dependency goreleaser to v2.20.0 ([#202](https://github.com/kleister/kleister-go/issues/202)) ([ee32da7](https://github.com/kleister/kleister-go/commit/ee32da7e7804deb1b5202d5d3b70de4242fdc276))
+* **mise:** update dependency goreleaser to v2.20.1 ([#205](https://github.com/kleister/kleister-go/issues/205)) ([e31481b](https://github.com/kleister/kleister-go/commit/e31481b18a0f4c50feb33bdc361355e4f464b59a))
+* **mise:** update dependency goreleaser to v2.20.2 ([#206](https://github.com/kleister/kleister-go/issues/206)) ([4c1b015](https://github.com/kleister/kleister-go/commit/4c1b015d132b245c8de8443ec6e3c8898b88620b))
+* **mise:** update dependency prek to v0.5.10 ([#201](https://github.com/kleister/kleister-go/issues/201)) ([08411ff](https://github.com/kleister/kleister-go/commit/08411ff6b28f51b733f80b9a7a002bbfb4fee5f1))
+* **mise:** update dependency prek to v0.5.11 ([#207](https://github.com/kleister/kleister-go/issues/207)) ([b606e5b](https://github.com/kleister/kleister-go/commit/b606e5b100e97f9114f5a45de68319337db3d6a7))
+
 ## [1.31.0](https://github.com/kleister/kleister-go/compare/v1.30.0...v1.31.0) (2026-11-02)
 
 ### Features
