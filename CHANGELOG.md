@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.33.0](https://github.com/kleister/kleister-go/compare/v1.32.0...v1.33.0) (2026-11-23)
+
+### Features
+
+* automated openapi client update ([d6f2f16](https://github.com/kleister/kleister-go/commit/d6f2f161c058b482fecdbe93a3c4f3ccb4e76eb5))
+
+### Dependencies
+
+* **mise:** update dependency goreleaser to v2.20.3 ([#208](https://github.com/kleister/kleister-go/issues/208)) ([030227e](https://github.com/kleister/kleister-go/commit/030227e3f13b1a2e9efa9d8e806091dab8b8708f))
+* **mise:** update module go:github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen to v2.9.0 ([#210](https://github.com/kleister/kleister-go/issues/210)) ([caa5fa7](https://github.com/kleister/kleister-go/commit/caa5fa793411e10c17df95d48d99a66ccf099470))
+* **patch:** update module github.com/oapi-codegen/runtime to v1.9.1 ([#209](https://github.com/kleister/kleister-go/issues/209)) ([ca88182](https://github.com/kleister/kleister-go/commit/ca881820585f564e0cb6c8a1f8308b88bf71d048))
+
 ## [1.32.0](https://github.com/kleister/kleister-go/compare/v1.31.0...v1.32.0) (2026-11-16)
 
 ### Dependencies
